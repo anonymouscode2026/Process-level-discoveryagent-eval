@@ -1,0 +1,97 @@
+model,family,level,mean,std
+claude-opus-4-6,"Math optimization",L0,0.361502,0.295613
+claude-opus-4-6,"Math optimization",L0f,0.726135,0.068608
+claude-opus-4-6,"Math optimization",L1,0.769953,0.092000
+claude-opus-4-6,"Math optimization",L2,0.849765,0.079766
+claude-opus-4-6,"GPU kernel",L0,0.656886,0.175332
+claude-opus-4-6,"GPU kernel",L0f,0.607981,0.133645
+claude-opus-4-6,"GPU kernel",L1,0.625978,0.119838
+claude-opus-4-6,"GPU kernel",L2,0.778169,0.121868
+claude-opus-4-6,"ADRS",L0,0.422535,0.112842
+claude-opus-4-6,"ADRS",L0f,0.656808,0.152321
+claude-opus-4-6,"ADRS",L1,0.587324,0.187361
+claude-opus-4-6,"ADRS",L2,0.760094,0.058495
+claude-opus-4-6,"FCS algorithmic",L0,0.383803,0.187442
+claude-opus-4-6,"FCS algorithmic",L0f,0.500469,0.137125
+claude-opus-4-6,"FCS algorithmic",L1,0.502347,0.187167
+claude-opus-4-6,"FCS algorithmic",L2,0.649296,0.178203
+deepseek-v3.2,"Math optimization",L0,0.314554,0.064486
+deepseek-v3.2,"Math optimization",L0f,0.282473,0.031513
+deepseek-v3.2,"Math optimization",L1,0.655712,0.157555
+deepseek-v3.2,"Math optimization",L2,0.360720,0.196608
+deepseek-v3.2,"GPU kernel",L0,0.414319,0.053662
+deepseek-v3.2,"GPU kernel",L0f,0.449139,0.156408
+deepseek-v3.2,"GPU kernel",L1,0.294210,0.055594
+deepseek-v3.2,"GPU kernel",L2,0.408059,0.165702
+deepseek-v3.2,"ADRS",L0,0.473709,0.170225
+deepseek-v3.2,"ADRS",L0f,0.361502,0.170132
+deepseek-v3.2,"ADRS",L1,0.180751,0.098524
+deepseek-v3.2,"ADRS",L2,0.263850,0.120417
+deepseek-v3.2,"FCS algorithmic",L0,0.396009,0.104475
+deepseek-v3.2,"FCS algorithmic",L0f,0.492723,0.150042
+deepseek-v3.2,"FCS algorithmic",L1,0.483333,0.117298
+deepseek-v3.2,"FCS algorithmic",L2,0.440141,0.156223
+gemini-3.1-pro-preview,"Math optimization",L0,0.752739,0.221217
+gemini-3.1-pro-preview,"Math optimization",L0f,0.754304,0.188470
+gemini-3.1-pro-preview,"Math optimization",L1,0.748044,0.276672
+gemini-3.1-pro-preview,"Math optimization",L2,0.801252,0.192215
+gemini-3.1-pro-preview,"GPU kernel",L0,0.675274,0.138303
+gemini-3.1-pro-preview,"GPU kernel",L0f,0.720266,0.183891
+gemini-3.1-pro-preview,"GPU kernel",L1,0.633803,0.325076
+gemini-3.1-pro-preview,"GPU kernel",L2,0.750782,0.168842
+gemini-3.1-pro-preview,"ADRS",L0,0.722535,0.202196
+gemini-3.1-pro-preview,"ADRS",L0f,0.731455,0.256982
+gemini-3.1-pro-preview,"ADRS",L1,0.615023,0.286962
+gemini-3.1-pro-preview,"ADRS",L2,0.680751,0.211007
+gemini-3.1-pro-preview,"FCS algorithmic",L0,0.857746,0.093474
+gemini-3.1-pro-preview,"FCS algorithmic",L0f,0.911033,0.058351
+gemini-3.1-pro-preview,"FCS algorithmic",L1,0.864554,0.070556
+gemini-3.1-pro-preview,"FCS algorithmic",L2,0.854225,0.127995
+gpt-5.4,"Math optimization",L0,0.463224,0.141487
+gpt-5.4,"Math optimization",L0f,0.497653,0.101637
+gpt-5.4,"Math optimization",L1,0.406886,0.168898
+gpt-5.4,"Math optimization",L2,0.365415,0.081550
+gpt-5.4,"GPU kernel",L0,0.765258,0.235226
+gpt-5.4,"GPU kernel",L0f,0.618936,0.134424
+gpt-5.4,"GPU kernel",L1,0.403756,0.262953
+gpt-5.4,"GPU kernel",L2,0.491784,0.129964
+gpt-5.4,"ADRS",L0,0.439437,0.277363
+gpt-5.4,"ADRS",L0f,0.606573,0.129237
+gpt-5.4,"ADRS",L1,0.485915,0.255090
+gpt-5.4,"ADRS",L2,0.388732,0.284778
+gpt-5.4,"FCS algorithmic",L0,0.459390,0.190161
+gpt-5.4,"FCS algorithmic",L0f,0.636854,0.134886
+gpt-5.4,"FCS algorithmic",L1,0.452347,0.132956
+gpt-5.4,"FCS algorithmic",L2,0.442488,0.160187
+gpt-oss-120b,"Math optimization",L0,0.478873,0.116712
+gpt-oss-120b,"Math optimization",L0f,0.602504,0.147686
+gpt-oss-120b,"Math optimization",L1,0.547731,0.074758
+gpt-oss-120b,"Math optimization",L2,0.469484,0.245781
+gpt-oss-120b,"GPU kernel",L0,0.262128,0.132884
+gpt-oss-120b,"GPU kernel",L0f,0.329812,0.115269
+gpt-oss-120b,"GPU kernel",L1,0.444444,0.214009
+gpt-oss-120b,"GPU kernel",L2,0.425274,0.089288
+gpt-oss-120b,"ADRS",L0,0.540845,0.228873
+gpt-oss-120b,"ADRS",L0f,0.498592,0.212680
+gpt-oss-120b,"ADRS",L1,0.595775,0.154790
+gpt-oss-120b,"ADRS",L2,0.423944,0.193537
+gpt-oss-120b,"FCS algorithmic",L0,0.483333,0.172283
+gpt-oss-120b,"FCS algorithmic",L0f,0.501643,0.231049
+gpt-oss-120b,"FCS algorithmic",L1,0.429812,0.189265
+gpt-oss-120b,"FCS algorithmic",L2,0.397653,0.157823
+qwen3-next-80b-instruct,"Math optimization",L0,0.208138,0.184889
+qwen3-next-80b-instruct,"Math optimization",L0f,0.147105,0.048235
+qwen3-next-80b-instruct,"Math optimization",L1,0.187011,0.081550
+qwen3-next-80b-instruct,"Math optimization",L2,0.248826,0.143788
+qwen3-next-80b-instruct,"GPU kernel",L0,0.254304,0.082990
+qwen3-next-80b-instruct,"GPU kernel",L0f,0.305947,0.140412
+qwen3-next-80b-instruct,"GPU kernel",L1,0.162363,0.123177
+qwen3-next-80b-instruct,"GPU kernel",L2,0.521127,0.258045
+qwen3-next-80b-instruct,"ADRS",L0,0.374178,0.127951
+qwen3-next-80b-instruct,"ADRS",L0f,0.353991,0.196698
+qwen3-next-80b-instruct,"ADRS",L1,0.476995,0.230757
+qwen3-next-80b-instruct,"ADRS",L2,0.358685,0.252988
+qwen3-next-80b-instruct,"FCS algorithmic",L0,0.220657,0.158835
+qwen3-next-80b-instruct,"FCS algorithmic",L0f,0.261972,0.161257
+qwen3-next-80b-instruct,"FCS algorithmic",L1,0.221596,0.141552
+qwen3-next-80b-instruct,"FCS algorithmic",L2,0.156573,0.087108

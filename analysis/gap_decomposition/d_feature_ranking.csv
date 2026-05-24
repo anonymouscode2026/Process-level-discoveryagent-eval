@@ -1,0 +1,61 @@
+rank,feature,mean_importance,frontier_minus_oss,in_six_class_top5,description
+1,edit_type_bug_fix_frac,0.06598993641371924,-0.21400625978090776,False,fraction of edits classified as bug fixes
+2,edit_type_algorithm_switch_frac,0.05417625045249372,-0.16934011476264998,True,fraction of edits that switch algorithm
+3,worst_regression_magnitude,0.0535822613389696,0.1616784037558685,True,max single-step score regression
+4,edit_type_no_change_frac,0.03825180367049872,-0.12363067292644764,True,fraction of edits classified as no-change
+5,edit_type_code_cleanup_frac,0.03363316879327851,-0.15471765779864366,False,fraction of edits classified as code cleanup
+6,code_success_rate,0.033093083461055176,0.1003032081377151,False,fraction of edits that produced runnable code
+7,edit_type_harness_or_scope_change_frac,0.03277202453355411,-0.12221244131455405,False,fraction of harness/scope-change edits
+8,mode_choice_ratio,0.03234374664324794,0.16029277516953572,True,agent's REFINE/REWRITE mode mix
+9,rewrite_ratio,0.03211572737897834,-0.16029277516953583,True,fraction of edits that are full rewrites vs refinements
+10,algorithm_refinement_revert_rate,0.027111164425079822,-0.14200247782994252,False,fraction of algorithm refinement edits that are later reverted
+11,neg_opt_count,0.026605075024043898,0.1608796296296296,False,number of edits that worsen the current best score
+12,edit_type_memory_optimization_frac,0.025579109860002763,0.08127934272300474,False,fraction of memory-optimization edits
+13,edit_type_parameter_tuning_frac,0.023110660463248056,0.08988654147104858,False,fraction of edits that tune parameters
+14,diversity_entropy_q2,0.023005972044101156,-0.16145018257694316,False,entropy of strategy distribution in trajectory quartile 2
+15,neg_opt_rate,0.02136031998183953,0.1477569118414187,False,fraction of edits that worsen the current best score
+16,diversity_entropy_q1,0.020559758686432228,-0.14632237871674492,False,entropy of strategy distribution in trajectory quartile 1
+17,overall_revert_rate,0.020478490684176925,-0.13267801251956174,False,fraction of edits later reverted
+18,diversity_entropy_q4,0.019965415382186786,-0.13928012519561817,False,entropy of strategy distribution in trajectory quartile 4
+19,edit_type_search_space_change_frac,0.01823194403869563,0.07136802295253003,False,fraction of edits that change the search space
+20,edit_type_data_structure_change_frac,0.017626817692134377,0.062141366718831526,False,fraction of edits that change data structures
+21,diversity_entropy_q3,0.017306036817396533,-0.13942683881064172,False,entropy of strategy distribution in trajectory quartile 3
+22,harness_or_scope_change_revert_rate,0.016632165346291226,0.08438478090766827,False,fraction of harness or scope change edits that are later reverted
+23,punctuation_index_top3,0.01655655178391695,0.12475547730829417,False,concentration of strategy labels in top-3 categories
+24,edit_type_algorithm_refinement_frac,0.01648258113963417,0.07603025560772031,False,fraction of edits that refine the current algorithm
+25,num_unique_strategies,0.015935911773049535,-0.10411776212832546,False,count of distinct strategy labels along the trajectory
+26,diversity_entropy_trend,0.014952397763168953,-0.0014019300991132133,False,slope of strategy entropy across the trajectory
+27,thrashing_index,0.014857650527047168,-0.10240610328638494,False,rate of fast-cycling reverts
+28,avg_plateau_length,0.014781566418917149,-0.07779081898800211,False,mean plateau length in steps
+29,algorithm_switch_revert_rate,0.014446214736959817,0.010962767344809554,False,fraction of algorithm switch edits that are later reverted
+30,parameter_tuning_revert_rate,0.014307347229309363,-0.06762682576943141,False,fraction of parameter tuning edits that are later reverted
+31,memory_optimization_revert_rate,0.01406427283775488,-0.06584996087636935,False,fraction of memory optimization edits that are later reverted
+32,error_recovery_rate,0.013958179955740098,-0.01591027647365678,False,fraction of evaluation errors that the agent recovers from
+33,code_cleanup_revert_rate,0.013821507348346987,0.024134389671361445,False,fraction of code cleanup edits that are later reverted
+34,rewrite_after_plateau_rate,0.012727466338426278,-0.05110524256651017,False,fraction of post-plateau edits that are rewrites
+35,edit_type_loop_optimization_frac,0.012550289758113032,0.03271713615023486,False,fraction of loop-optimization edits
+36,plateau_escape_rate,0.012425307574395679,0.05736502347417832,False,fraction of plateaus that the agent escapes
+37,num_plateaus,0.012363031234061411,0.05915818988002086,False,number of distinct score plateaus along the trajectory
+38,recovery_after_revert_rate,0.012018291841043504,0.021469092331768413,False,fraction of reverts followed by recovery
+39,no_change_revert_rate,0.011974510789509006,0.02825867240479918,False,fraction of no change edits that are later reverted
+40,bug_fix_revert_rate,0.011616901218255399,-0.007360133020344384,False,fraction of bug fix edits that are later reverted
+41,edit_type_autotune_configuration_frac,0.00958511210064701,0.06124478351591023,False,fraction of edits that change autotune config
+42,edit_type_precision_handling_frac,0.009204400267046175,-0.012291340636411019,False,fraction of precision-handling edits
+43,serendipity_index,0.00890743563323989,0.02265910276473654,False,rate of unsought score improvements
+44,edit_type_initialization_change_frac,0.008657182271080935,-0.03007629107981219,False,fraction of edits that change initialization
+45,edit_type_other_frac,0.008437756071062258,-0.020539906103286376,False,fraction of edits with no specific label
+46,search_space_change_revert_rate,0.006890300301007571,-0.04092494783515904,False,fraction of search space change edits that are later reverted
+47,early_exit_flag,0.006375703531106299,-0.004694835680751075,False,1 if the run early-exited via consecutive failures
+48,data_structure_change_revert_rate,0.005757380862278602,-0.034518453312467445,False,fraction of data structure change edits that are later reverted
+49,edit_type_kernel_restructuring_frac,0.005735117664276537,-0.035635106937923766,False,fraction of kernel-restructuring edits
+50,autotune_configuration_revert_rate,0.005085077274143936,-0.03670285602503909,False,fraction of autotune configuration edits that are later reverted
+51,loop_optimization_revert_rate,0.004629299459497466,-0.022593896713615003,False,fraction of loop optimization edits that are later reverted
+52,kernel_restructuring_revert_rate,0.0036970925864943994,0.004107981220657253,False,fraction of kernel restructuring edits that are later reverted
+53,edit_type_representation_change_frac,0.0034248385470457116,-0.0011737089201878104,False,fraction of representation-change edits
+54,precision_handling_revert_rate,0.003340617768886897,0.0005134976525821844,False,fraction of precision handling edits that are later reverted
+55,initial_generation_reverted_rate,0.001797337929241581,-0.0011737089201878104,False,fraction of trajectories whose first generation is reverted
+56,edit_type_feature_engineering_frac,0.001697092374654017,0.010351460615545205,False,fraction of feature-engineering edits
+57,initialization_change_revert_rate,0.0015011477425883807,0.012910798122065803,False,fraction of initialization change edits that are later reverted
+58,feature_engineering_revert_rate,0.0011307566440374838,-0.004588875847678753,False,fraction of feature engineering edits that are later reverted
+59,other_revert_rate,0.0005995770682516716,0.01945585550339063,False,fraction of other edits that are later reverted
+60,representation_change_revert_rate,0.0001758605043395014,0.0010758998435054234,False,fraction of representation change edits that are later reverted

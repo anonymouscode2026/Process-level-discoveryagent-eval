@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "discovery-behavioral-analysis"
+version = "0.1.0"
+description = "Behavioral analysis framework for discovery agents"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.25.0",
+    "openai>=1.10.0",
+    "pyyaml>=6.0",
+    "numpy>=1.26.0",
+    "scipy>=1.12.0",
+    "pandas>=2.2.0",
+    "tiktoken>=0.7.0",
+    "pydantic>=2.5.0",
+    "matplotlib>=3.8.0",
+    "pytest>=8.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "analysis*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

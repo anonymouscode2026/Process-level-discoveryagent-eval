@@ -1,0 +1,26 @@
+# Reviewer-package dependencies, grouped by use case.
+# Python 3.11+ recommended; we tested on cpython 3.12.
+
+# === Tier-1: reproduce paper tables/figures from data/metrics/ ===
+# Sufficient to re-run the figure renderers and recompute κ/ICC.
+numpy>=1.26,<3
+pandas>=2.0
+scipy>=1.11
+matplotlib>=3.7
+PyYAML>=6.0
+statsmodels>=0.14
+scikit-learn>=1.3
+
+# === Tier-2: relabel trajectories, recompute behavioral metrics ===
+# Adds runtime for compute_metrics.py / postproc_labels.py.
+# (No additional packages beyond Tier-1 — relabel_strategies.py uses anthropic
+# only for fresh runs, not relabeling of shipped trajectories.)
+
+# === Tier-3: re-run the full 6×24×4×3 pilot ===
+# Requires provider credentials in environment.
+anthropic>=0.40
+openai>=1.50
+google-cloud-aiplatform>=1.70
+
+# === Dev / smoke ===
+pytest>=8.0
