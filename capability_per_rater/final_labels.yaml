@@ -1,0 +1,505 @@
+tasks:
+- name: cross_entropy
+  algorithm_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+  representation_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+- name: eplb
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+- name: fcs_algo_0
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+- name: fcs_algo_145
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+- name: fcs_algo_167
+  algorithm_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+  representation_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+- name: fcs_algo_188
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+- name: fcs_algo_189
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+- name: fcs_algo_24
+  algorithm_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+  representation_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+- name: fcs_algo_241
+  algorithm_demand:
+    value: 0.55
+    bin: med
+    disagreement: 0.1
+    rater_values:
+    - 0.5
+    - 0.75
+    - 0.5
+    - 0.5
+    - 0.5
+  representation_demand:
+    value: 0.3
+    bin: low
+    disagreement: 0.1
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.5
+    - 0.25
+    - 0.25
+- name: fcs_algo_45
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+- name: fcs_algo_46
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+- name: fcs_algo_58
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+- name: gemm_optimization
+  algorithm_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+- name: grammar_fuzzing
+  algorithm_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+  representation_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+- name: grayscale
+  algorithm_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+- name: group_gemm
+  algorithm_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+- name: heilbronn_convex
+  algorithm_demand:
+    value: 0.35
+    bin: low
+    disagreement: 0.1225
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.5
+    - 0.25
+    - 0.5
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+- name: hexagon_packing
+  algorithm_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+  representation_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+- name: llm_router
+  algorithm_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+  representation_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+- name: llm_sql
+  algorithm_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+  representation_demand:
+    value: 0.75
+    bin: high
+    disagreement: 0.0
+    rater_values:
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+    - 0.75
+- name: signal_processing
+  algorithm_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+  representation_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+- name: trimul
+  algorithm_demand:
+    value: 0.35
+    bin: low
+    disagreement: 0.1225
+    rater_values:
+    - 0.25
+    - 0.5
+    - 0.5
+    - 0.25
+    - 0.25
+  representation_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+- name: txn_scheduling
+  algorithm_demand:
+    value: 0.5
+    bin: med
+    disagreement: 0.0
+    rater_values:
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+    - 0.5
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+- name: vecadd
+  algorithm_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+  representation_demand:
+    value: 0.25
+    bin: low
+    disagreement: 0.0
+    rater_values:
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
+    - 0.25
