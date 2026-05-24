@@ -1,0 +1,69 @@
+# Model registry for discovery-behavioral-analysis experiments.
+# Six models were evaluated in the paper; the rest are kept for reference and
+# replication on related hardware / API setups.
+#
+# Provider endpoints and credentials are sourced from environment variables.
+# For each model with an external API, set:
+#   <MODEL>_BASE_URL    — full base URL (https://<your-deployment>/openai/v1/)
+#   <MODEL>_API_KEY     — secret token
+# A few providers also use $VERTEX_PROJECT and $GEMINI_VERTEX_CREDENTIALS for
+# Google Cloud authentication.
+
+models:
+  - name: claude-opus-4-6
+    provider: anthropic
+    model_id: claude-opus-4-6
+
+
+  - name: gpt-5.4
+    provider: azure_openai
+    model_id: gpt-5.4
+    # Hosted on Azure OpenAI. Multiple deployments are pooled via the per-worker
+    # base-url assignment in scripts/run.py (_apply_gpt54_pool_slot). Provide
+    # each deployment's URL via the GPT54_BASE_URL env var (comma-separated
+    # list for the pool)..
+    base_url_env: GPT54_BASE_URL
+    api_key_env: GPT54_API_KEY
+    api_version: "2024-12-01-preview"
+    api_version_env: GPT54_API_VERSION
+
+  - name: claude-sonnet-4-6
+    provider: anthropic
+    model_id: claude-sonnet-4-6
+
+  - name: llama-3-70b
+    provider: openai_compatible
+    model_id: meta-llama/Llama-3-70b-chat-hf
+    base_url: "http://localhost:8000/v1"   # placeholder — set via env or override
+
+  - name: gemini-3.1-pro-preview
+    provider: google_vertex
+    model_id: gemini-3.1-pro-preview
+    vertex_project_env: VERTEX_PROJECT
+    vertex_location: global
+    # Service-account JSON. Resolved relative to CWD; absolute path also OK.
+    # Override with $GEMINI_VERTEX_CREDENTIALS at runtime if needed.
+    credentials_path: Gemini_KEY.json
+    credentials_path_env: GEMINI_VERTEX_CREDENTIALS
+
+  - name: gpt-oss-120b
+    provider: openai_compatible
+    model_id: gpt-oss-120b
+
+    base_url_env: GPT_OSS_BASE_URL
+    api_key_env: GPT_OSS_API_KEY
+
+
+  - name: qwen3-next-80b-instruct
+    provider: vertex_openai_maas
+    model_id: qwen/qwen3-next-80b-a3b-instruct-maas
+    vertex_project_env: VERTEX_PROJECT
+    vertex_location: global
+    credentials_path: Gemini_KEY.json
+    credentials_path_env: GEMINI_VERTEX_CREDENTIALS
+
+  - name: deepseek-v3.2
+    provider: openai_compatible
+    model_id: DeepSeek-V3.2
+    base_url_env: DEEPSEEK_BASE_URL
+    api_key_env: DEEPSEEK_API_KEY

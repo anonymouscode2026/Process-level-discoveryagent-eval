@@ -1,0 +1,552 @@
+defaults:
+  step_budget: 150
+tasks:
+- name: signal_processing
+  source: skydiscover
+  task_id: math/signal_processing
+  description: Minimize multi-objective noise in adaptive signal filter
+  domain: signal
+  score_range:
+  - 0.0
+  - 1.0
+  requires_gpu: false
+  evaluator_path: math/signal_processing/evaluator/evaluator.py
+  algorithm_demand: 0.5
+  representation_demand: 0.5
+  expected_approaches:
+  - fourier_methods
+  - wavelet_analysis
+  - parameter_tuning
+  - neural_approximation
+  - polynomial_fitting
+  a_priori_profile:
+    algorithm_demand: 0.5
+    representation_demand: 0.5
+    source: 5-rater Opus consensus (rubric v1, 2026-04-10)
+- name: hexagon_packing
+  source: skydiscover
+  task_id: math/hexagon_packing
+  description: Pack 12 unit hexagons in minimal outer hexagon
+  domain: math
+  score_range:
+  - 0.0
+  - 1.0
+  requires_gpu: false
+  evaluator_path: math/hexagon_packing/12/evaluator/evaluator.py
+  algorithm_demand: 0.25
+  representation_demand: 0.5
+  expected_approaches:
+  - gradient_descent
+  - simulated_annealing
+  - geometric_construction
+  - force_directed
+  - linear_programming
+  a_priori_profile:
+    algorithm_demand: 0.25
+    representation_demand: 0.5
+    source: 5-rater Opus consensus (rubric v2, 2026-04-16)
+- name: heilbronn_convex
+  source: skydiscover
+  task_id: math/heilbronn_convex
+  description: Place 14 points in convex region maximizing min triangle area
+  domain: math
+  score_range:
+  - 0.0
+  - 1.0
+  requires_gpu: false
+  evaluator_path: math/heilbronn_convex/14/evaluator/evaluator.py
+  algorithm_demand: 0.25
+  representation_demand: 0.25
+  expected_approaches:
+  - simulated_annealing
+  - gradient_descent
+  - random_search
+  - convex_optimization
+  - evolutionary_algorithm
+  a_priori_profile:
+    algorithm_demand: 0.25
+    representation_demand: 0.25
+    source: 5-rater Opus consensus (rubric v2, 2026-04-16)
+- name: llm_sql
+  source: skydiscover
+  task_id: ADRS/llm_sql
+  description: Optimize column reordering for LLM prompt cache hit rate
+  domain: cs_research
+  score_range:
+  - 0.0
+  - 1.0
+  requires_gpu: false
+  evaluator_path: ADRS/llm_sql/evaluator/evaluator.py
+  algorithm_demand: 0.5
+  representation_demand: 0.75
+  expected_approaches:
+  - column_reordering
+  - prefix_optimization
+  - greedy_heuristic
+  - dynamic_programming
+  - statistical_analysis
+  a_priori_profile:
+    algorithm_demand: 0.5
+    representation_demand: 0.75
+    source: 5-rater Opus consensus (rubric v1, 2026-04-10)
+- name: txn_scheduling
+  source: skydiscover
+  task_id: ADRS/txn_scheduling
+  description: Minimize makespan for database transaction workloads
+  domain: systems
+  score_range:
+  - 0.0
+  - 1.0
+  requires_gpu: false
+  evaluator_path: ADRS/txn_scheduling/evaluator/evaluator.py
+  algorithm_demand: 0.5
+  representation_demand: 0.25
+  expected_approaches:
+  - priority_scheduling
+  - dependency_graph
+  - greedy_heuristic
+  - constraint_optimization
+  - batch_processing
+  a_priori_profile:
+    algorithm_demand: 0.5
+    representation_demand: 0.25
+    source: 5-rater Opus consensus (rubric v1, 2026-04-10)
+- name: vecadd
+  source: skydiscover
+  task_id: gpu_mode/vecadd
+  description: Triton kernel for float16 vector addition (C=A+B)
+  domain: ml_kernel
+  score_range:
+  - 0.0
+  - 100.0
+  requires_gpu: true
+  evaluator_path: gpu_mode/vecadd/evaluator.py
+  notes: A100 baseline (not H100)
+  algorithm_demand: 0.25
+  representation_demand: 0.25
+  expected_approaches:
+  - memory_coalescing
+  - thread_optimization
+  - vectorization
+  - tiling_strategy
+  - shared_memory
+  a_priori_profile:
+    algorithm_demand: 0.25
+    representation_demand: 0.25
+    source: 5-rater Opus consensus (rubric v1, 2026-04-10)
+- name: grayscale
+  source: skydiscover
+  task_id: gpu_mode/grayscale
+  description: Triton kernel for RGB to grayscale conversion
+  domain: ml_kernel
+  score_range:
+  - 0.0
+  - 100.0
+  requires_gpu: true
+  evaluator_path: gpu_mode/grayscale/evaluator.py
+  notes: A100 baseline (not H100)
+  algorithm_demand: 0.25
+  representation_demand: 0.25
+  expected_approaches:
+  - memory_coalescing
+  - thread_optimization
+  - pixel_batching
+  - shared_memory
+  - warp_optimization
+  a_priori_profile:
+    algorithm_demand: 0.25
+    representation_demand: 0.25
+    source: 5-rater Opus consensus (rubric v1, 2026-04-10)
+- name: trimul
+  source: skydiscover
+  task_id: gpu_mode/trimul
+  description: Triton kernel for TriMul operator (AlphaFold3 core op)
+  domain: ml_kernel
+  score_range:
+  - 0.0
+  - 100.0
+  requires_gpu: true
+  evaluator_path: gpu_mode/trimul/evaluator.py
+  notes: A100 baseline (not H100)
+  algorithm_demand: 0.25
+  representation_demand: 0.5
+  expected_approaches:
+  - tiling_strategy
+  - shared_memory
+  - loop_unrolling
+  - tensor_core
+  - matrix_decomposition
+  a_priori_profile:
+    algorithm_demand: 0.25
+    representation_demand: 0.5
+    source: reclassified 2026-04-15 (was 0.50/0.50)
+- name: grammar_fuzzing
+  source: frontier_cs_research
+  task_id: grammar_fuzzing/fuzzer/sql
+  track: research
+  description: Evolve a grammar-based SQL fuzzer (fuzzer sub-problem)
+  domain: cs_research
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  notes: docker image python:3.11-slim. grammar_fuzzing has 2 sub-problems (fuzzer/sql,
+    seed/sql); picked fuzzer/sql.
+  algorithm_demand: 0.75
+  representation_demand: 0.75
+  expected_approaches:
+  - grammar_mutation
+  - coverage_guided
+  - generative_model
+  - rule_based
+  - evolutionary_fuzzing
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.75
+    source: 5-rater Opus consensus (rubric v1, 2026-04-10)
+- name: gemm_optimization
+  source: frontier_cs_research
+  task_id: gemm_optimization/annoying
+  track: research
+  description: Optimize a GEMM kernel variant (annoying shape)
+  domain: ml_kernel
+  score_range:
+  - 0
+  - 100
+  requires_gpu: true
+  notes: docker image andylizf/triton-tlx:tlx-nv-cu122 (shared with flash_attn, mamba2_scan).
+    6 sub-problems; picked 'annoying'.
+  algorithm_demand: 0.5
+  representation_demand: 0.25
+  expected_approaches:
+  - tiling_strategy
+  - vectorization
+  - loop_reordering
+  - cache_optimization
+  - tensor_core
+  a_priori_profile:
+    algorithm_demand: 0.5
+    representation_demand: 0.25
+    source: 5-rater Opus consensus (rubric v1, 2026-04-10)
+- name: llm_router
+  source: frontier_cs_research
+  task_id: llm_router
+  track: research
+  description: Discover routing policy to minimize LLM serving cost
+  domain: cs_research
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.5
+  representation_demand: 0.75
+  expected_approaches:
+  - threshold_policy
+  - feature_engineering
+  - classifier_based
+  - cost_aware_routing
+  - heuristic_rules
+  a_priori_profile:
+    algorithm_demand: 0.5
+    representation_demand: 0.75
+    source: reclassified 2026-04-15 (was 0.50/0.50)
+- name: fcs_algo_0
+  source: frontier_cs_algorithmic
+  task_id: '0'
+  track: algorithmic
+  description: Frontier-CS algorithmic problem 0
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.75
+  representation_demand: 0.5
+  expected_approaches:
+  - brute_force
+  - dynamic_programming
+  - greedy_algorithm
+  - graph_search
+  - mathematical_optimization
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.5
+    source: 5-rater Opus consensus (rubric v1, 2026-04-10)
+- name: fcs_algo_24
+  source: frontier_cs_algorithmic
+  task_id: '24'
+  track: algorithmic
+  description: Almost Monochromatic Permutation — find permutation of symmetric binary
+    matrix with ≤1 color change
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.5
+  representation_demand: 0.5
+  notes: 'GPT-5 baseline: 22.64. Replaces problem 101 (GPT-5.2 also scored 0).'
+  expected_approaches:
+  - graph_coloring
+  - greedy_algorithm
+  - dynamic_programming
+  - hamiltonian_path
+  - heuristic_search
+  a_priori_profile:
+    algorithm_demand: 0.5
+    representation_demand: 0.5
+    source: replaced fcs_algo_101 (too hard, all models score 0)
+- name: fcs_algo_58
+  source: frontier_cs_algorithmic
+  task_id: '58'
+  track: algorithmic
+  description: Inverse Counting Path — construct n×n grid with exactly x paths from
+    (1,1) to (n,n)
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.75
+  representation_demand: 0.5
+  notes: 'GPT-5 baseline: 32.89. Replaces problem 11 (GPT-5.2 also scored 0).'
+  expected_approaches:
+  - constructive_algorithm
+  - binary_decomposition
+  - dynamic_programming
+  - number_theory
+  - greedy_construction
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.5
+    source: replaced fcs_algo_11 (too hard, all models score 0)
+- name: cross_entropy
+  source: frontier_cs_research
+  task_id: cross_entropy
+  track: research
+  description: Optimize Triton kernel for cross entropy loss computation on GPU
+  domain: ml_kernel
+  score_range:
+  - 0
+  - 100
+  requires_gpu: true
+  algorithm_demand: 0.25
+  representation_demand: 0.5
+  expected_approaches:
+  - block_tiling
+  - memory_coalescing
+  - numerical_stability
+  - kernel_fusion
+  - vectorization
+  a_priori_profile:
+    algorithm_demand: 0.25
+    representation_demand: 0.5
+    source: new task 2026-04-15
+- name: fcs_algo_167
+  source: frontier_cs_algorithmic
+  task_id: '167'
+  track: algorithmic
+  description: Purse Seine Fishing — optimize net placement geometry for maximum catch
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.25
+  representation_demand: 0.5
+  notes: 'GPT-5 baseline: 9.05. Geometric optimization with limited algorithmic diversity.'
+  expected_approaches:
+  - greedy_algorithm
+  - geometric_heuristic
+  - simulation
+  - local_search
+  - brute_force
+  a_priori_profile:
+    algorithm_demand: 0.25
+    representation_demand: 0.5
+    source: new task 2026-04-15
+- name: fcs_algo_189
+  source: frontier_cs_algorithmic
+  task_id: '189'
+  track: algorithmic
+  description: Edit Distance Challenge — approximate edit distance between large strings
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.75
+  representation_demand: 0.25
+  notes: 'GPT-5 baseline: 10.56. Many algorithmic approaches but fixed string representation.'
+  expected_approaches:
+  - dynamic_programming
+  - greedy_approximation
+  - divide_and_conquer
+  - hashing
+  - suffix_structures
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.25
+    source: new task 2026-04-15
+- name: fcs_algo_188
+  source: frontier_cs_algorithmic
+  task_id: '188'
+  track: algorithmic
+  description: LCS Challenge — approximate longest common subsequence of large strings
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.75
+  representation_demand: 0.25
+  notes: 'GPT-5 baseline: 5.12. Classic DP problem with approximation variants.'
+  expected_approaches:
+  - dynamic_programming
+  - greedy_approximation
+  - hunt_szymanski
+  - bit_parallel
+  - divide_and_conquer
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.25
+    source: new task 2026-04-15
+- name: fcs_algo_145
+  source: frontier_cs_algorithmic
+  task_id: '145'
+  track: algorithmic
+  description: Number Loop — construct number sequences satisfying loop constraints
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.75
+  representation_demand: 0.25
+  notes: 'GPT-5 baseline: 10.00. Number theory with multiple algorithmic approaches.'
+  expected_approaches:
+  - constructive_algorithm
+  - number_theory
+  - brute_force
+  - dynamic_programming
+  - mathematical_optimization
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.25
+    source: new task 2026-04-15
+- name: fcs_algo_46
+  source: frontier_cs_algorithmic
+  task_id: '46'
+  track: algorithmic
+  description: Job Shop Scheduling — minimize makespan for job-shop scheduling problem
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.75
+  representation_demand: 0.75
+  notes: 'GPT-5 baseline: 5.36. Classic NP-hard scheduling with diverse algorithms
+    and representations.'
+  expected_approaches:
+  - constraint_programming
+  - genetic_algorithm
+  - simulated_annealing
+  - priority_dispatch
+  - tabu_search
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.75
+    source: new task 2026-04-15
+- name: eplb
+  source: skydiscover
+  task_id: ADRS/eplb
+  description: Optimize MoE expert rearrangement across GPUs for load balancing
+  domain: systems
+  score_range:
+  - 0.0
+  - 1.0
+  requires_gpu: false
+  evaluator_path: ADRS/eplb/evaluator/evaluator.py
+  algorithm_demand: 0.75
+  representation_demand: 0.75
+  expected_approaches:
+  - greedy_balancing
+  - integer_programming
+  - graph_partitioning
+  - evolutionary_algorithm
+  - constraint_optimization
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.75
+    source: new task 2026-04-15
+- name: fcs_algo_241
+  source: frontier_cs_algorithmic
+  task_id: '241'
+  track: algorithmic
+  description: Boolean Function Complexity — minimize circuit for given truth table
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.5
+  representation_demand: 0.25
+  notes: 'GPT-5 baseline: 75.33. Sonnet smoke: 66.91. 5 test cases for finer scoring.'
+  expected_approaches:
+  - karnaugh_map
+  - quine_mccluskey
+  - espresso
+  - boolean_algebra
+  - brute_force
+  a_priori_profile:
+    algorithm_demand: 0.5
+    representation_demand: 0.25
+    source: replaces fcs_algo_9 (stuck at 33.33)
+- name: group_gemm
+  source: frontier_cs_research
+  task_id: group_gemm
+  track: research
+  description: Optimize Group GEMM Triton kernel for variable-size batched matrix
+    multiply
+  domain: ml_kernel
+  score_range:
+  - 0
+  - 100
+  requires_gpu: true
+  algorithm_demand: 0.25
+  representation_demand: 0.25
+  notes: 'Sonnet smoke: 82.50. GPU kernel with continuous speedup scoring.'
+  expected_approaches:
+  - block_tiling
+  - memory_coalescing
+  - loop_unrolling
+  - shared_memory
+  - warp_optimization
+  a_priori_profile:
+    algorithm_demand: 0.25
+    representation_demand: 0.25
+    source: replaces fcs_algo_45 (no discrimination)
+- name: fcs_algo_45
+  source: frontier_cs_algorithmic
+  task_id: '45'
+  track: algorithmic
+  description: Balanced Graph Partitioning — minimize edge cut + communication volume
+  domain: algorithmic
+  score_range:
+  - 0
+  - 100
+  requires_gpu: false
+  algorithm_demand: 0.75
+  representation_demand: 0.75
+  notes: NO-DISCRIM control (CV=0.012). Continuous EC+CV scoring.
+  expected_approaches:
+  - spectral_partitioning
+  - kernighan_lin
+  - multilevel_metis
+  - simulated_annealing
+  - greedy_bisection
+  a_priori_profile:
+    algorithm_demand: 0.75
+    representation_demand: 0.75
+    source: no-discrim control task
