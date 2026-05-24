@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "deepseek-v3.2",
+  "level": "L2b",
+  "run_id": "L2b__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty - no actual code changes were made despite the agent's reasoning about potential improvements.",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) is refining the existing code with a different arrangement pattern, not reverting anything.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the hexagonal packing layout coordinates, centering method, and containment checking logic within the same geometric_construction approach. Changes axial coordinates for better arrangement, fixes centering to use centroid, and improves the binary search shrinking procedure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the axial coordinates to a different arrangement and refines the optimization logic further, which is a continued refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the axial coordinate layout for 12 hexagons and refines the centering/scaling logic to fix overlap issues while staying within the same geometric construction family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a fundamentally different algorithm (rewrite from scratch with a new systematic approach), rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the geometric construction approach but stays within the geometric_construction family. Changes the grid layout pattern and containment calculation while maintaining the same fundamental approach of placing hexagons on a grid and computing a bounding hexagon.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different algorithm (empirical spacing determination, hexagonal lattice, binary search optimization), which is a normal algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the packing layout from a manual row-based grid (3-4-3 + 2) to a hexagonal lattice with axial coordinates (1+6+5 rings), and adds binary search over rotation angles for outer hexagon sizing. Both approaches are geometric_construction family, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty \u2014 no actual code changes were made despite the agent's reasoning about planned improvements.",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no actual code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty \u2014 no code was actually changed despite the agent's reasoning about planned improvements.",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), and step (i+1) refines the algorithm by replacing the coarse rotation grid search with a finer grid search plus Nelder-Mead optimization, which is a forward improvement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.9,
+      "label_notes": "Refines the bounding hexagon fitting by adding finer grid search over rotation and center offsets, plus Nelder-Mead optimization, all within the same geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the finer grid search over center offsets and the entire Nelder-Mead optimization added in step (i), reverting to a simpler rotation-only loop, which constitutes removing most of the code added in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "Agent explicitly states fixing a crash in the Nelder-Mead implementation. The code simplifies the optimization loop by removing the buggy Nelder-Mead and grid search, replacing with a simpler rotation search. The intent is fixing a crash/bug rather than algorithmic improvement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite the agent's reasoning about refinement",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) refines the algorithm by replacing coarse rotation sampling with golden-section search and center adjustments.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.88,
+      "label_notes": "Replaces coarse linear sampling of rotation angles with golden-section search for rotation optimization, plus small center adjustments. Same overall approach (geometric construction with outer hexagon fitting), just refined search within it.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the golden-section search optimization added in step (i) and restores the coarse linear sampling approach (np.linspace(0, 60, 13)) that was used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaced golden-section search for rotation optimization with a simpler grid sampling approach over rotation angles, while keeping the same overall binary-search-based containment checking. This is an intra-family refinement of the optimization strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different packing strategy (4x3 rectangular block instead of ring pattern), which is a new algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a ring-based hexagonal lattice arrangement (1+6+5) to a 4x3 rectangular grid layout for packing 12 hexagons, plus rewritten outer hexagon optimization. Both approaches are geometric construction within the same family, but the packing strategy and optimization are substantially reworked.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4x3 rectangular grid layout from step (i) with a hexagonal lattice arrangement, which is a different algorithmic approach to the same problem rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Switches from a ring-based arrangement to a 4x3 rectangular block hexagonal lattice pattern for placing 12 hexagons, while keeping the same outer-hexagon minimization framework. Both are geometric_construction approaches, so this is intra-family refinement. Also fixes vertical spacing geometry, but the dominant change is the layout strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) rewrites the 4x3 rectangular block approach with a different implementation to fix bugs, rather than reverting to a previous approach; it continues the same algorithmic direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the packing layout from a 1+6+5 ring arrangement to a 4x3 rectangular lattice arrangement, both within the geometric_construction family. Also includes rotation search refinement. Not algorithm_switch since both are geometric construction approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4x3 rectangular lattice with a hexagonal lattice (honeycomb) arrangement, which is a different geometric construction approach rather than reverting to the previous 1+6+5 ring arrangement from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Significant restructuring of the hexagonal lattice arrangement and containment computation within the same geometric_construction family. Changes how positions are generated and how the outer hexagon size is computed, but stays within geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (4\u00d73 rectangular grid strategy vs the previous hexagonal lattice), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Complete rewrite of the packing arrangement with a different grid layout (4x3 rectangular grid vs hexagonal lattice), but both are geometric_construction approaches within the same family. The agent also falls back to a known-good hardcoded solution. Borderline between algorithm_refinement and initialization_change since the core change is the geometric arrangement of hexagons.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4x3 grid approach with a different 1+6+5 ring pattern and perturbation strategy, which is a new algorithmic approach rather than reverting to the previous step's code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "The code rewrites the packing configuration from a grid-based approach to a ring-based (1+6+5) pattern with perturbation testing, both within the geometric_construction family. Also adds debug prints (harness_or_scope_change aspect), but the dominant change is the geometric layout strategy. Could also be initialization_change since it's mostly changing the starting configuration of hex positions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot revert it; step (i+1) introduces a new algorithm (4\u00d73 lattice with rotation search) which is a different approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement from a ring-based pattern to a lattice-based pattern with rotation optimization search. Both approaches are geometric construction within the same family, so this is intra-family refinement rather than a switch.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the lattice-based pattern with rotation optimization search from step (i) and restores the 1+6+5 ring pattern approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Switches from a grid-based (4x3 lattice) layout with rotation search to a hand-designed 1+6+5 ring pattern with direct bounding computation. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the radial_factor parameter from 0.94 to 0.92 and adds comments, which is parameter tuning building on step (i)'s approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the radial_factor constant from 0.94 to 0.92, a numeric parameter adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the parameter tuning approach by further adjusting radial_factor from 0.92 to 0.90 and tweaking other numeric parameters, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes numeric constants: radial_factor 0.92\u21920.90, safety margin 1.0001\u21921.000001, overlap threshold 2.001\u21922.01, push factor 0.5\u21920.3. All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the radial_factor from 0.90 back to 0.92 (the value before step i), reverts the safety margin toward a tighter value but undoes the core parameter change, and restores the less aggressive compression that step (i) had changed.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes radial_factor from 0.90 to 0.92, adds inner_ring_factor=0.997, and adjusts safety margin from 1.000001 to 1.0000001. These are numeric constant tweaks within the same geometric construction approach, though adding the inner ring adjustment loop is a minor structural addition.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the radial_factor from 0.92 to 0.88 and makes other parameter adjustments, which is a continuation of parameter tuning in the same direction (more aggressive compression), not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes radial_factor from 0.92 to 0.88, mid_factor from 0.997 to 0.99, safety margins, and push parameters. While there are minor structural additions (recomputing max_distance), the dominant changes are numeric constant tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm by adjusting parameters (radial_factor, mid_factor) and adding rotation optimization, building on step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Combines parameter tuning (radial_factor, mid_factor, margin) with adding golden-section search for optimal rotation angle. The golden-section search is a structural addition within the same geometric_construction family, making this algorithm_refinement rather than pure parameter_tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff indicates no code change was made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new code (radial scaling logic) after the existing code from step (i), building on it rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a post-processing radial scaling step to shrink the bounding hexagon slightly while preserving feasibility constraints. This is a refinement within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts the radial_factor parameter from 0.867 to 0.8665 and makes minor code simplifications, which is a continuation of parameter tuning rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes radial_factor from 0.867 to 0.8665 and mid_factor from 0.985 to 0.983; rest is comment cleanup. Dominant change is numeric constant tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by further adjusting radial_factor from 0.8665 to 0.8658 and mid_factor from 0.983 to 0.9825, which is a continuation of the same approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: radial_factor, mid_factor, safety margin multipliers, and overlap threshold. No structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds two minor comments to the code from step (i) without removing or restoring any code, so it is not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "code_cleanup",
+      "confidence": 0.92,
+      "label_notes": "Only comments were added/modified; no semantic change to the code logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts parameter values (radial_factor, mid_factor, push threshold) and removes a comment, which is a continuation of tuning rather than reverting the previous step's changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: radial_factor 0.8658\u21920.8625, mid_factor 0.9825\u21920.9805, push threshold 2.0001\u21922.00005. No structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further adjustments to radial_factor (0.8625\u21920.8610), mid_factor (0.9805\u21920.9795), margin, and push threshold, rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: radial_factor 0.8625\u21920.8610, mid_factor 0.9805\u21920.9795, safety margin 1.000000001\u21921.0000000001, and distance threshold 2.00005\u21922.00002. No structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds on step (i) by further adjusting parameters (radial_factor 0.8610\u21920.8605, adding angular_offsets, tightening tolerance) rather than reverting the previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes radial_factor from 0.8610 to 0.8605, mid_factor from 0.9795 to 0.9790, adds angular_offsets array with specific numeric values, and tightens tolerance/margin constants. While the angular offsets introduce a new structural element (asymmetric perturbations), the dominant changes are numeric constant adjustments. Could also be algorithm_refinement due to the symmetry-breaking angular offsets.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1+6+5 ring pattern with a completely different 4\u00d73 hexagonal lattice approach, which is an algorithm switch rather than a revert of step (i)'s parameter tuning.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a 1+6+5 ring-based geometric construction with radial compression to a 4\u00d73 hexagonal lattice arrangement with lattice spacing optimization - fundamentally different geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a '2+4+6 layered symmetric arrangement' which is a different geometric construction approach, not a revert to any prior code that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a 4x3 lattice arrangement to a 2+4+6 layered symmetric ring arrangement, which represents a fundamentally different geometric construction strategy for packing the hexagons.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the 2+4+6 layered ring arrangement from step (i) back to a 4\u00d73 lattice approach, which was the approach used before step (i), and the agent's reasoning explicitly states the 2+4+6 ring 'failed due to basic geometric errors'.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a 2+4+6 layered ring arrangement to a 4\u00d73 rectangular lattice layout, but both are geometric_construction approaches within the same family. The core algorithm family (geometric_construction) remains the same, with a different packing pattern and spacing strategy.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) explicitly reverts to the '1+6+5 ring pattern from Step 6' because the 4\u00d73 lattice from step (i) 'failed due to implementation errors', replacing the entire lattice approach with the previously successful ring configuration.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a 4x3 lattice arrangement to a 1+6+5 ring pattern with perturbation-based refinement, both within geometric_construction family. Also adds scaling/containment logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a 3x4 hexagonal lattice approach, which is a different algorithm/topology than step (i)'s 1+6+5 ring pattern, not a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a 1+6+5 ring-based geometric construction to a 3x4 rectangular lattice-based packing approach, which is a fundamentally different geometric construction strategy",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the 3x4 rectangular lattice approach from step (i) back to a ring-based topology (2+4+6 symmetric ring), and the agent's reasoning explicitly references returning to ring-based approaches after the lattice approach failed.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a 3x4 rectangular lattice arrangement to a 2+4+6 concentric ring topology for packing hexagons. Both are geometric_construction approaches (same family), so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2+4+6 ring topology with a completely new approach including helper functions and numerical optimization, which is an algorithm switch rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite switching from a 1+6+5 ring topology approach to a 3+3+3+3 configuration with optimization-based placement. This represents a fundamentally different geometric construction strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces yet another different approach rather than reverting to the exact code from step (i); while the agent mentions returning to a '1+6+5 topology', the implementation is completely new code, not a restoration of step (i)'s 3+3+3+3 predecessor.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from a complex optimization approach (likely simulated annealing or gradient-based) to a geometric construction with binary search for minimal bounding hexagon. The new code uses a fixed 1+6+5 ring topology with binary search over outer hexagon side length, replacing the previous iterative optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2+4+6 ring topology with a 1+6+5 topology using grid search over radii parameters, which is a different algorithmic approach rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the 1+6+5 packing topology with systematic grid search over radius parameters, replacing the previous 2+4+6 ring configuration approach. Both are geometric_construction family approaches for hexagon packing, so this is intra-family refinement rather than a switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s grid search approach with a different implementation strategy referencing 'Step 6' configuration, but this is a different algorithmic approach rather than reverting step (i) specifically; the agent's reasoning mentions restoring a 'proven best configuration' but the code is substantially different from step (i), not a restoration of step (i-1).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the packing construction and validation logic within the same geometric_construction family (1+6+5 ring pattern). The code restructures how hexagons are placed and validated, adds scaling refinement, but stays within the same approach. Could also be considered algorithm_switch due to the extensive rewrite, but the core strategy (1+6+5 topology) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts parameters back to previously proven values (radial_factor from 0.8610 to 0.8625, mid_factor from 0.9795 to 0.98) and simplifies collision detection logic, but this is parameter tuning and bug fixing rather than reverting the overall code structure introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Reverts radial_factor from 0.8610 to 0.8625 and mid_factor from 0.9795 to 0.98 (parameter changes), while also adjusting collision detection threshold from 2.00002 to sqrt(4.0-1e-6). The parameter revert and collision logic fix are both present; parameter_tuning chosen as the dominant intent is restoring known-good parameters, though bug_fix could apply to the collision detection change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes radial_factor from 0.8625 to 1.0 and mid_factor from 0.98 to 1.0, which is a different approach (no scaling) rather than reverting to a previous state; it also restructures the collision detection code differently rather than restoring step (i)'s removed code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes radial_factor from 0.8625 to 1.0 and mid_factor from 0.98 to 1.0, and adjusts safety margin and collision epsilon. The dominant change is numeric parameter values, though the collision handling logic is also slightly simplified (algorithm_refinement could also apply).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the parameter values and approach from step (i) with a different refined algorithm rather than reverting to a prior state; it introduces new radius computation logic and modifies the collision handling differently.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces scaling-factor-based adjustment with explicit radial placement at specific distances (r1=2.001, r2=3.401) for middle and outer rings, and refines the overlap correction logic. Same geometric construction family, just more precise placement strategy.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the explicit radial placement at r1=2.001 and r2=3.401 introduced in step (i), reverting to frozen coordinates from Step 49 and replacing the overlap correction logic with a different validation approach, with the agent explicitly stating it is going back to 'a stable, working version from Step 49'.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces explicit radial placement with a compression-factor approach for the outer ring, adds a validation check function, and modifies the adjustment logic. The overall algorithm family (geometric_construction) remains the same, but the placement strategy and post-processing are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the compression-factor approach with a different analytical radius-based approach and adds a search loop, which is a different algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces radial compression factors with explicit radius-based placement and adds a single-parameter grid search over r1 to fine-tune the inner ring radius within the same 1+6+5 geometric construction topology.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a significantly restructured implementation featuring modular design and different optimization strategy, rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Complete rewrite of the packing approach with restructured geometry construction and validation logic, but remains within the same geometric_construction family. The agent mentions breaking a corruption cycle and redesigning the code structure, but the fundamental approach (geometric placement of hexagons in rings) appears preserved. Confidence lowered because the diff is heavily truncated making full assessment difficult.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a completely different hardcoded-values approach rather than reverting to a previous version of the code; this is an algorithm switch to a known-good configuration, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.75,
+      "label_notes": "Replaces dynamic geometric construction/optimization with a hardcoded solution. This is a fundamental change from a search-based approach to a hand_designed_special_case approach, crossing algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded configuration with a different approach that dynamically computes the outer hexagon side length and uses different inner hexagon coordinates, which is an algorithm switch/refinement rather than reverting to the previous search-based approach from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Replaces hardcoded optimal coordinates with a computed hexagonal lattice arrangement and dynamic outer hexagon sizing. Both approaches are hand_designed_special_case / geometric_construction family, so this is intra-family. Could also be seen as bug_fix since the previous hardcoded solution was failing containment checks, but the agent is rebuilding from scratch with a different geometric layout rather than fixing a specific defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s hexagonal lattice approach with a different geometric arrangement using corrected spacing (2.0 instead of 1.5), which is a different algorithm refinement rather than a revert of the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Complete rewrite of the geometric construction approach with corrected spacing and vertex computation, but remains within the geometric_construction family. The agent is fixing geometric assumptions (spacing, vertex distances) and restructuring the grid layout, which is a refinement of the same construction-based approach rather than switching families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a significantly different implementation including SAT-based intersection checking and containment verification, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing previous approach with a new geometric construction method using explicit SAT-based polygon intersection checks and a structured ring-based placement strategy for 12 hexagons.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and restructures the approach from step (i) rather than reverting it; it maintains the same general strategy (honeycomb lattice with outer hexagon fitting) while fixing bugs and optimizing, which constitutes algorithm refinement not reversion.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the packing geometry to use a honeycomb lattice arrangement with proper distance verification, replacing the previous placement strategy. Both approaches are geometric_construction family, so this is intra-family refinement. Also includes bug fixes (distance checking) but the dominant change is the geometric layout restructuring.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the honeycomb layout approach from step (i) by adjusting spacing parameters and removing the distance check exception, but does not revert the core geometric strategy introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Refines the honeycomb packing layout with adjusted spacing parameters and row/column structure while staying within the geometric_construction family. Also removes pairwise distance verification and adjusts outer hexagon sizing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the grid parameters and outer hexagon sizing with a different approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusts grid spacing parameters (dy from sqrt(3)*1.05 to 1.82) and centering logic, adds safety margin to outer hexagon. Same honeycomb grid approach with tweaked layout parameters and simplified centering.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning the code is unchanged from step (i), so it is not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "no_change",
+      "confidence": 0.97,
+      "label_notes": "Empty diff - no code changes were made despite the agent's stated intent to refine parameters",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty, indicating no actual code change was made despite the agent's reasoning about improvements.",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs, so no code changes were made in either step and there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite agent reasoning about refinements",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) is tuning parameters relative to the existing code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Reduces spacing parameters dx from 2.1 to 2.05, adjusts dy proportionally, and reduces outer margin from 0.5 to 0.1. These are numeric constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts the dx change from 2.05 back to 2.1 but also introduces a completely new outer hexagon containment calculation using proper flat-top hexagon geometry, making this a different approach (bug fix + partial parameter revert) rather than a simple revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "bug_fix",
+      "confidence": 0.82,
+      "label_notes": "The primary change fixes the outer hexagon containment calculation which was using an incorrect formula (max vertex distance + margin, treating it as a circle) instead of proper flat-top hexagon containment constraints. This was producing wrong outer hexagon sizes. The spacing parameter change (dx/dy) is secondary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes between previous and current step",
+      "was_reverted": false,
+      "revert_reason": "Both steps show no code changes (empty diffs), so there is no revert occurring.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff indicates no code change was made in this step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs indicating no code changes were made, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes between previous and current step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes between steps",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), and step (i+1) introduces parameter tuning changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes spacing parameters dx and dy. dx reduced from 2.1 to 2.08, dy changed to maintain exact hexagonal lattice ratio relative to dx. These are numeric constant changes controlling grid spacing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further reducing dx from 2.08 to 2.06, which is a continuation of the optimization direction rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the numeric constant dx from 2.08 to 2.06, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further reducing dx from 2.06 to 2.045, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the numeric constant dx from 2.06 to 2.045, a pure parameter adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further reducing dx from 2.045 to 2.035, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.99,
+      "label_notes": null,
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further reducing dx from 2.035 to 2.025, which is a continuation of the optimization trend, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the numeric constant dx from 2.035 to 2.025, a grid spacing parameter.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further reducing dx from 2.025 to 2.015, rather than reverting step (i)'s change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the numeric constant dx from 2.025 to 2.015, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further reducing dx from 2.015 to 2.012, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the numeric constant dx from 2.015 to 2.012, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by changing dx from 2.012 to 2.011, which is a further refinement in the same direction, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes dx from 2.012 to 2.011, a single numeric constant adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the layout algorithm from a simple rectangular grid to a staggered honeycomb pattern with alternating row shifts, which is a different approach rather than reverting the previous parameter change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the grid layout from a centered rectangular grid to a staggered honeycomb pattern with alternating row shifts, while also tweaking spacing parameter dx from 2.011 to 2.014. Both are intra-family refinements within geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the staggered honeycomb pattern introduced in step (i) by improving the centering logic and slightly adjusting dx from 2.014 to 2.015, rather than reverting to the previous rectangular grid approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the staggered honeycomb packing pattern within the same geometric_construction family - adjusts how centers are computed and centered, with minor spacing parameter change (2.014\u21922.015)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same staggered 3-3-3-3 packing approach with different coordinate computation logic rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Refines the staggered hexagonal close-packing layout (same geometric_construction family) by restructuring coordinate calculation, centering logic, and adding containment/distance verification. The agent describes fixing bugs from previous steps, but the changes are structural refinements to the same packing approach rather than a pure bug fix or algorithm switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the same staggered hexagonal close-packing approach with different parameter values and restructured code, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the staggered honeycomb packing layout within the geometric_construction family - adjusts spacing parameters and simplifies the row placement logic for better density",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different approach (algorithm_switch), not a revert of step (i)'s specific changes; the agent explicitly says it's doing a 'clean rewrite' to eliminate bugs rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite switching from a vertex-based containment approach with rectangular grid to a staggered hexagonal close-packing (4x3) arrangement with different containment formula. The geometric construction family is preserved but the approach is fundamentally restructured.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and fixes the containment formula from step (i) while keeping the same staggered grid placement approach, which is an algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the placement and containment logic within the same geometric_construction family. Fixes containment formula for flat-top hexagon and adjusts the staggered grid placement approach, but stays within geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the grid placement approach (removing staggered offset, changing spacing value, simplifying centering logic) rather than reverting to a prior version; it's a continued refinement of the same algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changed from staggered honeycomb grid layout to a simple rectangular grid layout (removed row shifting), and adjusted spacing parameter. Both are geometric_construction family approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty \u2014 no code was actually changed in this step.",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) simply tunes a parameter.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only changes the numeric constant dx from 2.011 to 2.005, a spacing parameter adjustment with no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding staggered row offsets and further reducing dx to 2.001, which is a refinement rather than a revert of the parameter change in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Adds hexagonal close packing with staggered row offsets and tighter spacing within the same geometric_construction family",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the staggered row offsets (hexagonal close packing) and tighter spacing that were added in step (i), reverting to a simple rectangular grid without row offsets.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Removes the staggered row offset (hexagonal close packing pattern) and simplifies to a regular rectangular grid layout. This is a structural change within the geometric_construction family - modifying the packing arrangement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds commented-out debug code to the end of the function without removing or reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "code_cleanup",
+      "confidence": 0.85,
+      "label_notes": "Only adds commented-out debug code (no functional change). The agent's reasoning mentions plans for algorithm changes but the actual diff is just adding commented-out verification code.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the commented-out debug code added in step (i), but it also makes significant algorithm refinements (staggered honeycomb pattern, adjusted spacing), so this is a forward progression rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Switches from rectangular grid to staggered honeycomb pattern (row offset by dx/2) within the same geometric_construction family. Also adjusts spacing parameter slightly and removes debug comments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same staggered honeycomb approach introduced in step (i) by adjusting spacing parameters (dx from 2.001 to 2.0, dy recalculated) and restructuring the offset logic, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the staggered honeycomb packing pattern within the same geometric_construction family: adjusts spacing from 2.001 to 2.0, corrects row offset logic, and uses proper sqrt(3) vertical spacing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the spacing from 2.0 to 2.002 and changes the centering approach (using centroid subtraction instead of manual start_x/start_y), which is a further refinement of the same algorithm rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the staggered honeycomb lattice packing layout within the geometric_construction family: adjusts spacing formula (dx/dy relationship), centering logic, and row offset pattern while keeping the same overall grid-based geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) restructures the centering logic and grid layout code differently (using start_x/start_y instead of post-hoc centroid subtraction), which is a refinement/cleanup rather than a revert of step (i)'s approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "code_cleanup",
+      "confidence": 0.62,
+      "label_notes": "The change refactors how the honeycomb grid positions are computed (pre-computing start_x/start_y and centering directly instead of post-hoc centroid subtraction) but produces semantically equivalent centered positions. This is a restructuring of the same computation rather than an algorithmic change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the staggered row offset (row % 2 == 1 shift) and adjusts spacing from 2.002 to 2.005, which is a different algorithmic approach (rectangular grid instead of staggered honeycomb), not a revert of step (i)'s cleanup refactoring.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes row staggering (honeycomb offset) and adjusts grid spacing slightly. The change modifies the placement pattern within the same geometric_construction family, tweaking how hexagons are arranged on the grid.",
+      "was_reverted": true,
+      "revert_reason": "Step (i) removed the staggered honeycomb offset pattern, and step (i+1) explicitly restores the staggered honeycomb pattern with row offsets, reverting the key change made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes grid layout from rectangular to staggered honeycomb pattern (still geometric_construction family) and fixes the containment formula to use vertex-based computation instead of additive offsets. Also adjusts spacing parameter slightly (dx 2.005\u21922.002).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the staggered honeycomb layout back to a rectangular grid pattern (dx=2.005), removes the vertex-based containment computation, and the agent's reasoning explicitly states the staggered pattern attempts 'have failed' and it's going back to fix the approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes grid spacing parameters and simplifies the staggered honeycomb layout positioning logic while staying within the geometric_construction family. Also refactors the outer hexagon sizing computation. Borderline with parameter_tuning (dx change) but structural changes to positioning logic dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the grid layout from 4x3 to 3x4 with different staggering logic and spacing parameters, representing a different algorithmic approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the grid layout from 4x3 rectangular to 3x4 staggered honeycomb pattern within the same geometric_construction family. The row/column arrangement and offset strategy are modified but the overall approach (grid-based packing) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes from a 3-row\u00d74-column staggered honeycomb pattern to a 4-row\u00d73-column non-staggered grid pattern, which is a different algorithmic refinement rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the grid layout from 3 rows \u00d7 4 columns with staggered offset to 4 rows \u00d7 3 columns without stagger, and slightly tightens spacing. This is an intra-family refinement of the geometric construction approach (honeycomb/lattice packing pattern).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty, indicating no actual code change was made despite the agent's reasoning about improvements.",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no actual code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no actual code changes were made despite the agent's reasoning about planned improvements",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) is making new algorithm refinements to the existing code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes grid layout from 4x3 to 3x4 with staggered rows and tighter spacing within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor refinements to variable names and comments within the same 3-row, 4-column staggered honeycomb approach introduced in step (i), rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Refines the hexagon placement pattern from a rectangular 4x3 grid to a staggered honeycomb 3x4 pattern with tighter spacing (dx=2.001 vs 2.002), staying within the geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the staggered honeycomb 3x4 pattern back to a simple rectangular 4x3 grid without staggering, restoring the approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes grid layout from 3x4 staggered honeycomb to 4x3 non-staggered grid, adjusts spacing. Both are geometric_construction family approaches with structural tweaks to the packing arrangement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the grid layout from 4x3 back to 3x4 staggered honeycomb, directly undoing the change made in step (i) which switched from 3x4 staggered to 4x3 non-staggered.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changing grid layout from 4x3 to 3x4 within the same geometric construction approach (lattice packing family)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the grid layout by changing from a regular 3x4 grid to a staggered honeycomb pattern, which is a continuation of the algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from rectangular grid to staggered honeycomb pattern within the geometric_construction family, and tightens spacing from 2.005 to 2.0",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) explicitly states it is restoring the previous working state from Step 107, reverting the honeycomb pattern back to the 4x3 rectangular grid with dx=2.005 spacing, undoing step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Changes grid layout from 3x4 staggered honeycomb to 4x3 rectangular grid, modifies spacing parameters, and rewrites the outer hexagon size computation formula with validation. Multiple changes: grid arrangement change, spacing tweaks, and formula rewrite. Could be bug_fix (agent mentions restoring from catastrophic errors) but the code changes are structural refinements to the packing approach within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts the spacing parameter to 2.0 and replaces the validation/formula code with a simpler formula, but this is a deliberate refinement to a different approach (simpler safe formula) rather than restoring the code from before step (i); the grid layout (4x3) and most structural code from step (i) are preserved.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Reverts spacing parameter to 2.0 and simplifies the outer hexagon side-length computation formula. The spacing change is parameter_tuning-like and the formula change is a refinement of how containment is computed. Combined, this is an algorithm_refinement within the geometric_construction family, though it also has aspects of bug_fix (reverting to a 'safe, proven' state after a catastrophic failure).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the spacing from 2.0 to 2.005 and replaces the simplified S_needed formula with a more complex max-based formula, which is a different approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes spacing parameter (dx from 2.0 to 2.005) and modifies the S_needed computation from a simple formula to a max over multiple geometric constraints. The spacing change is a minor parameter tweak but the S_needed formula change is a structural refinement of how the outer hexagon size is computed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff indicates no code change was made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), and step (i+1) adds new algorithm refinements, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the containment formula (how S_needed is computed from vertex positions) and adds diagnostic validation. The core algorithm family (geometric_construction) remains the same, but the scoring/feasibility check is refined. Debug prints are present but secondary to the formula change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) simplifies the containment formula computation and removes the diagnostic validation code, but it retains the same two-term formula approach (term1, term2, S_needed) \u2014 this is a refinement/simplification of step (i)'s approach, not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Simplifies the containment formula computation by using precomputed max values instead of recomputing from vertices, and removes verbose validation/debug code. The core two-term formula approach remains the same but the computation is streamlined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the two-term containment formula with a different four-term formula approach; while the agent mentions reverting to Step 112 code, the actual diff shows a different algorithm for computing S_needed rather than restoring step (i)'s removed code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the formula for computing the required outer hexagon side length (S_needed) from a two-term formula to a four-term max formula. This is a refinement of the geometric construction approach for computing containment, not a switch to a different algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no actual code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) introduces new algorithm refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the containment formula for computing the required outer hexagon side length. The overall approach (geometric construction with containment check) remains the same family, but the specific geometric containment calculation is refined with a two-term formula using vertex coordinates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach by adding staggered honeycomb positioning and removing the extra padding constants from the two-term formula, which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds honeycomb staggering to the grid layout (intra-family geometric_construction refinement) and adjusts the containment formula by removing additive margin terms, which also looks like a bug_fix for the outer hexagon size computation. The staggering is a structural refinement within the same geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed the honeycomb staggering logic added in step (i) (the row%2 offset) and reverted to the plain grid layout, and also replaced the containment formula with a different approach, with the agent reasoning explicitly mentioning reverting to the 'proven working solution from Step 117'.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Removes row staggering from honeycomb pattern (structural change to placement logic) and changes the outer hexagon side-length computation formula. Also adds diagnostic intersection checking. The dominant change is modifying how hexagons are placed and how the enclosing size is computed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes the diagnostic intersection checking code that was added in step (i), but retains the core algorithmic changes (removal of row staggering and new outer hexagon side-length computation), so it is a partial cleanup rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "code_cleanup",
+      "confidence": 0.88,
+      "label_notes": "Removes dead/commented-out diagnostic code (pairwise distance check that was never active due to commented print). No semantic change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the algorithm (staggered honeycomb pattern, different spacing) and re-adds diagnostic code, but this is an algorithm refinement rather than a revert of the cleanup in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from a regular rectangular grid to a staggered honeycomb pattern for hexagon placement, both within the geometric_construction family. Also adds diagnostic pairwise distance computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the grid parameters and refines the approach rather than reverting; it changes dx from 2.0 to 2.005, switches from staggered to regular grid, and adds intersection checking, which is a refinement not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Changes grid layout from staggered honeycomb (alternating row offsets) to non-staggered rectangular grid, and adjusts spacing from 2.0 to 2.005. Also adds diagnostic helper functions. The removal of staggering is a structural change within the geometric_construction family. Could also be considered parameter_tuning (spacing change) but the staggering removal is more significant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes the diagnostic helper functions added in step (i) while keeping the core grid layout changes (non-staggered rectangular grid, spacing 2.005), so it is a cleanup rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "code_cleanup",
+      "confidence": 0.9,
+      "label_notes": "Removes dead diagnostic/debug code (intersection checking functions and commented-out print statements) with no semantic change to the algorithm",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "no_change",
+      "confidence": 0.97,
+      "label_notes": "Empty diff \u2014 no code changes between steps",
+      "was_reverted": false,
+      "revert_reason": "Step (i) had no changes (empty diff), and step (i+1) adds new code (diagnostic helper and grid refinements), so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the grid layout from a simple rectangular grid to a staggered honeycomb pattern (both within geometric_construction family), adjusts spacing parameters to theoretical minimums, and adds diagnostic intersection checking. The staggered offset is a structural refinement of the same lattice-based approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the staggered honeycomb offset and diagnostic intersection checking added in step (i), reverting to a simple rectangular grid, and the agent's reasoning explicitly says 'return to that exact, instrumented code' and 'restore this locked baseline'.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes staggered/honeycomb row offset (simplifying to a plain rectangular grid), adjusts spacing from 2.0 to 2.005, changes dy formula, and removes diagnostic code. The dominant change is modifying the hexagonal packing arrangement within the same geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the staggered/honeycomb row offset and diagnostic code that step (i) had removed, and reverts spacing from 2.005 back to 2.0 and dy formula back to sqrt(3), effectively undoing step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from a regular rectangular grid to a staggered honeycomb pattern for hexagon placement, which is an intra-family refinement within geometric_construction/lattice_packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the staggered honeycomb pattern approach introduced in step (i) by fixing bugs and adjusting parameters, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Refines the staggered hexagonal lattice generation with corrected parameters and adds diagnostic prints. The debug prints lean toward harness_or_scope_change, but the primary intent is fixing/refining the grid generation logic. Close call between algorithm_refinement and harness_or_scope_change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different approach (algorithm_switch), not a revert of step (i); it replaces the previous implementation with a new clean implementation rather than restoring prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from a manual placement approach to a staggered hexagonal lattice grid generation approach. The previous code used explicit manual coordinate placement with specific geometric reasoning, while the new code generates a lattice pattern and selects the 12 closest hexagons. This crosses from hand_designed_special_case/geometric_construction to a lattice_packing approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the lattice-based approach from step (i) by correcting geometry parameters and improving containment calculations, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrite of the hexagonal lattice packing approach with corrected geometry (dx=2, dy=sqrt(3)), revised containment check using vertex-based coordinate projections, and restructured center placement. Stays within geometric_construction family but substantially reworks the layout and containment logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice approach with a completely different spiral arrangement and diagnostic approach, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Switches from a lattice-based grid arrangement (geometric_construction) to a spiral/ring-based placement approach with explicit non-overlap verification. The overall structure is fundamentally different - from systematic grid rows to incremental spiral placement with distance checking.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the spiral/ring-based packing approach with a completely different diagnostic test (single hexagon), which is a new approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "harness_or_scope_change",
+      "confidence": 0.82,
+      "label_notes": "Agent reduces the problem to a single-hexagon diagnostic test to understand the validator's geometric model. This is a scope restriction (only 1 of 12 hexagons meaningfully placed) for debugging purposes, not a genuine algorithm attempt.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the single-hexagon diagnostic with a full 12-hexagon lattice packing approach, which is a different algorithm rather than reverting the diagnostic test.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Moves from a single diagnostic hexagon to a full 4x3 staggered lattice packing of 12 hexagons. Both approaches are geometric construction within the same family, but this is a substantial structural change to actually solve the problem rather than just test it.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the full 4x3 staggered lattice packing from step (i) and replaces it with a minimal diagnostic approach placing hexagons far apart, explicitly stating 'REWRITE is necessary' and resetting the debugging process.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.45,
+      "label_notes": "The agent is replacing a structured lattice packing with a trivially-valid but extremely suboptimal placement (hexagons spread far apart with huge outer hexagon). This is a debugging/diagnostic step that degrades quality intentionally. Could be harness_or_scope_change (diagnostic intent) but the code changes are to the algorithm itself. Borderline between algorithm_refinement and harness_or_scope_change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the intentionally suboptimal diagnostic placement from step (i) back to a tight lattice packing approach, explicitly stating 'Starting fresh with this geometry-first approach is necessary' and removing the far-apart spread placement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a naive widely-spaced placement with a tight 4x3 staggered hexagonal lattice arrangement. Both approaches are geometric_construction family, but the lattice geometry and spacing logic are substantially different. Could be considered algorithm_switch if the previous trivial placement is viewed as a different family, but both are geometric construction approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the lattice parameters (increasing d from 1.73205 to 1.8) and adds more sophisticated outer hexagon sizing logic, but retains the same fundamental staggered hexagonal lattice approach from step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagonal lattice layout (4x3 grid instead of staggered 3/2/3/2 pattern) and adjusts spacing parameter d from 1.73205 to 1.8, along with changes to outer hexagon side length calculation. All within geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a fundamentally different algorithm (binary search for minimum spacing with collision detection), rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite replacing the previous geometric construction approach with a new approach that uses binary search to determine minimal center-to-center spacing and constructs a hexagonal lattice packing. The overall structure and methodology changed fundamentally, though both are in the geometric_construction family. Could be algorithm_refinement since both are geometric_construction, but the rewrite is so thorough it borders on algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by improving the outer hexagon bounding calculation and lattice construction details, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Major rewrite of the packing geometry computation including tighter bounding hexagon calculation and refined lattice placement, but stays within the geometric_construction family. The outer hexagon side length computation is completely redone with proper half-plane constraints instead of vertex-distance approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters (dx from 2.005 to 1.755, rotation from 0\u00b0 to 30\u00b0) within the same lattice framework established in step (i), which is parameter tuning rather than reverting the approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "Changes spacing parameter dx from 2.005 to 1.755 and rotation from 0\u00b0 to 30\u00b0. The rotation change could be considered algorithm_refinement, but the dominant change is numeric constants (spacing values). The rotation angle change is also a numeric constant. However, changing orientation from flat-top to pointy-top is somewhat structural, making this borderline between parameter_tuning and algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "The agent explicitly states 'Revert to the proven pointy-top (angle=30\u00b0) lattice from step 139' and changes the spacing parameters back, undoing the dx=1.755 spacing from step (i) and replacing it with the earlier d=sqrt(3) approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes lattice spacing parameters and adds row-offset pattern (hex grid staggering) within the same geometric_construction family. Could also be seen as bug_fix since agent mentions recovering from a regression, but the code changes are structural refinements to the lattice construction rather than fixing a specific defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (4\u00d73 hexagonal lattice with pointy-top orientation and different containment computation), which is an algorithm switch rather than a revert of step (i)'s specific code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule D] reclassified from algorithm_switch: Complete rewrite from a complex geometric construction approach to a simpler 4x3 hexagonal lattice packing approach. While both could be considered geometric_construction family, the rewrite is substantial enough and changes the fundamental strategy. However, since both are geometric_construction, this could also be algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) substantially rewrites the approach with different geometry calculations and containment logic rather than restoring step (i-1)'s code; the agent mentions restoring a baseline from Step 139, not reverting step (i) specifically, and the resulting code is a new implementation, not a restoration of prior code.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Major rewrite of the packing geometry and containment computation. The agent claims to be restoring a previous valid configuration, but the code changes are substantial - restructuring how hexagon vertices are computed, how containment is checked (switching from projection-based to constraint-based outer hexagon sizing), and how inner hexagons are placed. This is within the geometric_construction family so not algorithm_switch, but the changes are deep enough that it borders on algorithm_switch. Could also be bug_fix since the agent mentions 'catastrophic regression' and restoring validity.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - code is identical to previous step, agent just restored a prior solution",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the spacing parameter from 2.005 to 2.0001, which is a parameter tuning change rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes the horizontal spacing constant dx from 2.005 to 2.0001, a numeric constant adjustment within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning it made no changes at all, so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), and step (i+1) introduces code optimizations and parameter tuning, which is not a revert of nothing.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary change is adjusting d_min from 2.0001 to 1.732052 (a significant spacing parameter change). Also includes minor code cleanup (precomputing cos/sin, comment rewording) and removing tolerance, but the dominant semantic change is the spacing parameter.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) explicitly states it is reverting to a known best solution from Step 145/146, restoring the removed +1e-8 tolerance and undoing the precomputed cos/sin optimization, consistent with undoing step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "Restores the +1e-8 tolerance on outer hexagon side length that was removed in a previous step, causing validation failure. Also changes d_min from 1.732052 to 2.0001, which is a significant parameter change, but the agent's stated intent is fixing the catastrophic failure caused by removing the tolerance. The d_min change also appears to be reverting to a different (possibly incorrect) value, but the primary fix is the tolerance restoration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes to the code (empty diff), so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes between previous and current step",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

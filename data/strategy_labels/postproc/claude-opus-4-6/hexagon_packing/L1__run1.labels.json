@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "claude-opus-4-6",
+  "level": "L1",
+  "run_id": "L1__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the initial generation with a substantially different algorithm (using differential_evolution, new helper functions, honeycomb configurations), which is an algorithm switch rather than a revert of the initial code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a simple scipy minimize approach with a multi-strategy approach combining geometric construction (honeycomb patterns), differential_evolution (stochastic search), and refined local optimization. This crosses algorithm families from a simple gradient_descent/local optimization to a hybrid stochastic_search + geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the multi-strategy hybrid approach with a different analytical/direct computation approach to avoid timeouts, which is a new algorithm switch rather than reverting to the original simple scipy minimize approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from iterative optimization (differential_evolution + minimize with many restarts) to a primarily analytic/geometric construction approach with direct position computation and minimal local refinement, crossing from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different geometric/analytic construction strategy (hardcoded arrangement, no scipy), which is a further algorithm switch rather than a revert to a prior approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from scipy.optimize-based iterative optimization (gradient_descent/Nelder-Mead) to a purely geometric construction approach with hardcoded arrangements and analytical containment checks. This crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different geometric construction approach (honeycomb-based layout with analytical minimal enclosing hexagon), rather than reverting to the previous scipy.optimize-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from an optimization-based approach (with iterative refinement loops, simulated annealing-like local search) to a hand-designed geometric construction with analytical minimal enclosing hexagon computation. This crosses from stochastic_search/physical_simulation family to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different analytical construction method rather than reverting to a previous approach; the agent's reasoning mentions previous attempts timing out and needing a new careful analytical approach, not reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced iterative optimization/local-search approach with a purely analytical geometric construction. Previous code used grid search + local refinement (stochastic_search family), new code constructs the packing analytically (geometric_construction family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same analytical geometric construction approach introduced in step (i), modifying the arrangement details and optimization but not reverting to the previous iterative/stochastic search approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the hex packing arrangement (still geometric construction family) with a different row layout (2-3-4-3) and simplified outer hexagon fitting approach, removing the iterative fine-tuning grid search in favor of a more analytical computation. Both old and new are geometric_construction approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a completely different algorithm (different hex arrangement, different optimization strategy, rotated hexagons), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a simple lattice-based geometric construction to a more complex approach involving rotation search over outer hexagon angles with grid-based optimization for center placement. Moves from pure geometric_construction to a hybrid geometric_construction + search approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different algorithm (analytical construction with minimum enclosing hexagon), which is a further algorithm switch rather than a revert to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a grid-search optimization approach to an analytical geometric construction with minimum enclosing hexagon computation. Crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (conservative grid arrangement with minimum enclosing hexagon), which is a normal algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing a complex optimization-based approach (grid search with refinement over positions/angles) with a direct geometric construction approach. Crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s geometric construction with a different honeycomb-based geometric construction approach, which is a normal algorithm switch rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from an optimization-based approach (searching over configurations with numerical optimization) to a geometric_construction approach (honeycomb lattice packing with analytical placement), crossing from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm that uses conservative spacing and iterative tightening, which is a different approach to solving the same problem rather than reverting to the previous optimization-based method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a simple geometric_construction (hardcoded honeycomb grid) to a stochastic_search approach with multiple candidate configurations, overlap checking via Minkowski sums, binary search for minimal outer hexagon, and local search refinement. This crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the stochastic search with a different approach (careful grid placement), which is an algorithm switch rather than a revert to the original hardcoded honeycomb grid from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite replacing the previous approach (which used overlap checking + local search refinement) with a new geometric construction approach using hex grid placement. The diff is heavily truncated but shows a fundamental restructuring from stochastic_search/local_search to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm that includes SAT overlap checking and optimization, which is a new approach rather than reverting to the previous stochastic search method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a geometric construction approach (computing bounding hexagon analytically from vertex projections) with a validation-based approach using SAT overlap checking and explicit polygon containment, representing a fundamentally different algorithmic strategy for the packing problem.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s SAT-based validation approach with a completely different scipy.optimize-based approach; this is another algorithm switch, not a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a manual geometric construction with SAT-based overlap checking approach combined with scipy.optimize minimize. Shifts from a hand-designed geometric construction to a numerical optimization (physical_simulation/gradient_descent family via scipy minimize).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the SAT-based optimization approach with a hardcoded arrangement approach, which is a different algorithm switch rather than reverting to the previous geometric construction from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from an optimization-based approach (with scipy.optimize.minimize) to a hardcoded geometric construction arrangement, moving from physical_simulation/stochastic_search family to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded geometric construction with a different geometric approach based on triangular grid spacing; this is a new algorithm switch, not a revert to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from scipy.optimize-based numerical optimization approach to what appears to be a geometric construction / analytical placement approach. Crosses from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the geometric construction approach from step (i) by changing the position layout strategy (from grid to ring-based) and adding scipy optimization, but retains the overall structure including the outer hexagon fitting loop; this is an algorithm refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hexagon placement strategy from a simple 4x3 grid to a ring-based arrangement (6+6 rings), and refines the search resolution and margin. All within geometric_construction family. Could also be considered initialization_change since it changes the starting layout, but the structural change to the placement logic is dominant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a more sophisticated optimization approach with scipy minimize and overlap checking, rather than reverting to a previous state; it retains the ring-based concept while significantly extending the algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major restructuring of the optimization approach within the same family (scipy minimize-based physical/gradient optimization). Replaces the initial layout strategy and adds overlap verification with fallback, but stays within the same optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy optimization approach with a simpler grid-based arrangement, which is a different algorithm rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced scipy Nelder-Mead optimization approach (stochastic_search/physical_simulation family) with a simple hand-designed grid arrangement (hand_designed_special_case/geometric_construction family). The entire optimization loop, overlap checking, and iterative refinement was removed in favor of a fixed 4x3 grid layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning the code remained unchanged from step (i), so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite agent reasoning about improvements",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; instead it introduces a completely new algorithm with optimization framework.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Complete rewrite from a simple geometric construction to a scipy.optimize-based approach with SAT overlap checking, penalty-based objective, and multi-start optimization. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize approach with a different algorithm rather than reverting to the pre-step(i) code; it's another algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Major rewrite replacing scipy.optimize-based approach (gradient descent / numerical optimization with Minkowski distance checks) with a fundamentally different geometric construction approach. The diff removes ~400 lines of optimization code and replaces with a compact geometric/analytic packing solution.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the simple grid arrangement from step (i) with a scipy.optimize-based approach, which is a different algorithm switch rather than reverting to the previous optimization code; the overall geometric construction framework from step (i) is retained while the inner positioning strategy is changed.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a simple hand-designed grid arrangement (geometric_construction) to scipy Nelder-Mead optimization with multiple initial configurations and SAT-based overlap checking (stochastic_search/physical_simulation family). This is a cross-family change from geometric_construction to gradient_descent/optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a refinement pass and adjusts parameters on top of step (i)'s approach, rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a second refinement pass (Nelder-Mead) on the best solution found, plus finer angular search granularity and tighter margin. All within the same optimization framework (gradient_descent/physical_simulation family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines parameters (increasing iterations, tightening tolerances, adding refinement rounds, finer angular search) within the same framework introduced in step (i), rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes are primarily numeric: increased maxiter (5000\u21928000, 15000\u219220000), tightened tolerances (1e-4\u21921e-5, 1e-6\u21921e-8), finer grid step (0.2\u21920.05), smaller margin (0.0005\u21920.0002). The addition of a refinement loop (range(3)) is a minor structural change but the dominant intent is parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) fixes indentation/syntax issues and adds small perturbations in the refinement loop, which is a bug fix and minor enhancement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "bug_fix",
+      "confidence": 0.82,
+      "label_notes": "Fixes indentation/syntax error from previous step where try/except block had misaligned code, plus adds small perturbation for refinement rounds",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (limiting configs, reducing maxiter, adjusting tolerances, changing loop step size) and fixes indentation, but does not revert the code added in step (i); it builds upon it with different optimization parameters.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "harness_or_scope_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Multiple changes: limiting configs to 80 (search_space_change), reducing maxiter/tolerances (parameter_tuning), changing perturbation magnitudes (parameter_tuning), changing phi step size (parameter_tuning), and an indentation change that looks like a bug_fix or code_cleanup. The dominant changes are numeric constant adjustments, but the configs[:80] limit is a scope restriction. By priority, harness_or_scope_change could apply for the [:80] limit, but the primary intent seems to be avoiding timeout via parameter tuning rather than restricting task scope.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially undoes the configs[:80] limit and the refinement loop changes from step (i), but it also makes different parameter choices (maxiter 5000 vs 3000, removes multi-restart refinement entirely) \u2014 this is a continued evolution of the approach rather than a revert to the pre-step(i) state.",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Removes the config limit (configs[:80] \u2192 configs), increases maxiter from 3000 to 5000 in first pass, reduces refinement restarts from 3 to 1 with adjusted tolerances and maxiter. Dominant change is numeric parameter adjustments, though removing the loop over refinement restarts is a minor structural simplification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes parameters (increasing maxiter, tightening tolerances, adding refinement restarts) rather than reverting step (i)'s changes; it builds upon step (i)'s approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are numeric: maxiter 5000\u21928000, tolerances tightened, margin reduced, phi step size halved. The addition of perturbation-based restarts in the refinement loop is a structural change (algorithm_refinement), but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor modifications to the refinement loop (simplifying perturbation noise and fixing indentation/structure of the validation block) rather than reverting step (i)'s changes; the core parameter tuning changes from step (i) remain intact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "bug_fix",
+      "confidence": 0.62,
+      "label_notes": "The indentation change fixes a structural bug where the validation and result-update code was inside the try block but incorrectly indented (or vice versa). The except clause change is minor. The noise parameter change is incidental parameter_tuning, but the dominant change is the indentation fix which affects control flow.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the refinement pass structure (removing the multi-restart loop and adding a third optimization pass), which is a different algorithmic approach rather than reverting the indentation/bug fixes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces multi-restart Nelder-Mead refinement with single longer Nelder-Mead run plus an additional Powell method refinement pass. Both are gradient-free local optimization methods within the same physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies optimization parameters and restructures the refinement loop differently rather than reverting to the pre-step(i) code; it replaces the single long Nelder-Mead + Powell approach with a multi-round refinement loop, which is a different algorithmic change, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Restructures the refinement passes: replaces separate second and third passes (Nelder-Mead + Powell) with a single iterative refinement loop of 3 rounds of Nelder-Mead. Also adjusts first-pass tolerances. This is an intra-family change within physical_simulation/gradient_descent optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters and restructures the refinement loop differently (single pass with Powell instead of 3 rounds of Nelder-Mead), which is a different approach rather than reverting to the pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Reduces first-pass maxiter from 5000 to 3000, increases second-pass maxiter from 10000 to 20000, and removes the refinement loop (3 iterations \u2192 1). The dominant change is rebalancing iteration budgets between passes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts parameters (increasing maxiter from 3000 to 5000 and from 20000 to 50000, tightening tolerances, limiting configs) rather than reverting step (i)'s changes; it builds on step (i)'s approach with different parameter values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: maxiter (3000\u21925000, 20000\u219250000), tolerances (1e-4\u21921e-5, 1e-7\u21921e-8), step size (0.05\u21920.02), margin (0.0001\u21920.00005), and config limit (all\u219230). All are scalar parameter changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes one parameter (removing the [:30] config limit), which partially undoes one of step (i)'s changes but does not revert the majority of step (i)'s parameter tuning changes (maxiter, tolerances, step size, margin all remain).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "search_space_change",
+      "confidence": 0.82,
+      "label_notes": "Removes the limit on number of configurations explored (from 30 to all), expanding the set of initial configurations that get optimized.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts optimization parameters (maxiter, tolerances, step sizes, margins) to reduce computation time, it does not restore any code removed in step (i) or remove code added in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: maxiter, xatol, fatol tolerances, phi step size, and margin value. No structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further tuning parameters (maxiter, tolerances, phi step size) and adding new perturbation/refinement logic rather than reverting the previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes maxiter from 3000\u21925000, tolerances from 1e-4\u21921e-5 and 1e-8, phi step from 0.05\u21920.02. Also adds perturbation trials around best solution (multi-start refinement). The perturbation loop is structural, leaning toward algorithm_refinement, but the dominant changes are numeric parameters. Close call between parameter_tuning and algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the parameter changes from step (i): maxiter back to 3000, tolerances back to 1e-4, phi step back to 0.05, and removes the perturbation trials loop that step (i) added.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Reduces maxiter, loosens tolerances (xatol/fatol), reduces refinement passes from multiple trials to single, and coarsens phi search step. Primarily numeric constant changes, though removing perturbation trials could be seen as search_space_change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) had no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) is an algorithm_switch introducing a new optimization approach with scipy.optimize.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a geometric construction with grid search over outer rotation to a scipy.optimize.minimize-based approach (gradient descent / numerical optimization), crossing from geometric_construction family to physical_simulation/gradient_descent family",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the scipy.optimize.minimize approach from step (i) and restores a geometric construction with grid search over outer rotation (np.arange over phi_deg), reverting back to the pre-step(i) algorithmic family.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced scipy.optimize-based approach with a geometric construction (explicit placement of hexagons in rings) plus brute-force grid search over outer hexagon rotation. This crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction with a new scipy.optimize-based approach using different initial configurations and optimization strategy, which is a different algorithm switch rather than reverting to the previous scipy approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a hand-designed geometric construction with scipy.optimize-based numerical optimization over multiple layout candidates. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the scipy.optimize-based numerical optimization approach from step (i) and replaces it with a hand-designed geometric construction (fixed positions with brute-force outer rotation search), effectively reverting to the geometric_construction family that step (i) had moved away from.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced scipy.optimize.minimize-based optimization approach with a purely geometric construction using hardcoded arrangements and brute-force rotation search. This crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes two unused variables (best_outer_phi assignment and outer_phi_final) and changes a comment, which is a minor cleanup rather than reverting the geometric construction approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "code_cleanup",
+      "confidence": 0.75,
+      "label_notes": "Removes unused variable outer_phi_final and simplifies fallback comment. No semantic change to algorithm behavior.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further algorithmic refinements (changing fallback parameters, adding fine search, adjusting margin) rather than reverting the cleanup changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes fallback grid parameters and refines the outer hexagon angle search with a two-phase coarse-then-fine approach, plus reduces numerical margin. Multiple small refinements within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding overlap penalty functions, refactoring vertex collection, widening the fine search range, and adding an even finer search phase - these are further refinements, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Refactors overlap penalty into separate function, vectorizes vertex projection computation, adds finer phi search pass, and adjusts search grid parameters. These are intra-family refinements to the existing optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the vectorized vertex projection with a different loop-based approach and removes the finer phi search pass, but these are algorithmic modifications rather than a revert to a prior state; the agent's reasoning discusses improving the approach, not undoing the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Restructures the objective function to combine R computation and overlap penalty, changes phi search granularity (0.5\u21920.1), removes finest search pass, and modifies overlap checking logic. Multiple refinements within the same stochastic/gradient optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts optimization parameters (maxiter, tolerances, search granularity) and adds a third refinement pass, building on step (i)'s approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are increasing maxiter (3000\u21925000, 20000\u219250000), tightening tolerances (1e-4\u21921e-5, 1e-7\u21921e-8), and refining grid step (0.1\u21920.05). A third perturbation-and-refine pass is also added, which leans toward algorithm_refinement, but the dominant changes are numeric parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes substantial algorithmic changes (refactoring overlap penalty, removing the third perturbation pass, changing vertex collection approach) rather than reverting step (i)'s parameter tuning; it's a different refinement approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refactors overlap penalty computation, vectorizes vertex projection in compute_R, adjusts optimization loop structure (removes perturbation restart loop), and changes phi search step size. Multiple changes but primarily structural refinements within the same optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further modifications to the algorithm (changing vertex projection loops, overlap penalty computation, and angle handling) rather than reverting step (i)'s changes; it's a continued refinement, not a restoration of prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Restructures the overlap penalty computation (inlining it into objective, changing from SAT-based overlap to hex_min_dist, adjusting penalty formula) and modifies compute_R loop structure. These are refinements within the same optimization approach (gradient-free/stochastic search), not a family switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (maxiter, tolerances, search resolution) without removing or restoring any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: maxiter (3000\u21925000, 20000\u219250000), tolerance values (xatol/fatol tightened), and search step size (0.01\u21920.001). No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a new scipy.optimize-based algorithm rather than reverting to a previous version; this is an algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Complete rewrite from a geometric construction approach to a scipy.optimize penalty-method optimization with multiple random restarts and progressive penalty refinement. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize penalty-method approach with a completely different geometric construction approach, which is a new algorithm switch rather than reverting to the previous code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced scipy.optimize.minimize-based approach (gradient descent / physical simulation family) with a geometric construction approach using a fixed hexagonal grid layout and brute-force search over outer hexagon rotation angle. This crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric grid + brute-force rotation search with a scipy.optimize.minimize-based approach, which is a different algorithm switch rather than reverting to the exact previous code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite replacing a geometric construction approach with scipy.optimize-based numerical optimization. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize-based numerical optimization with a different geometric/analytical approach, which is a new algorithm switch rather than reverting to the previous geometric construction from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Replaced scipy.optimize-based numerical optimization approach with a hand-designed geometric construction (explicit grid layout with analytical outer hexagon sizing via projection search). This moves from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter adjustments and minor code modifications (reducing grid spacing, inlining vertex computation, removing ultra-fine search, changing margin) rather than reverting to the previous scipy.optimize approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes grid spacing constants (dy, dx), search step sizes, search range bounds, and margin value. Also removes ultra-fine search phase and inlines vertex computation. Mixed between parameter_tuning and algorithm_refinement, but dominant changes are numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite the agent's reasoning about potential improvements",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite agent reasoning about improvements",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made parameter tuning changes and added a third optimization pass, which builds upon step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "The diff changes maxiter, xatol, fatol numeric constants and adds a third refinement pass with perturbations. The parameter changes are pure tuning, but the added third pass with random perturbations is a structural addition (search_space_change or algorithm_refinement). Since the parameter tuning changes are present alongside the new perturbation-based refinement pass, the structural addition of a multi-start perturbation loop leans toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the third refinement pass added in step (i) but also restructures the vertex collection and projection computation differently, representing a further algorithmic refinement rather than a simple revert to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: vectorized projection computation, modified overlap penalty calculation, removed third refinement pass, adjusted optimization parameters. All within the same gradient_descent/Nelder-Mead optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the projection computation and overlap penalty calculation with a different approach (per-vertex loop instead of vectorized, different overlap check using hex_min_dist), which is a further refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the overlap penalty computation (from polygon overlap depth to distance-based penalty) and restructures the projection loop in compute_R. Both are refinements within the same optimization approach (physical_simulation/gradient_descent family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a scipy.optimize-based method, which is a different algorithm (algorithm_switch), not a revert of step (i)'s refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric construction approach (manually computed grid positions with analytical outer hexagon fitting) to a scipy.optimize.minimize-based numerical optimization approach with penalty functions for overlap/containment constraints. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize-based numerical optimization with a different geometric construction approach using analytical placement and fine search over outer hexagon rotation, which is a new algorithm switch rather than reverting to the previous geometric construction from step (i-1).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced scipy.optimize.minimize-based approach (gradient descent / physical simulation family) with a hand-designed geometric construction that places hexagons in concentric rings and then searches for optimal outer hexagon rotation via grid search. This crosses from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter changes (reducing spacing values from 0.05/2.05 to 0.01/2.01 in the fallback grid) within the same geometric construction approach introduced in step (i), without reverting the overall algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only the spacing constants (dy from sqrt3+0.05 to sqrt3+0.01, dx from 2.05 to 2.01) in the fallback grid initialization, which are numeric parameter tweaks.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) is an algorithm_switch introducing a completely new optimization approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Complete rewrite from a geometric_construction approach (manually placing hexagons in ring patterns with analytical calculations) to a stochastic_search/physical_simulation approach using scipy.optimize with multiple random restarts, overlap penalty functions, and gradient-based optimization (L-BFGS-B). This crosses algorithm families from geometric_construction to gradient_descent/optimization-based.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize stochastic search with a completely different geometric/analytical approach using known configurations and brute-force rotation search, which is a new algorithm switch rather than reverting to the previous geometric_construction approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing scipy.optimize-based approach with a geometric construction approach using fixed hex arrangements and grid search over outer hex rotation. Switches from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters and adds a third refinement stage to the code from step (i), rather than reverting it; the core geometric construction and optimization approach from step (i) is preserved and extended.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "The diff changes numeric constants (maxiter, xatol, fatol, config limit) and adds a perturbation-based re-optimization pass. The parameter changes and the new perturbation loop together blur the line between parameter_tuning and algorithm_refinement. The perturbation pass adds a random-restart refinement phase which is structural, leaning toward algorithm_refinement, but the dominant changes are numeric tolerances and iteration limits.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the perturbation-based re-optimization pass added in step (i) but also restructures the vertex computation and optimization logic differently, representing an algorithm refinement rather than a simple revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures compute_R for vectorized vertex projection, adds overlap_penalty function, removes third-pass perturbation loop, and adjusts optimization parameters. Multiple changes but all within the same stochastic_search/physical_simulation optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the compute_R function to use a different vertex iteration approach and inlines the overlap_penalty logic back into the objective function, but these are further refinements rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Restructures the R computation loop and inlines the overlap penalty with modified logic (penalty factor changed from 200 to 100, removed dist2 pre-check). These are refinements within the same optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a new overlap_depth function and refining the penalty computation (changing from a distance-based penalty to a depth-based penalty with factor 500), which is a further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Replaces binary overlap check with continuous overlap depth computation for smoother gradients in the penalty function, and adjusts penalty weight/distance threshold. This is a refinement within the same physical_simulation/gradient_descent family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the overlap_depth function added in step (i) and reverts back to using a binary overlap check (hex_min_dist, renamed from hexagons_overlap) with a simple distance-based penalty, undoing the continuous overlap depth computation that was the core change in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces overlap_depth function with simpler overlap check (hex_min_dist), changes penalty calculation from depth-based to distance-based, and adjusts proximity threshold. These are refinements to the penalty/scoring within the same optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the overlap checking function introduced in step (i) by enhancing hex_min_dist with a more detailed SAT-based overlap amount calculation, rather than reverting to the previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: refactored SAT overlap to return overlap amount, added multi-trial refinement with random perturbations in second pass, and tightened optimizer tolerances/increased iterations. The dominant change is the refinement loop with perturbations, which is an intra-family improvement to the existing optimization approach. Parameter tuning is secondary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refactors and simplifies the overlap checking by merging hex_overlap_sat back into hex_min_dist and makes incremental changes to the optimization loop, but this is a further refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Refactors SAT overlap check to return bool directly, adjusts refinement loop structure (removes perturbation trials, feeds back improved params), and refines phi search granularity. Multiple small changes within the same optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the algorithm with different optimizations (vectorized vertex collection, added optimization passes, adjusted parameters) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Vectorizes vertex projection computation, restructures overlap penalty into separate function, adjusts optimization parameters and loop structure. All changes are within the same stochastic/gradient-based optimization family, refining how the objective is computed and optimized.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a fundamentally different algorithm using scipy.optimize and a different optimization strategy, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite replacing a geometric construction approach with scipy.optimize-based numerical optimization (gradient-free Nelder-Mead). This crosses from geometric_construction family to physical_simulation/optimization family. However, the diff is truncated so full confidence is limited.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the scipy.optimize-based approach from step (i) and returns to a geometric construction approach, with the agent's reasoning explicitly noting that 'optimization approaches with scipy have been timing out' indicating the previous approach didn't work.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Replaced scipy.optimize-based numerical optimization (gradient_descent/physical_simulation family) with a geometric construction approach using hardcoded hexagonal lattice positions and grid search over outer hexagon rotation angle (geometric_construction family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (spacing values, search resolution) and removes one refinement loop, which constitutes parameter tuning rather than reverting the geometric construction approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes spacing constants (dy, dx) and search resolution/range parameters. The grid spacing reduction (0.02\u21920.01, 2.02\u21922.01) and finer angle search (0.5\u21920.1, 0.02\u21920.01) are numeric constant changes. Also removes a third refinement pass, which is a minor structural change, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm using scipy.optimize, which is an algorithm_switch rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a geometric construction approach (manually placed hexagons with grid search for outer hexagon) with a scipy.optimize.minimize-based numerical optimization approach with penalty functions for overlap and containment, which is a fundamentally different algorithm family (exact_solver/gradient_descent vs geometric_construction).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize approach with a different geometric/grid-based approach rather than reverting to the original code from before step (i); it's a new algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces scipy.optimize-based approach with a direct geometric construction (fixed layout of inner hexagons in two rings) plus brute-force angular sweep to find minimum enclosing hexagon. This crosses from physical_simulation/gradient_descent family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes a small parameter adjustment (changing spacing values from 0.01 to 0.02) in the fallback branch of the code introduced in step (i), not reverting the overall approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only changes numeric constants (dy spacing from sqrt3+0.01 to sqrt3+0.02, dx from 2.01 to 2.02) in the fallback grid initialization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies different parameters (config limit, maxiter, tolerances, search resolution) than step (i) changed (dy/dx spacing), and does not undo step (i)'s changes to those spacing values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes are primarily numeric: limiting configs to 80, increasing maxiter from 3000\u21925000 and 20000\u219250000, tightening tolerances, adjusting grid spacing, and refining phi search resolution. All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the parameter changes from step (i): maxiter goes back from 5000\u21923000 and 50000\u219220000, tolerances revert from 1e-5\u21921e-4 and 1e-8\u21921e-7, config limit [:80] is removed (reverting to original), and grid spacing reverts from 0.05\u21920.1, all consistent with undoing step (i)'s tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: removes config limit (80\u2192all), reduces maxiter (5000\u21923000, 50000\u219220000), loosens tolerances (1e-5\u21921e-4, 1e-8\u21921e-7), coarsens phi search grid (0.05\u21920.1, 0.001\u21920.01). All are numeric parameter adjustments to avoid timeout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) modifies the fallback layout which is a refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the fallback initial layout from a 4x3 grid to a 2-4-4-2 hex grid arrangement, which is a structural change to the initialization/heuristic within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a scipy optimization-based method, which is a different algorithm switch rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric construction approach (manually placed hexagons with grid search for outer hex) to a scipy.optimize.minimize-based numerical optimization approach with penalty functions. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) completely removes the scipy.optimize.minimize-based numerical optimization approach from step (i) and replaces it with a geometric construction approach using manually placed hexagons with grid search for outer hex, which is essentially restoring the type of approach that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite replacing the previous scipy.optimize-based approach with a geometric construction approach (systematic grid placement + outer hex rotation search). Shifts from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm from step (i) by adjusting parameters (iteration limits, tolerances, config count) and adding a third optimization pass, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adds a third optimization pass (Powell method), adjusts tolerances and iteration counts, limits configs to 40. The dominant change is adding a refinement pass with a different optimizer method (Powell), which is still within the same optimization family. Parameter tuning is also present but the structural addition of a third pass tips it toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the third optimization pass (Powell method) added in step (i) and adjusts parameters, but also makes other forward changes; however, removing the Powell pass that was the main addition of step (i) while reverting tolerances and config limits constitutes a partial revert, but the agent's reasoning doesn't mention reverting and frames it as trying a different approach, so this is better classified as an algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Primary changes are reducing maxiter (5000\u21923000, 50000\u219220000), relaxing tolerances (1e-5\u21921e-4, 1e-8\u21921e-7), removing configs[:40] slice, and removing the third Powell optimization pass. The dominant intent is adjusting numeric parameters and removing a refinement pass to fit within time budget.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm by enhancing the SAT overlap check to return penetration depth and adjusting penalty calculations, which is a different algorithmic improvement rather than reverting the parameter tuning changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the overlap penalty computation within the same optimization framework by using SAT penetration depth instead of simple distance-based penalty, and adjusts penalty weights. Still the same physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the SAT penetration depth approach with a simpler separation check and modifies the optimization logic, but this is a different algorithmic refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: simplified SAT overlap check, restructured phi search into 3-pass (coarse/medium/fine), moved normal computation inline. Dominant change is refining the search strategy within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) restores the detailed SAT overlap function and modifies the phi search passes (merging 3-pass into 2-pass with different parameters), but this is a refinement/restructuring rather than a revert of step (i)'s approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refactors SAT overlap into a separate function, adjusts penalty parameters, and refines the outer hex rotation search grid (finer step sizes, merged search phases). These are intra-family refinements to the existing optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the SAT overlap function and penalty logic further, but it's a continued refinement rather than a revert \u2014 it changes the approach details (e.g., renaming functions, adjusting overlap depth computation, modifying distance thresholds) without restoring step (i-1)'s code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refactors SAT overlap checking functions and penalty computation within the same optimization framework. Changes how overlap depth is computed and used in the penalty, but stays within the same physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the sat_overlap_depth function added in step (i) and replaces the penalty computation with a different approach, but this is an algorithm refinement/switch rather than a revert since it builds on the same framework and introduces a new penalty strategy instead of restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Removes duplicate SAT overlap depth function, simplifies overlap penalty calculation to use a distance-based proxy instead of penetration depth, and adjusts the distance threshold. This is a refinement of the existing optimization approach (same family: physical_simulation/gradient_descent), modifying the penalty/scoring mechanism.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff compared to step (i), meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite the agent's reasoning about future improvements",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new code (sat_overlap_depth function) and renames a function, but does not remove or restore code from step (i); it builds upon the existing code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds a new sat_overlap_depth function and renames hex_min_dist to hex_overlap_sat. This adds overlap depth computation capability to the existing SAT-based collision detection, which is a refinement of the existing physical simulation / force-directed approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the sat_overlap_depth function added in step (i) and renames hex_overlap_sat back to hex_min_dist, restoring the original function name from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "Removes duplicate sat_overlap_depth function (dead code removal), renames hex_overlap_sat to hex_min_dist, and makes minor parameter tweaks to fallback grid spacing. The dominant change is removing dead code, but the spacing tweak is a minor parameter_tuning aspect. Picked code_cleanup since the structural removal of unused function is the largest change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts optimization parameters (maxiter, tolerances, grid spacing, search resolution) without reverting any of the code cleanup changes from step (i) such as the removal of the duplicate sat_overlap_depth function or the rename of hex_overlap_sat to hex_min_dist.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: maxiter, xatol, fatol tolerances, grid spacing values, and search step size. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numeric parameters (maxiter, tolerances, grid spacing) to different values than step (i), which is a continuation of parameter tuning, not a revert of the previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: maxiter, xatol, fatol tolerances, and step size in fine search loop. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the fallback grid layout to a honeycomb pattern with different spacing and offsets, which is a different approach to initialization rather than reverting the parameter tuning changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "initialization_change",
+      "confidence": 0.72,
+      "label_notes": "Changes the fallback initial configuration from a 4x3 grid to a 3-3-3-3 honeycomb grid layout with offsets, modifying how the starting positions are generated for the optimization.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the 4x3 grid fallback layout (without offsets) that step (i) had replaced with a 3-3-3-3 honeycomb grid layout with offsets.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the fallback initialization layout (from honeycomb offset grid to compact 4x3 grid) and adds angle normalization. The fallback is an initialization pattern, but the grid geometry change is a structural refinement of the packing approach. Could also be initialization_change, but the grid layout change modifies the packing strategy itself.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental modifications to the fallback spacing and adds centering logic, rather than reverting the compact 4x3 grid layout introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes include centering the arrangement post-optimization, adjusting fallback grid spacing, and removing modulo on angles. These are refinements to the existing packing/optimization approach rather than a fundamental algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes the centering code added in step (i) and slightly adjusts fallback spacing parameters, but also keeps other changes from step (i) and introduces different parameter values rather than fully restoring the prior state; this is a partial rollback combined with further tuning, not a clear revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes spacing parameters (dy from sqrt3+0.02 to sqrt3+0.01, dx from 2.02 to 2.01) and removes centering step. The parameter changes are minor numeric tweaks, but removing the centering code could be seen as algorithm_refinement. Picking parameter_tuning as the dominant change since the structural removal of centering is minor.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by refining the SAT overlap function, adding overlap amount computation, changing penalty formulation, and adjusting search parameters, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes SAT overlap check from boolean to continuous overlap amount, uses smooth quadratic penalty instead of linear, adjusts penalty weight and search granularity. All within the same optimization framework (gradient-based/local search).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the continuous overlap amount (sat_overlap) back to a boolean overlap check (hex_min_dist returning True/False), and reverts the smooth quadratic penalty back to a simpler penalty form, undoing the core changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Merges sat_overlap into hex_min_dist (simplifying overlap check to boolean), adjusts overlap penalty computation with depth-based approach, tweaks grid spacing and search range parameters. Multiple small refinements within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by refactoring hex_min_dist into hex_overlap_depth and adding a separate hex_min_dist wrapper, refining search parameters, and adjusting the optimization approach - this is a continued refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: refactored SAT overlap check to return depth, adjusted penalty function (linear vs quadratic, different weight), finer phi search grid, distance pre-check optimization. All within the same stochastic search / optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by increasing optimization iterations, tightening tolerances, and adding a third optimization pass with perturbation, rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds a third optimization pass with perturbation-based restarts and tightens convergence tolerances. The parameter changes alone would be parameter_tuning, but the addition of a new perturbation+re-optimize loop is a structural refinement within the same optimization family (gradient_descent/Nelder-Mead). Combined change leans algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the third optimization pass added in step (i) and limits configs to 40, but replaces it with a simplified two-pass approach rather than restoring a prior state; the agent's reasoning discusses trying a more systematic approach, not reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Limits configs to first 40 (reducing search space) and restructures refinement passes from separate second+third passes into a single iterative loop with 3 refinement rounds. The dominant change is reducing the number of configurations explored and simplifying the refinement strategy, which is a mix of search_space_change and algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the configs[:40] limit added in step (i), but it also makes many other changes (reduces maxiter, changes tolerances, adds ultra-fine search, modifies refinement structure differently), representing a different approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Multiple changes: removing config slice limit (configs[:40]\u2192configs), reducing maxiter/tolerances in first pass, reducing refinement loop from 3 to 1, adding ultra-fine search pass, tightening margin. Dominant changes are numeric parameter adjustments (maxiter, tolerances, margin), but the removal of the refinement loop and addition of ultra-fine search pass lean toward algorithm_refinement. Picking parameter_tuning as the primary since most changes are tolerance/iteration count adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (different maxiter/tolerance values, coarser phi search) rather than reverting step (i)'s changes; it continues tuning in the same direction without restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants for optimizer iterations, tolerances, and search step size without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes parameters (increasing maxiter, tightening tolerances, adding a third optimization pass, adjusting search ranges) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes maxiter (2000\u21925000), tolerances (1e-3\u21921e-5, 1e-7), perturbation magnitudes, search step sizes, and margin. Also adds a third refinement pass (perturbation+reoptimization loop), which leans toward algorithm_refinement. However, the dominant changes are numeric constants. The third pass addition pushes toward algorithm_refinement but parameter_tuning changes are more numerous.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding adaptive=True to optimizers, switching the third pass from perturbation loops to Powell method, and adjusting search parameters - these are refinements and modifications, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Replaces random perturbation loop with Powell method for fine-tuning, adds adaptive flag to Nelder-Mead, and refines search grid resolution. Multiple changes but all within the same optimization family (gradient_descent/physical_simulation). Could also be parameter_tuning for the grid step sizes, but the Powell method substitution is structural.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the adaptive flag and replaces the Powell method with a perturbation loop, which is a different algorithmic approach rather than reverting to a prior state; the agent's reasoning discusses refining the approach, not undoing the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces Powell fine-tuning pass with a perturbed restart loop using Nelder-Mead, and removes 'adaptive' option from earlier Nelder-Mead calls. All changes stay within the same optimization family (gradient-free local search with restarts).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the perturbed restart loop added in step (i) but also restructures the vertex computation loop for performance optimization, representing a further refinement rather than a revert to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "loop_optimization",
+      "confidence": 0.52,
+      "label_notes": "Mixed change: vectorizes projection computation (loop\u2192numpy vectorized), removes a third optimization pass, adjusts parameters. The vectorization of the inner loop is the most structurally significant change, but parameter_tuning and search_space_change (removing perturbation pass) also apply. Picking loop_optimization as dominant intent is the vectorization speedup.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the vectorized vertex approach with a different loop structure and changes penalty computation, but this is an algorithm refinement rather than a revert of step (i)'s changes; it doesn't restore previously removed code or undo the prior step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes penalty function from quadratic to linear, adjusts penalty weight, and restructures projection computation loop. These are refinements within the same optimization approach (gradient descent / force-directed family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by increasing optimization iterations, tightening tolerances, and adding a third perturbation pass, rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "The change combines parameter tuning (maxiter, xatol, fatol adjustments) with adding a third optimization pass (perturb and re-optimize). The third pass is a structural addition to the optimization pipeline (random perturbation + re-optimization), which is an intra-family refinement of the existing gradient_descent/Nelder-Mead approach. Parameter tuning alone would not cover the new third pass loop.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the third optimization pass added in step (i) but also makes other changes like precomputing normals and adjusting search granularity; the agent's reasoning focuses on avoiding timeouts and trying a different strategy, not explicitly reverting, and the overall approach is a refinement/simplification rather than a pure revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: vectorized projection computation, early distance-squared check optimization, removed perturbation-based search loop, and coarsened phi search grid. Dominant intent is refining/streamlining the existing optimization approach while reducing computation time. The removal of the perturbation loop and coarsening of search grids also touch search_space_change territory, but the overall structure remains the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts optimization parameters (maxiter, tolerances, margin) without reverting any of the structural changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: maxiter (3000\u21925000, 20000\u219230000), tolerance values (xatol/fatol tightened), and margin (1e-7\u21921e-8). No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a third optimization pass and increasing maxiter further, rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds a third optimization pass with perturbation-based restarts and increases maxiter in second pass. Both changes refine the existing Nelder-Mead optimization approach (same family). The parameter_tuning aspect (maxiter change, margin change) is secondary to the structural addition of the perturbation loop.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the entire third pass perturbation loop that was added in step (i), reduces maxiter values back toward lower values, and the agent reasoning mentions timeout concerns suggesting the previous additions didn't work.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are reducing maxiter, relaxing tolerances, widening phi search range, and removing a third optimization pass. The removal of the third pass could be seen as search_space_change, but the dominant changes are numeric parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning adjustments (narrowing search range, changing modulo, tightening margin, adjusting step sizes) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes numeric constants: angle modulo 360\u219260, search range 0-61\u21920-31, step sizes, fine search window, and margin epsilon. These are all scalar constant changes with no structural algorithm change, though the angle modulo change could be considered search_space_change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a third optimization pass and adjusting optimizer parameters, rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds a third perturbation-based local search pass and tightens optimizer tolerances/iterations. The parameter changes alone would be parameter_tuning, but the addition of the perturbation-based restart loop is a structural refinement within the same optimization family. Combined effect leans algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the third perturbation-based local search pass added in step (i), but also makes several other structural changes (vectorized vertex collection, different overlap/containment logic), representing a different algorithmic refinement rather than a simple revert to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: vectorized vertex projection computation, adjusted overlap detection threshold from 3.5 to 4.0, changed penalty parameters, removed perturbation-based local search pass. The dominant changes are refinements to the penalty/overlap heuristics and search procedure within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements to the same algorithm (adjusting penalty parameters, modifying vertex projection computation, changing fallback grid spacing) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: vectorized normal computation, adjusted overlap threshold from 16 to 12.25, changed penalty parameters (1000\u2192500, 0.01\u21920.02), and tightened fallback grid spacing. The dominant changes are to the penalty/overlap heuristics within the same optimization framework, making this algorithm_refinement. Could also be parameter_tuning for the numeric constant changes, but structural changes to the loop and threshold logic push it toward refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor code cleanup changes (replacing vectorized normal computation with a loop and changing hex_vertices_arr to hex_vertices), not reverting the substantive algorithm refinements from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "code_cleanup",
+      "confidence": 0.72,
+      "label_notes": "Replaces vectorized numpy normal computation with an explicit loop and changes hex_vertices_arr to hex_vertices, but the mathematical computation and overall algorithm remain semantically equivalent. The matrix multiplication transpose change (normals vs normals.T) adjusts for the shape difference but produces the same result.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made parameter tuning changes and added a third optimization pass, which builds upon step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Primary changes are increasing maxiter and tightening tolerances (numeric constants). The addition of a third Powell pass is a structural addition, but the dominant pattern is tuning optimization parameters. Could also be algorithm_refinement due to the new Powell pass.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the third Powell pass that was added in step (i) and loosens the tolerances/maxiter back toward less aggressive values, effectively undoing the parameter tuning and structural addition from step (i).",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes maxiter, xatol, fatol numeric constants in optimizer calls and removes a third optimization pass (Powell). The dominant change is reducing iteration counts and loosening tolerances, which is parameter tuning. The removal of the third pass could be seen as algorithm_refinement, but the primary intent per the agent's reasoning is to avoid timeouts by adjusting numeric parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite the agent's reasoning about wanting to try a different approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor code cleanup changes (refactoring loop to vectorized operations and renaming a function call), not reverting step (i) which had no changes at all.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "code_cleanup",
+      "confidence": 0.82,
+      "label_notes": "Vectorizes normal computation and simplifies vertex projection code without changing semantics \u2014 pure refactoring.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further algorithmic refinements and adds new optimization code rather than reverting the cleanup changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds a third optimization pass using Powell method and tightens convergence tolerances in existing passes. The parameter changes alone would be parameter_tuning, but adding a new optimization pass (Powell) is a structural refinement within the same physical_simulation/gradient_descent family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the third optimization pass (Powell method) added in step (i), loosens the convergence tolerances that step (i) tightened, and reduces search granularity, effectively undoing the refinements from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are reducing maxiter, relaxing tolerances, coarsening search grid steps, and removing a third optimization pass. While removing the Powell pass could be seen as algorithm_refinement, the dominant changes are numeric parameter adjustments to avoid timeouts.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the search grid parameters (finer steps: 0.1 instead of 0.2, 0.005 instead of 0.01, 0.0002 instead of 0.001) and rewrites the vertex computation slightly differently, but does not revert the changes made in step (i); it builds upon them with further parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "The primary changes are to search resolution parameters (step sizes 0.2\u21920.1, 0.01\u21920.005, 0.001\u21920.0002) in the outer hex rotation search. The vertex computation refactoring is minor code_cleanup, but the dominant intent is finer search granularity via parameter changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes search parameters in a different direction (e.g., 0.2 instead of 0.1 for coarse search, wider range 0-61) and refactors vertex computation differently, but this represents a new algorithmic refinement approach rather than reverting to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: vectorized vertex computation, adjusted overlap penalty parameters, expanded search range for phi, and tightened grid spacing. Dominant intent is refining the existing search/optimization approach with better parameters and broader search ranges.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements to search ranges, grid spacing, and reverts vectorized vertex computation to a loop-based approach, but this is a normal algorithm refinement rather than a revert of step (i)'s overall changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Multiple small changes: loop restructuring for max_proj computation, narrowed phi search range, adjusted fallback grid spacing, and fine search step sizes. Dominant intent is refining the search procedure within the same algorithm family (geometric construction + local optimization).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements and modifications to the algorithm (changing function calls, adjusting optimization parameters, adding perturbation logic) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Multiple changes within the same Nelder-Mead optimization framework: adjusted overlap threshold/penalty parameters, increased iteration limits/tolerances, added multi-pass refinement with perturbation. All are intra-family refinements to the existing physical_simulation/gradient_descent approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies and refines the optimization approach (removing comments, restructuring perturbation/refinement logic) rather than reverting step (i)'s changes; it continues building on the same framework with different algorithmic details.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds perturbation-based local search refinement loop within the existing Nelder-Mead optimization framework, plus removes dead comments. Stays within the same stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the optimization approach with a different algorithm (adding analytical comments and removing the perturbation loop), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes the perturbation-based second pass refinement loop while adding comments about arrangement strategy. The core optimization approach (scipy minimize with Nelder-Mead) remains the same family, but the refinement phase is simplified/reduced.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts optimization parameters (maxiter, xatol, fatol) to slightly different values, which is parameter tuning, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes numeric constants: maxiter reduced from 5000\u21923000 and 30000\u219220000, tolerances relaxed from 1e-5\u21921e-4 and 1e-8\u21921e-7. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot have reverted step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "no_change",
+      "confidence": 0.99,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), and step (i+1) also made no changes (empty diff), so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "no_change",
+      "confidence": 0.97,
+      "label_notes": "Empty diff - no code changes were made despite the agent's reasoning about improvements",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes comments and cleans up the code without reverting any functional changes; step (i) had no code changes to revert anyway.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "code_cleanup",
+      "confidence": 0.92,
+      "label_notes": "Removes extensive comments and dead code (explanatory notes about hexagon geometry and arrangement strategies) with no semantic change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back comments and tunes parameters (maxiter, tolerances), which is a forward modification rather than a revert of the comment-removal cleanup in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "The main functional changes are increasing maxiter (3000\u21925000, 20000\u219230000) and tightening tolerances (xatol/fatol). The added comments are non-functional. While comments are added, the semantic changes are purely parameter tuning of the optimizer.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further optimizations and code changes (vectorizing normals, using hex_vertices_np, changing angle modulo from 60 to 360) rather than reverting step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Mixed change: vectorization of normals computation (code_cleanup), parameter changes (penalty weight 500\u21921000, margin 0.02\u21920.01, distance threshold 3.5\u00b2\u21924\u00b2, maxiter/tolerance changes), and minor refactoring. The dominant intent appears to be tuning penalty/tolerance parameters to improve convergence within time budget, but code_cleanup and algorithm_refinement aspects are also present.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements and partial changes (reverting vectorization back to loops, changing penalty from 1000 back to 500, margin from 0.01 back to 0.02), but also introduces new changes like angle modulo 60 and different vertex computation; this is a mix of partial revert and new modifications, not a clear full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adjusts overlap distance threshold (16\u219212.25), penalty weight (1000\u2192500), penalty margin (-0.01\u2192-0.02), angle modulus (360\u219260), and replaces vectorized vertex computation with explicit loop. The dominant changes are parameter/heuristic tweaks within the same optimization framework, but the threshold change also affects search space slightly. Overall best classified as algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes comments from step (i) while keeping all functional code intact, which is a code cleanup rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "code_cleanup",
+      "confidence": 0.85,
+      "label_notes": "Removes extensive comments/dead code without changing the algorithm logic; the actual algorithm code (below the diff) remains unchanged.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back comments and a scipy import but does not remove the algorithm code that was present after step (i); it extends rather than reverts.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "code_cleanup",
+      "confidence": 0.62,
+      "label_notes": "The diff only adds comments and an unused scipy import. No functional code changes are visible - the actual algorithm code below 'sqrt3 = np.sqrt(3)' is unchanged. The comments describe planning/reasoning but don't alter behavior.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite the agent's reasoning about potential improvements",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), and step (i+1) adds new code (parameter tuning and a third refinement pass), so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are increasing maxiter and tightening tolerances (xatol, fatol, ftol). A third refinement pass with Powell method is added, which could be seen as algorithm_refinement, but the dominant change is numeric parameter adjustments to existing optimization passes.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "gpt-5.4",
+  "level": "L0",
+  "run_id": "L0__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the initial generation by adding compression factors and improving the containment bound calculation, rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Applies scaling factors (sx, sy) to compress the honeycomb packing and improves the containment bound calculation by checking all 6 vertices of each inner hexagon. This is an intra-family refinement of the geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach by changing the compression parameters and containment calculation method, but does not revert step (i)'s changes; it builds upon the same general strategy with different tuning and an improved normal-based containment check.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the compression scheme from separate sx/sy scaling to a single horizontal compression factor c=0.92, adjusts centering logic, and refines the containment bound computation. All within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the compression-based layout with a different triangular lattice arrangement (2-3-2-3-2 rows) and a different containment bound computation, which is a new algorithmic approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the packing layout from a 3-4-3-2 row arrangement to a 2-3-2-3-2 triangular lattice arrangement, and simplifies the containment radius calculation. Both are refinements within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-2-3-2 layout with a different 3-4-3-2 (or 2-3-4-3) arrangement and a different containment calculation, which is a new algorithm approach rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed the lattice arrangement from a 2-3-2-3-2 pattern to a 3-4-3-2 triangular lattice pattern, and simplified the outer hexagon size computation to a fixed value of 5.0. Both approaches are geometric construction within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the triangular lattice approach with a different hand-tuned compressed packing approach, which is a normal algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a lattice-based arrangement with a hand-tuned compressed packing layout and computes the outer hexagon side length dynamically from vertex containment checks, staying within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned layout with a different staggered packing pattern and a different containment formula, which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Refines the hand-designed packing layout (3-4-3-2 staggered honeycomb pattern) with new coordinate parameters and a simplified containment check, staying within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3-4-3-2 staggered layout with a different 4-3-3-2 layout and new coordinate parameters, which is a further refinement/algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the packing layout from a compressed 3-4-3-2 honeycomb pattern to a 4-3-3-2 row arrangement with standard lattice spacing and centering, staying within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-3-3-2 row arrangement with a different 2-3-2-3-2 honeycomb packing layout, which is a new algorithm refinement rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the packing layout from a 4-3-3-2 staggered arrangement to a 2-3-2-3-2 symmetric honeycomb arrangement, and refines the containment bound calculation. Both changes are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-2-3-2 honeycomb layout with a completely different 3-4-5 cluster layout using flat-top hexagons and different spacing, which is a new algorithmic approach rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Switches from a symmetric honeycomb 2-3-2-3-2 row arrangement to a 3-4-5 lattice cluster with a hand-crafted outer hexagon size. Both are geometric_construction approaches (same family), but the packing layout and containment computation are substantially restructured. Could also be considered initialization_change since it's a hand-designed starting configuration, but the geometric construction logic itself changed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach by changing the layout to a symmetric honeycomb arrangement and computing the outer hexagon size analytically rather than hardcoding it, which is a different algorithm refinement, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the hand-designed packing layout from a 3-4-5 row arrangement to a 2-3-3-2-2 row arrangement with different spacing and a dynamic outer hexagon size calculation. Both are hand_designed_special_case / geometric_construction approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-3-2-2 row layout with a different staggered flat-top hexagon arrangement, which is a new algorithmic refinement rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout coordinates and orientation (pointy-top to flat-top) for the 12 hexagons, along with corresponding adjustments to the outer hexagon containment formula. This is a structural refinement of the geometric construction approach, not a switch to a different algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the flat-top hexagon layout with a completely different algorithmic approach (radius-2 hexagonal cluster with greedy selection of 12 best sites), which is a new refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from a manually specified staggered packing to a lattice-based candidate generation approach (radius-2 hexagonal cluster, select best 12), but remains within the geometric_construction family. Also refines the containment radius computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice-based candidate generation approach with a different staggered packing approach (rows 2-3-2-3-2 in flat-top orientation), which is a different algorithm rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes from a lattice-based candidate selection approach to a staggered row-based packing layout (2-3-2-3-2 pattern), both within the geometric_construction family. Also changes hex orientation from pointy-top to flat-top and modifies containment radius computation accordingly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different packing approach (ring-based with optimization-derived coordinates, angle=0, pointy-top, hardcoded side length 3.5) rather than reverting to any prior code; it's a new algorithm refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a staggered row-based packing layout to an axial hex-grid cluster layout with a fixed outer side length. Both are geometric construction approaches within the same family, but the specific arrangement strategy and containment computation changed significantly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial hex-grid approach with a different row-based honeycomb packing layout and adds dynamic containment computation, which is a different algorithm rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the honeycomb packing layout from a radius-1 cluster + 5 extra cells to a rows-based 2-3-3-2-2 arrangement, and computes containment radius dynamically instead of hardcoding 3.5. Both approaches are geometric_construction family, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a different packing layout (3-4-3-2 flat-top orientation) and a different containment radius computation, which is a further refinement rather than a revert of step (i)'s 2-3-3-2-2 approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the honeycomb packing layout (row configuration from 2-3-3-2-2 to 3-4-3-2) and switches inner hexagon orientation (pointy-top to flat-top with 90\u00b0 rotation), along with updated containment calculation. All within geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a different row configuration (2-3-2-3-2) and switches back to pointy-top orientation with angle 0\u00b0, which is a new algorithm refinement rather than a revert to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the honeycomb packing layout from flat-top orientation (rows 3-4-3-2) to pointy-top orientation (rows 2-3-2-3-2) with updated containment constraints. This is a structural refinement within the geometric_construction family, adjusting the packing arrangement and orientation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only cleans up comments and removes redundant x-centering code, keeping the same 2-3-2-3-2 packing layout introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "code_cleanup",
+      "confidence": 0.82,
+      "label_notes": "Changes are comment rewording and minor refactoring of centering logic (removing x centering since x is already symmetric). The algorithm and layout remain the same (2-3-2-3-2 pattern). The removal of x-centering could be a minor bug_fix or algorithm_refinement, but since x was already symmetric around 0, removing the centering is semantically neutral.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a new algorithm using flat-top orientation and different lattice construction, rather than reverting to a previous version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a 2-3-2-3-2 row layout to a 3-4-3-2 lattice layout for the 12 hexagons, and changes from pointy-top to flat-top orientation with revised containment computation. Both are geometric_construction approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a different 2-3-2-3-2 row layout with different spacing (dx=1.5, dy=sqrt(3)) and a different containment computation, which is a new algorithmic approach rather than a revert of step (i)'s 3-4-3-2 layout.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the geometric packing layout from a 3-4-3-2 row arrangement to a 2-3-2-3-2 row arrangement, and modifies the outer hexagon size computation. Both are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the packing by switching from flat-top to pointy-top unit hexagons and adjusting coordinates/constraints accordingly, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the geometric layout from flat-top to pointy-top hexagon orientation and adjusts center coordinates and containment constraints accordingly. This is a refinement of the geometric construction approach (same family), modifying the packing arrangement and outer hexagon constraint formulas.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the hex arrangement from a 2-3-2-3-2 layout to a 4-4-4 layout, which is a different packing strategy refinement, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Changes the hand-designed hexagon packing layout from a 2-3-2-3-2 row arrangement to a 4-4-4 block arrangement, which is a structural change within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-4-4 block layout with a different 2-3-3-2-2 row arrangement, which is a new algorithm refinement rather than reverting to the previous 2-3-2-3-2 layout from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Changes the hexagon arrangement from a 4-4-4 grid layout to a 2-3-3-2-2 axial hex-grid cluster, which is a different packing configuration within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-3-2-2 axial hex-grid cluster with a different 3-4-3-2 row arrangement and a fixed outer_hex_side_length=4.0, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed the hexagon placement layout (rows 2-3-3-2-2 to 3-4-3-2) and switched from computed outer side length to a hardcoded value. Still geometric construction family, but different arrangement and simplified containment calculation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) keeps the same 3-4-3-2 row arrangement from step (i) but replaces the hardcoded outer_hex_side_length with a computed containment check, which is a refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hexagon arrangement pattern (rows 3-4-3-2 to 2-3-2-3-2) and computes a tighter outer hexagon bound using strip inequalities, staying within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the row arrangement and orientation with a different approach (flat-top orientation, different row pattern 2-3-3-2-2), which is a new algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout from pointy-top to flat-top orientation with a different row arrangement (2-3-3-2-2 vs 2-3-2-3-2), and updates the outer hexagon constraint calculations accordingly. This is an intra-family refinement of the geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches from flat-top back to pointy-top orientation with a different layout and constraint formulation, which is a different algorithmic approach rather than a revert of step (i)'s specific changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the packing layout from flat-top to pointy-top orientation with different row arrangement (2-3-3-2-2) and updates the outer hexagon constraint calculations accordingly. This is a structural refinement within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the hex layout from 2-3-3-2-2 to 2-3-2-3-2 and changes the containment computation method, which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the hexagon center layout from a 2-3-3-2-2 staggered pattern to a 2-3-2/3-2 triangular lattice arrangement, and refines the containment radius computation using support functions. Both changes are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the triangular lattice layout and support-function containment with a different dense packing arrangement and a different containment computation method, which is a new algorithmic approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed from a 2-3-2/3-2 lattice arrangement to a 3-4-5 row honeycomb cluster layout, both within the geometric_construction family. Also restructured the containment computation but the core approach remains hand-designed geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by switching to a different layout (flower/ring arrangement with rotated hexagons) and changing the containment computation, but does not revert to a prior state; it builds a new different geometric construction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hand-crafted packing layout (staggered row positions with tuned offsets) and the containment radius computation method, but remains within the geometric_construction / hand_designed_special_case family. The new code uses manually tuned fractional multipliers for row positions and a different bounding formula.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned staggered row layout from step (i) with a different honeycomb packing layout (2-3-2-3-2 pattern), which is a new algorithmic approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the hexagon placement coordinates to a different honeycomb layout (2-3-2-3-2 rows) and adjusts the outer radius calculation formula, all within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the hexagon coordinates and containment formula to a different layout (more hexagons, different arrangement), which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the packing arrangement (different honeycomb patch selection with 3-row vs 4-row layout) and refines the containment bound calculation, staying within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the packing arrangement with a different 4-4-4 row layout and changes the containment bound calculation, which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the packing layout from a trimmed radius-2 honeycomb patch to a 4-4-4 row arrangement, and modifies the containment bound calculation. Both are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-4-4 row arrangement with a completely different explicit coordinate layout and a fixed outer_hex_side_length of 5.0, which is a new approach rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed from a staggered 4-4-4 row arrangement to a triangular-lattice arrangement (center + ring1 + partial ring2). Both are geometric_construction family approaches, so this is intra-family refinement. Also changed outer hex size calculation to a fixed value of 5.0.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the triangular-lattice arrangement with a different rows-based (2-3-2-3-2) packing approach, which is a new algorithm rather than a revert to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.8,
+      "label_notes": "Changes the geometric packing arrangement from a center+ring1+partial-ring2 layout to a rows-based 2-3-2-3-2 symmetric layout, both within the geometric_construction family. Also recalculates the outer hexagon size analytically instead of using a fixed value.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-2-3-2 layout with a different 3-4-3-2 layout, which is a new algorithm refinement rather than a revert to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout from a symmetric 2-3-2-3-2 arrangement to a compressed 3-4-3-2 staggered layout with adjusted coordinates and updated outer hexagon containment formulas. Both are geometric construction approaches within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same 3-4-3-2 layout approach with parameterized coordinates and updated containment formulas, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction by adjusting the hexagon center layout (adding shear/compression parameters) and changing the containment bound calculation. Both the packing layout and the outer hexagon computation are modified within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the shear/compression staggered layout with a completely different axial hex coordinate approach and a different containment calculation, which is a new algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from a manually-tuned staggered row layout to an axial hex coordinate-based cluster arrangement with proper support-function containment computation, but remains within the geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the axial hex coordinate-based cluster arrangement from step (i) back to a staggered 3-4-5 honeycomb row layout, restoring the approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a center+ring axial coordinate approach with a specific 3-4-5 staggered honeycomb arrangement and a different containment bound calculation, both within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i)'s 3-4-5 arrangement by adding rotation angles to two hexagons, refining the approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Rotates two specific hexagons by 60 degrees to reduce the support-function maxima, a heuristic refinement within the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches from a 3-4-5 arrangement with rotated hexagons to a completely different 4-4-4 arrangement without rotations, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Changes the geometric arrangement from a 3-4-5 honeycomb layout with rotated corner hexagons to a 4-4-4 symmetric arrangement, which is a structural refinement within the geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the 4-4-4 symmetric arrangement back to a 3-4-5 honeycomb fragment layout, restoring the approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.88,
+      "label_notes": "Switches from a 4-4-4 symmetric arrangement to a 3-4-5 honeycomb fragment layout for the initial geometric construction, which is a refinement within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only modifies two comment lines, leaving all the code from step (i) intact; this is a minor cleanup, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "code_cleanup",
+      "confidence": 0.95,
+      "label_notes": "Only comments were changed; no semantic or algorithmic modification to the code.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a different algorithm (hardcoded outer_hex_side_length=5.0 instead of computing it from vertices), which is an algorithm refinement, not a revert of the comment-only changes in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hexagon spacing from 3 to 1.5 (horizontal) and adjusts the containment calculation. This is a refinement of the same geometric construction approach (lattice packing) with corrected/tighter spacing parameters and a simplified outer radius computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts the spacing back to 3 from 1.5 but also introduces a completely new vertex-based containment computation, making this a refinement/algorithm change rather than a simple revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes from a 3-4-5 row layout to a 4-4-4 hand-tuned layout with adjusted spacings, and computes the outer hexagon size dynamically from vertex positions rather than using a hardcoded value. Both layouts are geometric constructions within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small numerical adjustments to the same 4-4-4 layout introduced in step (i), which is parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Only numeric coordinate constants are adjusted slightly in the hand-tuned layout; no structural change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric coordinate constants to different values rather than reverting to pre-step(i) values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values in a hand-tuned geometric layout; the algorithm structure (4-4-4 grid layout) remains the same, only the specific position constants are changed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric coordinate values rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusting numeric coordinate constants in a hand-tuned geometric layout to achieve tighter packing. No structural algorithm change, just tweaking positional values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout and containment logic with a different, more general approach (helper functions, different coordinate scheme), rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed the inner hexagon arrangement (from 3-4-5 staggered rows to 4-4-4 symmetric layout) and refactored the outer hexagon containment calculation. Both are within the geometric_construction family. The layout change is the dominant modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout and containment calculation with a different approach (ring-based arrangement with inline containment math), which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the geometric construction of the 12-hexagon packing with a different arrangement (3-4-5 staggered honeycomb vs previous 4-4-4 layout) and recomputes the outer hexagon containment differently. Both are geometric_construction family, so intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (sx, y values) and tweaks center positions within the same 4-4-4 layout structure established in step (i), which is parameter tuning rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric spacing constants (sx, y) and adjusts center x-offsets in the middle row. The x-offset changes (from -2.0,-1.0,0.0,1.0 to -1.5,-0.5,0.5,1.5 multipliers) could be seen as algorithm_refinement, but the dominant change is tuning the hand-designed layout parameters for tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i)'s 4-4-4 layout by introducing asymmetric row-specific horizontal shifts (dx_top, dx_mid, dx_bot) and slightly adjusting spacing parameters, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Introduces asymmetric row-specific horizontal shifts (dx_top, dx_mid, dx_bot) and adjusts spacing/row separation parameters to reduce the containing hexagon size. This is a heuristic refinement within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the asymmetric dx_top/dx_mid/dx_bot shifts introduced in step (i) and returns to a more symmetric layout with different parameters, but this is a different algorithmic approach (parameter tuning) rather than a revert to a prior state, and the agent does not express intent to undo or revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric layout parameters (sx, y, row offsets) for the hand-tuned hexagon packing. Also simplifies the offset structure by removing per-row dx shifts and using slightly different multipliers for the middle row, which borders on algorithm_refinement, but the dominant change is tweaking numeric constants in a fixed 4-4-4 layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned 4-4-4 layout with a completely different axial-coordinate honeycomb approach, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Switches from a hand-tuned 4-4-4 staggered layout to an axial-coordinate hexagonal cluster layout (center + ring1 + partial ring2). Both are geometric_construction approaches within the same family, but the specific construction method and coordinate system changed significantly. Could also be considered representation_change (Cartesian hand-placed \u2192 axial coordinates), but the dominant change is the geometric construction strategy itself.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate hexagonal cluster layout with a different 3-4-5 staggered honeycomb fragment approach and adds tight outer hexagon computation; this is a new algorithm rather than a revert to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from axial-coordinate ring-based layout to a hand-tuned 4-4-4 staggered layout with tighter containment computation. Both are geometric construction approaches within the same family, but the arrangement strategy and spacing parameters are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts spacing parameters (sx, y, and multipliers) within the same 4-4-4 layout approach introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and multiplier coefficients) in the hand-tuned layout to tighten spacing, without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (sx, y, mx, ex) rather than reverting step (i)'s changes; it continues the same parameter_tuning approach with different values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric spacing constants (sx, y) and introduces named parameters (mx, ex) for middle row offsets, all adjusting geometric layout parameters without structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting spacing constants to different values and inlining the named parameters (mx, ex) as literal numbers, which is a refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric spacing constants (sx, y, mx, ex) in a hand-tuned layout. The structure of the 4-4-4 layout remains the same; only scalar parameters are adjusted.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-4-4 layout with a completely different triangular-lattice-based approach rather than reverting to a prior version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces one hand-designed geometric layout (4-4-4 with tuned parameters) with a different hand-designed layout (4-3-3-2 triangular lattice arrangement) and a different outer side length calculation. Both are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-3-3-2 triangular lattice arrangement with a different 3-4-5 staggered honeycomb layout and a different outer side length calculation, which is a new algorithm refinement rather than a revert to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes from a 3-4-5 row layout to a 4-4-4 hand-tuned layout with tighter containment computation. Both are geometric_construction family approaches, so this is intra-family refinement. Also adds exact vertex-based outer hexagon sizing instead of a fixed side length of 4.0.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (sx, y, and multiplier coefficients) within the same 4-4-4 layout approach introduced in step (i), without removing or reverting any of the structural changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and multiplier coefficients) in the hand-tuned hexagon layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (sx, y, and multiplier coefficients) rather than reverting to previous values; this is a continuation of parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes numeric constants (sx, y, and multiplier coefficients) in the hand-tuned layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the multiplier-based coordinate system with explicit per-hexagon coordinates, which is a different approach to the same layout problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Hand-tuned asymmetric layout adjustments within the same geometric_construction family (4-4-4 row layout). Changes specific coordinate values and introduces asymmetry in the middle row to optimize packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned 4-4-4 row layout with a completely different approach (axial hex cluster with cap removal and rotation optimization), which is an algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-designed staggered 3-4-5 row layout (hand_designed_special_case / geometric_construction) to a lattice-based approach using axial coordinates from a radius-2 hex cluster with symmetric cell removal (geometric_construction / lattice_packing). The fundamental construction method changed from manually specified center coordinates to algorithmic generation from a hex lattice with pruning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice-based approach with a different manually-specified center layout and adds exact containment computation, which is a refinement/algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from an axial-coordinate hex cluster with rotation to a hand-tuned 4-4-4 grid layout with explicit center coordinates. Both are geometric construction approaches (hand-designed layouts), so this is intra-family refinement rather than a family switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small refinements to the middle row x-coordinates introduced in step (i), adjusting values like -0.90 to -0.92 and 0.0 to 0.02*sx, which is incremental tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Tweaks the middle row x-offsets in the hand-tuned geometric construction layout (slight horizontal shear). The changes are minor coordinate adjustments within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different values and simplifies the variable naming, but does not revert step (i)'s changes; it builds upon the same approach with adjusted constants.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (sx, y, and middle row multipliers) in a hand-tuned geometric layout. The structure remains the same 4-4-4 layout; only scalar positioning values are adjusted.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric constants (y from 1.66 to 1.56, middle row multipliers changed) rather than reverting step (i)'s changes; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Adjusts numeric layout coordinates (y, row offsets) for the hand-tuned hexagon packing. While comments are updated, the substantive changes are to scalar constants controlling hex positions. Could also be algorithm_refinement since it's tweaking the geometric construction, but the changes are purely numeric coordinate adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a new axial-coordinate-based algorithm rather than reverting to a previous version; this is an algorithm switch/refinement, not a revert.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a hand-tuned 4-4-4 layout with manually adjusted spacing to a 3-4-5 axial-coordinate-based honeycomb construction. Both are geometric_construction approaches (hand-designed layouts), so this is intra-family refinement rather than an algorithm switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same 3-4-5 honeycomb approach by explicitly computing centers and deriving the outer hex side length from vertex geometry, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from axial-coordinate-based 3-4-5 staggered layout to a hand-tuned asymmetric 4-4-4 layout with explicit coordinate placement and exact outer hexagon computation. Both are hand-designed geometric constructions within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the coordinate values within the same 4-4-4 layout approach introduced in step (i), refining the parameters rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Hand-tuned coordinate adjustments to the geometric construction layout, changing the specific positions of hexagon centers within the same 4-4-4 row packing approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the parameters (y value and middle row center positions) within the same 4-4-4 layout approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants in the hand-tuned layout (y from 1.60 to 1.56, middle row x-offsets adjusted) without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters (sx from 2.70 to 2.68, middle row x-offsets changed) rather than reverting step (i)'s changes; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (sx from 2.70 to 2.68, middle row multipliers from 1.86/0.94 to 1.78/0.88) in a hand-tuned geometric layout. While the layout coordinates change, these are scalar constant adjustments within the same geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout and containment computation with a substantially different approach (different center coordinates, different outer hexagon calculation method), which constitutes an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the geometric construction approach: changes from flat-top to pointy-top hexagon orientation, modifies the row layout (3-4-5 staggered honeycomb), recenters the cluster, and changes the containment calculation method (support function with normals vs vertex-based constraints). All within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches back to flat-top orientation and changes the containment calculation method, but this is a different algorithmic approach rather than a revert \u2014 it doesn't restore the exact previous code from before step (i), and the agent's reasoning does not mention reverting or undoing.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the hexagon packing layout with a different row arrangement (3-4-5 staggered honeycomb) and changes the outer container size computation to use vertex-based containment checks instead of support-function normals. Both approaches are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the layout parameters (center coordinates) introduced in step (i) but keeps the same overall 4-4-4 structure and vertex-based containment approach, so it is a refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts the hand-tuned geometric layout parameters and introduces parameterized spacing variables (sx, y, m1, m2) for the 4-4-4 hexagon packing arrangement. This is an intra-family refinement of the geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the parameters introduced in step (i) by adjusting y, m1, and m2 values rather than reverting the changes; it continues the same geometric_construction approach with different numeric tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (y, m1, m2) in the hand-tuned layout coordinates while keeping the same 4-4-4 staggered row structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (sx, y, and middle-row multipliers) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and middle-row offset multipliers) in the hand-tuned layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout and containment computation with a substantially different approach (different center coordinates, different R computation method), which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a hand-tuned 4-4-4 layout with custom spacing parameters to a standard 3-4-5 honeycomb lattice layout with natural triangular-lattice spacing, and rewrites the outer hexagon containment calculation. Both are geometric_construction approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same 3-4-5 honeycomb layout approach introduced in step (i) by rewriting the containment calculation and adjusting center positions, but does not revert to the previous 4-4-4 layout or remove the core approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout from a 3-4-5 staggered arrangement to what appears to be a different geometric configuration, and changes how the outer hexagon containment radius is computed. Both old and new approaches are geometric_construction family, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts the middle row center positions and comments, which is parameter tuning on top of step (i)'s 4-4-4 layout, not a revert to the previous 3-4-5 arrangement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusts numeric coordinate constants for hexagon positions in the hand-tuned layout. The middle row x-multipliers are changed to be more symmetric (-1.78/-0.86/0.08/1.02 \u2192 -1.45/-0.48/0.48/1.45). This is tuning positional parameters within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the middle row coordinates to new asymmetric values (-5.00, -2.45, 0.15, 2.65) rather than reverting to the previous values (-1.78/-0.86/0.08/1.02 multiplied by sx); this is a different parameter tuning attempt, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric coordinate values for the middle row hexagon positions (from parametric sx-based to hardcoded asymmetric values). While the top/bot rows remain parametric, the middle row coordinates are manually adjusted constants. This is borderline algorithm_refinement but the changes are purely to numeric placement constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the middle row from hardcoded asymmetric values back to parametric sx-based values, but with different multipliers (1.46, 0.48) than the original symmetric (1.5, 0.5), representing a different approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric layout parameters (spacing, offsets) for the 4-4-4 hexagon arrangement. The middle row switches from hardcoded absolute positions to multiplier-based positions with slightly different spacing values. This is primarily tuning the geometric constants of the same layout approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout approach with a significantly different algorithm (optimization-based with helper functions and different containment math), which is an algorithm refinement/switch rather than a revert of step (i)'s parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the hexagon packing layout with a different arrangement (honeycomb-style lattice vs hand-tuned 4-4-4) and changes the containment computation, but stays within the geometric_construction family. Also changes the outer hexagon containment formula which could be a bug_fix if the previous was wrong, but the overall intent appears to be refining the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb layout from step (i) with a different 3-4-5 staggered arrangement and a different containment formula, which is a further algorithm refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a 3-4-3-2 honeycomb layout to a hand-tuned 4-4-4 layout with adjusted spacing parameters, staying within the geometric_construction family but restructuring the placement strategy and containment computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments to the layout introduced in step (i), tuning spacing values rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Adjusting numeric layout coordinates (sx, y, row multipliers) for the hand-tuned hexagon packing positions. Could also be algorithm_refinement since it changes specific coordinate values in a geometric construction, but the changes are purely to numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters (sx, y, and introduces mid_outer/mid_inner) rather than reverting step (i)'s changes; it builds upon the previous parameter tuning with new values.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (sx, y, mid_outer, mid_inner) for the hand-tuned layout. While mid_outer and mid_inner are new named variables, they replace hardcoded multipliers (1.82, 0.91) \u2014 this is essentially tuning the spacing parameters of the same 4-4-4 layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the numeric parameters to different values and introduces an asymmetric middle row layout, which is a different parameter tuning approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (sx, y, and middle row multipliers) in a hand-tuned geometric layout. The middle row multipliers change from symmetric (mid_outer, mid_inner) to asymmetric hardcoded values, which is borderline algorithm_refinement, but the dominant change is tuning positional constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned layout with an entirely different lattice-based algorithm (axial coordinates, radius-2 hexagonal cluster), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-tuned staggered row layout (physical/manual placement) to a lattice-based geometric construction using axial hexagonal coordinates. This crosses from hand_designed_special_case/physical_simulation family to geometric_construction/lattice_packing family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the lattice-based approach by switching to a 3-4-5 staggered layout with proper containment computation, which is a different algorithmic refinement rather than a revert to the previous hand-tuned approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from axial-coordinate lattice subset (12 of 19 cells) to a hand-tuned 4-4-4 staggered layout with refined spacing parameters, and computes tight outer hexagon analytically instead of using a conservative constant. Both approaches are geometric construction within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks parameters (sx from 2.70 to 2.68, multiplier from 0.95 to 0.93) within the same 4-4-4 layout approach introduced in step (i), without removing or reverting any of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes numeric spacing constants (sx from 2.70 to 2.68, row multipliers from 0.95 to 0.93) in a hand-tuned geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the parameterization approach from multiplier-based (sx, 0.93*sx, etc.) to direct numeric coordinates, which is a different approach to the same layout problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes the numeric coordinates of hexagon centers in a hand-tuned layout. While the representation shifts from formula-based (sx*factor) to direct constants, the semantic change is adjusting spacing values for the packing layout, which is essentially parameter tuning of the geometric configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the parameter values and representation style but does not restore the previous code or undo step (i); it introduces new parameter values (sx=2.68, y=1.66) and a formula-based representation, which is a continuation of parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric layout parameters (row spacing, in-row spacing) for the hand-tuned 4-4-4 hexagon packing. While the parameterization is slightly restructured (using sx multipliers instead of hardcoded values), the core change is adjusting numeric constants for the layout positions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (axial hex-grid coordinates, pointy-top orientation, rotation optimization) rather than reverting to a previous version of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-tuned 4-4-4 layout with manual containment calculation to a systematic axial hex-grid cluster construction with optimization over rotation angles and scaling, representing a fundamentally different approach (from hand_designed_special_case to geometric_construction family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial hex-grid cluster approach with a different algorithm (centered honeycomb layout with flat-top orientation and aligned container), which is a new algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a geometric grid-based cluster construction with rotation optimization to a hand-tuned asymmetric layout with direct containment computation. This moves from geometric_construction (axial hex-grid + rotation search) to hand_designed_special_case.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the parameters of the same hand-tuned asymmetric layout introduced in step (i), adjusting sx, y, and middle row center positions without reverting the approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (sx, y, and multipliers for middle row positions) in a hand-designed geometric layout. While the middle row spacing changes are more than just scalar tweaks (making it symmetric), the overall approach remains the same hand-designed 4-4-4 layout with adjusted coordinates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric constants (sx, y, and middle row multipliers) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric constants (sx, y, and middle row x-multipliers) in a hand-tuned geometric layout. The middle row spacing changes from non-uniform to more uniform, which could be seen as algorithm_refinement, but the dominant change is adjusting numeric parameters of the same 4-4-4 layout structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric parameters (sx, y, and middle row multipliers) in the same direction of tuning, rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric spacing constants (sx, y, and multipliers for middle row) in the hand-tuned layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) rewrites the solution with a different layout approach and different R computation method, rather than reverting to a previous state; this is an algorithm refinement/rewrite, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a hand-tuned 4-4-4 row layout to an axial-coordinate honeycomb lattice arrangement (ring-based selection of 12 cells). Both are geometric_construction approaches within the same family, but the specific construction strategy and containment calculation are substantially reworked.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate honeycomb lattice approach with a different 3-4-5 staggered row layout, which is a new algorithm refinement rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes from axial-coordinate lattice-based placement to a hand-tuned 4-4-4 asymmetric layout with different center positions and a vertex-based containment calculation. Both are hand-designed geometric constructions within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters within the same 4-4-4 layout approach introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (sx, y, and middle row multipliers) in the hand-tuned layout to adjust packing positions. While the middle row spacing ratios change, this is primarily tuning coordinate parameters within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues tuning the same coordinate parameters with different numeric values rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes numeric coordinate values in a hand-tuned layout. The structure (4-4-4 rows) remains the same, but specific positions are adjusted. Could also be algorithm_refinement, but the changes are purely to numeric constants defining hexagon center positions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the coordinate values to a different set of parameters using a new parameterization style (sx-based multipliers), which is a continued parameter tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes numeric coordinates of hand-tuned hexagon center positions. While the parameterization style changes slightly (using sx multipliers instead of raw coordinates), the core change is adjusting the numeric layout constants. Could also be algorithm_refinement but the dominant change is tweaking coordinate values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the flat-top orientation approach with a completely different pointy-top orientation and 3-4-5 layout strategy, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a hand-tuned asymmetric 4-4-4 layout to a standard 3-4-5 honeycomb staggered layout with different spacing calculations and a fixed outer side length. Both are geometric construction approaches within the same family, but the layout geometry and containment computation changed significantly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach by switching to flat-top orientation and computing the outer side length analytically from vertex positions, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes from a standard 3-4-5 honeycomb layout to a hand-tuned 4-4-4 layout with adjusted spacing parameters, and computes the outer hexagon size from vertex containment rather than a hardcoded value. Both layouts are geometric constructions within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only slightly adjusts the spacing parameters (sx from 2.70 to 2.68, y from 1.57 to 1.55) within the same 4-4-4 layout approach introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes numeric constants sx and y for the hand-tuned layout, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric constants (sx, y, and center offsets) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (sx, y, and center offsets) in a hand-tuned geometric layout without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (sx, y, and center offsets) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (sx, y, and center coordinate multipliers) in a hand-designed geometric layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout and computation approach with a substantially different algorithm (different center coordinates, different R computation method, rotated hexagons), which is an algorithm refinement rather than a revert of step (i)'s parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the layout from a 4-4-4 hand-tuned arrangement to a 3-4-3-2 pointy-top lattice cluster, and refines the outer hexagon sizing calculation using normal-based support analysis. Both old and new are hand-designed geometric constructions within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3-4-3-2 pointy-top lattice with a different 3-4-5 staggered honeycomb arrangement and a different outer hexagon sizing method, which is a new algorithmic approach rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the hexagon placement layout from a 3-4-3-2 row arrangement to a 4-4-4 asymmetric layout, and rewrites the outer hexagon size computation to use explicit vertex enumeration instead of normal-based support computation. Both are refinements within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the 4-4-4 layout introduced in step (i) by adjusting spacing parameters, rather than reverting to the previous 3-4-3-2 layout.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Hand-tuned geometric layout parameters adjusted with different spacing/offset strategy while remaining within the geometric_construction family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks the numeric parameters (sx, y, and multiplier values) introduced in step (i), which is parameter tuning rather than reverting the approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and multiplier coefficients) in the hand-tuned layout without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters (sx, y, and multiplier coefficients) rather than reverting to previous values; this is a continuation of parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and multiplier coefficients) in the hand-tuned layout without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout with a fundamentally different approach (different center coordinates, hardcoded outer_hex_side_length=4.0, different structure), which is an algorithm refinement/rewrite rather than a revert of step (i)'s parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a hand-tuned 4-4-4 layout with a honeycomb lattice 4-5-3 arrangement and simplified outer hexagon computation. Both are geometric construction approaches within the same family, but the specific layout/arrangement strategy changed significantly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same honeycomb lattice approach by adding explicit vertex computation for the outer hexagon size rather than hardcoding it, and adjusts the layout description to 3-4-5 staggered rows; this is a continued refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes from a symmetric honeycomb lattice layout (4-5-3 rows) to a hand-tuned asymmetric 4-4-4 layout with manually adjusted coordinates, plus a tighter outer hexagon computation. Both are geometric construction approaches but with different placement heuristics.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the coordinate parameters within the same 4-4-4 layout approach introduced in step (i), which is parameter tuning rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric constants defining hexagon center positions in a hand-tuned layout. The structure (4-4-4 row layout) remains the same, but the specific coordinate values are reparameterized and adjusted. Could also be seen as algorithm_refinement, but the core change is tweaking numeric placement constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric coordinate constants with different values rather than reverting to pre-step(i) values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusting hand-tuned numeric coordinates for hexagon center positions in a fixed 4-4-4 layout structure. The layout family (geometric_construction) is unchanged; only the specific coordinate values are modified.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned coordinates from step (i) with a different parameterization using sx and y variables, which is a refinement/different approach to the same layout, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Hand-tuned geometric construction layout with adjusted spacing parameters and slightly different center positions for the 4-4-4 hexagon packing arrangement",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-4-4 layout with a different 3-4-5 staggered honeycomb arrangement and a fixed outer_hex_side_length of 5.0, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Switches from a hand-tuned 4-4-4 flat-top layout to a 4-4-4 point-up triangular lattice layout with different spacing/orientation. Both are geometric_construction within the same family, but the layout geometry and containment calculation changed substantially. Could also be considered initialization_change since it's a hand-designed configuration, but the structural change to the packing arrangement is the dominant change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the triangular lattice layout from step (i) with a different 3-4-5 staggered honeycomb layout and adds tight containment calculation; this is a new approach, not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes from a lattice-based layout (4-4-4 rows with triangular lattice spacing) to a hand-tuned 4-4-4 layout with tighter spacing parameters, and computes the outer hexagon side length analytically from vertex positions instead of using a hardcoded conservative value. This is an intra-family refinement within hand_designed_special_case/geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes small parameter adjustments (sx from 2.66 to 2.68, y from 1.54 to 1.56, and minor center tweaks) rather than reverting the approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes numeric constants (sx, y, and middle row spacing multipliers) in the hand-tuned layout without structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric constants (sx, y, and middle row multipliers) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and multiplier coefficients) in the hand-tuned layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes numeric constants to different values rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric coordinate values for hexagon center positions in a hand-tuned layout. While the layout becomes asymmetric (middle row shifted), the fundamental approach (4-4-4 row layout) remains the same. The changes are primarily to numeric constants defining positions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-4-4 layout with a completely different 2-3-2-3-2 row arrangement and different R computation, which is a new algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hand-designed hexagon layout from a 4-4-4 arrangement to a 3-4-3-2 lattice-based arrangement with different center positions and a fixed outer side length. Both are hand-designed geometric constructions within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3-4-3-2 layout with a different 3-4-5 honeycomb arrangement and adds tight outer hexagon computation, which is a new algorithmic approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the hand-designed hexagon layout from a 3-4-3-2 row arrangement to a 4-4-4 arrangement with hand-tuned spacing parameters, and computes the outer hexagon size analytically instead of using a fixed constant. This is an intra-family refinement within hand_designed_special_case / geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes small parameter adjustments (sx from 2.70 to 2.68, and slight changes to middle row multipliers) within the same 4-4-4 layout approach introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric constants (sx, row offsets) in the hand-tuned layout without structural changes to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric constants in the same layout approach, making small tweaks to the middle row offsets rather than reverting the previous parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric constants in the hand-tuned hexagon layout (middle row x-multipliers changed from -0.91/0.03/0.97 to -0.92/0.0/0.92) to achieve tighter packing. These are coordinate parameter tweaks within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (y from 1.56 to 1.60, middle row multipliers from 0.92 back to 0.91) which partially overlap with step (i)'s changes but also introduce new values, representing continued tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants in the hand-tuned layout (y from 1.56 to 1.60, sx multipliers from 0.92 to 0.91) without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned asymmetric 4-4-4 layout with a completely different axial-ring-based algorithm, which is an algorithm switch rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-tuned asymmetric 4-4-4 layout with computed containment to a completely different geometric construction based on axial-coordinate hex ring (radius-2 outer ring of 12 cells). This is a cross-family change from hand_designed_special_case to geometric_construction/lattice_packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate hex ring approach with a different 3-4-5 staggered honeycomb fragment layout and computed containment, which is a new algorithm rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from a radius-2 hex ring layout to a 4-4-4 staggered honeycomb arrangement with tighter containment computation, both within the geometric_construction family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (sx, y, and middle row multipliers) within the same 4-4-4 layout approach introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes numeric constants (sx, y, and middle row offsets) in the hand-tuned layout. Could also be algorithm_refinement since the middle row spacing pattern changes slightly, but the dominant change is tweaking numeric values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric constants (sx from 2.66 to 2.68, y from 1.62 to 1.55) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes numeric constants sx and y in the hand-tuned layout, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric constants (sx, y, and row multipliers) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and row multipliers) in the hand-tuned layout without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different algorithm (pointy-top hex lattice with fixed outer_hex_side_length=5.0), which is an algorithm switch rather than a revert of step (i)'s parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a hand-tuned asymmetric 4-4-4 layout with a regular hex lattice 4-4-4 arrangement and a fixed outer side length of 5.0, staying within the geometric_construction family but changing the specific placement strategy and outer hex computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-4-4 grid layout with a different 3-4-5 staggered honeycomb arrangement and computes the outer hex side length dynamically, which is a new algorithmic approach rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changed from a regular 4-4-4 grid layout to a tuned 4-4-4 layout with adjusted spacing parameters (sx=2.68, y=1.55, asymmetric middle row) and added exact tight outer hexagon computation. Still geometric construction family but with refined placement heuristics.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts the numerical parameters (sx, y, and middle row multipliers) introduced in step (i), which is parameter tuning on the same approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes numeric constants (sx, y, and multipliers for middle row positions) in a hand-tuned geometric layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (sx, y, and multipliers) to different values rather than reverting to pre-step(i) values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and middle-row spread multipliers) in the hand-tuned layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (sx, y, and middle-row spread multipliers) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (sx, y, and multipliers for middle row positions) in the hand-tuned layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout with a fundamentally different algorithm (lattice-based cluster with rotation optimization) rather than reverting to a previous version; this is an algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a hand-tuned 4-4-4 layout to a hexagonal lattice-based cluster with pointy-top outer hexagon orientation and exact support computation. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice cluster approach with a different 3-4-5 staggered honeycomb fragment layout, which is a different geometric construction rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the hexagon layout from an axial-lattice-based 7+5 cluster with pointy-top outer hex to a 3-4-5 staggered honeycomb fragment with flat-top outer hex, and changes the outer side length computation. Both are hand-designed geometric constructions within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks numerical parameters within the same 4-4-4 layout approach introduced in step (i), without removing or reverting any of the code added.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric constants in the hand-tuned layout (y from 1.60 to 1.56, middle row x-offsets slightly changed) to tighten the packing. These are coordinate parameter tweaks within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the sx parameter from 2.70 to 2.68, continuing the parameter tuning approach rather than reverting the previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the numeric constant sx from 2.70 to 2.68, a minor spacing parameter adjustment.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) changes sx back from 2.68 to 2.70, restoring the value that step (i) had changed from 2.70 to 2.68.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the numeric constant sx from 2.68 to 2.70 and updates comments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (axial coordinate-based pointy-top hex grid), rather than reverting to a previous version of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from a hand-tuned 4-4-4 row layout (physical/manual placement) to a lattice-based geometric construction using axial hexagonal grid coordinates (center + ring + partial second ring). This crosses from a hand-designed/physical approach to a geometric_construction/lattice_packing approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial lattice approach with a different 3-4-5 staggered honeycomb layout and adds vertex-based outer hex sizing, which is a new algorithmic approach rather than reverting to the previous hand-tuned 4-4-4 layout.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from axial hex-grid lattice placement to a hand-tuned asymmetric 4-4-4 layout with manually chosen spacing parameters, but remains within the geometric_construction family (hand-designed coordinate placement).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks the spacing parameters (sx, y, and middle-row multipliers) within the same 4-4-4 layout approach introduced in step (i), which is parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Adjusting numeric constants (sx, multipliers for middle row positions) in a hand-tuned geometric layout. Could also be algorithm_refinement but the changes are purely to scalar positioning constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting different constants (y from 1.56 to 1.60, middle row positions changed), not reverting the changes made in step (i).",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants in the hand-tuned layout (y offset from 1.56 to 1.60, middle row x-positions slightly shifted). These are coordinate parameters of a geometric construction, not structural algorithm changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the y parameter from 1.60 back to 1.56 and sx from 2.70 back to 2.76 (closer to pre-step(i) values), and also reverts middle row x-positions back toward more symmetric values, undoing the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (sx, y, and middle row multipliers) in the hand-tuned layout without structural algorithm changes. Some multiplier changes (e.g., 0.10\u21920.0) could be seen as algorithm_refinement, but the dominant change is tuning coordinate parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned asymmetric layout with a completely different axial/triangular lattice approach, which is an algorithm switch rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Switches from a hand-tuned asymmetric 4-4-4 layout to an axial hex-grid lattice-based layout with 12 cells from a partial ring-2 cluster. Both are geometric construction approaches (hand-designed lattice packing), so this is intra-family refinement, though it's a substantial restructuring of the placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

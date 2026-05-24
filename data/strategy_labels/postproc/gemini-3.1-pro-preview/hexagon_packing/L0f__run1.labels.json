@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "gemini-3.1-pro-preview",
+  "level": "L0f",
+  "run_id": "L0f__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the initial simple grid arrangement with a scipy optimization approach, which is a different algorithm to solve the same problem, not a revert of the initial generation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.92,
+      "label_notes": "Switches from a hand-designed fixed grid placement to scipy SLSQP optimization with separation constraints, moving from hand_designed_special_case family to exact_solver/gradient-based optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy SLSQP optimization approach with a completely different grid-search/brute-force approach, which is a normal algorithm switch rather than a revert to the previous hand-designed fixed grid placement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from SLSQP-based constrained optimization (exact_solver/gradient_descent family) to a brute-force grid search over predefined geometric configurations with rotation angles (geometric_construction family). This is a cross-family algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the brute-force grid search with a different algorithm (greedy neighbor-based configuration building with optimization), which is a new approach rather than reverting to the previous SLSQP-based method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a grid-based placement with rotation search by a BFS/greedy lattice enumeration approach that grows hexagonal configurations from neighbors, scores them by compactness, and evaluates over rotation angles. This is a fundamentally different algorithmic approach (geometric_construction/lattice_packing vs prior direct placement with rotation grid search).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the BFS/greedy lattice enumeration approach with a completely different algorithm using scipy optimization and linear programming, which is a new algorithmic approach rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a combinatorial grid-search approach (enumerating configurations on a honeycomb lattice) to a geometric construction using honeycomb cluster generation with LP/optimization (scipy.optimize.linprog, minimize). This crosses from hand-designed geometric enumeration to a hybrid geometric_construction + exact_solver (LP) approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the LP/linprog-based approach with a different geometric construction using brute-force subset selection and scipy.optimize.minimize for loss minimization, which is a different algorithmic approach rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing algorithm within the same geometric_construction family - changes how subsets are selected, how the outer hexagon is fitted (LP replaced with minimize), and how containment is computed, but remains a geometric construction approach with honeycomb grid enumeration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the algorithm with a fundamentally different approach (LP-based optimization with grid search and simulated annealing), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a combinatorial enumeration + minimize_scalar approach to a grid-based candidate generation with vectorized normal projections and linear programming (final_lp), representing a fundamentally different algorithmic approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-based LP approach with a different algorithm using scipy.optimize.minimize with SLSQP, which is a new algorithmic approach rather than reverting to the previous combinatorial enumeration + minimize_scalar method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from LP-based approach (exact_solver family) to combinatorial enumeration + SLSQP nonlinear optimization (physical_simulation/gradient_descent family). The overall structure changes from linear programming to scipy.optimize.minimize with SLSQP, which is a fundamentally different approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the combinatorial enumeration + SLSQP approach with a different initialization strategy (hardcoded centers) while still using SLSQP optimization - this is an algorithm refinement/switch, not a revert to a prior approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Replaces combinatorial search over lattice points + SLSQP constrained optimization with a fixed geometric construction (hand-designed placement of 12 hexagons) + simple outer hexagon fitting via Nelder-Mead. This is a shift from stochastic_search/exact_solver family to hand_designed_special_case/geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed geometric construction with a different constrained non-linear optimization approach, which is a new algorithm switch rather than a revert to any previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a geometric construction approach (fixed lattice + outer hexagon fitting) to a constrained nonlinear optimization approach (scipy.optimize.minimize with contact graph constraints), crossing from geometric_construction family to physical_simulation/exact_solver family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (more init angles, tighter tolerances, smaller safety margins) within the same optimization approach introduced in step (i), without reverting any code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: adds init_theta values (search starts), increases maxiter, tightens ftol, adjusts tolerance thresholds and scale factors. While adding init_theta values could be search_space_change, the dominant changes are parameter tuning across multiple constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes parameters (expanding init_theta to linspace, increasing maxiter, tightening ftol and scale) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes multi-start grid from discrete list to linspace(31 points), increases maxiter 3000\u21924000, tightens ftol 1e-11\u21921e-12, and adjusts safety margin scale/offset. All are numeric constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts parameters (grid points 31\u219216, maxiter 4000\u21925000, scale factor changed) rather than reverting step (i)'s changes back to their original values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes numeric constants only: number of init angles (31\u219216), maxiter (4000\u21925000), and safety scale factor (1.0000001\u21921.000001)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes parameters to different values (16\u219224, 1.000001\u21921.0000002, 2e-6\u21925e-7) rather than reverting to the original values from before step (i) (31, 1.0000001).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes numeric constants: number of init angles from 16 to 24, scale factor from 1.000001 to 1.0000002, and offset from 2e-6 to 5e-7. No structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (different variable representation, different optimization strategy, different orientation handling), which constitutes an algorithm_switch rather than a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing constrained nonlinear optimization (scipy minimize with contact graph constraints) with a geometric construction approach using predefined honeycomb lattice patterns and analytical containment radius computation. This crosses from exact_solver/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach from step (i) with a different constrained non-linear optimization approach, which is a new algorithm switch rather than reverting to the previous scipy minimize with contact graph constraints approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Complete rewrite from random-restart penalty-based optimization (stochastic_search family) to a constrained nonlinear optimization approach based on a predefined honeycomb lattice with contact graph constraints (geometric_construction/exact_solver family). The entire algorithmic structure changed fundamentally.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor parameter adjustments (reducing iterations, changing scale factors, reducing linspace points) to the code from step (i), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: reduces init_theta grid from 32 to 6, maxiter from 10000 to 1000, ftol from 1e-13 to 1e-9, and adjusts scale/epsilon values. Also adds minor array pre-computation (pairs_arr) but dominant change is parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts parameters (grid size from 6 to 24, maxiter from 1000 to 2000, ftol from 1e-9 to 1e-11, scale and epsilon values) in the same direction of refinement rather than reverting to the original values from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes numeric constants: number of multi-start orientations (6\u219224), maxiter (1000\u21922000), ftol (1e-9\u21921e-11), scale factor and offset adjustments. All are scalar parameter changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies some parameters back (24\u219212) but also adds substantial new code for distance projection and containment checks, representing an algorithmic refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines post-optimization scaling/feasibility correction logic with more precise distance projection checks and containment radius computation. Also reduces multi-start grid from 24 to 12 and loosens ftol, which are parameter_tuning aspects, but the dominant change is the structural refinement of the feasibility correction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite (scheduled rewrite at step 20), replacing the previous approach with a fundamentally different optimization structure, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a hand-designed geometric construction with constrained optimization to an enumeration-based approach that generates compact clusters on a triangular lattice, evaluates them, and then polishes with BFGS. This crosses from geometric_construction/hand_designed to a stochastic_search/enumeration approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the enumeration-based triangular lattice approach with a different constrained non-linear optimization approach, which is a new algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a lattice-enumeration-based geometric construction approach with a constrained nonlinear optimization (scipy.optimize) approach. This crosses from geometric_construction family to a numerical optimization/exact_solver family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the optimization approach from step (i) by removing non-adjacent constraints and adjusting parameters, but does not revert to the previous lattice-enumeration approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes non-adjacent distance constraints from the optimization, adjusts fallback initialization scaling, and slightly changes multi-start grid size. These are structural tweaks within the same optimization approach (SLSQP with constraints).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further algorithmic refinements (multiple topology candidates, dynamic scaling) rather than reverting step (i)'s changes; it builds upon the same approach with additional modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds multiple topology candidates to try different initial hexagon arrangements, adjusts post-processing scale calculation, and tunes optimizer parameters. The core approach (SLSQP optimization with contact constraints) remains the same, but the search is refined with multiple starting topologies and better safety scaling.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the multiple topology approach with a different refined approach (fewer topologies, different scaling), which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Simplifies from multiple topologies to a single topology, extracts contact graph from initial centers, tightens tolerance thresholds, and changes safety scaling approach. All within the same optimization framework (physical_simulation/stochastic_search family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a substantially different algorithm (using linprog, different structure), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing constrained nonlinear optimization (gradient_descent/physical_simulation family) with a grid-based geometric construction approach using linprog and systematic rotation/translation search (geometric_construction family). The algorithm structure is fundamentally different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-based geometric construction with a constrained non-linear optimization approach, which is a different algorithm switch rather than reverting to the previous gradient_descent/physical_simulation approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a greedy BFS lattice enumeration approach to a constrained nonlinear optimization (scipy.optimize.minimize) approach with multi-start initialization. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the optimization approach from step (i) by adding center-of-mass constraints, increasing multi-start points, and simplifying the post-processing scaling logic, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds center-of-mass symmetry constraints, adjusts validation tolerances, changes scaling strategy, and modifies multi-start grid. Multiple refinements to the same optimization approach (SLSQP-based).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts parameters (grid size from 15 to 8, scale from 1.000005 to 1.0000002, offset from 5e-6 to 1e-6) without removing or reverting the code changes introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes numeric constants: number of init orientations (15\u21928), scale factor (1.000005\u21921.0000002), and epsilon offset (5e-6\u21921e-6). No structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different values (e.g., scale 1.00001 vs 1.0000002, epsilon 2e-5 vs 1e-6, init orientations 6 vs 8) rather than reverting to step (i-1)'s values (1.000005, 5e-6, 15).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes are primarily numeric constant adjustments: constraint tolerances (1e-6, 1e-5), number of multi-start orientations (8\u21926), maxiter (2000\u21921000), ftol (1e-10\u21921e-9), scale factor (1.0000002\u21921.00001), and safety margins. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (lattice-based cluster enumeration), which is an algorithm switch rather than a revert of step (i)'s parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite from scipy.optimize.minimize-based continuous optimization to a lattice enumeration approach that generates candidate clusters from a hexagonal lattice grid and analytically solves for minimum bounding hexagon. This switches from physical_simulation/stochastic_search family to geometric_construction/lattice_packing family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice enumeration approach with yet another different algorithm (a new optimization-based approach using scipy.optimize.minimize), which is a normal algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from lattice-enumeration + analytical bounding approach to a constrained nonlinear optimization (scipy.optimize.minimize) approach. The previous code used geometric_construction (lattice point enumeration + analytical solve), while the new code uses gradient_descent/numerical optimization. These are different algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (tolerances, constraint margins, removing center-of-mass constraints) to the optimization approach introduced in step (i), rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes epsilon tolerances (1e-5\u21921e-7, 1e-6 margins), reduces multi-start count (12\u21926), adjusts safety scale factor, and removes center-of-mass equality constraints. The removal of constraints could be search_space_change, but the dominant changes are numeric tolerance adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes parameters (increasing multi-start count to 20, tightening tolerances further, increasing maxiter) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Increases number of multi-start orientations (6\u219220), maxiter (2000\u21925000), tightens ftol (1e-11\u21921e-13), and relaxes validation tolerances (1e-7\u21921e-8). All changes are numeric constant adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes numeric constants (constraint margins, number of orientations, scale factor) in the same direction as step (i), rather than reverting any of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: constraint tolerances (1e-6\u21921e-9), number of multi-start orientations (20\u219224), maxiter (5000\u21928000), ftol (1e-13\u21921e-14), validation tolerances (1e-8\u21921e-10), and scaling factors. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major algorithm rewrite that replaces the entire approach with a different one (individual hex angles, SAT-based overlap checking, etc.), not a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver with fundamentally restructured approach: new vectorized SAT-based overlap evaluation, multi-start optimization with staged refinement pipeline. The overall framework remains gradient-based optimization but the geometric evaluation and multi-stage search structure represent a substantial architectural redesign.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (different geometric model, different optimization structure, different output conventions), which constitutes an algorithm_switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver approach: previous code used SAT-style separation axis theorem with batch vertex/normal computations and generic optimization; new code uses a geometric construction with specific hexagonal packing layout (ring-based center placement), different objective formulation, and explicit geometric containment/overlap checking. This represents a fundamental change from a generic physical_simulation/stochastic approach to a geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm introduced in step (i) by adding adjacency pair detection, vectorized constraint improvements, and additional validation checks, rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the SLSQP optimization by precomputing a contact graph of adjacent hexagon pairs and using directed separation constraints instead of checking all pairs with max projection. Also reduces multi-start count from 30 to 12, removes noise perturbation, and adds explicit validity checking against the contact graph constraints.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (removing epsilon offsets, changing multi-start count from 12 to 15, adjusting ftol and scale factors) rather than reverting the algorithmic changes introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: removes 1e-6 epsilon from constraints, increases grid search points from 12 to 15, tightens ftol from 1e-12 to 1e-13, and adjusts safety scaling factors. All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new algorithmic features (adjacency set, non-adjacent pair distance constraints) and changes parameters further rather than reverting step (i)'s changes; while it restores the 1e-6 epsilon that step (i) removed, the overall diff introduces substantial new code and different parameter values, making this an algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds non-adjacent pair separation constraints, adjusts tolerance/epsilon values in constraints and validation, and tweaks safety scaling. Multiple small refinements to the existing SLSQP optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major algorithm rewrite introducing individual hexagon rotations, a two-stage optimization approach, and different constraint formulations \u2014 this is an algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a single-stage optimization to a two-stage approach with rigid rotation sweep initialization, topology-based constraints, and independent rotation relaxation. The overall structure changes significantly from what appears to be a simpler direct optimization to a multi-stage geometric construction + constrained optimization pipeline.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the two-stage rigid rotation sweep approach with a different algorithm (single-variable optimization with shared rotation angle), which is a new algorithmic approach rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach: replaces a two-stage SLSQP with topology-based constraints and rigid rotation sweep with a fundamentally different single-stage optimization formulation. The overall structure, constraint formulation, and search strategy are substantially changed, though both are still optimization-based approaches. Given the extensive rewrite crossing from a multi-stage constrained optimization with explicit topology to a simpler single-stage formulation, this leans algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by modifying constraint computation (vectorized to loop-based), improving the scaling/safety logic, and adding post-optimization verification, but retains the same overall single-stage optimization framework introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites vectorized constraint computations into explicit loops, adjusts tolerance values, changes scaling/validation logic, and reduces multi-start count. These are refinements within the same optimization approach (SLSQP with multi-start), not a family switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes small parameter adjustments (tolerance values, iteration counts, multi-start count) to the code from step (i), without removing or restoring any significant code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Removes small epsilon offsets (1e-6 \u2192 0, 1e-9 \u2192 1e-12), increases multi-start grid from 18 to 21, increases maxiter from 5000 to 6000, tightens ftol from 1e-13 to 1e-14. Primarily numeric constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the pairs-based contact graph and validation logic and changes epsilon values, which is a structural algorithm refinement rather than a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Replaces precomputed contact-graph-based separation constraints with a soft-max over all direction projections for all pairs, changes validation logic, and adjusts numerical tolerances. The core approach (SLSQP optimization with multi-start) remains the same family, but the constraint formulation is significantly refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different approach (no scipy.optimize, different algorithm), not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from scipy.optimize constrained nonlinear optimization (exact_solver/gradient_descent family) to a hardcoded geometric construction with iterative scaling adjustment (geometric_construction/hand_designed family). The entire optimization loop with minimize() is replaced by a manually constructed lattice configuration with post-hoc containment scaling.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a scipy.optimize-based approach, which is a different algorithm from step (i)'s hardcoded geometric construction; while it resembles the approach before step (i), it is a new implementation with different details (e.g., containment checks, scaling logic), making it an algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.92,
+      "label_notes": "Switches from a hand-designed geometric construction (hardcoded honeycomb lattice positions) to a constrained nonlinear optimization approach using scipy.optimize.minimize, which is a fundamentally different algorithm family (exact_solver/optimization vs geometric_construction).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the optimization approach introduced in step (i) by vectorizing constraints, adjusting hyperparameters, and reducing loop iterations, but does not revert to the previous geometric construction approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Mixed change: vectorizes constraint computations (loop_optimization), adjusts parameters (parameter_tuning), and changes search grid (search_space_change). The dominant structural change is vectorizing the constraint loops and adjusting the multi-start search, which together constitute refinement of the existing SLSQP-based optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes targeted bug fixes and parameter adjustments to the code from step (i), such as fixing the broadcasting of the outer constraints and increasing maxiter/grid points, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "The change to outer_constraints removes np.max and changes broadcasting to properly compute per-hexagon per-edge constraints instead of collapsing them. This fixes incorrect constraint formulation that was producing wrong results. Parameter changes (linspace 18\u219224, maxiter 5000\u219210000) are secondary.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores np.max in outer_constraints and removes the broadcasting fix (h and proj changes), directly reverting the core bug fix from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Mix of changes: fixes constraint formulations (removing slack 1e-6, fixing broadcasting with np.max), adjusts search parameters (40 starts, initial R=4.2, maxiter=5000, ftol=1e-14), and tightens epsilon values. The constraint formula fixes (especially np.max) could be bug_fix, but the dominant pattern is refinement of the optimization approach with parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different approach (different initial configuration, different constraint formulation, different outer hexagon orientation), not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver: previous code used a constrained nonlinear optimization approach with contact graph constraints, new code uses a different optimization strategy with simulated annealing / multi-start search. The overall structure and approach changed fundamentally.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (constrained non-linear optimization with honeycomb lattice initialization), which is a normal algorithm switch/refinement rather than reverting to a previous version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same family (constrained nonlinear optimization / gradient-based). Changes constraint formulation, initial layout, and optimization pipeline but stays within physical_simulation/exact_solver family using scipy minimize with SLSQP. Could be algorithm_switch if viewed as a complete rewrite, but the core approach (constrained optimization with SLSQP) appears preserved.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by modifying the constraint formulation (switching from all-pairs to adjacency-based constraints) and adjusting tolerance values, but does not revert the code added in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes constraint formulation from all-pairs to topological contact graph (adjacent pairs only), refines projection constraints to use specific direction indices, adjusts tolerances and validation checks. All within the same optimization-based approach family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (tolerances, iteration counts, grid resolution) within the same algorithm introduced in step (i), without removing or restoring any code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric constants: constraint margins (1e-6), number of multi-start orientations (21\u219240), maxiter (10000\u21925000), ftol (1e-14\u21921e-13), scale epsilon (1e-12\u21921e-5). Also adds small constraint tightening margins which could be seen as algorithm_refinement, but the dominant changes are numeric constant adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric constants (margins, multi-start count, scale epsilon) to different values rather than reverting to the original values from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric tolerance constants (1e-6\u21921e-8, 1e-3\u21921e-4, 1e-5\u21921e-11) and number of multi-start iterations (40\u219231). All changes are to scalar constants with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (hardcoded lattice-based construction instead of scipy optimization), which is an algorithm_switch rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing scipy.optimize-based constrained nonlinear optimization (gradient_descent/exact_solver family) with a geometric construction approach using lattice basis vectors and direct geometric computation. The algorithmic structure is fundamentally different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches back to a scipy.optimize-based approach, but this is a different implementation than what existed before step (i), constituting a new algorithm switch rather than a revert to the pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a geometric_construction approach (manual lattice + brute-force search over orientations) to a scipy.optimize.minimize-based constrained nonlinear optimization approach, crossing from geometric_construction family to exact_solver/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks numerical parameters (tolerances, grid size, scale factors) within the same scipy.optimize approach introduced in step (i), without removing or reverting any of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-10\u21921e-6), number of multi-start orientations (36\u219248), optimizer ftol (1e-14\u21921e-11), and safety margins (1e-12\u21921e-8). All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements (precomputing angles, adjusting constants to different values like 1e-9) rather than reverting step (i)'s changes back to their original values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Mix of precomputing angles, adding explicit Jacobian, reducing multi-start count (48\u219221), tightening tolerances. Dominant change is optimization refinement within the same SLSQP-based approach. Could also be parameter_tuning for the tolerance/count changes, but the Jacobian addition is structural.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding more detailed Jacobians, changing the outer_constraints formulation, and increasing multi-start count from 21 to 121, rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds analytical Jacobians for constraints and increases multi-start grid from 21 to 121 points. The Jacobian addition is a refinement of the SLSQP optimization approach, and the grid increase is borderline parameter_tuning/search_space_change, but the dominant change is the Jacobian addition which refines the existing optimization algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different approach to the same problem, not a revert of step (i)'s changes; it replaces the entire implementation rather than restoring a previous version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the same optimization approach (SLSQP-based constrained nonlinear optimization with multiple starting configurations). The core family remains the same (physical_simulation/gradient_descent via SLSQP), but the constraint formulation, initialization strategy, and post-processing are substantially restructured. Could be algorithm_switch if the families changed, but both versions use SLSQP optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a substantially different implementation (different constraint formulation, different variable handling, different orientation conventions), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the optimization approach: changed problem representation (outer hexagon angle as variable, different parameterization with all hexagons sharing same rotation), different constraint formulation, different initialization strategy (geometric ring-based), and post-optimization safety scaling. The overall structure is fundamentally reorganized even though it still uses SLSQP optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical tolerance parameters and grid resolution within the same algorithm introduced in step (i), without reverting or removing any of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-8\u21921e-9, 1e-5\u21921e-4), number of multi-start orientations (361\u2192181), maxiter (10000\u21925000), ftol (1e-14\u21921e-12), and scaling epsilons. All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different values (e.g., 1e-9\u21921e-6, 181\u2192121, 1e-12\u21921e-4), not reverting to the original values from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric tolerances (1e-9\u21921e-6, 1e-12\u21921e-4) and iteration count (181\u2192121). Could also be precision_handling for the epsilon changes, but the dominant pattern is tuning numeric constants including the loop count.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues tuning parameters (increasing iterations from 121 to 241, tightening tolerances from 1e-12 to 1e-13 and from 1e-4 to 1e-9) rather than reverting step (i)'s changes; some tolerances move back toward step (i)'s predecessor values but the iteration count and ftol go in a new direction, indicating continued refinement not reversion.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Increases number of multi-start orientations (121\u2192241), tightens ftol (1e-12\u21921e-13), and reduces safety margins (1e-4\u21921e-9). All are numeric constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire algorithm with a fundamentally different approach (testing rigid honeycomb sub-clusters with rotation optimization), which is an algorithm_switch rather than a revert of the parameter tuning changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from constrained nonlinear optimization approach to a rigid honeycomb cluster rotation/translation search approach. Switches from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rigid honeycomb cluster rotation/translation search with a constrained non-linear optimization approach, which is a different algorithm switch rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Complete rewrite from geometric construction with honeycomb lattice candidates to constrained non-linear optimization (scipy.optimize). Switches from geometric_construction family to an optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks numerical parameters (tolerances, iteration limits, epsilon values) within the same optimization framework introduced in step (i), without removing or reverting any of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.7,
+      "label_notes": "Removes small epsilon offsets from constraints (1e-9), adjusts optimizer parameters (maxiter 5000\u219210000, ftol 1e-12\u21921e-13), and changes safety margin epsilons (1e-12\u21921e-10). Mix of precision and parameter changes, but dominant effect is tuning numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverses some parameter changes from step (i) (maxiter back to 5000, ftol back to 1e-12) but also introduces significant new algorithmic changes (all-pairs constraints instead of adjacency-only, 241 grid points instead of 121, different epsilon values), making this a refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: expanded contact graph to all pairs (search_space_change-like), added epsilon margins to constraints (precision_handling-like), increased multi-start density, adjusted tolerances. The dominant change is expanding the constraint pairs from adjacent-only to all pairs, which refines the optimization formulation within the same SLSQP framework. Mixed with parameter_tuning aspects but structural constraint changes dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (grid density from 241 to 601, initial R from 4.5 to 4.0, maxiter from 5000 to 6000, ftol from 1e-12 to 1e-13) without reverting any structural changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes numeric constants: number of init angles (241\u2192601), initial R (4.5\u21924.0), maxiter (5000\u21926000), ftol (1e-12\u21921e-13). All are scalar parameter changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (generating unique subsets from honeycomb lattice), which is an algorithm_switch rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing the previous constrained optimization approach with a lattice-based enumeration of candidate topologies followed by continuous optimization. This shifts from a direct physical_simulation/gradient_descent approach to a geometric_construction + stochastic_search hybrid, crossing algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice-based enumeration approach with a different algorithm, which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver: replaced a stochastic lattice-subset enumeration approach with a constrained nonlinear optimization approach. The overall structure and methodology changed fundamentally.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical tolerances and loop parameters within the same optimization approach introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple numeric constant changes: tolerance thresholds (1e-8\u21920, 1e-3\u21921e-4, 1e-8\u21921e-6), number of multi-start iterations (361\u2192241), maxiter (10000\u21925000), initial scaling factor (1.001), and epsilon values. Dominant change is tuning numeric parameters.",
+      "was_reverted": false,
+      "revert_reason": "While some values were changed back (241\u2192361, 1.001\u2192removed), other changes are new (adding -1e-9 margins, changing 1e-6\u21921e-11), making this a mix of partial reversions and new refinements rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Mix of changes: tightening constraint tolerances (1e-9 slack in constraints), increasing multi-start grid density (241\u2192361), removing scaling factor on initial centers, and adjusting epsilon values in post-processing. Dominant effect is refining the optimization approach within the same SLSQP multi-start framework. Could also be parameter_tuning but the constraint slack additions are structural.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical tolerance parameters (1e-9\u21921e-8, 1e-11\u21922e-7, ftol 1e-13\u21921e-12, scale minimum 1.0\u21921.00000001) without removing or restoring code from step (i); this is further parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numerical tolerance constants (1e-9\u21921e-8, 1e-13\u21921e-12, 1e-11\u21922e-7) and a minimum scale factor. All are scalar constant adjustments with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (Simulated Annealing instead of scipy.optimize.minimize), which is an algorithm switch, not a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.92,
+      "label_notes": "Switches from constrained nonlinear optimization (scipy.optimize.minimize, exact_solver/gradient-based family) to simulated annealing over honeycomb lattice (stochastic_search family). This is a cross-family change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the simulated annealing approach from step (i) and restores a scipy.optimize.minimize constrained nonlinear optimization approach, which is the same family of approach that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from simulated annealing (stochastic_search family) to scipy.optimize.minimize-based constrained nonlinear optimization (exact_solver/gradient_descent family), a cross-family change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical tolerance parameters and loop counts within the same scipy.optimize.minimize approach introduced in step (i), without reverting or removing the algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-9\u21921e-6, 1e-3\u21921e-4), number of init angles (361\u2192241), maxiter (10000\u21925000), ftol (1e-14\u21921e-12), and scaling epsilons. All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes some tolerances back toward their original values (e.g., 1e-4\u21921e-3, 1e-5\u21921e-9) but also makes new changes (ftol 1e-12\u21921e-13, removes 1e-6 offsets entirely); this is a mix of partial reversions and new tuning, not a wholesale revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric tolerances (1e-6\u21920, 1e-5\u21921e-9, 1e-4\u21921e-3, ftol 1e-12\u21921e-13) and epsilon margins throughout the code. These are all scalar constant adjustments affecting constraint slack and convergence tolerance.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some tolerance changes from step (i) (e.g., re-adding 1e-6 margins that step (i) removed, changing 1e-3 back to 1e-4) but also makes new changes (721 linspace points, scale max 1.0), so it's a mix of partial revert and new tuning rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-3\u21921e-4), epsilon margins (adding 1e-6 to constraints), search grid density (241\u2192721), and scale lower bound (1.000000001\u21921.0). Multiple small numeric tweaks without structural algorithm changes. Could also be considered algorithm_refinement due to tightening validation tolerances, but the changes are purely numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite/switch (different imports, different approach using lattice basis vectors and minimize_scalar instead of scipy.optimize.minimize), not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from constrained nonlinear optimization (scipy.optimize.minimize) to a lattice-based geometric construction approach with enumeration of connected subsets and rotation optimization. Crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the lattice-based geometric construction approach from step (i) back to a scipy.optimize.minimize constrained nonlinear optimization approach, restoring the general methodology that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a lattice-enumeration + rotation-sweep geometric construction to a constrained nonlinear optimization (scipy.optimize.minimize) approach with a different problem formulation, crossing from geometric_construction family to an optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (number of grid points, maxiter, ftol, epsilon values) within the same optimization approach introduced in step (i), without reverting any code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes number of init angles (361\u2192241), maxiter (5000\u219210000), ftol (1e-13\u21921e-14), and epsilon values (1e-9\u21921e-11). All are numeric constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further algorithmic refinements (simplifying pair extraction, changing overlap check logic, adjusting epsilon values) rather than reverting step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces fixed-angle projection constraint with log-sum-exp smooth max over all 6 directions for non-overlap, changes pair generation to simpler all-to-all, adjusts tolerances and validation logic. All within the same optimization-based approach (physical_simulation/gradient_descent family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by reintroducing direction-aware pair generation with k_idx angles and modifying the constraint formulation, but this is an algorithmic refinement building on step (i)'s structure rather than reverting it \u2014 the core optimization framework, initial centers, and overall approach remain the same.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces soft-max (log-sum-exp) projection over all 6 directions with a single precomputed direction per pair based on initial topology. Also tightens tolerance thresholds and adds adjacency validation. This is an intra-family refinement of the geometric/optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different approach (diverse initial guesses, lattice points, different optimization structure), not a revert to any prior version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing solver: changes from a single-ring optimization approach with fixed inner hexagon orientation to a multi-start strategy with diverse initial guesses (ring configurations, hexagonal lattice clusters) and a fundamentally different objective/constraint formulation. The overall structure and approach are substantially different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a completely different algorithm (different initial guess generation, different constraint formulation, different optimization strategy), which is a normal algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a stochastic multi-start approach with diverse initial guesses to a honeycomb lattice-based geometric construction with constrained optimization. The previous code used random/diverse initial configurations with general optimization, while the new code constructs a specific honeycomb lattice cluster and optimizes around it. This crosses from stochastic_search to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies initial center coordinates and tunes numerical tolerance parameters but retains the same honeycomb lattice-based geometric construction approach introduced in step (i), making it a parameter tuning refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes initial center coordinates (which could be initialization_change), but also adjusts multiple numeric tolerances (1e-9\u21921e-6, 1e-3\u21921e-4, etc.), reduces iteration count and search grid size. The dominant changes are numeric constant adjustments. The center coordinate change is borderline initialization_change but combined with all the tolerance tuning, parameter_tuning is the best fit.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes initial center coordinates to different values (not restoring previous ones) and adjusts tolerances in a different direction, representing continued parameter tuning rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes initial center coordinates (mirrored/reflected), tightens epsilon tolerances (1e-6\u21921e-9, 1e-7\u21921e-10), increases grid search resolution (241\u2192361), tightens ftol (1e-12\u21921e-13), and relaxes validation thresholds (1e-4\u21921e-3). The initialization coordinate change could be initialization_change, but the dominant pattern is numeric constant tuning across multiple parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding multiple initialization options and adjusting some tolerances, rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "initialization_change",
+      "confidence": 0.62,
+      "label_notes": "Primary change adds multiple initial center configurations (centers_options) for multi-start optimization. Also includes minor tolerance parameter changes and refactoring, but the dominant structural change is the initialization with multiple starting configurations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (using linprog and minimize_scalar instead of scipy.optimize.minimize with multi-start), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver: previous code used constrained nonlinear optimization (scipy.optimize.minimize) with multiple initial configurations, while new code uses a honeycomb lattice generation approach with linear programming (linprog) and minimize_scalar. This crosses from physical_simulation/stochastic_search family to a fundamentally different approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb lattice + linprog approach with a constrained nonlinear optimization (scipy.optimize.minimize) approach, which is a different algorithm switch rather than a revert to the previous code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from combinatorial enumeration over honeycomb lattice with LP (exact_solver/geometric_construction) to constrained nonlinear optimization with scipy.optimize.minimize (gradient_descent/physical_simulation family). The approach fundamentally changes from enumerating combinations and solving LPs to continuous optimization with constraints.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical tolerance parameters and grid resolution within the same optimization approach introduced in step (i), without reverting any code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: epsilon tolerances from 1e-9 to 1e-5, validation thresholds from 1e-3 to 1e-4, grid points from 241 to 361, and maxiter from 10000 to 5000. All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes numeric constants (tolerances and grid points) in the same direction rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes epsilon tolerances (1e-5 to 1e-6/1e-7) and increases grid resolution from 361 to 721 points. These are numeric constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "While some changes partially revert step (i) (e.g., grid resolution 721\u2192361 reverts back to original, tolerances 1e-6\u21920 removes the margin), other tolerance values are changed to new values (1e-9) not present in either step (i) or the original, making this a mixed parameter adjustment rather than a clean revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: removes 1e-6 slack from constraints (could be bug_fix or precision_handling), reduces grid from 721 to 361, changes ftol from 1e-13 to 1e-12, adjusts epsilon values. Dominant theme is tuning numeric constants/tolerances.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different algorithm (smooth energy function with LogSumExp), not a revert to the pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver. Previous code used a constrained optimization approach with specific geometric construction. New code introduces a fundamentally different approach with smooth energy function (LogSumExp approximation), gradient-based optimization with penalty methods, and multi-start strategies. The overall structure and methodology changed substantially, moving from a more direct geometric/constrained approach to a penalty-based physical simulation style.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different algorithm with different variable naming, structure, and approach rather than reverting to the pre-step(i) code; this is an algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the solver: replaces the previous penalty-based smooth energy optimization with multi-start random restarts and a fundamentally restructured approach. The code structure is completely rewritten with different constraint handling and optimization strategy, though both are broadly optimization-based. The truncated diff shows substantial architectural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (tolerance values, iteration counts, safety margins) and adds a polishing validation block, but retains the same multi-start optimization architecture introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numerical tolerance constants (1e-10\u21921e-6, 1e-5\u21921e-4, 1e-14\u21921e-12) and maxiter (10000\u21925000), plus adds a polishing step. The polishing step could be algorithm_refinement, but the dominant changes are tolerance/parameter adjustments throughout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes tolerance parameters (1e-6\u21921e-11, 1e-7\u21921e-11) and removes the polishing step added in step (i), but it does not restore the original values from before step (i); it's a continuation of parameter tuning in a different direction, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes epsilon tolerances from 1e-6/1e-7 to 1e-11, increases grid search points from 361 to 481, changes safety scale factor, and removes polishing step. The epsilon changes and grid size are parameter tuning, but removing the polish step is algorithm_refinement. Multiple changes compete but parameter tuning dominates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts tolerances and grid size to different values (e.g., 1e-9 instead of 1e-11, 241 instead of 481) rather than reverting to the original values from before step (i); this is further parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-11\u21921e-9, 1e-4\u21921e-5), ftol (1e-12\u21921e-13), grid resolution (481\u2192241), scale factor minimum (1.0\u21921.0000000001), and epsilon values (1e-11\u21921e-10). All are scalar constant adjustments with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major algorithm rewrite introducing new helper functions and a fundamentally different approach, not a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver. Previous code used a constrained optimization approach with specific constraint formulations; new code uses a different geometric construction (honeycomb lattice + ring configurations) with penalty-based unconstrained optimization and multi-start strategy. The overall structure and approach are fundamentally different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a completely different algorithm (new constraint formulation, different optimization strategy, different geometric construction), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver. Previous code used a honeycomb/ring geometric construction with a bounding-radius objective. New code uses constrained nonlinear optimization (scipy.optimize.minimize with SLSQP) with explicit separation and containment constraints, multi-start initialization, and safety scaling. This represents a fundamental change from geometric_construction to a more optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (tolerance values, number of iterations, scaling factors) to the code introduced in step (i), without removing or reverting any of the algorithmic changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-9\u21921e-8), number of multi-start orientations (361\u2192241), ftol (1e-13\u21921e-12), and scaling epsilons. All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes some parameters back toward previous values (e.g., 241\u2192361) but also introduces new different values (1e-6, 2e-5, 4.1, 1.00000001), making this a further parameter tuning iteration rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric tolerances (1e-8\u21921e-6, 1e-9\u21922e-5) and search grid density (241\u2192361), plus a fallback initial value (4.0\u21924.1). All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the tolerance changes from step (i) back to their original or near-original values (1e-6\u21921e-9, 2e-5\u21921e-9, 4.1\u21924.0, 361\u2192301), undoing the parameter tuning performed in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-6\u21921e-9), number of multi-start orientations (361\u2192301), maxiter (5000\u21926000), ftol (1e-12\u21921e-13), default R (4.1\u21924.0), safety margins (2e-5\u21921e-9). All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite (algorithm_switch), not a revert of step (i)'s parameter tuning changes; it replaces the entire approach with a fundamentally different implementation rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver: switches from a constrained nonlinear optimization approach with honeycomb lattice initialization and contact graph constraints to a C3-symmetry-based parameterization with multi-start optimization. The overall structure, parameterization, and search strategy are fundamentally different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different optimization approach rather than reverting to the previous code; it is a new algorithm switch, not a restoration of prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the packing algorithm: previous code used C3-symmetric point generation with generic scipy minimize; new code uses a honeycomb lattice initialization with constrained nonlinear optimization (SLSQP with explicit separation/containment constraints), multi-start perturbations, and post-optimization safety scaling. The overall approach structure changed fundamentally.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical tolerance parameters (epsilon values and ftol) in the code from step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes numerical tolerance constants (1e-8\u21921e-9, 1e-14\u21921e-12, 1e-4\u21921e-5) without structural changes",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts most of step (i)'s tolerance changes back toward their original values (1e-9\u21921e-5 back toward 1e-4, 1e-9\u21921e-5 back toward original, etc.), undoing the tightening that step (i) performed.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes epsilon tolerances from 1e-9 to 1e-5 and 1e-5 to 1e-4 across constraints and validation checks, and increases multi-start grid from 361 to 721 points. These are numeric constant changes affecting search granularity and tolerance thresholds.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the epsilon tolerances to different values (1e-6, 1e-7) and adjusts the grid size to 481, which is a continuation of parameter tuning rather than reverting to the original values from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: constraint tolerances from 1e-5 to 1e-6, ftol from 1e-12 to 1e-13, scaling margins from 1e-5 to 1e-7, and grid search points from 721 to 481. All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite with a fundamentally different approach (smooth constraints, different optimization structure, subset-based initialization), not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver: replaces the previous geometric construction + scaling approach with a smooth-max based continuous optimization formulation using scipy.optimize.minimize with different constraint handling. The overall structure, initialization strategy, and optimization approach are fundamentally different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the smooth-max optimization approach with a different algorithm rather than reverting to the previous geometric construction approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the packing algorithm. The previous code used a smooth-max based continuous optimization with general constraints, while the new code uses a fundamentally different geometric construction approach with lattice-based placement and post-hoc scaling/adjustment. This crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (tolerances, iteration counts, initial values, safety margins) within the same algorithm introduced in step (i), without reverting or removing the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-9\u21921e-6), initial R (4.5\u21923.95), bounds (5.0\u21924.5), maxiter (10000\u21925000), ftol (1e-14\u21921e-11), scale factors, and number of multi-start orientations (481\u2192360). All are scalar parameter adjustments with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts some parameters back toward earlier values (e.g., bounds 4.5\u21925.0, init R 3.95\u21924.0) but also introduces new code (polishing step) and changes other parameters differently (ftol, scale factors), making this a continued tuning iteration rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple numeric constant changes: search range endpoints (360\u2192361, 3.95\u21924.0, 4.5\u21925.0), tolerance (1e-11\u21921e-12, 1e-14), safety margins (1e-5\u21921e-7), plus adding a polish step. The polish step is a minor algorithm_refinement, but the dominant changes are parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different values (e.g., 601 grid points, different tolerances) and removes the polish step added in step (i), but this is a continuation of tuning rather than a revert since it doesn't restore the original pre-step(i) values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: constraint tolerances (1e-6\u21921e-8), number of multi-start orientations (361\u2192601), initial R (4.0\u21924.5), maxiter (5000\u219210000), ftol (1e-12\u21921e-13), safety margins (1e-7\u21921e-10). Also removes polishing step which is a minor structural change, but dominant intent is parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite with a fundamentally different approach, not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite from a fixed honeycomb lattice with constrained optimization to a polyhex enumeration approach that generates compact configurations on a triangular grid and optimizes each. This crosses from geometric_construction to a combinatorial enumeration + optimization hybrid approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the polyhex enumeration approach with a completely different constrained non-linear optimization approach, which is an algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing approach: replaces polyhex grid enumeration with constrained nonlinear optimization. The previous code used geometric_construction (triangular grid enumeration + compactness scoring), while the new code uses a fundamentally different optimization-based approach. This crosses from geometric_construction to a numerical optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the optimization approach from step (i) by adjusting parameters (distance threshold for pairs, tolerance values, number of iterations) rather than reverting to the previous geometric construction approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: filtering contact graph to only adjacent pairs (search_space_change aspect), adding epsilon margins to constraints, increasing multi-start resolution, and adjusting tolerance/scaling constants. The dominant change is modifying the contact graph filtering which changes how the algorithm navigates the solution space, making this algorithm_refinement. Some parameter_tuning aspects (ftol, linspace points, epsilon values) are secondary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts the contact graph filtering back to all pairs (undoing the adjacent-only filter from step i), but it does not revert other changes from step i (epsilon margins, multi-start resolution, tolerance adjustments), and the approach of using all pairs is a different design choice rather than a full revert of step i.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Removes the distance threshold filter (norm < 2.0) for contact pairs, expanding from adjacent-only pairs to all pairs. This changes which constraints are active in the optimization. Also includes minor parameter tuning (ftol, epsilon values).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts parameters (number of linspace points, maxiter, epsilon values) without reverting the structural changes made in step (i) such as the removal of the distance threshold filter.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes number of init angles (361\u2192241), maxiter (5000\u219210000), and epsilon values (1e-9\u21921e-8). Primarily numeric constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (lattice-based exhaustive search vs constrained optimization), which constitutes an algorithm_switch rather than a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from constrained nonlinear optimization (physical_simulation/gradient_descent family) to exhaustive lattice-based geometric construction with lattice shape enumeration (geometric_construction family). Complete rewrite with fundamentally different approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts to a constrained nonlinear optimization approach (the approach used before step (i)), removing the lattice-based geometric construction code added in step (i) and restoring the prior optimization-based methodology.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a lattice-enumeration approach with exhaustive search over compact lattice shapes to a constrained nonlinear optimization approach with contact graph constraints. This crosses from geometric_construction family to an optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor parameter adjustments (tolerance, grid size, removing polish step) to the optimization approach introduced in step (i), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric constants (constraint tolerances removed, grid density 241\u2192361, maxiter 20000\u219210000, ftol 1e-15\u21921e-13) and removes a polishing step. The tolerance removal (1e-9\u21920) could be bug_fix or precision_handling, but combined with the other parameter changes and removal of the polish step, the dominant theme is parameter tuning with some algorithm_refinement (removing polish). Priority gives parameter_tuning since the structural removal is minor.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the 1e-9 constraint tolerances, reverts grid density from 361 back to 241, reverts maxiter from 10000 back to 20000, reverts ftol from 1e-13 back to 1e-15, and restores the polishing step\u2014all of which were changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: adds epsilon margins to constraints (numerical robustness), reduces search grid from 361 to 241 points, tightens ftol, adds polishing step, and adjusts safety margins. The dominant changes are structural refinements to the optimization process (polishing step, constraint margins), though parameter_tuning and precision_handling aspects are also present. The polishing step and constraint margin changes are structural enough to be algorithm_refinement rather than pure parameter_tuning.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the epsilon margins from 1e-9 back to 1e-6, restores the search grid from 241 back to 361 points, and removes the polishing step that was added in step (i), undoing the key changes introduced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes constraint tolerance from 1e-9 to 1e-6 and increases grid search points from 241 to 361. Also removes a polishing step, which leans toward algorithm_refinement, but the dominant changes are numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite (switching to exhaustive lattice search with NonlinearConstraint), not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a hand-designed honeycomb lattice with manual scaling to a systematic 2-ring hexagonal lattice enumeration (combinatorial search over lattice subsets) followed by SLSQP continuous optimization. This crosses from geometric_construction/hand_designed to a hybrid exact_solver/stochastic_search approach with exhaustive combinatorial enumeration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the combinatorial lattice enumeration approach with a different continuous optimization strategy (penalty-based with multiple random restarts), which is a new algorithm rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from exhaustive combinatorial lattice search to constrained nonlinear optimization with contact graph topology. Previous approach enumerated combinations from a 2-ring hexagonal lattice; new approach uses a fixed initial honeycomb cluster with contact graph extraction and SLSQP optimization. Both could be considered optimization-based but the overall structure and approach are fundamentally different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small precision/tolerance adjustments to the code from step (i) without reverting or removing the algorithm introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "precision_handling",
+      "confidence": 0.72,
+      "label_notes": "Changes epsilon values in constraint tolerances and scaling factors; also adjusts linspace endpoint. The epsilon tweaks dominate the diff, but the linspace change (360 to 361 with endpoint=True) is a minor parameter_tuning/search_space change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes epsilon values to different magnitudes (e.g., 1e-9 to 1e-6, 1e-11 to 1e-4/1e-5) and adjusts linspace from 361 to 241, which are further parameter tuning changes rather than reverting step (i)'s modifications back to their original values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numerical tolerance constants (1e-9\u21921e-6, 1e-11\u21921e-5/1e-4, 1e-4\u21921e-3), ftol (1e-14\u21921e-13), and number of multi-start orientations (361\u2192241). All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts most of step (i)'s parameter changes back to their original values: 241\u2192361, 1e-3\u21921e-4, 1e-5\u21921e-12, 1e-4\u21921e-11, restoring the tighter tolerances and higher multi-start count that step (i) had loosened.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: increased grid search resolution (241\u2192361), tightened validation tolerances (1e-3\u21921e-4), reduced safety margins in scaling (1e-4\u21921e-11). Also added early pruning (skip if >= best_R). The dominant changes are numeric constant adjustments, but the early pruning is a minor search_space_change. By priority, parameter_tuning fits the majority of changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (smooth_loss-based optimization), which is an algorithm_switch rather than a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver: replaces the previous approach (which used a specific geometric construction with fixed orientations and scaling) with a smooth relaxation-based optimization using log-sum-exp approximations for containment and separation constraints. This represents a fundamental change in the solving approach, moving from a geometric_construction family to a physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the smooth relaxation approach with a different optimization strategy using explicit geometric constraints and scaling, which is a new algorithm rather than a revert to the previous geometric construction approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver: previous code used smooth relaxation loss with gradient-based optimization and penalty terms; new code uses a fundamentally different parameterization and optimization approach with explicit geometric constraint handling. The structure is entirely different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small refinements to tolerances, iteration limits, and scaling logic within the same algorithmic framework introduced in step (i), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Multiple changes: relaxed constraint tolerances (1e-11 to 1e-7), removed compression factor perturbation in initialization, increased maxiter/tightened ftol, and fixed scaling logic. Mix of parameter_tuning and algorithm_refinement; the structural changes to initialization and scaling logic push it toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further refining the algorithm with separate adjacent/non-adjacent pair handling and tighter validation thresholds, rather than reverting the previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Separates adjacent vs non-adjacent pairs in constraint handling, changes constraint formulations (squared distance for non-adjacent), adjusts tolerances and validation thresholds. These are structural refinements within the same optimization approach (gradient-based/SLSQP).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the adjacent vs non-adjacent pair separation introduced in step (i), reverting back to treating all pairs uniformly, and removes the non-adjacent constraint handling code that was the core addition of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes constraint handling to apply adjacency constraints to all pairs (not just adjacent ones), increases search resolution from 361 to 721 orientations, and tightens epsilon from 1e-6 to 1e-9. The dominant change is the constraint reformulation (all pairs treated uniformly), which is a structural refinement within the same optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (vectorized bounding computation, different optimization strategy), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing scipy.optimize.minimize-based approach (gradient descent / physical simulation family) with a fundamentally different geometric construction approach using vectorized bounding hexagon computation, grid-based candidate generation, and minimize_scalar optimization over outer angle. This crosses algorithm families from physical_simulation/exact_solver to geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a completely different scipy.optimize.minimize-based constrained nonlinear optimization approach, which is a new algorithm switch rather than a revert to the previous minimize-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing solver: replaced a geometric bounding/support-function approach with a constrained nonlinear optimization (scipy.optimize.minimize) approach. The overall structure, variable naming, and solution strategy are fundamentally different, moving from a geometric_construction family to a physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the approach from step (i) by changing the pair filtering (all pairs instead of adjacent only), adjusting tolerances, and reducing the search grid, but it builds on and refines step (i)'s optimization approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "The most significant change is removing the distance filter on pairs (now considering all pairs instead of only adjacent ones), which changes the constraint set. Also includes parameter tuning (maxiter, ftol, grid resolution, epsilon values). The pair filtering removal dominates as it changes which constraints are active, effectively modifying the search space.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (epsilon margins, maxiter, ftol, fallback R value) without reverting the structural changes made in step (i) such as the all-pairs constraint approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Mix of epsilon/tolerance changes (1e-14\u21921e-13, 1e-12\u21921e-5, adding -1e-6 slack to constraints) and maxiter reduction. The constraint slack additions could be bug_fix if they prevent infeasibility, but they look more like numerical margin tuning. Dominant change is adjusting numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverses some slack values (1e-6\u21921e-9 instead of back to original, ftol 1e-13\u21921e-14 reverting toward original) but also makes independent changes (721 grid points, different scale/fallback values); this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes epsilon tolerances (1e-6\u21921e-9, 1e-5\u21921e-11, 1e-12), ftol (1e-13\u21921e-14), number of multi-start orientations (361\u2192721), and fallback R (4.5\u21924.0). All are numeric constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (using linprog and randomized lattice subcluster search), which is an algorithm_switch rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite switching from constrained nonlinear optimization (gradient_descent/physical_simulation family) to a honeycomb lattice enumeration approach with linear programming for bounding hexagon determination (geometric_construction/exact_solver family). This crosses algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb lattice enumeration + LP approach with a different constrained nonlinear optimization approach, which is a new algorithm switch rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a honeycomb lattice enumeration + LP-based approach to a constrained nonlinear optimization (scipy.optimize.minimize) approach. The previous code used random lattice subcluster enumeration with linear programming for containment; the new code uses direct continuous optimization of center positions with penalty-based objective. This crosses from an exact_solver/geometric_construction hybrid to a physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements and cleanups to the code introduced in step (i), such as renaming variables, removing redundant verification loops, and adjusting constants, rather than reverting to the previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "Primarily variable renaming (P\u2192proj, c\u2192beta, E\u2192exp_p, W\u2192softmax) and reorganizing the overlap check (moving it earlier, removing duplicate). Some minor numerical constant change (log(6)/c removal) could be algorithm_refinement, but the dominant changes are cosmetic/structural.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces algorithmic changes such as topological contact graph extraction with angle-based pair classification and additional non-overlap verification, rather than reverting the cleanup/renaming changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the constraint formulation from a soft-max (log-sum-exp) over all 6 directions to using a precomputed topological contact direction per pair, while adding a full verification pass. This is a refinement of the optimization approach within the same family (gradient_descent/physical_simulation).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach introduced in step (i) by filtering to adjacent pairs only, adjusting the search range, and tweaking optimizer parameters, rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes contact graph construction to only include adjacent pairs (distance < 2.0), modifies search range and initial R, and adjusts optimizer parameters. The dominant change is the adjacency filtering which modifies the constraint structure, but also includes parameter tuning aspects.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a substantially different algorithm (different initial configurations, different optimization structure, different constraint handling), which constitutes an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a geometric construction approach with SLSQP-based constrained nonlinear optimization over dense hexagonal lattice clusters. This crosses from geometric_construction family to exact_solver/optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and extends the SLSQP optimization approach introduced in step (i) rather than reverting it; both use constrained nonlinear optimization with scipy.optimize.minimize and SLSQP, just with different parameterizations and improvements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same family (geometric construction / constrained optimization). Changes initialization, constraint formulation, and post-processing safety scaling, but stays within the same general approach of constrained nonlinear optimization for hexagon packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the adjacency_constraints and adjacency_jac functions and makes other modifications, but this represents a further refinement of the algorithm rather than reverting to a previous state; it continues evolving the approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes adjacency constraints, relaxes tolerance thresholds in validation checks, adjusts optimizer parameters, and modifies initialization. Multiple changes but all within the same optimization framework (SLSQP-based constrained optimization). The dominant change is structural refinement of constraints and validation logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a fundamentally different multi-geometry search approach with hex coordinate generation, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Introduces multiple topological configurations (geometries) for initialization and restructures constraint handling, but stays within the same optimization-based approach (gradient descent / SLSQP). Also touches initialization and search space aspects, but the dominant change is refining the algorithm's structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the multiple geometries approach from step (i) and replaces it with a single dense lattice cluster plus a different search strategy (linspace over init_theta), which is a different algorithmic refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes initial geometry from multiple topological configurations to a single dense honeycomb cluster, modifies search grid (from 5 geometries \u00d7 31 angles to 1 geometry \u00d7 721 angles), tightens constraint tolerances, and adjusts bounds. Mix of initialization_change, parameter_tuning, and search_space_change, but dominant change is restructuring the approach within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a fundamentally different algorithm (different variable parameterization, different optimization strategy), which constitutes an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver. The previous code used constrained nonlinear optimization (scipy.optimize.minimize with structured initialization). The new code appears to use a stochastic search approach with random perturbations and scaling/finalization logic, representing a fundamentally different algorithmic structure.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

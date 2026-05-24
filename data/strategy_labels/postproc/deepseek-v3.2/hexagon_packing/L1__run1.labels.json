@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "deepseek-v3.2",
+  "level": "L1",
+  "run_id": "L1__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaced the initial generation with a completely different simulated annealing approach, which is an algorithm switch rather than a revert of a previous edit.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.92,
+      "label_notes": "Replaced a hand-designed geometric construction (fixed lattice arrangement) with a simulated annealing stochastic search approach, crossing from geometric_construction family to stochastic_search family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed the entire simulated annealing stochastic search approach from step (i) and replaced it with a hand-designed geometric construction, effectively reverting back to the geometric_construction family that step (i) had moved away from, with the agent's reasoning noting the previous approach 'resulted in invalid solutions'.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Replaced simulated annealing optimization with a hand-designed geometric construction (honeycomb lattice placement). This crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the geometric construction approach introduced in step (i) by fixing overlap issues and improving containment calculations, rather than reverting to the previous simulated annealing approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrite of the geometric construction approach with corrected lattice coordinates and proper containment calculation, staying within the geometric_construction family. Could also be bug_fix since the previous code produced intersecting hexagons, but the rewrite is more of a structural refinement than a targeted fix.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a significantly expanded version that adds helper functions, verification logic, and a different placement strategy, which constitutes an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Rewrites the packing logic with proper intersection checking and containment verification, adds SAT-like hexagon geometry helpers, and adjusts the arrangement to fix overlap issues. While it's a significant rewrite, it stays within the geometric_construction family. Could also be bug_fix since the primary motivation is fixing intersection violations, but the changes are structural enough to be algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot revert it; step (i+1) is a rewrite/algorithm switch replacing the existing code with a new optimization-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Replaces a hand-designed geometric construction with scipy differential_evolution (stochastic search) plus local optimization, crossing from geometric_construction family to stochastic_search family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) completely removes the scipy differential_evolution stochastic search approach from step (i) and replaces it with a hand-designed geometric construction using explicit coordinate calculations, effectively reverting to the family of approaches used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing optimization-based approach (differential_evolution/minimize with overlap checking) with a geometric construction approach using known hexagonal close-packing ring layout with binary search for outer radius. Crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s geometric construction with a different algorithm/approach rather than reverting to a previous state; the agent's reasoning mentions designing a 'new configuration' not reverting to an old one.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "[POSTPROC rule D] reclassified from algorithm_switch: Switches from a ring-based geometric construction (center + rings) with binary search for outer radius to a grid-based staggered row packing approach (3\u00d74 grid). Both are geometric_construction family, but the complete rewrite with fundamentally different placement strategy could be considered algorithm_refinement. However, the overall structure is so different (ring-based vs grid-based) that it borders on algorithm_switch. Given it's within the same family (geometric_construction), algorithm_refinement is more appropriate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3\u00d74 staggered grid approach with a 4-3-4-1 pattern arrangement, which is a different algorithm refinement rather than reverting to the previous ring-based approach from before step (i).",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagonal packing arrangement from a 3x4 staggered grid to a 4-3-4-1 pattern, changes spacing calculations, and modifies the outer hexagon sizing method. Both are geometric_construction approaches within the same family, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a substantially different arrangement approach (hexagonal lattice with optimization) rather than reverting to the previous code; it's a forward refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "Complete rewrite of the hexagonal packing arrangement strategy, but stays within the geometric_construction family. Changes the row pattern and containment calculation approach. Could be algorithm_switch if considered a fundamentally different construction, but both are geometric lattice-based constructions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different implementation including new helper functions and intersection checking, rather than reverting to a previous version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Major rewrite replacing the previous geometric construction approach (computing containment via cos-based distance formula) with a completely different approach using SAT-like vertex containment checks, separating axis theorem for intersection, and iterative scaling. The overall structure and methodology changed substantially.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a different algorithm (triangular lattice packing with point-in-polygon checks and incremental reduction) rather than reverting to the previous geometric construction approach; the agent's reasoning explicitly says it's exploring new packing configurations from scratch.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing approach - switches from one geometric construction method to a different lattice-based geometric construction with different containment checking (SAT-based polygon containment vs point-in-hexagon), overlap detection, and packing strategy. While both are geometric_construction family, the rewrite is substantial enough and changes the overall structure fundamentally. However, since both are within geometric_construction family, this could be algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by modifying the geometric construction details (e.g., switching from winding number to cross-product containment, adjusting packing parameters) rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Significant restructuring of the packing algorithm including new intersection checking, containment verification, and scaling approach, but remains within the geometric_construction family. Also includes changes to point_in_hexagon and hexagons_intersect functions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by refining parameters (lattice_spacing from 1.75 to 1.74), adding rotation optimization, and introducing an iterative overlap resolution loop, rather than reverting the previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes lattice spacing, second ring distance formula (sqrt(3)*spacing instead of 2*spacing), and adds a post-placement overlap resolution loop with push-apart logic. All within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the same geometric construction approach with modified parameters (lattice_spacing from 1.74 to 1.72, different layer arrangements, tighter margin), rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts lattice spacing, radial distances, and containment check logic within the same geometric construction approach. Changes are structural tweaks to the packing heuristic (layer distances, margin, containment loop) rather than just parameter values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (algorithm_switch), rather than reverting to a previous version of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a constraint-checking approach with a geometric lattice-based construction using known optimal arrangements (ring of 6 + inner ring of 6), combined with binary search for minimal outer hexagon side length. Crosses from stochastic/iterative refinement to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s geometric lattice approach with yet another different approach involving intersection checking and helper functions, which is a new algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the approach: replaces the previous geometric construction with binary search with a new approach using SAT-like vertex containment checks, separating axis theorem for intersection, and post-hoc scaling. The overall structure and methodology changed substantially, though both are in the geometric_construction family. Given the extensive rewrite with new helper functions and different logic flow, this leans algorithm_refinement but the scale of change is significant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the verification and adjustment logic from step (i) rather than reverting it; it keeps the same overall approach but improves the containment checks, intersection handling, and outer hexagon recomputation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the verification/adjustment logic: changes containment fix from 1.01 to 1.0005 scaling, replaces blanket intersection scaling with targeted pairwise separation, and recomputes outer hexagon side length more precisely from vertex geometry.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts step (i)'s refinements: restores the 1.01 containment scaling (from 1.0005), replaces the targeted pairwise separation with a blanket scaling approach, and removes the precise outer hexagon side length recomputation from vertex geometry.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Simplifies the post-placement verification/adjustment logic: replaces per-pair separation adjustment and vertex-based recomputation with simpler uniform scaling when intersections are detected. This is a refinement of the same verification/correction heuristic within the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a fundamental algorithm switch to a different packing approach, not a revert of step (i)'s refinement; it replaces the entire solution strategy rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite removing all geometric construction logic (hexagon vertices, containment checks, intersection tests, packing layout) and replacing with a trivial/degenerate solution returning just the outer hexagon data. This represents abandoning the previous geometric_construction approach entirely, likely as a reset before implementing a new strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely new and more elaborate approach with geometric helper functions (hexagon_vertices, point_in_hexagon, etc.) rather than restoring the code from before step (i); this is a different algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the packing approach: replaces a simple concentric ring placement with binary search by a detailed geometric construction using explicit hexagon vertex computation, SAT-based intersection checks, and a multi-ring layout with specific angular offsets. This crosses from a simple geometric_construction to a more elaborate geometric_construction with fundamentally different placement logic, but both are in the same family. However, the code is essentially rewritten from scratch with entirely different structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm from step (i) by modifying the containment calculation and fallback logic, but retains the same overall geometric construction approach with hexagon vertices, SAT intersection checks, and multi-ring layout.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Simplifies the containment checking and outer hexagon sizing logic within the same geometric construction approach. Replaces iterative centering/scaling heuristics with a direct minimal-R computation and simpler fallback handling.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no actual code changes were made despite the agent's reasoning about refinement",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; instead, step (i+1) introduces algorithm refinements to the existing code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts lattice spacing, second ring placement strategy, and margin parameters within the same geometric construction approach to achieve tighter packing",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same geometric construction approach with different parameter values and placement strategies rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adjusts lattice spacing, placement strategy for second ring, and containment/intersection correction logic within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters (margin factor from 1.0 to 1.001, correction factors from 1.0001/1.001 to 1.02) within the same approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.65,
+      "label_notes": "Changes margin/scaling constants (1.0001\u21921.02, 1.001\u21921.02, initial margin 1.001) and simplifies containment retry logic. Borderline between parameter_tuning and algorithm_refinement, but the dominant change is adjusting numeric constants for margins.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by refining the algorithm with new spacing calculations, layer placement logic, and intersection resolution, rather than reverting the previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Refines the hexagonal packing by adjusting spacing parameters, adding per-hexagon nudges, and replacing global scaling with pairwise intersection resolution. All changes are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different packing configuration and intersection resolution strategy, which is a normal algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Simplifies the intersection resolution strategy from targeted pair-wise nudging to uniform scaling, and adjusts the initial hexagonal lattice configuration. Both changes are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff \u2014 no code changes between previous and current step",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters (angle from 30 to 32, margin from 1.001 to 1.0005) and removes verification/scaling code, which is a refinement rather than a revert of step (i) which was a no-change step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes rotation angle from 30 to 32 degrees and margin from 1.001 to 1.0005, plus removes verification/adjustment code. The parameter changes are the primary optimization intent, but removing the verification loop is also significant (could be seen as algorithm_refinement). Picked parameter_tuning since the dominant changes are numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the rotation angle from 32 to 15 degrees and the margin from 1.0005 to 1.0001, which are new parameter values rather than restoring step (i)'s previous values of 30 degrees and 1.001; this is a different parameter tuning attempt, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes rotation angle from 32.0 to 15.0 degrees and scaling margin from 1.0005 to 1.0001 \u2014 both are numeric constant changes with no structural algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rotation angle from 15.0 back to 30.0 degrees (which was the value before step (i) changed it from 32.0 to 15.0, approximately restoring the prior range) and reverts the margin from 1.0001 back to 1.001, undoing both parameter changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes rotation angle from 15 to 30 degrees and adds verification/adjustment logic for containment and intersection. The rotation angle change is a parameter tweak but the added verification with scaling adjustments is a structural refinement to the packing algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the scale_factor parameter from 1.001 to 1.05 and simplifies comments; it does not remove the verification/adjustment logic added in step (i) nor restore any previously removed code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes the scale_factor constant from 1.001 to 1.05 when resolving intersections, which is a numeric constant change. Also removes comments (minor cleanup).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning it made no changes at all, so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes between steps",
+      "was_reverted": false,
+      "revert_reason": "Step (i) had no changes (empty diff), and step (i+1) makes algorithm refinements to the existing code, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts outer ring positions inward, changes rotation angle from 30 to 15 degrees, reduces margins and scale factors - all refinements within the same geometric construction approach to improve packing density",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts outer ring positions back outward and changes scale factors, but this is a further refinement of the same approach rather than a revert of step (i)'s changes; the overall structure and algorithm remain the same with different parameter values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts positions of outer ring hexagons, changes rotation angle from 15 to 30 degrees, tweaks margins and scale factors - all within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the same geometric approach with adjusted coordinates and a new overlap resolution mechanism, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusts initial positions of outer ring hexagons inward, changes rotation angle, and adds a repulsive force post-processing step to resolve intersections. This is a refinement of the geometric construction approach with added force-directed separation, staying within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rotation and repulsive force approach with a different containment-check and scaling approach, which is a different algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adjusts initial positions of hexagons (nudging inward), changes rotation angle, and modifies the post-placement adjustment logic (replacing iterative repulsion with simpler scaling). All within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the rotation angle from 30 to 0 and replaces the simple scaling overlap fix with iterative repulsion, but this is a different refinement approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes rotation angle from 30 to 0 degrees, reduces margin, and replaces global scaling for intersection resolution with local micro-adjustment pushes. All within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the same approach with incremental changes to the rotation logic and intersection resolution, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Simplifies the containment verification loop and changes the intersection resolution strategy from iterative push-apart to a single-pass surgical shift, both within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the single-pass surgical shift with a different scaling-based intersection resolution approach and adds a 30-degree rotation, which is a different algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a 30-degree rotation of the configuration and simplifies the containment/intersection correction logic. The core approach (geometric construction with manual coordinate placement) remains the same family, but the rotation and correction strategy are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines parameters and restructures the verification logic but does not remove or undo the core changes (30-degree rotation, coordinate placement) introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "Changes margin multiplier from 1.0005 to 1.0001 and adjustment factors from 1.005/1.02 to 1.001. Also restructures the verification loop to break early, but the dominant change is reducing numeric constants. The early-break is a minor optimization that doesn't change semantics significantly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further algorithm refinements to positions and adjustments rather than reverting step (i)'s parameter changes; it builds on the previous approach with different position tweaks and changes the scale_factor back to 1.02 but as part of a broader restructuring, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusting hexagon positions and intersection-handling logic within the same geometric construction approach to fix overlaps and improve packing quality",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the hexagon positions and intersection-handling logic with different coordinate values and a new pairwise push-apart mechanism, which is a continuation of the algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts hexagon positions slightly and adds a post-hoc intersection resolution loop that pushes overlapping hexagons apart. This is an intra-family refinement of the geometric construction approach with added repair heuristic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the positions and intersection resolution approach with a different refined algorithm (new coordinates, different overlap resolution strategy, and a final optimization step), which is a normal algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Tweaks hexagon positions slightly, changes overlap resolution strategy, and adds a tighter final outer side length computation. All within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (slightly different position values, smaller scale factors and margins) rather than reverting step (i)'s changes; this is incremental tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Small numeric adjustments to position coordinates and scaling factors (margins, adjustment multipliers) without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to positions and adds a new grid-search optimization loop for translation, which is a refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Combines small parameter tweaks (coordinate adjustments, rotation angle change from 30 to 29.5 degrees) with a new grid-search fine-tuning step to find optimal translation offset. The grid search is a structural addition within the same geometric construction family, making this algorithm_refinement rather than pure parameter_tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-search fine-tuning approach with a different final optimization method and adjusts coordinate parameters, which is a different approach rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Small numeric coordinate adjustments (e.g., 1.736\u21921.738, 1.503\u21921.505) and rotation angle change (29.5\u219230), plus simplification of the grid search optimization to a direct computation. The coordinate tweaks are parameter tuning, but the removal of the grid search optimization loop is an algorithm_refinement. Parameter tuning is the dominant change by volume.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments (e.g., 1.738\u21921.737, margin changes) rather than reverting step (i)'s changes; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Small numeric adjustments to hexagon positions (e.g., 1.738\u21921.737, 1.505\u21921.504, 2.607\u21922.605) and margin multipliers (1.0001\u21921.00001, 1.00005\u21921.0005). These are fine-tuning of coordinate constants and epsilon values rather than structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approximate numeric constants from step (i) with more precise mathematical values (e.g., 1.737\u21921.73205 which is exact sqrt(3)) and refines the containment calculation logic, which is a different refinement approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Fine-tuning hexagon positions to exact lattice coordinates (e.g., sqrt(3) values), adding tiny separation factor, and adjusting outer hexagon margin calculation. All within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes between steps",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), and step (i+1) makes parameter tuning adjustments, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: separation from 1e-4 to 1e-6, rotation angle from 30.0 to 29.8, and a coordinate nudge from 3.0 to 3.0001. All are scalar constant tweaks with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts one change from step (i) (3.0001 back to 3.0) but makes different new changes to other parameters (separation, margin factors), so it is a continued parameter tuning iteration rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: separation 1e-6\u21921e-5, rotation angle 29.8\u219230.0, margin multipliers 1.0001\u21921.000001, adjustment factor 1.0005\u21921.00001, and position coordinate 3.0001\u21923.0. All are scalar constant tweaks with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different values (e.g., rotation 30.0\u219229.5, margin 1.000001\u21921.0000001, and modified position coordinates) rather than reverting to step (i)'s previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes are primarily numeric constant adjustments: slight tweaks to lattice coordinates (1.73205\u21921.7322, 0.866025\u21920.8661, etc.), rotation angle (30\u219229.5), separation factor, and margin multipliers. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes many of the same numeric constants that step (i) tuned but to different values, representing continued parameter tuning rather than reverting to pre-step(i) values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "Changes numeric constants: positions to exact lattice values, rotation angle from 29.5 to 30.0, separation factor, and margin multipliers. Also adds a final pass for tighter outer hexagon computation which is a minor algorithm_refinement, but the dominant changes are numeric constant adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff indicates no code change was made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) introduces new algorithm refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the rotation angle from 30 to 45 degrees and adds a search over outer hexagon rotation angles to find the minimal enclosing hexagon. This is a refinement of the existing geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the approach by adding a separation factor and simplifying the outer angle search rather than reverting step (i); it builds on step (i)'s structure with different parameter choices and removes the angle optimization loop, which is a different algorithmic refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Applies a small scaling factor to lattice positions to fix intersection issues and recomputes outer hexagon containment more carefully. The core approach (hexagonal lattice packing) remains the same family, but the containment calculation and spacing are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the separation-based scaling approach with explicit hardcoded positions, which is a different refinement strategy rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Restructures the hexagonal lattice positions to use exact lattice coordinates with a smaller separation factor (1e-5 vs 0.001), and simplifies the containment computation. All changes are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the separation parameters and margin values introduced in step (i), applying differential separation to core vs outer ring hexagons rather than reverting the changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes separation values (1e-5 to 1e-6/3e-6), rotation angle (30.0 to 30.0001), and safety margins (1.0000001 to smaller values). While there's a structural change splitting core vs outer ring separation, the dominant changes are numeric constant tweaks.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the split core/outer-ring separation logic from step (i) with a different uniform separation approach and adjusts parameters differently, which is a normal algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes separation constants (1e-6/3e-6 to 1e-4), scale factors (1.001 to 1.0001), margin multipliers (1.0000001 to 1.000001 and back), and rotation angle (30.0001 to 30.0). Also adds a debug print (harness-like) and a tiny global shift, but the dominant changes are numeric constant adjustments.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts most of step (i)'s parameter changes: separation back from 1e-4 to 1e-5, scale_factor back from 1.0001 to 1.001, margin multiplier back from 1.0000001 to 1.000001, and rotation angle changed from 30.0 back to 0.0, effectively undoing the tuning done in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: separation 1e-4\u21921e-5, rotation angle 30\u21920, scale_factor 1.0001\u21921.001, margin multipliers adjusted. Also removes a small global shift and a debug print, but the dominant changes are parameter values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the rotation angle back to 30 degrees (which was the value before step (i)), but it also adds substantial new code including centroid shifting, scaling optimization loops, and other algorithmic refinements, making this a different approach rather than a simple revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes rotation angle from 0 to 30 degrees, adds centroid recentering, adds more thorough containment and intersection checks, and refines the outer hexagon side length computation. All within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the rotation angle back from 30 to 0 degrees but also makes other independent refinements (margin adjustments, variable renaming, etc.), representing parameter tuning rather than a full revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Primary changes are adjusting numeric margin constants (1.000001 \u2192 1.00000001, 1.00001 \u2192 1.0000001, etc.) and changing rotation angle from 30.0 to 0.0. Also removes intersection-check scaling code. Could be algorithm_refinement due to removing the intersection scaling logic, but the dominant intent is tightening numeric margins.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the rotation angle from 0.0 to 29.8 and increases separation from 1e-5 to 1e-3, which partially undoes step (i)'s changes but also introduces new logic (shifting hexagons apart, break symmetry comment); this is a different approach to solving intersection issues rather than a straightforward revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: separation parameter increased (parameter_tuning), rotation angle changed (parameter_tuning), intersection handling logic refined (algorithm_refinement), margin adjusted. The dominant change is the refined intersection resolution strategy (shifting specific hexagons instead of uniform scaling) plus rotation angle change, which together constitute algorithm refinement within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm refinement (different spacing strategy, different overlap resolution via uniform scaling), which is a normal algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the hexagonal lattice spacing with epsilon gaps and changes the intersection-handling strategy from pairwise shifting to uniform scaling, both within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a fundamentally different algorithm (binary search on outer radius, different overlap checking, fallback grid), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from a previous approach to a new systematic geometric construction with local search refinement. The code is entirely restructured with new placement strategy (ring-based geometric construction + random perturbation optimization), which represents a fundamentally different approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) with modified helper functions, different containment checks, and tighter margins, but maintains the same overall geometric construction + optimization strategy rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Significant rewrite of the packing logic with refined geometric construction, tighter margins, and overlap-checking with scaling correction. Stays within geometric_construction family but restructures the approach substantially.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the algorithm with different spacing values and an angle-optimization approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the hexagonal lattice positioning by parameterizing spacing values and improving the outer side length computation with rotation-aware vertex checking, all within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies lattice spacing values and outer side length computation approach differently from step (i), representing parameter tuning rather than reverting; it does not restore previous code or remove most of step (i)'s additions.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes lattice spacing values from slightly padded (1.7321, 1.5001) to exact mathematical values (sqrt(3)=1.73205, 1.5), and tightens margin multipliers (1.0000001 \u2192 1.00000005). Also restructures final computation but the dominant change is numeric constant tuning.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the exact mathematical values (sqrt(3)=1.73205, 1.5) back to slightly padded values (1.73206, 1.5001) similar to what existed before step (i), and removes the uniform separation scaling that step (i) had kept, effectively undoing step (i)'s precision tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusting coordinate values by tiny amounts and removing the uniform separation scaling factor. The changes are to numeric constants (positions and removal of a small scaling factor) rather than structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining numeric constants with slightly different values and adds new logic (radial epsilon shift), rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts coordinate precision to exact lattice values, adds radial epsilon-based outward shift for gap creation, and refines containment/intersection handling with smaller scale factors. All within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the epsilon-based outward shift approach with a different strategy (adjusting specific hexagon positions inward and using a larger scale factor), which is a different algorithmic refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts specific hexagon positions (nudging inward/downward), changes separation epsilon, adds extra rotation angle, and tweaks margin multipliers \u2014 all within the same geometric construction approach to improve packing tightness.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different algorithm (algorithm_switch), not reverting to a prior state; it's a new strategy rather than undoing step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite of the packing approach with a fundamentally different strategy, replacing the previous geometric construction and intersection-checking approach with what appears to be a different optimization methodology",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different algorithm, which is a normal algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a geometric construction with manual adjustments and vertex-checking to a hexagonal lattice-based approach with optimized spacing. The overall strategy shifts significantly, though both are geometric_construction family. Given the 'complete rewrite' with different overall structure, this leans algorithm_switch, but could be algorithm_refinement since both are geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a different algorithm approach (with helper functions, containment checks, and different arrangement strategy), not a revert of step (i)'s lattice-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a simpler geometric construction to a detailed approach with SAT-like containment/intersection checks, vertex-based minimal outer side computation, and iterative scaling. The code structure is fundamentally different, introducing new geometric primitives and a different solution strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning adjustments (changing separation values, scale factors, and margin multipliers) to the code introduced in step (i), rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes are primarily numeric constant adjustments: lattice positions with slightly different epsilon values, rotation angle from 30.0 to 29.5, separation from 1e-4 to 1e-5, and various margin multipliers reduced. Some minor structural change (scaling loop added), but dominant intent is tightening numeric parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (some values tightened, some loosened) rather than reverting step (i)'s changes; it continues tuning in the same direction with different numeric choices.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes are primarily to numeric constants: coordinate precision (1.73206\u21921.732051), separation factor (1e-5\u21921.000001), rotation angle (29.5\u219230.05), and various margin multipliers. Some could be seen as algorithm_refinement but the dominant changes are scalar constant adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (tightening margins further) rather than reverting step (i)'s changes; some coordinate values changed slightly but the overall approach remains the same.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes are primarily to numeric constants: separation factor, scale factors, margin multipliers, rotation angle, and minor coordinate precision adjustments. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting numeric constants (separation, scale_factor, margins) to different values rather than reverting step (i)'s changes; it builds on the same approach with modified parameters.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (separation factor, scale factors, margins) and adds small fixed perturbations to specific hexagon positions. The perturbations are hardcoded numeric shifts (0.001) rather than structural algorithm changes, making this primarily parameter tuning, though the added perturbation lines could be seen as algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed the perturbation lines added in step (i) for hexagons 2 and 8, restored the smaller separation factor (1e-5 vs 1e-3), and removed the associated comments, effectively undoing the key changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "Reduces separation factor from 1e-3 to 1e-5 and removes ad-hoc perturbation shifts. The perturbation removal could be algorithm_refinement, but the dominant change is tuning the separation parameter for tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) re-introduces ad-hoc perturbation adjustments and changes the rotation angle, which is a different refinement approach rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds fine-tuning position adjustments and tweaks rotation angle from 30 to 29.5 degrees. The adjustments are hand-designed perturbations within the same geometric construction approach. Could also be parameter_tuning for the angle change, but the addition of per-hexagon adjustments is structural.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes all the fine-tuning position adjustments added in step (i) and reverts the rotation angle from 29.5 back to 30.0 degrees, restoring the code to its pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes fine-tuning position adjustments and changes rotation angle from 29.5 to 30.0 degrees. This is a simplification/refinement of the existing geometric construction approach, adjusting how the packing configuration is rotated and removing per-hexagon perturbations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the uniform separation approach from step (i) with targeted per-hexagon adjustments and different scale factors, which is a different algorithmic refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces uniform scaling with targeted per-hexagon positional adjustments to fix specific intersection pairs, plus tighter margin constants. This is a heuristic refinement within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies positions, scaling logic, and margin constants differently from step (i) rather than restoring previous code; it's a continued refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Primary changes are increasing precision of numeric constants (e.g., 1.732\u21921.73205, 2.598\u21922.598075) and adjusting margin multipliers (1.00000005\u21921.000001, 1.00000001\u21921.00000005). Some minor code restructuring of the intersection-handling loop, but dominant intent is numeric constant refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different position values and tighter margins (1.000000001 vs 1.00000005), representing a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are rounding coordinate values to fewer decimal places and tightening the margin multiplier from 1.000001/1.00000005 to 1.00000001/1.000000001. These are numeric constant adjustments rather than structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes positions significantly (different coordinate values, different number of entries) and adjusts margins to different values (1.000001 and 1.00000005 vs step i's 1.00000001 and 1.000000001), representing a different parameter tuning approach rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes are primarily about using more precise numeric constants (e.g., 1.7321\u21921.73205, 0.86603\u21920.866025) and adjusting margin multipliers (1.00000001\u21921.000001, 1.000000001\u21921.00000005). Also removes some perturbation logic, which leans toward algorithm_refinement, but the dominant change is numeric precision of constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes different parameters (scale factor from 1+1e-5 to 1.0005, rotation from 30\u00b0 to 0\u00b0) rather than reverting step (i)'s numeric precision changes to constants like 1.73205 and 0.866025, which remain intact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes separation scale factor from 1+1e-5 to 1.0005 and rotation angle from 30 to 0 degrees. These are numeric constant changes, though the rotation change could be seen as algorithm_refinement. The dominant changes are to scalar parameters.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rotation angle back to 30 degrees (from 0 set in step i) and reverts the separation scale approach back to a small additive gap, undoing step (i)'s parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: tiny radial shift for outer ring hexagons, reduced separation scale factor (1.0005 \u2192 1.000005), and rotation angle changed from 0 to 30 degrees. These are all intra-family refinements to the geometric construction approach, tweaking placement parameters and orientation to improve packing density.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removed the radial shift code added in step (i) and changed the separation parameter, but also kept the rotation angle change from step (i); this is a partial rollback combined with further tuning, not a full revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Removes a small radial shift loop and changes the separation constant from 5e-6 to 1e-5. The radial_shift removal could be seen as algorithm_refinement, but the dominant change is tuning the separation parameter.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues tuning parameters in the same direction (tightening margins) rather than reverting step (i)'s changes; the separation changed from 1e-5 to 1.5e-5 which is a further adjustment, not a revert to the original 5e-6.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "All changes are adjustments to numeric constants (separation, scale factors, margins) with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts numeric constants to different values than step (i), but does not restore previous values or undo step (i)'s changes; it continues parameter tuning in a forward direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "All changes are adjustments to numeric constants (separation, scale factors, margins) with no structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff indicates no code change was made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) introduces new algorithm refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Removes rotation, tightens containment adjustment factor, and adds a final intersection-check-and-scale pass \u2014 all refinements within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) re-introduces a 30-degree rotation and modifies the containment logic, which is a different algorithmic refinement rather than a revert of step (i)'s changes; it does not restore step (i)'s removed code or explicitly undo it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds a 30-degree rotation to the configuration for better outer fit, simplifies the outer hexagon side length computation, adjusts margin parameters, and removes a redundant final intersection check. These are structural tweaks within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a code cleanup that removes duplicate lines, adds debugging info (intersecting_pair), and adjusts parameters, but does not restore removed code or undo the changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "code_cleanup",
+      "confidence": 0.45,
+      "label_notes": "Removes duplicate numpy array conversion (minor bug/dead code), adds more comments, slightly changes margin constant (1.000000001 to 1.000001 and scale_factor 1.001 to 1.00001). The margin/scale changes are parameter_tuning, but the dominant visible change is cleanup (removing duplicate line, adding comments, adding debug variable). Mixed between code_cleanup and parameter_tuning; picking code_cleanup by judgment that the duplicate removal and comment additions dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the scale_factor back from 1.00001 to 1.001 and removes the debug variable, but does not restore the duplicate numpy conversion or other cleanup changes from step (i); it's a partial parameter adjustment, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes the scale_factor constant from 1.00001 to 1.001 and removes an unused variable. The dominant change is the numeric constant adjustment.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new code (a microscopic outward radial shift) on top of step (i)'s changes without removing or undoing any of step (i)'s modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a microscopic outward radial shift post-rotation to ensure no overlaps from floating point issues. This is a minor refinement within the existing geometric construction approach, not a bug fix since it's a preventive measure rather than fixing an observed crash/wrong output.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding centroid recentering logic and restructuring the final computation, but does not remove or undo the core changes from step (i); it's a further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces the epsilon-based radial shift with centroid-based recentering before rotation and computes minimal outer side length from vertex constraints instead of iterative enlargement. Both changes refine the existing geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the centroid-based recentering logic that step (i) introduced and reverts to the simpler rotation-only approach, and also removes the vertex-based minimal outer side length computation in favor of the old iterative containment-check enlargement method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "The change reduces the separation parameter from 1e-5 to 1e-6 and simplifies the outer hexagon side length computation. The separation change is parameter tuning, but the removal of the vertex-based outer side length computation and replacement with a containment-check approach is an algorithm_refinement. Since the parameter change and the structural change to how outer_hex_side_length is determined both matter, this is borderline. The removal of centroid-centering code and the vertex-based max_R computation constitutes a structural change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the separation parameter back to 1e-5 (reverting that specific change) but also introduces significant new code for explicit intersection checking and micro-adjustments, making it a different approach rather than a simple revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Moves intersection resolution earlier (before outer hexagon computation), changes separation parameter, and adjusts the containment scaling factor. These are structural refinements within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the approach by introducing a scale-based separation and restructuring the intersection resolution, but it does not restore step (i)'s removed code or undo its changes; it builds upon the same framework with different parameter choices and logic flow.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces the pairwise overlap-correction loop with a uniform scaling approach and adds a post-hoc intersection check with minimal scale-up. Both changes refine the geometric construction approach without switching algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the scaling multiplication and 30-degree rotation from step (i) and replaces them with a different approach (unscaled exact lattice positions with post-hoc scaling), which is a refinement rather than a revert of the previous step's overall changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Removes the 30-degree rotation of the configuration and changes the order of operations (scale after defining positions instead of during), which is a structural tweak to the geometric construction approach within the same family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i) removed the 30-degree rotation, and step (i+1) re-adds the exact same 30-degree rotation that was removed, restoring the code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a 30-degree rotation to the packed configuration as a heuristic refinement to improve outer hexagon fit, staying within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice construction with a different parameterization (explicit gap variable, different spacing formulas) rather than reverting to a pre-step(i) state; the 30-degree rotation from step (i) is retained, and the approach is a further refinement, not an undo.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the hexagonal lattice packing by parameterizing spacing with an explicit gap variable and recomputing positions from formulas rather than hardcoded values. Same geometric construction family, just cleaner lattice computation with a tuned gap parameter.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice computation approach from step (i) with a different explicit coordinate listing and scaling method, which is a different approach to the same problem rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "The change replaces parameterized spacing formulas with hardcoded exact lattice coordinates and reduces the gap from 0.00012 to 1e-5. While coordinates are rewritten, they represent the same hexagonal lattice pattern with tighter numeric constants. Borderline with algorithm_refinement since the coordinate computation approach changed, but the core layout strategy (hexagonal lattice + rotation) is identical.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the positions and adds a collision-resolution loop, representing a different refinement approach rather than reverting the hardcoded coordinates from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the overlap resolution strategy from uniform scaling to pairwise separation shifts, and recomputes outer side length more precisely after adjustments. Both changes are within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the positions array and adds a safety check but does not restore previous code or remove most of step (i)'s additions; it continues refining the algorithm with a different set of coordinates and additional logic.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adjusts hexagon positions slightly, adds binary search for minimal outer side length, and adds intersection safety check with expansion fallback. These are refinements within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some code added in step (i) (perturbation for hexagon 8, binary search, safety check with expansion) but also removes code that predated step (i) (hexagon 2 adjustment after rotation), and the agent's reasoning describes this as targeted refinement to remove instability-causing adjustments rather than reverting; this is an algorithm refinement that strips problematic additions while keeping the core approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Removes post-hoc perturbation/adjustment heuristics and binary search tightening, simplifying the packing algorithm while keeping the core geometric construction intact",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter adjustments (changing coordinate precision, separation factor, adding centroid-based shifting) rather than reverting the simplifications made in step (i); the core algorithm structure from step (i) remains intact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes are primarily small numeric adjustments to coordinate values and separation parameter, plus adding a centering shift. Could also be algorithm_refinement due to the added centroid-based shift logic, but the dominant changes are numeric constant tweaks.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies coordinate values and adds an iterative scaling loop, which is a different algorithmic refinement approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines initial positions to exact lattice coordinates, reduces separation gap, and adds iterative intersection-resolution loop with smaller scaling increments. All changes are within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) simplifies comments and restructures the intersection-resolution logic (replacing the iterative loop with a single-pass check and one-time scaling), which is a code cleanup/simplification rather than a revert of step (i)'s approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "code_cleanup",
+      "confidence": 0.62,
+      "label_notes": "The change simplifies the intersection-check loop from a multi-attempt iterative scaling approach to a single-pass check with one-shot scaling. The comment is also simplified. This is mostly a simplification/cleanup of the repair logic, with a minor parameter change (1.00001 repeated vs 1.001 once), but the structural simplification dominates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a small rotation offset parameter on top of step (i)'s code; it does not remove or restore any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only the rotation angle constant by adding 0.1 degrees, a numeric constant tweak with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding new code (inward radial shifts for outer ring hexagons) and further tightening margins, rather than reverting the rotation angle change from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "The changes are primarily numeric constant adjustments: inward shift of 0.003, separation from 1e-5 to 1e-6, removing the 0.1 degree rotation offset, and tightening margin multipliers. While the radial inward shift loop is new code, it's a small empirical nudge (0.003) that acts as parameter tuning of positions rather than a structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the inward shift loop added in step (i) but also makes other changes like adjusting separation, margin calculations, and adding a containment verification pass, representing a different approach rather than a simple revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "Primary intent is fixing intermittent intersection between hexagons 2 and 8 that caused score=0.0 failures. Changes include increasing separation from 1e-6 to 2e-4, adding containment verification, and adjusting rotation angle. The dominant motivation is fixing a correctness defect (overlapping hexagons).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the separation increase (2e-4 back to 1e-5), the rotation angle change (29.8 back to 30.0), and removes the containment verification loop that step (i) added to fix the intersection bug.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adjusts separation parameter, rotation angle, adds targeted position shift for hexagon 2, and simplifies outer hexagon sizing logic. Multiple small refinements to the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the targeted shift for hexagon 2 added in step (i) but replaces the intersection correction logic with a different approach (scaling the whole configuration), which constitutes a different algorithmic strategy rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Replaces per-pair corrective shift logic with a simpler global scaling approach when intersections are found, and removes a hardcoded shift for hexagon 2. This is a refinement of the overlap-resolution heuristic within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (separation, margins) to smaller values, which is a continuation of the optimization approach introduced in step (i), not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "All changes are purely numeric constant adjustments: separation factor, margin multipliers, and adjustment factors are made smaller.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) increased the numeric constants (separation, margins, adjustment factors) back toward larger values, effectively undoing the reductions made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants (separation, margin multipliers) without any structural code change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new centering logic and adjusts margin constants differently rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "The main changes are tightening numeric margin constants (1.000001\u21921+1e-7, 1.00001\u21921+1e-6). There's also a centering shift added which could be considered algorithm_refinement, but the dominant changes are parameter adjustments to margins.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the positions array and adds a binary search refinement, which is a different algorithmic approach rather than reverting step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Hand-tuned position adjustments and added binary search for tighter outer hexagon margin. Combines parameter_tuning of positions with algorithmic refinement (binary search for margin). The binary search addition tips it toward algorithm_refinement over parameter_tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned positions and binary search approach from step (i) with a different set of positions and a simpler margin calculation, which is a different approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusts numeric coordinate values slightly (e.g., 1.501\u21921.5, 1.7325\u21921.73208, 3.002\u21923.0001) and tightens margin multipliers (1e-7\u21921e-6, then 1.00000005). These are small numeric constant changes rather than structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the manually tuned coordinates from step (i) with exact lattice values plus a uniform separation scaling and a 30-degree rotation, which is a different algorithmic approach rather than a revert of step (i)'s parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adjusts coordinate positions to exact lattice values, adds a tiny uniform separation scaling, and applies a 30-degree rotation for better outer fit. These are refinements within the same geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the uniform scaling overlap fix with a pairwise push-apart mechanism, which is a different approach to the same problem rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes overlap resolution from uniform scaling to surgical pairwise push-apart, and adjusts comments/spacing in initial positions. Both are refinements within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a local search optimization loop over translations rather than reverting the previous changes; it retains the core structure and refines the approach further.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the hexagon packing by cleaning up coordinate comments, removing the radial shift approach, and adding a small 2D grid search over translations to minimize the bounding hexagon side length. All changes stay within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid search and separation approach with a different optimization strategy (angle search and tighter margin), which is a normal algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes rotation angle from 30\u00b0 to 29.8\u00b0, removes uniform separation scaling, adds manual translation offset, and modifies the outer hexagon search/optimization approach. These are intra-family refinements to the geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a different approach (uniform expansion factor, different position values, different outer hexagon computation) rather than reverting to a prior state; it's a continued refinement with a new strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Introduces a small expansion factor to lattice positions to prevent intersection errors, adjusts margin constants, and removes redundant recomputation of max_distance. These are refinements within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the expansion factor approach with a separation parameter and adjusts rotation angle, which is a different parameterization strategy rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes expansion factor from 1.0001 to 1+1e-6, rotation angle from 30.0 to 29.9, and adjustment multiplier from 1.00001 to 1.000001 \u2014 all numeric constant tweaks to tighten the packing",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different values rather than reverting step (i)'s changes; it modifies separation from 1e-6 to 1e-5 and adjusts margins differently, representing further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes rotation angles (29.9\u219230.0+0.5), separation (1e-6\u21921e-5), and margin multipliers (1.000001\u21921+1e-8, etc.). While there are two rotation steps instead of one, the net rotation is similar (30.5 vs 29.9) and the dominant changes are numeric constants. Could also be algorithm_refinement due to splitting rotation into two steps.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (changing margins from 1e-8/1e-9 back toward 1.000001/1.00000005 and modifying rotation logic) rather than reverting step (i)'s changes; it's a continuation of tuning, not a revert.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Removes the extra 0.5-degree rotation and adjusts margin constants (1e-8 to 1.000001, 1e-9 to 1.00000005). The rotation removal could be seen as algorithm_refinement, but the dominant changes are numeric constant tweaks to margins and separation values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the rotation angle from 30.0 to 0.0 and replaces the vertex-checking approach with a different analytical method for computing the bounding hexagon, which is a different algorithmic refinement rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes rotation angle from 30\u00b0 to 0\u00b0 and replaces vertex enumeration with analytical bounding hexagon computation. Both are refinements within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) fixes a bug in step (i) by reverting the analytical bounding computation back to vertex enumeration, but also changes the positions array with different coordinates, making it a bug fix with modifications rather than a pure revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "Agent explicitly states fixing a 'local variable referenced before assignment' error from a recent attempt. The code changes include fixing the vertex computation logic (replacing manual bounding box estimation with actual vertex enumeration via hexagon_vertices), which resolves the scope/reference bug. Also includes minor parameter adjustments but the primary intent is fixing the error.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm with a different hexagon layout and adds intersection-checking logic; it does not restore previous code or undo step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusts hexagon positions to a new triangular arrangement, adds post-hoc intersection checking with scaling correction, and tweaks containment margins. Multiple changes but all within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a different systematic layout approach rather than reverting to a previous configuration; it's an algorithm refinement building on the same problem with a new arrangement strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts hexagon positions in the lattice layout and removes post-hoc intersection scaling logic; stays within the geometric_construction family with refined placement coordinates and tighter margins.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks numeric parameters (separation, rotation angle, scale factors) from step (i) without removing or restoring any code; this is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: separation (1e-5\u21921e-7), rotation angle (30.0\u219230.1), adjustment multiplier (1.00001\u21921.000001), scale factor (1.001\u21921.00001). All are scalar parameter tweaks with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some parameter changes from step (i) (e.g., angle back to 30.0, separation changed to a different value) but also adds substantial new code (grid search optimization for shifting), making it an algorithm refinement rather than a simple revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a brute-force grid search for optimal centering shift, adjusts separation/margin parameters, and tweaks rotation angle. These are refinements within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (separation, rotation angle, margin) rather than reverting the brute-force grid search or other changes introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes three numeric constants: separation from 5e-6 to 4.5e-6, rotation angle from 30.0 to 0.0, and margin multiplier from 1.000001 to 1.0000001. All are scalar parameter adjustments.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores all three parameter values (separation=5e-6, angle_rotate=30.0, margin=1.000001) back to their pre-step(i) values, directly undoing step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes separation from 4.5e-6 to 5e-6, rotation angle from 0 to 30 degrees, and margin multiplier from 1.0000001 to 1.000001. While the rotation angle change could be considered algorithm_refinement, all changes are numeric constant tweaks.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the overlap-resolution logic to use radial expansion from center of mass instead of uniform scaling, which is a different algorithmic approach rather than reverting step (i)'s parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the overlap-resolution strategy from uniform scaling to radial expansion from center of mass, with a smaller scale factor. This is a refinement of the existing post-processing overlap correction within the same algorithmic family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the radial expansion from center of mass approach introduced in step (i) back to uniform scaling (multiplying coordinates directly), restores the removed diagnostic comment removal, and increases the separation parameter back to a larger value, effectively undoing the core algorithmic change of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (separation from 5e-6 to 1e-4, scale_factor from 1.0002 to 1.001) and simplifies the radial expansion to uniform scaling. The dominant change is tuning separation/scale parameters, though there's a minor structural simplification of the expansion logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes different parameters (separation from 1e-4 to 1e-6, angle from 30 to 0, margin factor) rather than restoring step (i-1)'s values; this is continued parameter tuning, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: separation from 1e-4 to 1e-6, rotation angle from 30.0 to 0.0, and margin multiplier from 1.000001 to 1.0000001. No structural changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the separation back from 1e-6 to 5e-6, the rotation angle from 0.0 back to 30.0, and the margin multiplier from 1.00000001 back to a larger value, restoring values close to what step (i) had changed away from.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: rotation angle from 0 to 30 degrees, separation parameter tweak, margin adjustment, and added intersection-checking with corrective scaling. The dominant intent is refining the packing heuristic to avoid intersections and improve fit, all within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the intersection-checking-with-scaling approach from step (i) with a different targeted neighbor-shifting approach; this is an algorithm refinement, not a revert of the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds micro-adjustments to specific hexagon pairs to prevent intersection, and refines the fallback scaling factor. These are intra-family refinements to the geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the micro-adjustment code for hexagon pairs 1&2 and 1&3 that was added in step (i), and reverts the fallback scaling factor approach back to a simpler uniform scaling strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes specific pairwise epsilon adjustments for hexagons 1-2 and 1-3, simplifies the intersection fallback scaling factor, and adjusts comments. This is a refinement of the existing geometric construction approach rather than a bug fix (the previous code wasn't producing wrong results, just being overly cautious).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes comments and the scale_factor parameter from 1.00005 to 1.001, which is a parameter tuning adjustment, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.65,
+      "label_notes": "The primary code change is adjusting the scale_factor from 1.00005 to 1.001, which is a numeric constant change. The comment changes are cosmetic. However, this is borderline with algorithm_refinement since the safety margin strategy is being tweaked.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes significant changes to positions and comments, representing a further algorithm refinement rather than reverting the parameter tuning change from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Fine-tuning hexagon positions with tighter lattice spacing (tiny epsilon adjustments) and cleaning up the outer side length computation. The core geometric_construction approach remains the same, but positions are refined for tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor comment and variable naming changes (code cleanup) without reverting any of the algorithmic changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "code_cleanup",
+      "confidence": 0.88,
+      "label_notes": "Changes are purely cosmetic: comment rewording and splitting a single max() call into two variables with identical semantics. No behavioral change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further cosmetic comment changes and a minor refactor of the max() call, but does not undo or revert the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "code_cleanup",
+      "confidence": 0.82,
+      "label_notes": "The change is purely cosmetic: comments are reworded and two separate max() candidates are collapsed into a single max() call, but the mathematical logic and computed values are identical. No semantic change.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

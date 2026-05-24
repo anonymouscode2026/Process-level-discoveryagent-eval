@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "qwen3-next-80b-instruct",
+  "level": "L2b",
+  "run_id": "L2b__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the initial configuration with a different refined approach to solve the same problem, which is an algorithm refinement rather than a revert of the initial generation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement coordinates within the same geometric construction approach (1+6+5 configuration), optimizing positions to achieve better packing. The diff is truncated but shows refinement of center positions in the second ring while maintaining the same overall geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a different configuration using hardcoded coordinates and a fixed outer_hex_side_length, which is a different algorithmic approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites hexagon placement using proper hexagonal lattice geometry (honeycomb packing) instead of flawed Cartesian grid, but remains within the geometric_construction family. Also hardcodes outer_hex_side_length rather than computing it, which is a simplification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the hexagonal lattice approach introduced in step (i) by fixing the number of hexagons and improving placement coordinates, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "The code restructures the geometric construction approach (same family: geometric_construction) by changing from a manually-specified grid to axial coordinate-based hexagonal lattice placement with explicit ring construction. Also fixes the 13-hexagon bug (selecting 5 from second ring). Could be bug_fix since it fixes overlap/count issues, but the rewrite is more of a refinement of the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the geometric construction approach with a different placement strategy and adds vertex-based containment checking, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the geometric construction approach for 12 hexagons with different placement strategy (asymmetric second ring with 5 hexagons at specific angles, dynamic max_dist computation instead of hardcoded value), but remains within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the radial placement approach with an axial coordinate lattice approach, which is a different algorithm for solving the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from radial placement heuristic to axial coordinate lattice-based placement, both within geometric_construction family. Significant restructuring of how second-ring hexagons are positioned and bounding hexagon is computed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the axial coordinate lattice approach introduced in step (i), restructuring the placement logic and bounding hexagon computation but not reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a radial placement approach to a hexagonal lattice (axial coordinate) based geometric construction with vertex-projection bounding, representing a fundamentally different approach family (geometric_construction/lattice_packing vs prior method)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the hexagonal lattice approach introduced in step (i) by adjusting the specific axial coordinates and adding validation, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the hexagonal lattice placement logic with corrected axial coordinate approach and revised containment calculation, staying within the geometric_construction family but substantially reworking the placement and outer hexagon sizing logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the algorithm with a different approach to computing the outer hexagon side length (using max vertex distance instead of projection method) and modifies the lattice placement, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction approach by fixing axial coordinate selection for ring 2 positions and correcting the outer hexagon size computation (max vertex distance instead of projection-based). Still within geometric_construction family but with significant corrections to coordinate choices and containment logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the algorithm with a different approach to coordinate conversion and outer hexagon computation, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction approach by correcting the axial-to-Cartesian conversion and outer hexagon bounding computation, while staying within the geometric_construction family. Could also be bug_fix since previous attempts had geometric errors, but the changes are more about refining the construction method than fixing a specific defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the geometric construction approach with corrected computations and added validation, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "bug_fix",
+      "confidence": 0.75,
+      "label_notes": "[POSTPROC rule B] reclassified from algorithm_refinement: Refines the geometric construction approach by correcting axial coordinate selection for second ring, fixing the outer hexagon size computation to use vertex projections instead of center projections, and adding validation. Still within geometric_construction family but with significant corrections that border on bug_fix.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a significantly different algorithm (enumeration-based axial coordinate selection with brute-force search over subsets), rather than reverting to a prior state; the agent's reasoning discusses fixing fundamental issues, not reverting.",
+      "postproc_rule_applied": "B"
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the geometric construction approach: now enumerates axial lattice points, uses combinatorial selection of 12 from 19 candidates, and computes outer hexagon size via vertex projections. Still within geometric_construction family but substantially refined the selection and containment logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and improves the same algorithmic approach from step (i) \u2014 both use axial lattice enumeration, combinatorial selection, and projection-based outer hexagon sizing \u2014 rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction approach by changing how the 12 hexagons are selected from the 19-point lattice (using greedy farthest-first selection ensuring minimum distance constraints) and how the outer hexagon size is computed. Still within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a refined but different implementation of the same geometric construction concept, changing the coordinate conversion, selection strategy, and containment checks rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrite stays within geometric_construction family but restructures vertex projection computation and hexagon selection logic. The core approach (lattice-based placement + containment check) remains the same family, with refinements to distance validation and projection calculations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different algorithm (hardcoded coordinates and different lattice enumeration strategy), rather than reverting to a previous state; the agent's reasoning describes moving forward with a new systematic approach, not undoing the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Switches from a lattice/axial coordinate generation approach to a hand-designed special-case configuration with hardcoded coordinates for 12 hexagons, representing a fundamentally different approach (geometric_construction \u2192 hand_designed_special_case). The code is a complete rewrite with multiple attempted coordinate sets.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed hardcoded coordinate approach with a new systematic lattice-based generation approach that computes coordinates and validates them, which is a different algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-designed special-case coordinate approach (hardcoded optimal coordinates) to a geometric_construction approach using axial-to-Cartesian grid generation with computed containment. This crosses from hand_designed_special_case to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-generation approach with a different explicit axial coordinate listing and new containment logic, which is a different algorithm rather than a revert to the previous hand-designed special-case approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Switches from a computed/optimized placement approach to a hardcoded geometric construction using axial coordinates for hexagonal lattice packing, with explicit vertex computation for containment. This is a move from a physical_simulation/stochastic approach to a geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and corrects the axial coordinate approach from step (i) rather than reverting it; it fixes bugs (like duplicate coordinates) and simplifies the containment calculation while keeping the same geometric construction strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "harness_or_scope_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule A] reclassified from algorithm_refinement: Replaces a broken geometric construction (axial coordinate computation + containment check) with hardcoded known-optimal coordinates and outer hex side length. Still within geometric_construction family but uses a precomputed/known solution rather than computing it. Could also be considered bug_fix since prior code was producing invalid configurations, but the rewrite is more of a fundamental approach change within the same family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hardcoded known-optimal coordinates from step (i) and replaces them with a fresh axial grid construction approach, effectively reverting the hardcoded solution back to a computed geometric construction method.",
+      "postproc_rule_applied": "A"
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Switches from hardcoded coordinate-based placement to axial grid-based geometric construction with explicit coordinate conversion and containment computation. This is a fundamental change in approach from hand-placed coordinates to a systematic lattice/grid-based construction method.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and corrects the axial grid-based approach introduced in step (i) rather than reverting it; it continues using the same fundamental lattice/grid construction method with improved coordinate selection and containment computation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "harness_or_scope_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule A] reclassified from algorithm_refinement: Rewrite of the geometric construction approach for 12 hexagons, fixing coordinate mapping and selection logic within the same geometric_construction family. Could also be bug_fix since prior attempts produced invalid configurations, but the change is more about refining the construction method than fixing a single defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different refined algorithm addressing orientation mismatch, rather than reverting to a prior state.",
+      "postproc_rule_applied": "A"
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the hexagon center placement logic to fix orientation mismatch (flat-top vs pointy-top) and use correct coordinates from literature. While it fixes intersection errors, the core approach remains geometric_construction with corrected coordinate transformations rather than switching algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial coordinate approach with a completely different hardcoded coordinate scheme and flat-top geometry model, which is a different algorithmic refinement rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Switches from axial-coordinate-based grid construction to hardcoded center positions and a hardcoded outer radius (3.9419123). Still geometric_construction family but with different coordinate layout. Could also be considered bug_fix (fixing orientation mismatch causing intersection errors) or initialization_change, but the dominant change is restructuring the geometric placement approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the approach with different center positions and orientation angles (0\u00b0 instead of 30\u00b0 for some elements), representing a further algorithm refinement rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusting center coordinates and orientation angles within the same geometric_construction approach to fix the packing configuration. Could also be bug_fix since prior attempts failed due to geometric inconsistency, but the changes are more about refining the known-optimal placement rather than fixing a clear code defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the coordinate computation approach (adding 30\u00b0 rotation conversion for flat-top orientation) rather than reverting step (i)'s changes; it builds upon the same general strategy with different coordinate transformations.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the coordinate computation for hex centers from hardcoded Cartesian to axial-coordinate-based conversion while staying within the same geometric_construction family. Also attempts to fix orientation issues (could be bug_fix), but the primary change is the coordinate generation approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-to-Cartesian conversion with a different flat-top axial transform approach rather than reverting to a previous state; it's a further refinement of the same coordinate generation strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule B] reclassified from algorithm_refinement: Refines the geometric construction approach by fixing the coordinate system transformation from pointy-top to flat-top orientation and directly specifying pre-computed center positions, staying within the geometric_construction family. Could also be bug_fix since it addresses orientation mismatch causing intersection errors, but the change is more of a structural refinement of the construction method.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded center positions with a completely different approach using axial-to-Cartesian coordinate conversion and rotation, which is a different algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": "B"
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule B] reclassified from algorithm_refinement: Changes the geometric construction approach by rotating centers from pointy-top to flat-top coordinate system and changing outer hexagon orientation to 30\u00b0, while staying within the geometric_construction family. Could also be representation_change (coordinate rotation), but the primary intent is fixing the packing geometry.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the outer hexagon rotation from 30\u00b0 back to 0\u00b0 and removes the center rotation transformation, but replaces it with a different set of hardcoded center coordinates and a different geometric approach, constituting a further algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": "B"
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes the -30\u00b0 rotation of centers, changes outer hexagon rotation from 30\u00b0 to 0\u00b0, and drops one hexagon coordinate (now only 11 axial coords instead of 12). These are structural adjustments within the same geometric_construction approach to fix orientation/alignment issues with the evaluator.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial coordinate conversion approach with a completely different set of hardcoded Cartesian coordinates and changes the outer hexagon rotation back to 30\u00b0, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the coordinate computation approach for inner hexagon centers (from axial-to-Cartesian conversion to direct Cartesian coordinates) and changes outer hexagon rotation from 0\u00b0 to 30\u00b0, while staying within the geometric_construction family. Could also be considered representation_change (axial\u2192direct Cartesian), but the dominant change is refining the geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches back to axial-to-Cartesian conversion (which step (i) had moved away from), but it uses a different set of axial coordinates and a different conversion formula, making it a new algorithmic approach rather than a simple revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from hardcoded Cartesian center coordinates to axial coordinate-based generation of hex centers, but remains within the geometric_construction family. The change restructures how the 12 center positions are computed (axial\u2192Cartesian conversion) and adjusts which 12 points are selected, but the overall approach is still geometric construction of a known packing layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the axial coordinate approach introduced in step (i) by changing which 12 axial coordinates are selected and modifying the conversion logic, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the axial coordinate set for the 12-hexagon packing within the same geometric_construction family, correcting the center positions and cleaning up the conversion logic. Could also be bug_fix since previous coordinates were wrong (13 points truncated to 12), but the primary change is refining which specific coordinates to use.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the approach by changing the axial coordinates, conversion logic, and outer hexagon rotation, representing a continued algorithm refinement rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Same geometric_construction family approach with refined comments and minor changes: outer rotation changed from 30\u00b0 to 0\u00b0, inner hex data construction slightly modified, but core axial coordinate approach unchanged. The rotation change (30->0) could be considered a bug_fix attempt but the agent frames it as trying different configurations rather than fixing a known defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial coordinate computation approach with hardcoded explicit coordinates from Packomania, which is a different approach to solving the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces axial-coordinate-based geometric construction with hardcoded Cartesian coordinates from literature (Packomania), still within geometric_construction family. Could also be considered initialization_change since it's changing the specific coordinates used.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded coordinates from step (i) with a different set of coordinates and adds dynamic outer hexagon computation, which is a different algorithmic approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the hardcoded center coordinates to a different known configuration and adds dynamic computation of outer hexagon side length. Both old and new are hand-designed special-case approaches with different coordinate sets. Could also be considered initialization_change since it's changing the fixed solution coordinates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the center coordinates with yet another different set and switches from dynamic outer hex computation to a hardcoded value, representing a continued refinement rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces one set of hardcoded coordinates (Packomania d12 circle-packing coordinates) with a different set (axial/honeycomb lattice coordinates) and a hardcoded outer side length, while also simplifying the outer hexagon computation. Both approaches are hand-designed geometric constructions for the same special case. Could also be initialization_change since it changes the placed coordinates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial/honeycomb lattice coordinates from step (i) with a different set of Packomania-derived coordinates, representing a new algorithm refinement rather than reverting to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Adjusting the hardcoded coordinates of the known optimal packing configuration. The algorithm family (hand_designed_special_case / geometric_construction) remains the same, but the specific coordinate values are changed to try to match the Packomania solution correctly. Could also be considered initialization_change since it's changing the fixed solution coordinates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Packomania-based hardcoded coordinates with a completely different approach using a scaled axial lattice with center-to-center distance \u22652.0, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from hardcoded Packomania circle-packing coordinates (hand_designed_special_case) to a computed honeycomb axial lattice construction (geometric_construction/lattice_packing), a fundamentally different approach to generating the packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the honeycomb lattice approach from step (i) by adjusting the specific center coordinates and improving the outer hexagon containment calculation, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Refines the geometric construction approach: changes center layout coordinates and vertex containment calculation method, but stays within the geometric_construction family. Also fixes containment logic (checking vertical/horizontal extents separately vs max distance), which could be bug_fix, but the dominant change is restructuring the packing configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different algorithm (new center layout using 2.0 spacing, different containment calculation using max distance), which is a normal algorithm refinement/switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "The code replaces one hand-designed hexagon packing configuration with a different set of hardcoded center coordinates and a different containment calculation approach, but remains within the same geometric_construction family. The agent is iterating on the specific placement geometry and containment logic rather than switching algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous configuration with a fundamentally different approach (flat-top orientation, different containment calculation using flat-top hexagon boundaries), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a manually-specified configuration with a lattice-based axial coordinate construction and vertex-based bounding computation. Switches from a hand-designed special case approach to a geometric_construction/lattice_packing approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same lattice-based approach from step (i) by adjusting the hexagon center arrangement and bounding computation, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction approach by changing how the 12 hexagon centers are arranged (different ring-2 selection) and how the outer hexagon side length is computed (circumradius-based vertex distance instead of containment-based R_needed formula). Both old and new are geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a fundamentally different approach (Packomania circle packing centers with inradius=1 interpretation) rather than reverting to any previous code; it replaces step (i)'s lattice-based geometric construction with an entirely new algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from a hand-designed hexagonal lattice arrangement (geometric_construction) to using known optimal circle packing coordinates from Packomania (exact_solver/lookup-based), fundamentally changing the approach from constructing a lattice to using precomputed optimal positions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same Packomania-based approach from step (i) by adding vertex computation and dynamic outer hexagon sizing rather than reverting to a different method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Reinterprets unit hexagon geometry (inradius=1 instead of circumradius=1) and recomputes outer hexagon side length from vertex norms rather than using a hardcoded value. The core approach remains geometric_construction using Packomania d12 centers, but the geometric interpretation and outer radius computation are refined. Could also be considered representation_change (different interpretation of 'unit hexagon'), but the overall algorithm family is unchanged.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same approach by updating center coordinates and vertex computation logic rather than reverting step (i)'s changes; it builds upon the inradius=1 interpretation introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Updated Packomania d12 center coordinates and revised vertex computation logic within the same geometric_construction approach. The core algorithm family (geometric_construction using known optimal packing coordinates) remains unchanged, but the specific coordinate values and outer hexagon sizing method are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the algorithm with updated coordinates and restructured code rather than reverting to a previous state; the agent's reasoning describes a new rewrite targeting evaluator constraints, not undoing the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Uses same Packomania-based geometric construction approach but with corrected/different center coordinates and revised vertex computation. The core algorithm family (geometric_construction) remains the same, but the specific coordinates and geometric interpretation are refined. Could also be considered bug_fix since the agent is trying to fix intersection errors, but the changes are more about refining the geometric approach than fixing a clear code defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the same Packomania-based geometric construction approach with different center coordinates and updated vertex computation, representing a further algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the Packomania center coordinates and adjusts the outer hexagon sizing logic. The overall approach remains geometric construction using known packing centers, but the specific center values and containment computation are substantially revised. Could also be considered initialization_change (new centers) but the containment logic changes too.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Packomania-based approach with a completely different axial lattice packing approach using different assumptions (circumradius=1.0 vs inradius=1), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from using Packomania circle-packing centers (external data-driven approach) to constructing an axial lattice packing from scratch with geometric construction principles, representing a cross-family change from stochastic/external-data approach to geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same axial lattice geometric construction approach introduced in step (i), adjusting the arrangement details rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement logic within the same geometric_construction family, switching from a manual angle-based ring placement to an axial coordinate lattice approach. Both are geometric construction methods for hex packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the axial coordinate lattice approach introduced in step (i) rather than reverting it; it modifies the placement logic and containment checking but continues the same general geometric construction strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hex grid packing layout (axial coordinate placement of 12 hexagons) and vertex computation within the same geometric_construction family. Changes how centers are selected (omitting one from 2nd ring for symmetry) and simplifies vertex/outer-hex computation, but stays within lattice-based geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm further by improving the outer hexagon containment calculation (using proper hexagonal distance instead of circumradius) and restructuring vertex computation, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagonal lattice arrangement (1+6+5 vs previous 1+6+5 with different positions) and rewrites the containment check logic, but stays within the geometric_construction family. The change modifies how centers are computed and how the outer hexagon radius is determined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s arrangement with a different geometric approach (different center placement strategy and containment check), which is a normal algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement strategy (1+6+5 arrangement with axial coordinates) and the containment check (projection-based), staying within the geometric_construction family. Could also be considered algorithm_switch if the previous approach was fundamentally different, but both are geometric construction methods.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same 1+6+5 axial lattice approach from step (i) by adding perturbations to avoid SAT detection issues, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "The agent keeps the same geometric_construction family (axial lattice packing) but adds perturbations to spacing to work around evaluator sensitivity. Could also be bug_fix (working around evaluator edge case) or parameter_tuning (changing spacing from 2.0 to 2.01), but the structural changes to how vertices are computed and containment is checked make algorithm_refinement the best fit.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous axial lattice approach with a different hybrid approach using random perturbations and a new placement strategy, which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Retains the same 1+6+5 axial lattice geometric construction approach but adds random perturbations to positions and restructures the containment radius computation. The core algorithm family (geometric_construction) is unchanged, but the perturbation strategy and computation details are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the flat-top geometric construction with a fundamentally different pointy-top orientation approach and adds numerical optimization, which is a different algorithmic strategy rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the geometric construction approach, but stays within the geometric_construction family. Changes orientation from flat-top to pointy-top, adjusts spacing and containment calculations, and adds perturbation strategies. Could be considered representation_change (orientation change) but the core approach remains geometric lattice construction with the same 1+6+5 layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different radial asymmetric pattern strategy rather than reverting to a previous approach; it builds on the same pointy-top orientation but uses a fundamentally different placement algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major restructuring of the hexagon placement strategy within the same geometric_construction family. Switches from exact axial lattice coordinates to an asymmetric radial pattern with intentional perturbations to avoid evaluator's SAT detection issues. Could be considered algorithm_switch but stays within geometric_construction family. Also has elements of harness_or_scope_change (working around evaluator behavior) but the primary change is the placement algorithm itself.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different perturbed layout strategy (1+3+8 pattern vs radial asymmetric pattern), which is a normal algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Rewrite of the placement layout within the same geometric_construction family. Changes center arrangement from 1+5+6 rings to 1+3+8 rings with different perturbation strategy and updated containment formula. Could be considered algorithm_switch if the rewrite is drastic enough, but it remains within geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only modifies the outer_hex_side_length calculation from a computed value to a hardcoded constant, which is a minor refinement rather than a revert of the layout changes introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "harness_or_scope_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule A] reclassified from algorithm_refinement: Replaces dynamically computed outer hexagon side length with a hardcoded target value. This is a heuristic tweak within the same geometric construction approach, but could also be seen as parameter_tuning since it's changing a numeric constant. Labeled algorithm_refinement because it changes the logic from computed to hardcoded.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different layout strategy (1+6+5 arrangement with R=4.0 instead of the perturbed 1+3+8 layout with hardcoded R\u22483.943), which is a different algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": "A"
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.52,
+      "label_notes": "Major rewrite of the hexagon placement strategy from a perturbed 1+3+8 asymmetric layout to a 1+6+5 lattice-based arrangement. Both approaches are geometric_construction (same family), so this is intra-family. However, the extensive comments and incomplete code suggest this is partly exploratory. Could also be considered algorithm_switch since the layout strategy changed significantly, but both are geometric construction approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) cleans up and completes the incomplete/truncated code from step (i) using the same 1+6+5 axial lattice approach, fixing bugs and making it functional rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "Agent describes this as a bug-fix rewrite to restore correct interface compliance and fix crashes from previous attempts. The code is significantly simplified/rewritten to produce a clean geometric construction, but the primary intent stated is fixing correctness issues.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial lattice approach with a completely different asymmetric 1+3+8 configuration and dynamic outer hexagon sizing, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout from a symmetric 1+6+5 axial lattice to a perturbed asymmetric configuration with explicit vertex-based containment computation and safety margins. The core approach remains geometric construction but with structural modifications to the placement strategy and outer hexagon sizing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the vertex definition and placement strategy with a different approach (flat-top orientation, 1+3+8 layout with jitter) rather than reverting to a previous state; it builds upon step (i)'s framework while changing the algorithm details.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the placement strategy from an axial lattice (1+6+5) to a different ring-based arrangement (1+3+8) with jitter, staying within the geometric_construction family but significantly restructuring the layout approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes targeted bug fixes (changing base vertex orientation from flat-top to pointy-top and outer hex angle from 30\u00b0 to 0\u00b0) while keeping the same 1+3+8 ring-based arrangement from step (i), not reverting to the previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "bug_fix",
+      "confidence": 0.78,
+      "label_notes": "Changes the orientation of inner hexagon vertices and outer hexagon angle to match the evaluator's expected rendering format. This fixes incorrect output that was being rejected due to mismatched orientation conventions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes a comment in the code without reverting any functional changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "code_cleanup",
+      "confidence": 0.88,
+      "label_notes": "Only the comment text changed; no semantic/behavioral change to the code.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes comment text, similar to step (i), and does not restore or remove any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "code_cleanup",
+      "confidence": 0.85,
+      "label_notes": "Only comment text was changed; no semantic change to the code logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the hexagon vertex orientation from pointy-top to flat-top and updates comments accordingly, which is an algorithm refinement rather than a revert of step (i)'s comment-only cleanup.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the vertex orientation from pointy-top to flat-top to match evaluator rendering, which is a correctness-related refinement of the geometric construction. Could be bug_fix if the previous orientation was causing wrong outputs, but the change seems more about aligning the internal model with the evaluator's rendering convention rather than fixing a crash/NaN.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "no_change",
+      "confidence": 0.97,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) replaces the existing algorithm with a new approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a perturbed asymmetric layout to a structured 1+6+5 axial coordinate grid pattern, both within geometric_construction family. Significant restructuring of center placement logic and containment calculation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same 1+6+5 axial coordinate grid approach with adjusted spacing (1.001 instead of exact 1.0) and different scaling logic, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the same geometric_construction approach (1+6+5 lattice packing) with corrected spacing (1.001 instead of 1.0) to satisfy strict collision detection, adjusted ring2 coordinates, and simplified containment calculation. The overall family (geometric_construction) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial lattice packing approach with a completely different numerical optimization approach using scipy.optimize, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from axial lattice-based geometric construction (1+6+5 ring pattern with axial-to-Cartesian conversion) to a hand-designed explicit coordinate placement with scaling approach. The fundamental construction method changed from lattice packing to manual coordinate specification with post-hoc scaling.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by changing coordinate values and the outer_hex_side_length formula (using +0.5 instead of +1.0), rather than reverting to the previous axial lattice-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "The change rescales coordinates and fixes the outer hexagon side length formula based on a corrected understanding of the unit hexagon radius (0.5 vs 1.0). It's the same geometric_construction family approach (1+6+5 arrangement) but with corrected scaling. Could also be bug_fix since the previous radius assumption was wrong, but the agent is refining the geometric construction rather than fixing a crash/NaN.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded coordinate approach with a systematic axial coordinate generation method, which is a different algorithmic refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the coordinate generation using axial-to-cartesian conversion with a uniform scale factor, but stays within the geometric_construction family. The core approach (known optimal packing layout with computed coordinates) is preserved, just the coordinate representation and scaling strategy are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Melissen '94 scaled configuration with a different layout strategy (1+6+5 ring arrangement with different spacing and outer hex calculation), which is a new algorithmic approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing arrangement within the same geometric_construction family - modifies ring structure (1+6+5 instead of Melissen's layout), adjusts spacing/scaling factors, and recalculates outer hexagon size. Still geometric construction but with different placement strategy and separation parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous packing approach with a completely new first-principles design using different geometry (flat-top orientation, explicit vertex computation, axial coordinate system), which is a different algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the geometric construction approach for packing 12 hexagons, but stays within the geometric_construction family. The agent is rethinking the layout geometry (center positions, spacing, containment calculations) from first principles rather than switching to a fundamentally different algorithm family like simulated_annealing or LP. Could be considered algorithm_switch if the internal structure changed families, but it remains geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s geometric construction with a different refined geometric construction approach (different center coordinates, different containment calculations, different orientation assumptions), which is a normal algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Complete rewrite of the packing layout with a new 1+5+6 asymmetric radial configuration and different outer hexagon sizing logic, but still within the geometric_construction family. The agent also changed how the outer hexagon size is computed (bounding box approach vs previous method), but the overall approach remains geometric construction of a hand-designed layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1+5+6 layout with a different variant of the same approach using different parameters (rotation offsets, radii, symmetry breaking), which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Restructures the 1+5+6 radial packing layout with different spacing parameters, rotation offsets, and outer hexagon sizing formula. Stays within the geometric_construction family but changes the specific geometric configuration and containment calculation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a fundamentally different algorithm (different ring structure, different spacing logic, different outer hexagon sizing), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures the 1+5+6 packing layout with different ring radii, angles, and spacing parameters while staying within the geometric_construction family. The agent's reasoning mentions workaround for evaluator issues, but the actual code changes are geometric layout parameter and structure modifications.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the approach with different parameters (float32 types, different outer_hex_side_length, different jitter strategy, different rotation) rather than reverting to a previous state; it builds on step (i) with a different algorithmic refinement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "The agent rewrites the geometric construction with jittered positions and different ring distances, but stays within the geometric_construction family. The comments about 'evading evaluator bugs' suggest harness_or_scope_change intent, but the actual code changes are structural modifications to the packing algorithm (different radii, jitter injection, changed outer side length). Could also be parameter_tuning (r1=1.8, r2=3.3, outer=3.5) but the structural changes to how centers are generated push it toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters (outer_hex_side_length from 3.5 to 3.05) and refines comments/approach but retains the same jittered geometric construction strategy with similar ring distances and structure, representing continued refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures the same geometric_construction approach (1+5+6 ring layout) with different ring radii, jitter strategy, and outer side length. The core algorithm family (geometric_construction) is unchanged, but the parameters and layout details are significantly reworked. Could also be parameter_tuning but the structural changes to ring generation logic push it toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a significantly reworked algorithm refinement (different ring radii, different outer_hex_side_length of 3.5 vs 3.05, different construction logic), rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures the geometric construction approach (still geometric_construction family) with different ring configurations (5+6 instead of 5+6 with different spacing), jitter patterns, and layout strategy. Also changes outer_hex_side_length from 3.05 to 3.5 which is parameter_tuning, but the dominant change is the structural rework of the placement geometry.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s 1+5+6 configuration with a completely different 1+3+8 asymmetric layout, which is a different algorithmic approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout structure (from 1+5+6 to 1+3+8 layer configuration) and adjusts spacing/angles, but remains within the geometric_construction family. The jitter and symmetry-breaking changes are heuristic refinements to the same geometric packing approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1+3+8 layer packing with a completely different Fibonacci spiral layout approach, which is an algorithm switch rather than a revert to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-designed layered geometric construction (center + rings with jitter) to a Fibonacci spiral-based layout generation approach, which is a fundamentally different placement strategy within geometric_construction family. However, the change is so radical (complete rewrite of placement logic, different geometric paradigm) that it borders algorithm_switch. The spiral approach with golden angle is a different construction family than concentric ring placement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Fibonacci spiral approach with a different '1+3+8 asymmetric layout' strategy, which is a new algorithmic approach rather than reverting to the previous concentric ring method from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Switches from Fibonacci spiral layout to a structured 1+3+8 ring configuration with explicit vertex-based containment calculation, both within geometric_construction family. Also computes outer hexagon size analytically rather than estimating.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1+3+8 ring configuration with a different dual-spiral pattern approach rather than reverting to a previous state; it's a new algorithm refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Switches from a perturbed 1+3+8 lattice layout to a dual Fibonacci spiral layout with random jitter. Both are geometric construction approaches for placing hexagon centers, so this is intra-family. Also changes the outer hexagon size computation, but the core approach remains geometric construction with perturbation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the dual Fibonacci spiral approach with a different perturbed 1+3+8 asymmetric layout approach, which is a different algorithm refinement rather than reverting to the exact previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from dual-spiral layout to a 1+3+8 ring-based configuration with different placement logic and containment calculation, but both are geometric construction approaches within the same family. Also fixes containment formula which could be bug_fix, but the dominant change is the layout strategy refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1+3+8 ring-based layout with a completely different 3-group clustered layout approach, which is a new algorithm refinement rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major restructuring of hexagon placement strategy within the same geometric_construction family: switching from a 1+3+8 ring layout to a 3-group clustered layout with different jitter/rotation strategies, plus revised outer hexagon sizing logic. The agent's reasoning mentions avoiding 'SAT bugs' and 'cache poisoning' which suggests some harness concerns, but the dominant change is the placement algorithm itself.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3-group clustered layout from step (i) with a different 'perturbed 1+3+8 asymmetric layout' approach, which is a different algorithm refinement rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement layout from random-jittered symmetric groups to a deterministic 1+3+8 asymmetric configuration with different spacing logic, but remains within the geometric_construction family. Also removes random seed and simplifies outer hexagon computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the approach further (switching to a Fibonacci spiral pattern and changing vertex computation) rather than restoring the code from before step (i); it's a different algorithmic refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the outer ring arrangement from Fibonacci spiral to a distorted octagon pattern with different radius (1.605 -> 4.0) and angle distribution, while keeping the same overall geometric_construction family approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a different algorithm (stochastic grid with jitter) rather than reverting to the exact code from before step (i); while it mentions returning to Fibonacci spiral in the diff, the agent reasoning explicitly says 'abandon Step 80's Fibonacci structure entirely' and generates a completely new arrangement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule D] reclassified from algorithm_switch: Switches from a manually designed perturbed lattice layout (geometric_construction) to a Fibonacci spiral-based placement with golden angle spacing (a different geometric construction approach). The agent describes abandoning the previous structure entirely, but both are geometric construction family, which would suggest algorithm_refinement. However, the fundamental generation method changes from a hand-placed asymmetric layout to a mathematical spiral formula, which is a significant structural change within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different layout strategy (ring-based with center + 6 neighbors + 5 outer) rather than reverting to any previous approach; it's a new algorithm switch, not a revert of the Fibonacci spiral approach.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from Fibonacci spiral geometry to a honeycomb-based arrangement with explicit geometric containment checking (half-plane intersection for hexagon). Switches from a stochastic_search/geometric_construction approach to a hand-designed honeycomb packing with binary search for containment.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the honeycomb approach with a different layout strategy (1+3+8 asymmetric layout with deliberate rotation and jitter) rather than reverting to the previous Fibonacci spiral code; while the agent's reasoning mentions Step 80's Fibonacci spiral, the actual code diff shows a new arrangement, not a restoration of the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement strategy within the same geometric construction family, switching from a honeycomb-ring layout with binary search for outer size to a perturbed 1+3+8 asymmetric layout with deliberate rotation and jitter. Both are geometric construction approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts the random seed and jitter magnitude parameters within the same algorithm structure introduced in step (i), which is parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes random seed from 0 to 1 and adjusts jitter magnitude ranges (radial from \u00b10.001 to \u00b10.015, angular from \u00b10.001 to \u00b10.01). These are numeric constant changes only.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) shows no diff, meaning no code changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a different algorithm (Fibonacci spiral structure instead of perturbed 1+3+8 layout), which is an algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Refines the Fibonacci spiral approach from Step 80 by adding micro-jitter and recomputing outer hexagon containment. Stays within the same geometric_construction family but modifies center generation and containment calculation. Could also be initialization_change (jitter on centers) but the structural changes to vertex projection dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Fibonacci spiral with micro-jitter approach from step (i) with a completely different '1+3+8 asymmetric layout' approach, which is an algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from Fibonacci spiral layout with micro-jitter to a perturbed 1+3+8 asymmetric layout, and rewrites the containment/outer hexagon computation. Both approaches are within the geometric_construction family, making this an intra-family refinement rather than a switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) appears to be a broken/truncated edit that removes most of the function structure, but the agent's reasoning describes it as a geometric correction (bug fix) rather than a revert to a previous approach, and the resulting code is different from any prior step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "bug_fix",
+      "confidence": 0.62,
+      "label_notes": "The code appears to be a broken/truncated refactoring attempt that removes the main function structure and leaves dangling code fragments (e.g., references to undefined variables like x_vals, y_vals). While the agent describes it as a 'geometric correction', the resulting code is non-functional - it removes the function definition and most of the algorithm, leaving only comment blocks and disconnected computation lines. This looks like a bug was introduced rather than fixed, but the agent's stated intent was to fix a containment test geometric mismatch (bug_fix intent).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the broken/truncated code from step (i) with a complete, functional implementation using a different approach (restoring the full function structure with a Fibonacci spiral arrangement from Step 80), which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "This is a substantial rewrite building a complete geometric construction (1+3+8 asymmetric layout with Fibonacci spiral and jitter), but stays within the geometric_construction family. The previous code was just a fragment computing containment; now it's a full solution with specific hex placement strategy. Could be algorithm_switch if the previous step had a different family, but the containment logic is preserved and extended.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes a safety margin and debug/verification code while keeping the core algorithm and hex placement logic from step (i) intact, which is a cleanup rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "code_cleanup",
+      "confidence": 0.75,
+      "label_notes": "Removes a safety margin addition and debug/verification code comments. The safety margin removal could be seen as parameter_tuning, but the dominant change is removing dead diagnostic code and comments with no semantic algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the containment formula from pointy-top to flat-top hexagon geometry (modifying condition_3 and updating comments), which is a bug fix / algorithm correction, not a revert of the cleanup done in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "bug_fix",
+      "confidence": 0.88,
+      "label_notes": "Fixes the containment condition for a flat-top hexagon. The previous condition_3 formula (|x|/2 + |y|/\u221a3) was incorrect for the intended flat-top hexagon geometry; corrected to (|x| + |y|/\u221a3).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the condition_3 formula to |x|/2 + |y|/\u221a3, which is exactly the formula that step (i) had corrected away from, reverting the bug fix made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "bug_fix",
+      "confidence": 0.82,
+      "label_notes": "Fixes the containment condition formula for a pointy-top hexagon - condition_3 was using |x| + |y|/\u221a3 but should be |x|/2 + |y|/\u221a3, which is a correctness defect in the geometric computation",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the pointy-top hexagon containment formula with a different flat-top hexagon containment formula, which is a different approach to solving the same problem rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "bug_fix",
+      "confidence": 0.78,
+      "label_notes": "Changes the containment check from pointy-top hexagon geometry to flat-top hexagon geometry, fixing incorrect containment constraints that were producing wrong results (geometric mismatch causing invalid scores).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the flat-top hexagon containment formula back to pointy-top hexagon geometry, undoing the core change made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "Fixes the containment check formula for the outer hexagon from flat-top to pointy-top orientation, correcting the geometric constraints used to compute the required side length R.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) introduces a new algorithm refinement replacing the existing code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Agent hardcodes a specific configuration from a previous step (Step 80) with exact numerical values, replacing a computed geometric layout. This is a mix of initialization_change (hardcoded coordinates) and algorithm_refinement (changing how the solution is constructed). The dominant change is replacing a procedural construction with hardcoded values from a prior run, which is an intra-family refinement of the geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded configuration from Step 80 with a completely different geometric arrangement (1-6-5 ring packing with hexagonal lattice coordinates and R\u22483.94), which is an algorithm switch to a new approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a Fibonacci spiral-based stochastic placement (stochastic_search family) to a deterministic geometric lattice construction (geometric_construction family) with exact hex grid coordinates and known optimal 1-6-5 ring arrangement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) explicitly states it is going back to reproduce the Step 80 solution, abandoning the geometric lattice construction from step (i) and replacing it with a fundamentally different approach that attempts to recreate a previous known-valid state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures hexagon placement coordinates and adds rotation jitter within the same geometric_construction family. The change modifies ring positions and outer hexagon size, attempting to reproduce a previously valid configuration. Could also be considered initialization_change (new coordinates/angles) but the structural changes to the placement logic dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (Fibonacci spiral + random jitter vs ring-based placement), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Switches from a manually-specified concentric ring layout with hardcoded outer radius to a Fibonacci spiral placement with computed outer radius. Both are geometric_construction family approaches, but the placement strategy and outer radius computation are substantially different. Could also be initialization_change since the positions are the starting configuration, but the overall algorithm structure changed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the Fibonacci spiral approach by changing orientation to point-top and removing the random seed, which is a refinement of the same algorithm rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes orientation by adding 30\u00b0 rotation offset to both inner hexagons and outer hexagon (point-top vs flat-top), removes fixed seed to rely on system RNG. This is a refinement of the same Fibonacci spiral approach with corrected orientation handling. Could also be considered representation_change (coordinate system rotation) but the core algorithm family remains geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a completely different algorithm (symmetric hexagonal lattice with hand-optimized coordinates) rather than reverting to the pre-step(i) Fibonacci spiral approach; it also changes the outer hexagon angle back to 0.0 but uses entirely new center positions, making this an algorithm switch not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from stochastic Fibonacci spiral placement (stochastic_search family) to a hand-designed fixed lattice configuration (geometric_construction family) with hardcoded coordinates for 12 hexagons.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) explicitly states 'revert to stochastic sampling' and removes the hand-designed fixed lattice configuration from step (i), replacing it with a stochastic Fibonacci spiral approach similar to what existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-designed symmetric lattice packing (geometric_construction family) to a Fibonacci spiral-based stochastic placement (stochastic_search family), fundamentally changing the approach to generating hexagon positions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the Fibonacci spiral approach introduced in step (i) by adjusting parameters and removing angular jitter while keeping the same fundamental spiral-based placement strategy, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the Fibonacci spiral approach by changing jitter from angular orientation to radial/theta perturbation, and simplifying the outer hexagon sizing. Stays within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Fibonacci spiral with jitter approach with a different 1-5-6 ring-based arrangement, which is a different algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a pure Fibonacci spiral placement to a structured 1-5-6 ring arrangement with golden angle offsets, but both remain within the geometric_construction family. The core approach is still spiral/geometric placement of hexagons.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same 1-5-6 ring arrangement approach with adjusted parameters and added verification logic rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from golden-angle spiral placement to uniform angular spacing (72\u00b0 for inner ring, 60\u00b0 for outer ring with 36\u00b0 offset). Both approaches are geometric_construction family. Also adjusts radii and adds verification loop (no-op). The core algorithm family remains geometric construction with refined placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1-5-6 arrangement with a different 1-6-5 arrangement using different radii and angular spacing, which is a new algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Rewrite of geometric construction with different ring radii and spacing parameters. Still within geometric_construction family. Could also be parameter_tuning but the structural changes (different ring counts, separation logic, safety margins) go beyond just numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s geometric construction with a fundamentally different approach (randomized jitter-based placement with trial loops), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Switches from a deterministic geometric construction (central hex + rings) to a stochastic Fibonacci-spiral-based random search with jitter and validation trials. This crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the stochastic Fibonacci-spiral random search introduced in step (i) and replaces it with hardcoded deterministic coordinates, effectively reverting from the stochastic approach back to a deterministic construction, and the agent's reasoning explicitly references going back to replicate Step 80's known working configuration.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the placement approach with explicit overlap/containment validation loop and hardcoded fallback positions, while staying within the same stochastic_search family (random jittered spiral placement). Also adds robustness checks, but the dominant change is refining the placement algorithm with validation and fallback.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different implementation strategy (verified Fibonacci spiral with explicit distance validation), which is a normal algorithm refinement/rewrite rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Rewrites the Fibonacci spiral packing with explicit jitter, seed-based reproducibility, and a two-ring fallback. Still within the same geometric_construction/stochastic approach family, but restructures the generation logic and adds fallback patterns.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Fibonacci spiral jitter approach with a completely different 3-ring configuration strategy, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a Fibonacci spiral placement with jitter (stochastic_search family) to a deterministic 3-ring geometric construction (geometric_construction family)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3-ring geometric construction with a different deterministic configuration using hardcoded asymmetric offsets, which is a different algorithmic approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a ring-based geometric construction with hardcoded centers from prior brute-force search. Both are geometric_construction family approaches. The centers are manually specified rather than computed from a formula, but the overall approach remains geometric placement of hexagons.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded brute-force centers from step (i) with a different geometric construction (1-5-6 configuration with computed coordinates), which is a different algorithmic approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the packing configuration from a brute-force-discovered asymmetric layout to a 1-5-6 pentagonal ring arrangement. Both are geometric construction approaches within the same family, but with fundamentally different placement strategies (asymmetric offsets vs structured ring configuration).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1-5-6 pentagonal ring arrangement with a different 1-6-5 configuration using different ring distances and rotations, which is a further algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing configuration from a 1-5-6 pentagonal arrangement to a 1-6-5 hexagonal inner ring + rotated outer ring layout. Both are geometric_construction approaches but with different geometric arrangements and parameters. The structural change in ring configuration (5 inner + 6 outer \u2192 6 inner + 5 outer) is a significant refinement within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same 1-6-5 ring configuration from step (i) with more precise coordinates and a different computation approach, rather than reverting to a previous configuration.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the outer ring configuration parameters (radius from 2.392 to 3.376, angular offset from 30\u00b0 to 18\u00b0, 5 hexagons at 72\u00b0 intervals) and rewrites the containment/side-length computation logic. Still within the geometric_construction family but with significant structural changes to the placement strategy and bounding computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (1-5-6 arrangement with analytical placement and SAT validation), which is a normal algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures the geometric placement within the same geometric_construction family, changing ring configuration from 1-6-5 to 1-5-6 arrangement with different radii and angular offsets. The approach remains geometric construction but with significantly revised placement parameters and containment computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a completely different randomized jitter search algorithm, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a deterministic geometric_construction (analytical placement of hexagons in rings) to a stochastic_search approach (randomized jitter search with 50K random configurations and SAT-based collision detection)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the randomized jitter search with a different deterministic perturbed layout approach, which is a new algorithm switch rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a randomized jitter search (stochastic_search family) to a deterministic geometric construction (geometric_construction family) with a fixed 1+3+8 layout and analytical outer hexagon computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1+3+8 geometric construction with a different 1+6+5 ring structure, which is a new algorithmic approach rather than reverting to a previous one.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures the hexagon packing layout from a 1+3+8 configuration to a 1+6+5 ring structure, both within the geometric_construction family. Also fixes bugs (uninitialized variables, crashes), but the dominant change is the new layout strategy. Could be bug_fix given the crashes mentioned, but the core change is a different geometric arrangement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a different 1-5-6 configuration rather than reverting to a previous approach; it builds on step (i)'s 1-6-5 structure with modified parameters and layout, which constitutes an algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the hexagon packing configuration from a 1-6-5 ring structure to a 1-5-6 structure with different radii and angular offsets, while remaining within the geometric_construction family. Also adjusts the outer hexagon size calculation slightly.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts from the 1-5-6 configuration back to the 1-6-5 configuration that step (i) had changed away from, with the agent's reasoning explicitly noting the need to return to a 'known optimal 1-6-5 ring configuration'.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the 1-5-6 layered hexagon packing to a 1-6-5 configuration with different ring radii and angular offsets, adds vertex containment validation. Stays within geometric_construction family but significantly reworks the placement strategy and adds verification logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) rewrites the approach with different radius values and placement strategy rather than reverting to a prior state; it's a continued algorithm refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the 1-6-5 geometric construction with different outer ring radius calculation (r_out = 3.9419123 - 1.0) and different angular placement (72\u00b0 spacing for outer ring vs previous 30\u00b0 offset). Same geometric_construction family, but refined placement geometry.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 72\u00b0 outer ring spacing approach with a different geometric construction using r_out=2.9419123 and different angular placement, which is a new algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures the 1-6-5 packing configuration with different outer ring placement (5 hexagons at 30\u00b0, 102\u00b0, 174\u00b0, 246\u00b0, 318\u00b0 instead of 0\u00b0, 72\u00b0, 144\u00b0, 216\u00b0, 288\u00b0) and different outer radius calculation. Still within geometric_construction family but significant geometry changes. Could also be considered bug_fix since previous code had incomplete/broken outer ring placement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach by adjusting radii (e.g., 2.001 instead of 2.0, 2.9429123 instead of 2.9419123) to satisfy strict validator tolerances, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusts radial distances (r_mid from 2.0 to 2.001, r_outer from 2.9419123 to 2.9429123) and recomputes outer hexagon side length to satisfy strict validator constraints. This is a geometric refinement within the same geometric_construction family, tweaking placement parameters to ensure feasibility. Could also be parameter_tuning but the structural reasoning about containment and the formula change (outer_hex_side_length = 1.0 + r_outer) suggests algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the parameter adjustments made in step (i), restoring r_mid from 2.001 back to 2.0, r_outer from 2.9429123 back to 2.9419123, and outer_hex_side_length from 3.9429123 back to 3.9419123, explicitly going back to the original literature values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusts placement parameters within the same 1-6-5 geometric construction approach: changes r_mid from 2.001 to exact 2.0, adjusts outer ring angles from 0/72/144/216/288 to 36/108/180/252/324, and tweaks r_outer and outer_hex_side_length. All changes are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a code cleanup/refactoring of the same 1-6-5 configuration approach with identical parameter values (r_mid=2.0, r_outer=2.9419123, same angles), just restructuring the loop logic and comments rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "code_cleanup",
+      "confidence": 0.82,
+      "label_notes": "The diff restructures loop indexing and comments but produces the same geometric configuration (1-6-5 pattern with identical coordinates and outer side length). No semantic change to the algorithm or its outputs.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) restructures comments and variable names but maintains the same 1-6-5 configuration with identical coordinates and outer side length; it's a further cleanup/refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "The code is restructured and comments rewritten, but the algorithm and configuration (1-6-5 packing with same distances and angles) remain essentially the same. The outer side length, ring distances, and angular placements are identical. The main changes are reorganization, variable naming, and expanded documentation. However, this could also be seen as algorithm_refinement since the agent frames it as a precise reimplementation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is another code cleanup/refinement of the same algorithm with minor variable renaming and comment changes, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "code_cleanup",
+      "confidence": 0.62,
+      "label_notes": "The diff restructures comments, variable names, and code organization but the algorithm and numeric values remain essentially identical (same 1-6-5 configuration with same distances). The geometric construction is unchanged; changes are cosmetic/documentary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes substantive algorithmic changes (recomputing outer_hex_side_length dynamically instead of hardcoding, changing ring distances and angles) rather than reverting step (i)'s cosmetic cleanup changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the geometric construction details: adjusts center-to-center distances with perturbation for validator compliance, and recomputes outer_hex_side_length dynamically instead of hardcoding it. Still within geometric_construction family but modifies the approach to handle validator constraints.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the approach further by removing the perturbation added in step (i) and reverting to exact distances (2.0 and 2.9419123 without perturbation), but it also introduces significant new changes like a different outer_hex_side_length calculation (3.9419123 hardcoded) and new documentation, making this a continued algorithm refinement rather than a simple revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction approach by adjusting the placement coordinates and removing perturbation offsets, staying within the geometric_construction family. The changes modify how hexagon positions are computed (exact vs perturbed) and the outer hexagon side length calculation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a code cleanup that restructures and simplifies the code from step (i) while maintaining the same geometric approach, not reverting to a previous version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "code_cleanup",
+      "confidence": 0.62,
+      "label_notes": "The diff restructures comments and reorders code but the algorithm remains the same 1-6-5 configuration with identical numeric constants (r_inner=2.0, r_outer=2.9419123, same angles). The primary change is reorganizing the code structure and documentation while preserving the same geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm by adding detailed validator notes, changing the outer_hex_side_length computation to be derived from r_outer + 1.0, and modifying loop indexing, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Refines the geometric construction approach (same family) by recalculating exact constants from Heppes 2003 and restructuring the hexagon placement logic. The core approach remains geometric_construction with 1-6-5 pattern. Could also be considered code_cleanup or parameter_tuning but the structural changes to how positions are computed push it toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues refining the same geometric construction approach with different constants and added safety buffer, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the geometric construction of the 1-6-5 Heppes packing pattern with different placement logic for inner/outer rings and revised outer hexagon sizing, staying within the geometric_construction family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different geometric construction claiming exact trigonometric geometry, rather than reverting to a prior state; this is an algorithm refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the geometric construction to use exact Heppes 2003 constants without expansion/safety buffers, removing the scaling artifacts. Still within the geometric_construction family but with refined parameter computation and simplified structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same geometric construction approach with more detailed angle computations and explicit vertex containment checks, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Refines the geometric construction approach (same family) with slightly different constants and computation of outer side length, while maintaining the same 1-6-5 packing structure. Could also be code_cleanup since the core algorithm is essentially the same with cosmetic changes, but the outer_side_length computation changed meaningfully.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach by adding explicit vertex distance computation for outer_hex_side_length and restructuring the code, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction approach (same family) by adjusting ring radii with small gaps for validator compliance and computing outer hexagon side length dynamically from vertex distances rather than using a hardcoded value.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the gap-based approach from step (i) with a fundamentally different strategy (exact contact with no perturbation), which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Rewrites the geometric construction with different exact mathematical constants and layout (1-6-5 packing with precise Heppes distances), but remains within the geometric_construction family. The hardcoded outer_hex_side_length and revised ring distances represent a refined geometric approach rather than a fundamentally different algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same geometric construction approach with different exact constants and layout details, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "The code is rewritten with the same geometric_construction approach (1-6-5 Heppes packing) but with refined coordinate calculations and slightly different geometric details. The overall algorithm family (geometric_construction) remains the same, but the implementation details are restructured. Could also be considered code_cleanup since the mathematical approach is essentially identical.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm with different outer ring angles and expanded approach to meet validator constraints, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the geometric construction approach, but stays within the geometric_construction family. The agent is attempting to adjust the packing geometry (shifting from exact vertex-to-vertex contact to slightly separated hexagons) to satisfy validator constraints while maintaining the same overall geometric construction strategy. Could also be considered initialization_change since it changes the coordinate positions, but the dominant change is restructuring the geometric layout logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous geometric construction with a different refined approach that adjusts distances to meet validator constraints (min center-distance = 2.00115), rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Major rewrite of the packing geometry with perturbation offsets to avoid vertex contact while staying close to Heppes optimal. Still within geometric_construction family but significantly restructured approach to handle validator constraints. Could also be algorithm_switch or search_space_change, but the core approach remains geometric construction with manual placement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) explicitly reverts the perturbation approach from step (i), going back to the exact Heppes optimal configuration without perturbation, removing the \u03b4/\u03b5 offsets that step (i) introduced to avoid vertex contact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Rewriting the packing geometry to use exact Heppes 2003 coordinates without perturbation, removing the previous approach of radial offsets to avoid vertex contact. Both are geometric_construction family approaches but with different strategies for handling contact constraints.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and cleans up the same Heppes 1-6-5 configuration from step (i), updating docstrings and adding comments but keeping the same geometric approach and coordinates.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "code_cleanup",
+      "confidence": 0.62,
+      "label_notes": "The code is rewritten but the algorithm and configuration remain the same Heppes 1-6-5 geometric construction with identical mathematical values (r_mid=2.0, r_outer from same formula, outer_side=r_outer+1). The changes are reorganization, variable renaming, and comment updates without semantic change to the actual packing geometry.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm by adding numerical optimization (scipy.optimize.minimize) to adjust hexagon positions and angles, which is a different approach from step (i)'s static coordinate construction, not a revert of it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.52,
+      "label_notes": "Rewrite of the same 1-6-5 Heppes geometric construction approach with different coordinate computation for outer ring (changed outer_radius value and outer_angles placement). Both old and new are geometric_construction family. The extensive comments and restructuring make this borderline code_cleanup, but the outer ring geometry changed substantively (different radius value, different angle placements).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same 1-6-5 Heppes configuration with different parameter computations (e.g., r_outer derived differently, outer angles adjusted) rather than reverting to the previous version's code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusts the geometric parameters and angular placement of outer hexagons within the same Heppes 1-6-5 geometric construction approach. Changes outer angles from [30,90,150,210,270] to [36,108,180,252,324] and introduces computed r_mid/r_outer values, but stays within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon and refines step (i)'s Heppes 1-6-5 configuration by adding perturbation to break exact vertex contacts, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Perturbs the Heppes geometric construction by adding small offsets (d_cm=2.002 instead of 2.0) to avoid validator vertex-contact rejection, while staying within the same geometric_construction family. Also adjusts outer positions via optimization to maintain containment.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

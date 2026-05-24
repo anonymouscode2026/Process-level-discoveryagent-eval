@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "claude-opus-4-6",
+  "level": "L2b",
+  "run_id": "L2b__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the initial generation with a different algorithm approach to solve the timeout issue, rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Major rewrite switching from a scipy.optimize-based numerical optimization approach to a precomputed geometric construction with analytical arrangement of hexagons, representing a shift from physical_simulation/exact_solver family to geometric_construction/hand_designed_special_case family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a completely new hardcoded analytical solution to avoid timeouts, which is a forward algorithm switch rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from iterative scipy.optimize-based approach (gradient descent / physical simulation family) to a hardcoded geometric construction with analytically computed positions. This crosses from physical_simulation/stochastic_search family to hand_designed_special_case/geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different analytical construction approach; it does not restore any previous code or revert to a prior state, but rather implements a new strategy for the same problem.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Replaced a numerical optimization approach (Nelder-Mead minimization with penalty functions) with a pre-computed analytical/geometric construction approach. This crosses from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same geometric construction approach from step (i) by simplifying the grid layout and outer hexagon fitting logic, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changed the arrangement pattern from a 2-3-4-3 or 3-4-3-2 layout to a 3-3-3-3 row arrangement, and simplified the outer hexagon fitting from a continuous angle search to checking just two orientations (0\u00b0 and 30\u00b0). Both approaches remain geometric construction within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3-3-3-3 arrangement with a completely new approach using generous spacing and a different layout strategy, which is a different algorithm rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the hexagon placement strategy with a different honeycomb grid arrangement and explicit gap handling, but stays within the geometric_construction family. Also has bug_fix aspects (fixing overlap issues), but the rewrite is more comprehensive than just a fix.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb grid approach with a completely different optimization-based approach using scipy.optimize and multiple candidate arrangements, which is an algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a simple geometric_construction (naive rectangular grid) to a hybrid approach combining multiple geometric candidate arrangements with scipy Nelder-Mead optimization (physical_simulation/stochastic_search family). This crosses algorithm families from pure geometric_construction to a gradient-free optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different implementation that rewrites helper functions, adds SAT-based overlap checking, and uses different candidate arrangements, constituting a new algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a simple grid-based geometric construction with a multi-candidate approach using SAT overlap validation, analytical candidate arrangements, and scipy optimization. This crosses from a simple geometric_construction to a hybrid stochastic_search/optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff indicates no code change was made in this step",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs indicating no code changes were made, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff indicates no code change was made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), and step (i+1) makes parameter tuning adjustments rather than reverting anything.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary change is reducing the safety gap parameter from 0.03 to 0.02. The other changes are trivial formatting (code_cleanup), but the gap parameter change is the semantically meaningful one.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) changed the gap parameter back from 0.02 to 0.03, directly reverting the parameter change made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Primary change is adjusting the safety gap parameter from 0.02 to 0.03; the other changes are trivial code_cleanup (whitespace, removing float() cast). Parameter tuning wins by priority.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a completely different algorithm using differential_evolution and new optimization strategies, which is an algorithm_switch rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a pure local optimization (Nelder-Mead minimize) approach to incorporating differential_evolution (a stochastic/evolutionary global optimizer) combined with multiple geometric initialization strategies and full angle optimization. This crosses from physical_simulation/gradient_descent family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a different strategy using pre-computed positions and lighter optimization, which is an algorithm switch/refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the same physical_simulation/gradient_descent family approach - still uses geometric construction for initialization followed by Nelder-Mead optimization, but with restructured overlap checking (SAT-based separation distance), different containment computation, and simplified optimization pipeline. The core approach remains geometric construction + local optimization rather than switching to a fundamentally different algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different clean implementation using multiple geometric arrangements and lightweight local optimization, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing scipy-based differential_evolution/minimize optimization approach with a geometric construction approach trying multiple predefined arrangements. Crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a new scipy.optimize.minimize-based approach, which is a different algorithm switch rather than reverting to the previous scipy-based differential_evolution/minimize approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver: replaces the previous geometric arrangement approach with a scipy.optimize-based numerical optimization framework including SAT overlap checking, gradient-free minimization, and systematic search over multiple candidate arrangements. This crosses from geometric_construction family to a physical_simulation/gradient_descent family approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the scipy.optimize-based numerical optimization approach introduced in step (i), restructuring and improving the code rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing approach with new base arrangements, angle optimization strategies, and tighter margins, but remains within the same stochastic_search/physical_simulation family using scipy.optimize minimize with multiple starting configurations. The rewrite adds new geometric configurations and optimization passes but doesn't switch algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different implementation strategy (cleaner, more efficient SAT-based overlap checking with hardcoded arrangements), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver with fundamentally restructured approach - new geometric helper functions, different optimization strategy, different initialization patterns. The code is rewritten from scratch with a different overall structure, though it remains within the physical_simulation/stochastic_search family broadly. The massive rewrite with different helper functions, validation logic, and optimization approach suggests algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different implementation, which is a normal algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing previous approach with a new geometric construction + Nelder-Mead optimization approach. Introduces SAT-based collision detection, hardcoded candidate arrangements, and local optimization - a fundamentally different algorithmic structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different algorithmic approach (analytical hardcoded arrangements with pure math instead of SAT + Nelder-Mead optimization), which is a normal algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from scipy.optimize-based iterative optimization (gradient descent / physical simulation family) to a purely geometric construction approach with hardcoded analytical arrangements and grid search over configurations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-search geometric approach with a different hardcoded analytical arrangement approach, which is a normal algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a stochastic search/optimization approach (trying multiple configurations, grid search over offsets and angles) to a hand-designed geometric construction with hardcoded analytical arrangements. This crosses from stochastic_search family to hand_designed_special_case/geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a substantially different approach using scipy.optimize.minimize and SAT validation rather than restoring the previous stochastic search code; this is a new algorithm switch, not a revert to the prior approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Major rewrite introducing scipy.optimize, SAT-based overlap checking, multiple candidate geometric arrangements with optimization refinement, replacing a simpler geometric construction approach. Crosses from geometric_construction to a hybrid approach incorporating physical_simulation/stochastic_search elements via scipy minimize.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff indicates no code change was made in this step",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (adjusting gaps, margins, and optimization tolerances) rather than reverting step (i), which was a no-change step anyway.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes are purely numeric: gap 0.01\u21920.012, margin 0.005\u21920.003, maxiter 3000\u21925000, tolerances 1e-5\u21921e-6, and finer angle search deltas. No structural algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts all parameter changes from step (i): gap 0.012\u21920.01, margin 0.003\u21920.005, maxiter 5000\u21923000, tolerances 1e-6\u21921e-5, restoring the exact values that step (i) had changed from.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: gap (0.012\u21920.01), margin (0.003\u21920.005), maxiter (5000\u21923000), tolerances (1e-6\u21921e-5)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes parameters (gap 0.01\u21920.008, margin 0.005\u21920.003) and modifies ring radii formulas, continuing the optimization direction rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: gap from 0.01 to 0.008, margin from 0.005 to 0.003, and adjusts radius formulas to use s3 instead of hardcoded values (which is a minor refinement but dominated by parameter tuning intent)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different architecture inspired by a previous step 8, which is an algorithm switch rather than a revert of step (i) specifically.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing scipy.optimize-based approach with a geometric construction approach using ring-based candidate layouts and grid search optimization. Crosses from physical_simulation/gradient_descent family to geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "The agent explicitly states it needs to go back to step 8's successful approach because the step (i) rewrite scored worse (0.920), and the diff shows a complete replacement of step (i)'s geometric construction code with a different architecture reconstructed from the earlier successful step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver with fundamentally different approach - switches from one optimization strategy to a new architecture with different arrangement generation, validation, and optimization pipeline. The agent explicitly mentions reconstructing a different approach from a prior step.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different algorithm with new helper functions (hex_distance, min_R_for_config, etc.) and a different optimization approach using scipy.optimize.minimize, rather than restoring the code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the packing approach: replaces a simple grid-based construction with a multi-configuration optimization approach using scipy.optimize.minimize, multiple candidate arrangements, validation, and fallback. This crosses from hand_designed_special_case/geometric_construction to a hybrid optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor refinements to step (i)'s code (renaming variables, adjusting margins, adding finer angle search), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Mix of code_cleanup (variable renaming dx2->dx etc.), search_space_change (finer angle search grid, smaller margin), and candidate modification (ring arrangement rewrite). The dominant change is refining candidates and search granularity within the same stochastic/geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (systematic topology enumeration vs stochastic/geometric construction), which constitutes an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Major rewrite replacing scipy.optimize-based approach with a systematic enumeration of multiple arrangement topologies (geometric_construction family replacing physical_simulation/gradient_descent family). The code removes scipy.optimize.minimize and replaces it with explicit geometric construction of multiple candidate configurations.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the systematic enumeration approach from step (i) and reintroduces scipy.optimize.minimize, reverting back to an optimization-based approach similar to what existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite replacing a hand-designed geometric construction with scipy.optimize-based numerical optimization approach. The code structure changes fundamentally from a fixed geometric layout to an optimization-driven search with minimize(), representing a shift from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (gap, margin, angle search) to the code from step (i) rather than reverting it; the fundamental optimization-based approach remains intact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are adjusting numeric constants (gap, margins, dy multipliers, angle scan values, safety margins). Some candidates are removed/added which could be search_space_change, but the dominant intent is tuning numeric parameters for tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the parameter tuning approach from step (i) by further reducing gap and margin values, not reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only numeric constants (gap, margin) are reduced; no structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values; it does not restore step (i)'s removed code or undo step (i)'s changes, but rather makes further adjustments in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric gap multiplier constants (0.5\u21920.3, 0.015\u21920.02, 0.01\u21920.02) with no structural changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some values from step (i) (0.3\u21920.5, 0.02\u21920.01) but also introduces structural changes like removing dx3/dy3 variables and reusing dx2/dy2, making it a different parameter tuning approach rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes gap multiplier constants (0.3\u21920.5) and final R offset (0.02\u21920.01); also removes redundant dx3/dy3 variables to reuse dx2/dy2, but the dominant change is numeric constant tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite with a fundamentally different approach (systematic search over multiple arrangement strategies), not a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing scipy.optimize-based gradient descent approach with a systematic geometric construction approach using predefined honeycomb/ring configurations and brute-force search over arrangements. Crosses from physical_simulation/gradient_descent family to geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the geometric construction approach from step (i) back to a scipy.optimize-based approach with hardcoded honeycomb positions, restoring the general structure from before step (i)'s rewrite.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite from a geometric construction approach to a scipy.optimize-based approach with numerical optimization (minimize), SAT overlap checking, and multi-configuration search with fallback. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements to the algorithm introduced in step (i), adjusting margins, iteration counts, and adding a shift optimization, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: expanded angle search range, added shift optimization to center arrangement, tightened margins, increased optimizer iterations. The shift optimization is a new sub-component but within the same physical_simulation/gradient_descent family. Parameter tuning (margins, iterations) is secondary to the structural addition of shift optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the shift optimization added in step (i) and reverts some parameters, but it also introduces different parameter values and the agent's reasoning frames this as refinement rather than reverting; however, the removal of the shift optimization block is a significant partial revert of step (i)'s main structural addition.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes are primarily numeric constant adjustments: margin values (0.004\u21920.005, +0.0003), final R margin (0.012\u21920.013), optimizer maxiter (8000\u21925000), tolerances (1e-7\u21921e-6), and opt_R margin (0.004\u21920.0043). Also removes a shift optimization subroutine and reduces angle search candidates, which leans toward algorithm_refinement, but the dominant intent is tuning margins for correctness.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes two numeric constants (margin from 0.005 back to 0.004 and R_final margin from 0.013 to 0.0125), which is continued parameter tuning rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only numeric constants changed: margin from 0.005 to 0.004 and final R offset from 0.013 to 0.0125",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire algorithm with a fundamentally different approach trying multiple topologies, rather than reverting to a previous state; the agent explicitly says it needs to try 'fundamentally different arrangements'.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing approach with multiple candidate topologies (ring arrangements, honeycomb variants) and systematic evaluation, but stays within the same geometric_construction/physical_simulation family. The agent tries different arrangement topologies and optimization strategies but doesn't switch algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a further refinement with a substantially different implementation, not a revert of step (i); the agent's reasoning mentions refining the current best solution and adding more candidate arrangements, not reverting the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing logic within the same geometric_construction/physical_simulation family - adds more candidate arrangements (ring-based 1+6+5, 2-4-4-2), global translation optimization, and refined validation, but stays within the same overall approach of geometric construction with numerical optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (ring-based arrangements with optimization) rather than reverting to a prior state; the agent's reasoning explicitly describes trying a new approach, not undoing the previous one.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the packing approach: replaces the previous row-based geometric construction with a fundamentally different strategy using multiple named geometric configurations (ring-based, flower, hybrid arrangements) combined with optimization. This crosses from a simple geometric_construction to a hybrid geometric_construction + stochastic_search approach with multiple topology candidates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different algorithm (not restoring any prior code), which constitutes a normal algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Major rewrite replacing the previous row-based geometric construction with a multi-candidate approach using Nelder-Mead optimization, multiple geometric arrangements (ring+center, honeycomb, etc.), and a fundamentally different search strategy. Crosses from geometric_construction to a hybrid stochastic_search/physical_simulation approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i)'s framework by adding new candidate arrangements and refining search parameters, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds new candidate arrangement topologies (flower, double ring, mixed angle configurations) while removing some old ones, and adjusts the outer angle search resolution. All within the same geometric_construction family with stochastic refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some candidates added in step (i) (flower, double ring, mixed angle) but replaces them with different new configurations and adjustments, representing a continued algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Replaces several candidate configurations with new ones (3x4 honeycomb variants), adds finer angle search (0.1 degree steps), and adjusts safety margins. Multiple changes but dominant intent is refining the search within the same stochastic/geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new candidate configurations and adjusts margins slightly, building on step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds new candidate configurations (3-4-5_0, 3x4_honeycomb_0, 2-3-4-3) while removing some old ones and adjusting margins. Mix of search_space_change (new candidates) and parameter_tuning (margin changes), but dominant intent is refining the candidate generation within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new candidate configurations and adjusts margins further, building on step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Adds two new candidate configurations (3x4 honeycomb tight variants) expanding the set of initial configurations searched, combined with parameter tuning (margin reduction). The addition of new candidates is the dominant structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds more candidate configurations and optimization logic on top of step (i)'s changes without removing or undoing them.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "search_space_change",
+      "confidence": 0.72,
+      "label_notes": "Adds new candidate configurations (zero-gap honeycomb variants, 4-3-4 row arrangement) expanding the set of initial configurations searched, and adds a joint shift+angle optimization step that searches over outer angle as well.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (margins reduced from 0.001/0.002 to 0.0008/0.001) and adds a finer search loop; it does not remove or undo the code added in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are reducing margin constants (0.001\u21920.0008, 0.002\u21920.001) and adding a finer angular search grid. The margin reductions are parameter tuning; the finer search is borderline search_space_change but is secondary to the margin adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) increases margins from 0.0008 back toward 0.0015 (partially reverting the margin reduction) but also adds substantial new candidate configurations, making it a different approach rather than a simple revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Adds multiple new candidate configurations (honeycomb variants with different scales, outer angles) expanding the search space, combined with parameter tuning (margin changes from 0.0008/0.001 to 0.0015, search range adjustments). The dominant change is adding new candidates to search over, but parameter_tuning is also significant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces some candidates from step (i) with different ones and changes margins from 0.0015 to 0.002, which is a different approach rather than reverting to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Adds new candidate configurations (ring-based layouts, 2x6 grid, 3+4+3+2 arrangement, etc.), adjusts search parameters (margin values, angle search ranges), and removes some previous candidates. Mix of initialization_change and parameter_tuning but dominant change is adding new candidate layouts and refining the search strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some candidates added in step (i) and adjusts parameters, but it does not restore previous code or undo the majority of step (i)'s changes; it is a further refinement that trims some candidates and tweaks margins/search parameters.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes several candidate configurations (1-3-4-3-1 diamond, 2-4-4-2), refines outer angle search strategy (coarse+fine two-phase search over full 0-60 range instead of \u00b110 from initial), and reduces safety margins from 0.002/0.003 to 0.001/0.002. Mix of search_space_change and parameter_tuning, but dominant change is restructuring the search approach within the same algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding SAT-based polygon overlap validation and additional verification logic, rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces center-distance-based overlap check with SAT-based polygon overlap check for validation, and adjusts angle search grid. The core algorithm family (geometric construction with SA refinement) remains the same, but the feasibility checking heuristic is refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes a local SAT overlap function but replaces it with a different validation approach using the existing validate_config function, which is a refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces custom SAT overlap check with existing polygons_overlap function, adds inflated margin check, and modifies final validation logic with fallback R increases. All within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a new local sat_overlap function and modifies the validation logic differently rather than reverting step (i); it builds on step (i)'s approach with a stricter SAT check and removes the fallback R increases, which is a refinement not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces distance-based overlap checking with SAT-based polygon overlap checking, removes inflated margin checks, and tightens the safety margin from 0.001 to 0.0005. This is a refinement of the validation/overlap detection within the same overall packing approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding adaptive safety margin calculations based on minimum separation distances, rather than reverting the SAT-based overlap checking introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adaptive safety margin based on minimum separation between hexagons, replacing fixed safety margins. This is a refinement of the existing packing algorithm's margin/padding logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the adaptive safety margin logic from step (i) with a simpler fixed margin (0.0005) and simplifies the final validation, which is a different algorithmic refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Simplifies safety margin computation by replacing dynamic separation-based safety margins with fixed constants, and removes final SAT validation logic. The changes are structural refinements within the same optimization approach (geometric construction + local optimization), not a family switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) fixes a bug by replacing the removed SAT validation logic with a new strict SAT validation approach and removes old comments, but does not restore the code removed in step (i) nor undo its changes; it builds upon step (i) with a different validation method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "bug_fix",
+      "confidence": 0.62,
+      "label_notes": "The final validation section replaces a call to compute_min_separation (which caused NameError in previous steps) with inline SAT overlap checking. This is primarily a bug fix. Additionally, new candidate configurations (honeycomb layouts) are added, which would be search_space_change, but the bug fix takes priority.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding new honeycomb layout candidates and refining the angle search granularity, rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds new candidate layouts (mixed angles, finer outer angle search), removes some old candidates, and adjusts search granularity. All within the same geometric construction / search framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a fundamentally different algorithm (comprehensive topology search with mixed rotations and continuous optimization), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a row-based geometric construction to a comprehensive search over diverse topologies with mixed rotations followed by continuous optimization. The agent explicitly states trying a 'fundamentally different approach' with different layout topology exploration, which crosses from geometric_construction to a stochastic_search/optimization hybrid approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different algorithm (a new mixed-rotation topology search with different structure), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing algorithm from a previous approach to a fundamentally different one with new topology search, SAT-based overlap checking, mixed rotation strategies, and different optimization framework. The code is almost entirely replaced with a new structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a further rewrite/refinement that builds on the same general approach (SAT-based overlap checking, mixed rotations, topology search) but restructures and extends the code rather than reverting to a previous version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing approach but stays within the same family (geometric construction with optimization). Adds multiple topology trials, mixed rotation strategies, and more aggressive optimization, but the fundamental approach remains geometric construction + numerical optimization. Also fixes prior NameError bugs, but the dominant change is the algorithmic restructuring.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different implementation to solve the same problem (addressing timeout issues), which is a normal algorithm refinement/switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the same optimization approach (geometric construction + local optimization) with streamlined code and different topology handling, but stays within the same family. Could be algorithm_switch if the rewrite is considered fundamentally different, but the agent describes it as cleaning up and refining the same strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a further refinement of the same approach with different topology handling and code restructuring, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the same geometric_construction approach: multiple hand-crafted topologies with mixed rotations, polished by optimization. Still within geometric_construction family but with significant structural changes to layout enumeration and optimization strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different, leaner approach to solve the same problem, not a revert to a prior state; the agent explicitly says 'go back to basics' but implements a new architecture rather than restoring step (i-1)'s code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Complete rewrite of the optimization approach but stays within the same family (physical_simulation/gradient_descent with penalty-based optimization). The agent restructured the code for speed and added a second refinement round, but the core approach remains penalty-based optimization with containment/overlap checks. Could also be algorithm_switch if the internal structure changed families, but the description suggests same family with leaner implementation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different approach (binary search for R + hard containment checks + vertex-based overlap detection with multiple topology families), not a revert to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Major rewrite replacing the previous optimization approach with a fundamentally different architecture: systematic topology enumeration with binary search for R, SAT-based overlap detection, and multiple layout families (3-3-3-3, 2-4-2-4, etc.). This represents a shift from a penalty-based optimization approach to a geometric construction / enumeration approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines step (i) by removing some candidate topologies, adding new ones, and tuning optimization parameters, but does not revert the fundamental architecture introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Mixed change: removes some candidate topologies, adds new ones (1-3-4-3-1 diamond), and tunes parameters (maxiter, tolerances, margins). The dominant change is modifying which candidate configurations are tried and how they're optimized, which is intra-family refinement of the stochastic_search/geometric_construction approach. Parameter tuning is secondary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some candidates added in step (i) and adjusts parameters, but it does so as part of a further refinement (adding comments, tightening tolerances, removing underperforming candidates) rather than reverting to a prior state; the agent's reasoning discusses improving overlap detection, not undoing previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Removes several candidate configurations (parallelogram, 2-4-2-4 rows, etc.), tightens margin parameters (0.0005\u21920.0003, 0.002\u21920.001), and reduces optimizer iterations. Mix of search_space_change (removing candidates) and parameter_tuning (margins/iterations), but the dominant effect is refining the existing approach within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning changes (reducing margins and simplifying overlap detection) rather than reverting step (i)'s changes; it builds on step (i) with additional refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: The main changes are tightening tolerance from 1e-9 to 1e-10 in SAT overlap check and reducing safety margins (0.0005\u21920.0003, 0.0003\u21920.0002). The removal of Shapely dependency is a simplification but the dominant intent is tightening numeric parameters. Could also be algorithm_refinement but the structural change (removing Shapely fallback) is minor.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new helper functions (segments_intersect, point_in_convex_polygon) and further tightens safety margins (0.0003\u21920.0002, 0.0002\u21920.00015), building on step (i)'s changes rather than reverting them.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds edge-edge intersection and containment checks to SAT overlap detection (improving correctness of overlap detection), plus reduces safety margins. The overlap detection improvement is the dominant change, with parameter tuning (margin reduction) as secondary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts margin parameters to smaller values and adds a fallback retry block; it does not remove or restore code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Reduces safety margin constants (0.0002\u21920.00015, 0.0003\u21920.00015, 0.00015\u21920.0001) and adds a fallback retry with a larger margin. Primarily numeric constant changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same direction of reducing safety margins even further (e.g., 0.00015\u21920.0001, 0.0001\u21920.00008) and increasing optimization iterations, which is a continuation of step (i)'s approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: margins reduced (0.00015\u21920.0001, 0.0001\u21920.00008), maxiter increased (8000\u219212000, 2000\u21923000, 3000\u21925000), and tolerances tightened (1e-7\u21921e-8, 1e-8\u21921e-9). No structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major algorithm rewrite (algorithm_switch) that replaces the entire approach with a new one using exact geometric overlap detection, not a revert of the parameter tuning changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule D] reclassified from algorithm_switch: Complete rewrite replacing the previous approach with analytical minimum distance computation and scipy optimization. The overall structure changed fundamentally from a vertex/midpoint sampling overlap detection to exact geometric separation computation, representing a significant architectural redesign. Could also be algorithm_refinement since it stays within physical_simulation/stochastic_search family, but the magnitude of change (complete rewrite with different overlap detection methodology) leans toward algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a substantial rewrite with a different approach (analytical overlap detection with vertex/midpoint methods and different initialization strategy), not a revert of step (i)'s approach but rather a further algorithm refinement building on different techniques.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of overlap/containment checking logic (switching from vertex/midpoint sampling to analytical separating-axis-theorem-based methods) and restructuring the optimization approach, but remains within the same physical_simulation/stochastic_search family. The core approach of optimizing hexagon positions with gradient-based/numerical methods is preserved.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different implementation that still uses SAT-based overlap detection but restructures the entire optimization strategy; this is an algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing vertex/midpoint sampling overlap detection with exact separating axis theorem (SAT) based geometric construction approach, fundamentally changing the overlap checking and packing methodology. The overall approach shifts from approximate sampling-based checking to exact geometric computation with SAT.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a further rewrite that builds on the SAT-based approach introduced in step (i), restructuring and extending it rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing logic with improved overlap detection (SAT-based), containment checking, and optimization approach, but stays within the geometric_construction/physical_simulation family. Could be algorithm_switch given the scale of rewrite, but the fundamental approach (geometric placement + optimization) remains the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks numerical parameters (margins, iteration counts, tolerances) in the code from step (i), without removing or restoring any significant code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: safety margins reduced (0.00015\u21920.00012, 0.00008\u21920.00006), maxiter increased, and tolerance thresholds tightened. No structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same direction of tightening margins and tolerances further, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes are exclusively to numeric constants: margin values reduced, maxiter increased, tolerance thresholds tightened. No structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm by improving overlap detection (SAT with exact tolerance) and adjusting some margins upward, but does not revert the parameter tuning changes from step (i); it builds upon them with additional algorithmic improvements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Mixed change: improves SAT overlap detection with better tolerances, adjusts optimization parameters (maxiter, margins), and adds comments. The dominant change is refining the overlap detection logic and tolerance handling within the existing geometric construction approach, but parameter_tuning aspects (margin values, maxiter) are also present. algorithm_refinement wins by priority over parameter_tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further refining the overlap detection (adding hex_overlap_exact function, changing variable names, reducing padding values) rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Introduces optimized hex-specific SAT overlap check (hex_overlap_exact using only 3 unique axes) and reduces padding constants. The SAT refinement is an intra-family improvement, and parameter tuning of padding is secondary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further adopting hex_overlap_exact in the SA loop and refining margins, rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes overlap detection method in SA validation (switching between hex_overlap_exact and SAT with enlarged hexagons) and tightens the safety margin on R. These are refinements within the same geometric construction/optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a hard-coded best configuration, refining the candidate generation, and adjusting safety margins, rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines overlap detection to use exact SAT-based method instead of vertex/midpoint sampling, adds a hard-coded best-known configuration, and tightens R margin calculations. All within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a significant rewrite that replaces step (i)'s approach with a restructured version using different topology search and optimization strategies, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite within the same family (geometric construction + local optimization). Key changes: exact SAT-based overlap detection replacing approximate vertex sampling, systematic topology search, and tighter containment checks. All within geometric_construction/physical_simulation families. Could be algorithm_switch if the topology search is considered fundamentally different, but the core approach (place hexagons in rows, optimize positions) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major rewrite with a different approach (adding new row topologies and restructuring the code), not a revert of step (i)'s changes; the agent's reasoning describes refining and extending, not reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver: previous code used SAT-based overlap detection with systematic topology search and local optimization (stochastic_search/exact_solver hybrid), new code uses a simple grid-based geometric construction with brute-force outer angle search. The overall approach family changed from stochastic search/optimization to geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new candidate configurations and modifies the approach from step (i) but does not remove or revert the code added in step (i); it extends it with additional candidates and refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "search_space_change",
+      "confidence": 0.72,
+      "label_notes": "Adds many new candidate topologies (3-3-3-3, 2-4-2-4, 1-3-4-3-1 diamond, 3-2-3-2-2, 2-3-2-3-2 zerogap) to the set of initial configurations searched, expanding the candidate set explored by the optimizer.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes most of the new candidate topologies (3-3-3-3, 2-4-2-4, 1-3-4-3-1 diamond, 3-2-3-2-2, 2-3-2-3-2 zerogap) that were added in step (i), reverting the search space expansion.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Removes many candidate configurations (reducing search space) and also tweaks margin parameters. Mixed intent: search_space_change for removing candidates, parameter_tuning for margin changes. Search space reduction is the dominant structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new candidate configurations and further tunes margin parameters, building on step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "search_space_change",
+      "confidence": 0.7,
+      "label_notes": "Adds multiple new candidate configurations (honeycomb variants, 1-2-3-3-2-1 hexagonal, outer angle 30\u00b0 variants) expanding the set of initial configurations searched, combined with parameter tuning of margins and optimizer iterations. The dominant change is expanding the candidate set.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm by adding SAT-based gap computation and adjusting parameters, but does not remove the candidate configurations added in step (i) or restore previously removed code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds SAT-based minimum gap computation function, removes some candidate configurations, and tightens margins/tolerances. Mixed changes but dominant intent is refining the packing algorithm's overlap detection and margin handling.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (margins and optimizer tolerances) to tighter values, which is a continuation/refinement of step (i)'s changes, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: margin values (0.00005\u21920.00003, 0.00002\u21920.00001), maxiter (3000\u21925000, 5000\u21928000), and tolerance values (1e-9\u21921e-10). No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes algorithmic refinements (switching to SAT-based gap checking, using hex_overlap_exact, adjusting penalties) rather than reverting the parameter tuning changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple refinements within the same optimization framework: switching overlap check to SAT-based gap, finer outer angle search granularity (0.1 degree steps over wider range), tighter tolerances, and reduced safety margins. All changes are intra-family refinements to the existing Nelder-Mead + SA optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements to the overlap checking approach (switching from sat_min_gap back to polygons_overlap in some places and introducing sat_overlap in others) and adjusts tolerances, but this is a continued algorithmic refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes overlap penalty computation method in optimizer (from SAT gap to polygon overlap check with distance-based penalty), adjusts optimizer parameters, and tweaks margin constants. Multiple small refinements within the same optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes between steps",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a fundamentally different algorithm (mixed rotations, differential_evolution), which is an algorithm switch, not a revert of step (i) which was a no-change step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite replacing previous geometric construction approach with differential_evolution-based stochastic search combined with mixed-rotation optimization. Crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the differential_evolution-based stochastic search approach from step (i) and restores a geometric construction approach based on the 2-3-2-3-2 layout topology, with the agent's reasoning explicitly noting 'the step 95 rewrite failed' and building on the 'proven 2-3-2-3-2 topology'.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Massive rewrite (~1100 lines replacing ~486 lines) with fundamentally different approach. The previous code used scipy.optimize with differential_evolution (stochastic_search family), while the new code appears to use a geometric construction approach with explicit configuration enumeration and refinement. This crosses from stochastic_search to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts parameters (tolerances, gaps, margins, iterations) within the same code structure introduced in step (i), rather than reverting to previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes are predominantly numeric constant adjustments: tolerance values, gap sizes, margins, iteration counts, and search range parameters. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning adjustments (margins, tolerances, iteration counts) on top of step (i), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes are primarily reducing margin constants (0.00004\u21920.00001, 0.001\u21920.0001, etc.), adjusting optimizer tolerances, changing search granularity (angle step from discrete list to finer np.arange), and modifying maxiter. All are numeric constant changes within the same algorithm structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes algorithm refinements (fixing polygon vertex iteration, adjusting search strategy, modifying margins) rather than reverting step (i)'s parameter tuning changes; it builds upon the previous approach with modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: adds minimum-gap penalty to optimization objective (algorithm refinement), fixes polygon vertex iteration bug (bug_fix), tunes parameters (parameter_tuning). The dominant change is the new gap-based penalty in the optimization objective, which is an intra-family refinement of the existing optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the minimum-gap penalty added in step (i) and changes some parameters, but it also introduces different loop bounds and other modifications, representing a refinement/simplification rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple small changes: simplified overlap checking in SAT, adjusted margins/penalties in optimization. The dominant change is refining the penalty function (removing gap-based soft penalty, simplifying overlap penalty) and tweaking safety margins, all within the same optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes several candidate configurations from the search space but does not restore code removed in step (i) or undo its algorithmic refinements; it is a search space pruning change, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Removes several candidate configurations (zero-gap variants and some arrangement variants) from the set of initial candidates explored. This reduces the search space of starting configurations, though the agent's stated intent is to add new ones (possibly truncated). The dominant observable change is pruning candidates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new candidate arrangements and refines the algorithm rather than restoring the code removed in step (i); it builds on step (i)'s pruned candidate list with different new candidates.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds new candidate arrangements (hand-tuned honeycomb layouts with different angle configurations), finer outer angle search, gap-aware penalty in optimization, and adjusts safety margins. All within the same stochastic/geometric optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some candidate arrangements added in step (i) but replaces them with a different approach (uniform-gap optimization), which constitutes an algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes some candidate arrangements, reduces safety margins/padding values, and removes a penalty term for minimum gap. Mix of parameter_tuning (reduced padding constants) and algorithm_refinement (removing candidates and penalty logic). Dominant change is structural refinement of the optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (simultaneous optimization of all positions and rotations with basin-hopping style perturbations), rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing the previous approach with a fundamentally different optimization strategy - simultaneous optimization of positions and rotations with basin-hopping style perturbations, replacing what appears to have been a more geometric/constructive approach with a stochastic search method.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different implementation that fixes the containment formula and uses a 2-3-2-3-2 layout with optimization, which is a different algorithm rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from a basin-hopping style simultaneous optimization approach to a structured 2-3-2-3-2 layout with specific containment checks and fine-tuning. The overall approach shifts from a general stochastic search to a geometric construction with local optimization, crossing from stochastic_search to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a refinement that restructures and extends the approach from step (i) rather than reverting it; it keeps the same general geometric construction strategy with different implementation details and additional optimization passes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major restructuring of the optimization approach within the same stochastic_search/physical_simulation family - adds multiple initial configurations, refined optimization passes, and better containment checking, but stays within gradient-based optimization framework",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new optimization code (angle optimization, grid search over outer hex angles) on top of step (i)'s approach rather than reverting it; the changes are incremental refinements, not a removal or restoration of previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Adds angle optimization phases (individual hex rotation and joint angle+outer angle optimization) within the existing optimization framework, plus adjusts final validation logic and safety margins.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a fundamentally different topology (ring-based layout instead of row-based), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite switching from a refined row-based geometric construction to a ring-based geometric construction with different topology (ring of hexagons around center). The agent explicitly states trying a 'fundamentally different topology' with ring-based layout vs the previous 2-3-2-3-2 row layout. Both are geometric_construction family though, so this could be algorithm_refinement. However, the scale of rewrite and structural change is substantial.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s ring-based approach with yet another different approach (multiple topologies with lightweight local search), which is a forward algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver, switching from a single topology approach to trying multiple topologies (ring-based, row-based, optimized configurations). This represents a fundamental restructuring crossing from one approach family to another (geometric_construction variants plus new search strategies).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) completely removes the multi-topology search approach added in step (i) and replaces it with a simpler single-configuration approach with outer angle search, effectively reverting the fundamental restructuring from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major restructuring of the packing approach: simplified geometry helpers, changed grid layout (3x4 grid with 30\u00b0 rotation), and added fine-grained outer angle search. Still within geometric_construction family but substantially reworked the construction heuristic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) is an algorithm_switch introducing a fundamentally different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing previous approach with a new geometric construction + numerical optimization pipeline using SAT overlap checking and scipy Powell optimizer. The overall structure is fundamentally different.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) completely removes step (i)'s SAT-based overlap checking and Powell optimizer approach, replacing it with an entirely new implementation; the agent's reasoning explicitly states the recent rewrite attempts failed and it's going back to refining the proven 2-3-2-3-2 topology framework.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver: replaces a simple SAT-based optimization with a multi-configuration geometric construction approach (trying multiple named topologies like 2-3-2-3-2, 3-3-3-3, ring+center, etc.) with extensive initialization strategies and local optimization. This crosses from a generic physical_simulation/stochastic_search approach to a hand_designed_special_case/geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the multi-configuration approach from step (i) with a different specific topology (1-2-3-3-2-1 diamond layout), which is a normal algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a rectangular row-based packing (2-3-2-3-2) to a diamond/hexagonal arrangement (1-2-3-3-2-1), representing a fundamentally different geometric construction approach for the packing layout.",
+      "was_reverted": true,
+      "revert_reason": "The agent's reasoning explicitly states going back to the proven step-91 code (2-3-2-3-2 topology), reverting the diamond/hexagonal 1-2-3-3-2-1 layout from step (i) back to the rectangular row-based packing approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver with fundamentally different approach - massive code change replacing a simple geometric layout with a multi-strategy optimization framework including SAT-based overlap checking, scipy minimize, and multiple configuration attempts. The diff is ~1100 lines replacing ~350 lines with entirely different structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks parameters (maxiter, tolerances, margins) within the code introduced by step (i), rather than reverting or removing it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: maxiter, tolerance values (xatol/fatol), margin offsets. No structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes margin values to slightly smaller numbers, which is a continuation of parameter tuning rather than a revert of step (i)'s parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes numeric margin/epsilon constants (0.00002\u21920.00001 and 0.000005\u21920.000002), no structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts one parameter (margin back to 0.000005 from 0.00001) but also introduces new code (fine outer angle optimization block) and changes other parameters differently (maxiter, tolerances), making it a continued refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Primary changes are reducing margin constants and tightening optimizer tolerances (xatol, fatol, maxiter). A small fine outer angle optimization loop is added, but the dominant intent is tuning numeric parameters for tighter convergence.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite with a fundamentally different approach (analytical 2-3-2-3-2 row packing), not a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a scipy-optimize-based approach to a grid-search-based analytical geometry approach with 2-3-2-3-2 row packing. The previous code used scipy.optimize.minimize (gradient_descent family), while the new code uses a systematic grid search over geometric parameters (geometric_construction family), representing a cross-family change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-search approach with a completely different algorithm using scipy.optimize and a different packing strategy, which is a new algorithm switch rather than a revert to the previous scipy-based approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from analytical geometric construction to scipy.optimize-based numerical optimization with multiple initial configurations and refinement. Crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental parameter tuning changes (finer angle search, adjusted margins) on top of step (i)'s code rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Mix of finer angle search granularity (adding 0.5-degree steps and 0.1-degree fine search), increased optimizer iterations/tolerances, and adjusted safety margins. The dominant changes are numeric constants (margins, tolerances, maxiter), but the added fine-search loop is borderline algorithm_refinement. Parameter tuning wins as the primary intent.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (2-3-2-3-2 row pattern with analytical geometry), which is an algorithm switch rather than a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a complex multi-strategy optimization approach (with simulated annealing, gradient descent, multiple configurations) to a simpler analytical geometry approach with numerical refinement using a specific 2-3-2-3-2 row pattern. The overall structure and approach family changed fundamentally.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-2-3-2 row pattern approach with a completely different and much larger algorithm (1109 lines added vs 173 removed), which is a new algorithm switch rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite replacing analytical geometry approach with a fundamentally different optimization strategy including SAT-based overlap checking, multiple configuration attempts, and fallback arrangements. The code structure changed completely from a simple row-pattern analytical approach to a multi-strategy search with validation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new candidate configurations and makes minor adjustments to the return logic, extending step (i)'s approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "search_space_change",
+      "confidence": 0.72,
+      "label_notes": "Adds two new candidate configurations (zero-gap variants of 2-3-2-3-2 layout) expanding the set of initial configurations searched, plus minor refinement to final R computation and safety margin handling.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the two zero-gap candidate configurations added in step (i), but also makes other independent changes (margin adjustments, return value changes), representing a refinement/parameter tuning rather than a pure revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Primary changes are reducing safety margins (0.00001\u21920.000005, 0.000002\u21920.000001, 0.001\u21920.0005, 0.000005\u2192smaller) and removing some candidate configurations. The margin reductions are parameter tuning; the candidate removal is search_space_change. Parameter tuning is the dominant change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning direction as step (i), further reducing margins and increasing optimizer precision, rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: margin values (0.000005\u21920.000002, 0.000001\u21920.0000005) and optimizer tolerances/iterations (maxiter, xatol, fatol). No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further reducing margin values, not reverting step (i)'s changes but building on them with even smaller margins.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes numeric safety margin constants (e.g., 0.000002\u21920.0000002, 0.0005\u21920.0003), no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the same safety margin parameters in the same direction (reducing them), which is a continuation of the parameter tuning approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes numeric safety margin constants (epsilon values) without any structural code change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further adjusting epsilon values and optimizer settings, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: safety margins (R_safe offset, shifted_R offset, sa_R offset) and optimizer tolerances (maxiter, xatol, fatol). No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a new joint optimization block and adjusts some margins, which is an algorithm refinement building on step (i), not a revert of it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds a joint optimization pass (full_objective with Nelder-Mead over all positions + outer angle) and reduces safety margins. The joint optimization is a refinement of the existing optimization approach, and the margin changes are parameter tuning, but the dominant change is the new optimization pass.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the joint optimization pass (full_objective with Nelder-Mead over all positions + outer angle) that was added in step (i), replacing it with a simpler fine angle-only optimization, effectively reverting the main algorithmic addition of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces a joint full-parameter optimization (positions + outer angle) with a simpler fine outer-angle-only optimization. Same optimization family (gradient-free local search), but changes what is being optimized and how.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts optimization parameters (maxiter, tolerances, margins) and adds an ultra-fine outer angle search, without reverting the structural changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are increasing maxiter, tightening tolerances (xatol/fatol), and adjusting safety margins. There's also a minor structural change replacing a Nelder-Mead fine angle optimization with a grid search over angles, which leans algorithm_refinement, but the dominant changes are numeric parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (reducing margins, maxiter, removing a fine angle optimization loop) rather than reverting step (i)'s changes; it continues in the same direction of tuning parameters.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: margins reduced, maxiter reduced, safety offsets reduced. Also removes a fine-tuning loop (outer angle optimization), which leans algorithm_refinement, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues adjusting parameters in the same direction (reducing maxiter, adjusting tolerances and safety offsets) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: margin values, maxiter, xatol, fatol tolerances, and safety offsets. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) shows no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite the agent's reasoning about potential improvements",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot revert it; step (i+1) adds new candidate configurations and adjusts margins, which is a refinement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Adds a new candidate configuration (2-3-2-3-2 zero gap), adjusts safety margins and optimization parameters. Multiple changes: new candidate adds to search space, margin adjustments are parameter tuning, but the dominant change is refining the overall geometric construction approach with a new candidate and adjusted tolerances.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the new candidate configuration added in step (i) but also makes independent parameter tuning changes; however, removing the candidate is a partial revert of step (i)'s additions, but the dominant changes are parameter tuning adjustments that represent a different approach rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are reducing safety margins (0.0002\u21920.00000015, 0.005\u21920.001, etc.), increasing maxiter (8000\u219210000, 15000\u219220000), tightening tolerances (1e-12\u21921e-14), and removing one candidate. Dominant intent is tuning numeric constants for tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the parameters and adds finer angle search loops rather than reverting step (i)'s changes; it builds on step (i) by tightening tolerances even more and adding additional search granularity.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Finer angle search grid (0.25 and 0.02 degree steps), increased optimizer iterations/tolerances, and reduced retry margin. Multiple small refinements within the same optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies some parameters (reducing angle search granularity, lowering optimizer iterations, increasing retry margin) but does not restore previous code or remove most of step (i)'s additions; it's a different parameter tuning approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes are primarily numeric: reducing maxiter from 50000 to 20000, relaxing tolerances from 1e-15 to 1e-14, changing retry margin from 0.0003 to 0.001, and replacing a fine angle search grid with a coarser set of discrete offsets. All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty \u2014 no code changes were made despite the agent's reasoning about potential changes.",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so step (i+1) does not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "The diff is empty \u2014 no actual code change was made despite the agent's reasoning about making changes.",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs, meaning no code changes were made in either step, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite agent reasoning about potential changes",
+      "was_reverted": false,
+      "revert_reason": "Both steps have empty diffs with no code changes, so step (i+1) does not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "no_change",
+      "confidence": 0.95,
+      "label_notes": "Empty diff - no code changes were made despite the agent's reasoning about potential improvements",
+      "was_reverted": false,
+      "revert_reason": "Step (i) made no changes (empty diff), so step (i+1) cannot be reverting it; step (i+1) is a new algorithm refinement replacing the existing approach with a different optimization strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same stochastic_search/physical_simulation family - restructures the solver to add outer hexagon rotation as a degree of freedom and simplifies the optimization, but stays within gradient-based/numerical optimization. Could also be algorithm_switch if the previous was Nelder-Mead and this is fundamentally different, but both are optimization-based approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major rewrite with a different approach (analytical placement with rotation optimization) rather than reverting to a previous version; it builds on similar concepts but implements them differently.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Major restructuring of the packing optimization within the same stochastic_search/physical_simulation family - adds per-hexagon rotation as optimization variable, multiple topology configurations, and more sophisticated optimization pipeline, but stays within gradient-based/Nelder-Mead optimization framework",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new candidate configurations and makes minor fixes on top of step (i)'s code, rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Adds new candidate configurations (mixed angles, 15\u00b0 angle) to the search, removes hardcoded solution, and adds a full optimization pass with validation. Also includes minor bug fixes (np.array wrapping). Mixed between search_space_change (new candidates) and algorithm_refinement (restructuring optimization flow), but the dominant change is refining how candidates are generated and optimized within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some candidate configurations added in step (i) (mixed angles, 15\u00b0 angle) but also adds finer optimization logic and other changes, representing a continued refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes some candidate configurations (mixed angles, 15-degree), adds a simulated annealing phase and an ultra-fine outer angle sweep. Multiple changes but dominant intent is refining the optimization within the same stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the second-round shift+angle optimization and ultra-fine outer angle sweep with a joint full optimization approach, which is a different algorithmic refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces a multi-start shift+angle optimization with a joint full-position optimization (all positions + outer angle), and removes the final ultra-fine outer angle sweep. Both old and new approaches are gradient-free Nelder-Mead optimization within the same physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts small margin/tolerance parameters without removing or restoring any code from step (i); it is a minor parameter tuning change, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes numeric margin/epsilon constants (safety margins added to R values), no structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric margin constants in the same direction (reducing them), which is a continuation of parameter tuning rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes small numeric safety margin constants (epsilon values and final R offset), no structural changes",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

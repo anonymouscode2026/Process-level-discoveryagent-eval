@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "gpt-oss-120b",
+  "level": "L0f",
+  "run_id": "L0f__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the outer_hex_side_length parameter from 5.8 to 10.0, which is a parameter tuning modification, not a revert of the initial generation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes only the outer_hex_side_length constant from 5.8 to 10.0, a numeric parameter adjustment to ensure containment",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the outer_hex_side_length to 6.0, which is a different value from both step (i)'s 10.0 and the original 5.8, representing a further parameter adjustment rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only changes the outer hexagon side length constant from 10.0 to 6.0, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a different set of coordinates rather than reverting to a previous state; this is a new initialization approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "initialization_change",
+      "confidence": 0.82,
+      "label_notes": "Changes the initial positions of the 12 hexagons to a different geometric arrangement (honeycomb-like packing with sqrt(3) spacing) while keeping the same overall algorithm structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a different arrangement (4-4-4 row layout vs honeycomb), which is a different approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rearranges the hexagonal grid layout for the 12 inner hexagons (different placement coordinates on a hexagonal lattice) while keeping the same geometric_construction approach and same outer side length. The grid pattern changed but the fundamental approach (hand-designed geometric placement) remains the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different hexagonal arrangement with a new layout and tighter outer side length (5.0 vs 6.0), which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "Changes the geometric layout of the 12 hexagons from a hexagonal lattice arrangement to a different grid-based arrangement with a different outer hexagon size. Both are geometric_construction approaches, so this is intra-family. The layout coordinates and outer size changed but the fundamental approach (hand-designed geometric placement) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid arrangement with a linear spacing arrangement, which is a different approach to the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Changes the placement strategy from a 2D grid arrangement to a simple 1D linear spacing of hexagons. Both are geometric_construction approaches but the layout heuristic is fundamentally different. The result is a much worse solution (outer_hex_side_length 5\u219220), suggesting this may be a bug_fix attempt to ensure non-overlap validity, but the primary change is the placement heuristic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 1D linear spacing with a new 2D grid arrangement, which is a different approach rather than reverting to the original pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces a naive linear spacing arrangement with a hand-designed hexagonal grid layout for the 12 inner hexagons, and reduces the outer hexagon size accordingly. This is a refinement of the geometric construction approach, not a switch to a different algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal grid layout from step (i) with a different grid arrangement (5-4-3 row pattern instead of the previous layout), which is a refinement/different approach rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "initialization_change",
+      "confidence": 0.72,
+      "label_notes": "Changes the initial positions of the 12 hexagons to a different arrangement (5-4-3 row layout instead of previous layout) and adjusts the outer hexagon size. This is modifying the starting configuration for the packing problem.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 5-4-3 grid layout with a completely different circular arrangement of 12 hexagons, which is an algorithm switch rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-designed grid arrangement (hand_designed_special_case / geometric_construction) to a circular placement strategy (geometric_construction with fundamentally different layout logic). The overall approach changes from a multi-row grid to placing hexagons on a circle.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts the radius parameter from a fixed value (4.0) to a computed minimal value (1/sin(\u03c0/12)), keeping the same circular placement strategy introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes the radius parameter from a hardcoded 4.0 to a formula-derived value 1/sin(pi/12). While the new value is derived from a geometric formula, the change is effectively computing a better numeric constant for the placement radius. Could also be algorithm_refinement since it introduces a geometric reasoning for the parameter, but the structural algorithm (placing centers on a circle) remains identical.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular placement approach with a completely different hexagonal lattice (3-4-3 rows) arrangement, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from a circular arrangement (placing 12 hexagons on a circle) to a lattice-based geometric construction (3-4-3 row packing). This crosses from a geometric_construction/circular approach to a lattice_packing approach within the geometric family, but the structural change is substantial enough to be considered algorithm_refinement. However, given the families listed, both are within geometric_construction family, so this is algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the lattice-based approach introduced in step (i) by changing spacing parameters and layout details, but does not revert to the previous circular arrangement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice arrangement from a 3-4-3 row layout to a 4x3 grid layout with different spacing parameters, and changes how the outer hexagon size is computed. Both are geometric construction approaches (same family), but the grid structure and sizing logic differ significantly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches from a 4x3 grid layout to a circular arrangement of 12 hexagons, which is a different algorithmic approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a lattice-based packing (4x3 grid arrangement) to a circular ring arrangement (12 hexagons equally spaced on a circle). This is a fundamentally different geometric construction strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular ring arrangement with a candidate-generation and greedy search approach, which is a different algorithm rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a fixed geometric_construction (placing hexagons on a circle) to a stochastic_search approach (randomized greedy swap search over candidate positions), crossing algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a circle-based geometric construction approach, which is a different algorithm from the stochastic search in step (i); while it resembles the approach before step (i), the agent's reasoning does not explicitly say 'revert' or 'undo', and this is better characterized as an algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Replaces a stochastic search (randomized swap-based local search over candidate grid positions) with a deterministic geometric construction (placing hexagons uniformly on a circle). This crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular placement with a hexagonal lattice arrangement, which is a different geometric construction approach rather than reverting to the previous stochastic search method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from circular placement (12 centers on a ring) to a rectangular grid layout (3x4) for packing hexagons. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the rectangular grid approach introduced in step (i) rather than reverting it; it modifies the grid construction details and outer hexagon sizing but continues with the same general strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a systematic lattice-based grid arrangement with a manually specified set of coordinates and a fixed outer hexagon side length. Both are geometric construction approaches but the layout strategy changed significantly within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the manually specified coordinates with a computed circular arrangement, which is a different algorithmic approach rather than reverting to the previous lattice-based grid method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a hand-designed rectangular grid arrangement to a circular (ring) placement of 12 hexagon centers equally spaced on a circle. Both are geometric construction approaches within the same family, but the placement strategy is substantially different. The outer hexagon sizing formula is also updated accordingly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches from a circular ring placement to a different grid-based arrangement with explicit coordinate lists, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from placing 12 hexagons equally spaced on a circle (physical_simulation/geometric_construction) to a triangular lattice-based packing using axial coordinates (lattice_packing/geometric_construction). Both are geometric_construction family but the approach is fundamentally different - from circular placement to lattice-based placement. Could be algorithm_refinement since both are geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts from the lattice-based packing back to placing 12 hexagons equally spaced on a circle (radius 4.0), which is essentially the same circular placement approach that step (i) had replaced with the lattice approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from a lattice-based (triangular grid) geometric construction to a circular arrangement (placing hexagons equally spaced on a circle). Both are geometric_construction family, but the approach is fundamentally different in structure. Could be algorithm_refinement since both are geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circular arrangement from step (i) by changing inner hexagon rotation from 30 degrees to 0 degrees and adjusting the outer hexagon size accordingly, rather than reverting to the previous lattice-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes inner hexagon rotation from 30 degrees to 0 degrees and adjusts outer hexagon sizing formula accordingly. This is a geometric construction refinement within the same family, tweaking the packing arrangement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the outer hexagon sizing calculation by replacing the formula-based approach with a vertex-projection method, which is a further refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.88,
+      "label_notes": "Refines the outer hexagon sizing by computing tighter containment via vertex projections onto side normals, replacing a simpler formula with a margin factor. Same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the placement radius formula but retains the outer hexagon sizing logic (vertex projection approach) introduced in step (i), so it is not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Corrects the minimum separation distance formula from 2 to sqrt(3) for hexagon edge-to-edge touching, adjusting the ring radius accordingly. This is a geometric construction refinement within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular packing approach with a completely different linear arrangement strategy, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Switches from circular arrangement to linear arrangement of hexagons with generous outer hexagon. Both are geometric_construction family approaches, but this is a significant simplification/restructuring. Could also be considered initialization_change since it's changing the starting configuration, but the entire placement strategy changed.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the linear arrangement from step (i) back to a circular arrangement (placing hexagons on a circle of radius 4.0), restoring the approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a naive linear arrangement (line packing) to a geometric construction placing hexagons on a circle with computed radius and tight outer hexagon sizing. This is a move from a trivial hand-designed layout to a geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only modifies the radius calculation formula within the same geometric circle-based approach, which is a refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the radius formula for placing hexagon centers on a ring. The minimum center-to-center distance assumption changed from sqrt(3) to 2, and a 1.02 safety factor was added. This is a geometric construction refinement within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches from a circular placement strategy to a hexagonal lattice arrangement, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from equally-spaced circular arrangement (physical_simulation/geometric_construction) to explicit hexagonal lattice packing (lattice_packing), which is a different geometric construction family approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hexagonal lattice coordinates added in step (i) and restores the equally-spaced circular arrangement that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a lattice-based hexagonal packing (geometric_construction/lattice_packing) to placing all 12 hexagons on a single circle (geometric_construction but fundamentally different arrangement strategy). Both are within geometric_construction family, but this is a substantial structural change in how centers are computed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) uses a different multi-ring/lattice arrangement strategy rather than reverting to the previous lattice approach; it replaces the single-circle approach with a new algorithm (rings at distances 0, 2, 4) rather than restoring the code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from placing 12 hexagons on a circle (stochastic/geometric construction based on circular arrangement) to a hexagonal lattice packing approach (lattice_packing). Different geometric construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the lattice packing approach from step (i) back to placing 12 hexagons on a circle of radius 4.0 with equal angular spacing, which is the approach used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hexagonal lattice packing (geometric_construction with lattice) to placing hexagons on a circle with equal angular spacing (a fundamentally different geometric construction approach). The entire placement strategy is rewritten.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by adjusting the radius multiplier and inner hexagon rotation, but keeps the same circle-based placement strategy rather than reverting to the previous lattice approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Removes the 1.01 safety margin on radius (reverting to exact value) and rotates inner hexagons by 30\u00b0 to potentially reduce outer hexagon size. These are heuristic tweaks within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular arrangement with a hexagonal lattice arrangement, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from equally-spaced circular arrangement to hexagonal lattice arrangement for placing 12 hexagons. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the hexagonal lattice arrangement introduced in step (i) back to the equally-spaced circular arrangement that was used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes from a hand-designed lattice arrangement of 12 hexagon centers to a circular equally-spaced arrangement. Both are geometric construction approaches within the same family, but the placement strategy is fundamentally different (lattice vs ring).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a lattice-based approach which is a different algorithm, not a revert of the circular arrangement introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from placing hexagons on a circle (geometric_construction) to a lattice-based packing approach (lattice_packing), which is a different sub-family within geometric_construction. The entire placement strategy is fundamentally changed from circular arrangement to hexagonal lattice generation with greedy selection of 12 closest points.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the lattice-based packing approach from step (i) back to placing hexagons on a circle (radius 4.0 with equal angular spacing), restoring the circular arrangement strategy that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from lattice-based geometric construction (generating hexagonal lattice points and selecting closest 12) to a simple circular placement strategy (placing 12 hexagons equally spaced on a circle). Both are geometric_construction family, but this is a complete rewrite with fundamentally different placement logic. Could be algorithm_refinement since both are in geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circular placement approach from step (i) by changing inner hexagon rotation to 30 degrees and simplifying the outer hexagon sizing logic, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes inner hexagon orientation from 0 to 30 degrees and simplifies outer hexagon fitting to a single orientation instead of trying two candidates. This is a heuristic refinement within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes a comment to say '0 degrees' but the actual code still uses 30.0 degrees, so it's just a comment cleanup (albeit an incorrect one), not a revert of the algorithm change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "code_cleanup",
+      "confidence": 0.75,
+      "label_notes": "Only the comment text changed; the actual code (np.full(n, 30.0)) remains identical. The comment now says '0 degrees' but the code still uses 30.0, which is arguably a misleading comment change, but semantically the code is unchanged.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds additional comment lines to clarify the 30.0 rotation value, it does not remove or undo any changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "code_cleanup",
+      "confidence": 0.85,
+      "label_notes": "Only adds comments explaining existing code; no semantic change to the algorithm or parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a completely different algorithm (hexagonal lattice placement instead of circular placement), which is an algorithm switch, not a revert of the comment-only changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from placing hexagons on a circle (physical_simulation/geometric_construction) to a hexagonal lattice-based placement (geometric_construction/lattice_packing). The approach fundamentally changes from circular arrangement to axial coordinate lattice packing.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts from the lattice-based placement back to placing hexagons on a circle (radius 4.0 with equal angular spacing), restoring the circular arrangement approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from lattice-based (axial hex grid) placement to circular arrangement (placing hexagons on a circle), which is a fundamentally different geometric construction approach. Also adds proper tight outer hexagon computation via vertex projection.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circular arrangement approach from step (i) by removing the radius enlargement factor and adding rotation optimization for the outer hexagon, which is an algorithmic refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds rotation scanning for the outer hexagon to find the minimal enclosing hexagon orientation, and removes the 1.01 enlargement factor. The rotation search is a refinement within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the rotation scanning loop added in step (i) but replaces it with a different approach (fixed 30\u00b0 inner hexagon rotation with a single outer hexagon orientation), which is a different algorithm refinement rather than a revert to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes the outer hexagon rotation search (scanning 0-60\u00b0) and fixes inner hexagon orientation to 30\u00b0. This is a structural change within the same geometric_construction family \u2014 modifying the packing strategy by changing inner hex orientation and simplifying outer hex fitting.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes inner hex orientation from 30\u00b0 back to 0\u00b0 and re-introduces outer hexagon rotation search, which partially undoes step (i)'s changes, but it also introduces a different approach (scanning outer hex rotation with 0\u00b0 inner orientation) rather than restoring the exact previous code, making this an algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes inner hexagon rotation from 30\u00b0 to 0\u00b0 and adds a search over outer hexagon rotation angles to find the minimal enclosing hexagon side length. This is a refinement within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a completely different randomized placement/search algorithm, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from a geometric construction approach (placing hexagons in known patterns and optimizing outer hexagon rotation) to a stochastic random placement with binary search on side length. This crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) completely removes the stochastic random placement and binary search approach from step (i) and restores a geometric construction approach with known hexagon positions and outer hexagon rotation optimization, reverting to the family of approaches used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced stochastic random placement + binary search approach with a deterministic geometric construction (lattice-based hex packing with optimal outer hexagon rotation search). This crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters within the same geometric construction approach introduced in step (i), removing a small clearance factor and increasing search resolution, without reverting the algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Removes the 1.001 safety factor (parameter change) and increases angular search resolution from 61 to 1201 steps. The resolution change could be search_space_change but the dominant change is adjusting numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the search approach by adding an inner angle loop and changing resolution to 241 steps, which is a different approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "search_space_change",
+      "confidence": 0.82,
+      "label_notes": "Explores two inner hexagon orientations (0\u00b0 and 30\u00b0) instead of one, expanding the search space, while reducing angular resolution from 1201 to 241 steps per orientation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the two-orientation search approach from step (i) with a fundamentally different algorithm using random perturbation-based optimization, which is a different approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds a stochastic lattice-based candidate selection approach (_attempt_pack) alongside the existing geometric construction, and simplifies the outer hex search. Both approaches remain within the geometric_construction/hand_designed family, so this is intra-family refinement rather than a switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different algorithm (algorithm_switch), removing step (i)'s code and introducing new code, rather than restoring a previous state or explicitly reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite replacing a stochastic search approach (random lattice selection with multiple attempts) with a hardcoded/geometric construction. The diff is truncated but shows removal of random shuffle-based packing attempts and lattice candidate generation in favor of a simpler direct construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-based geometric construction from step (i) with a completely different circle-based packing approach, which is a new algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "[POSTPROC rule D] reclassified from algorithm_switch: Switches from a grid-based column/row placement (geometric_construction) to a circular arrangement with optimization over outer hexagon rotation angle. The placement strategy fundamentally changes from lattice packing to placing hexagons on a circle, which is a different geometric construction approach. Could also be algorithm_refinement since both are geometric_construction family, but the complete rewrite with a fundamentally different placement strategy leans toward algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a hexagonal lattice placement approach, which is a different algorithm from the circular arrangement in step (i), not a revert to any prior code.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from circular placement (equally spaced on a circle) to hexagonal lattice packing (axial coordinate grid). This is a change from a geometric_construction approach based on circular symmetry to a lattice_packing approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hexagonal lattice packing approach introduced in step (i) and restores the circular placement (equally spaced on a circle) that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from lattice-based hexagonal packing positions to a circular arrangement of centers. Both are geometric construction approaches (same family), but the placement strategy is fundamentally different - lattice vs ring. Could be argued as algorithm_switch but both are within geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circular arrangement approach from step (i) by adjusting the radius back to exact value, adding per-hexagon rotations, and increasing search resolution, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Multiple changes: removes the 1% radius enlargement (reverting to exact formula), rotates inner hexagons to align edges radially, and increases angular search resolution from 61 to 361 steps. The dominant change is refining the geometric construction approach (orientation of hexagons and finer search), all within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (fixed outer hex side length of 4.5 with a different placement strategy), rather than reverting to a previous version of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from placing hexagons on a circle (geometric_construction via circular arrangement) to a hex grid enumeration approach with greedy selection, which is a fundamentally different construction strategy.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the hex grid enumeration approach from step (i) back to the circular arrangement approach (placing hexagons on a circle of radius 4.0 with equal angular spacing), restoring the strategy that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from a hex-grid candidate generation approach (geometric_construction with lattice packing) to placing hexagons on a circle with equal angular spacing and then optimizing the outer hexagon rotation. This is a fundamentally different geometric construction strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circle-based approach from step (i) by adding a small epsilon to the radius and cleaning up leftover lattice-layout code that was inconsistent with the circle placement, but it maintains the same fundamental circle-based strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a hexagonal-lattice grid layout to a circular ring placement of 12 hexagons, both within the geometric_construction family. Also adds epsilon for separation. The dominant change is the placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements to step (i)'s circular ring approach (removing epsilon, changing inner hex rotation to 30\u00b0, increasing search resolution) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes inner hexagon orientation to 30 degrees, removes epsilon padding, and increases angular search resolution from 61 to 301 steps. Multiple tweaks within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the angular search approach with a simpler geometric formula for outer hexagon sizing and changes inner hexagon orientation from 30 to 0 degrees, which is a different algorithmic approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes inner hexagon orientation from 30\u00b0 to 0\u00b0 and simplifies outer hexagon side length computation from a rotation search to a direct formula based on max center norm + 1. Both changes are within the same geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular arrangement with a completely different rectangular lattice approach, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a circular arrangement (placing hexagons on a circle of radius 4.0) to a rectangular lattice packing (4x3 grid). This is a fundamentally different geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts back to placing hexagons on a circle of radius 4.0 with equal angular spacing, which is the approach used before step (i)'s rectangular lattice packing switch.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a rectangular lattice (geometric_construction) placement to a circular arrangement of hexagons on a ring, which is a fundamentally different geometric construction strategy. Also adds optimization over outer hexagon rotation angle.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a hexagonal lattice approach, which is a different algorithm from the circular ring arrangement in step (i), not a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a circular arrangement (placing 12 hexagons equally spaced on a circle) to a hexagonal lattice-based packing (geometric_construction/lattice_packing), which is a different algorithm family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hexagonal lattice approach introduced in step (i) and restores the circular arrangement (placing 12 hexagons equally spaced on a circle), which was the approach used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from lattice-based hexagonal packing (geometric_construction/lattice_packing) to a circular arrangement of centers equally spaced on a ring, which is a fundamentally different geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only modifies the radius calculation formula within the same circular arrangement approach, fixing a bug in the minimum distance computation rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "bug_fix",
+      "confidence": 0.82,
+      "label_notes": "Fixes incorrect minimum center distance from 2 to sqrt(3) for unit regular hexagons, which was producing wrong packing geometry",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes most of the code added in step (i), including the circular placement logic, the sqrt(3) minimum distance fix, and the optimization search, replacing it with a completely different simple horizontal-line arrangement as part of a scheduled rewrite.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Replaces a circular arrangement of 12 hexagons with a simple linear arrangement. Both are geometric_construction approaches (same family), but the new approach is much simpler/worse. Could also be considered algorithm_switch since the geometry is fundamentally different, but both are within geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the circular arrangement of 12 hexagons on a circle (radius 4.0, equal angular spacing) that step (i) had replaced with a simple linear arrangement, effectively reverting step (i)'s change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a simple linear spacing arrangement (all hexagons in a row) to a hexagonal lattice-based geometric construction with optimized outer hexagon rotation search. This is a fundamental change from a naive linear placement to a lattice-based geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice approach with a circular arrangement approach, which is a different algorithm for placing centers, not a revert to the previous linear spacing method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from lattice-based packing (hexagonal lattice with axial coordinates, selecting closest 12) to a circular arrangement (equally spaced on a ring). This is a fundamentally different geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the lattice-based approach (axial coordinates, selecting closest 12 points) that step (i) had replaced with the circular arrangement, effectively reverting step (i)'s algorithm switch.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from placing hexagons on a circle (geometric_construction via circular arrangement) to a hexagonal lattice packing approach (lattice_packing), which is a different algorithm family for generating center positions.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the lattice packing approach introduced in step (i) by replacing the generic axial-coordinate lattice generation with a specific hand-crafted 5-row layout, which is an algorithmic refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces a generic axial-coordinate lattice generation with a hand-designed 5-row layout (4-3-3-1-1) for placing 12 hexagons. Both are geometric construction approaches within the same family, but the specific layout strategy is refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 5-row hand-designed layout with a different approach (generating a hexagonal lattice and selecting 12 closest points with a fixed outer_side=5.0), which is a different algorithm rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Replaces a manually-specified center layout + optimal outer hexagon search with a hexagonal lattice enumeration approach. Both are geometric_construction family, so intra-family. The approach changes significantly but stays within geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice enumeration approach with a circular placement approach, which is a different algorithm for solving the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from lattice-based hexagonal packing (axial coordinates on a grid) to a circular arrangement (placing hexagons equally spaced on a circle), which is a fundamentally different geometric construction approach. Also adds optimization of outer hexagon rotation angle.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the circular arrangement back to a lattice-based axial coordinate approach, restoring the type of code that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from circular placement (equally spaced on a circle) to lattice-based geometric construction using axial coordinates. This crosses from a geometric_construction/circular approach to a lattice_packing approach, which are different families.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the lattice-based axial coordinate approach introduced in step (i) and restores the circular placement (equally spaced on a circle) that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from lattice-based placement to circular placement of 12 hexagons. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor refinements to step (i)'s circular placement approach (changing inner hexagon rotation from 30\u00b0 to 0\u00b0 and increasing search resolution), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes inner hexagon rotation from 30\u00b0 to 0\u00b0 (heuristic tweak) and increases angular search resolution from 61 to 361 steps. The rotation change is a heuristic refinement, and the finer search is borderline search_space_change but primarily refines the same approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (fixed side length 5, different placement strategy) rather than reverting to a prior version; this is an algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from placing 12 hexagons on a circle (stochastic_search/geometric_construction with optimization over outer rotation) to a hand-designed special-case layout with 1 central + 6 ring + 5 additional hexagons at fixed positions, fundamentally different geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the hand-designed 1+6+5 layout from step (i) back to placing 12 hexagons on a circle with optimization over outer rotation, which is essentially the approach used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-designed two-ring lattice packing (center + ring of 6 + 5 additional) to a geometric construction placing 12 hexagons equally spaced on a circle, with optimized outer hexagon rotation. This is a fundamentally different geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same circular placement approach by adjusting the radius formula and increasing the angular search resolution, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the ring radius formula to use sqrt(3) minimum distance for pointy-top hexagons (correcting the geometric model) and increases angular search resolution from 61 to 181 steps. The radius change could be bug_fix if the previous formula was producing overlapping hexagons, but it reads more like a geometric refinement. The search resolution increase is a minor search_space_change but secondary to the radius fix.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the radius formula back to the minimum distance of 2 (instead of sqrt(3)) and reduces the angular search resolution back from 181 to 61 steps, undoing both key changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes the radius formula (eps=0.01 for 1% increase) and reduces angular search resolution from 181 to 61 steps. The radius change adjusts a numeric constant, and the search resolution is also a parameter change. Could also be search_space_change due to coarser angular search, but the dominant change is the radius epsilon.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts the radius epsilon change from step (i) back to the original formula, but also introduces a new rotation angle (30 degrees) for inner hexagons, making it a mixed change rather than a pure revert; however, the radius revert is significant enough to consider. On closer inspection, the radius is fully reverted and the angular search resolution change from 181\u219261 is kept, but a new rotation parameter is added. Since the dominant parameter change (eps) is undone while a different approach (rotation=30) is introduced, this is more of an algorithm refinement than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Removes epsilon margin (reverting to exact theoretical radius) and changes inner hexagon orientation from 0 to 30 degrees for better fit. The orientation change is a heuristic refinement within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the single-ring approach with a completely different two-ring arrangement (inner ring at sqrt(3), outer ring at 3.0), which is a new algorithm rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a single-ring circular arrangement of 12 hexagons with a two-ring concentric layout (6 inner at sqrt(3), 6 outer at 3.0). Both are geometric_construction family approaches, but the placement strategy is fundamentally restructured. Also removes the outer hexagon rotation search in favor of a fixed analytic side length.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the two-ring concentric layout from step (i) back to a single-ring circular arrangement (12 hexagons on a circle of radius 4.0) and restores the outer hexagon rotation search that step (i) had removed.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed from a hand-designed two-ring placement (inner ring at sqrt(3), outer ring at 3.0) to a single-circle placement with radius 1/sin(pi/12), plus an optimization loop over outer hexagon rotation angle to minimize side length. Both approaches are geometric construction family, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the inner hexagon rotation from 30 degrees to 0 degrees, which is a parameter adjustment within the same algorithmic approach introduced in step (i), not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes inner hexagon rotation angle from 30 degrees to 0 degrees. This is a numeric constant change (rotation parameter) that affects the packing configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a local refinement search on top of the 0-degree rotation configuration, rather than reverting the rotation angle change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a stochastic local search refinement phase (300 iterations of random perturbation) on top of the existing geometric construction to shrink the outer hexagon. This is an intra-family enhancement within the geometric_construction/physical_simulation approach rather than a switch to a different algorithm family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the entire stochastic local search refinement phase added in step (i), restoring the simpler approach of just computing the outer hexagon from the geometric construction without any local search optimization.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Removes the stochastic local search refinement loop (300 iterations of random perturbation) and replaces it with a purely deterministic computation of the outer hexagon side length. This simplifies the algorithm within the same family (geometric construction) by removing the stochastic search component while keeping the core geometric approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different algorithm (scaled hexagonal lattice instead of circle-based placement), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Switches from a circular arrangement (12 hexagons on a circle with optimized outer rotation search) to a hexagonal lattice-based packing approach. The previous code placed hexagons on a circle and searched for optimal outer hexagon rotation; the new code uses a scaled hexagonal lattice construction. This crosses from stochastic/optimization-based to geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts to the circular arrangement approach (placing 12 hexagons on a circle with optimized outer rotation search), which is essentially the same method that step (i) had replaced with the hexagonal lattice approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Switches from a scaled hexagonal lattice placement to a circular arrangement (12 hexagons on a circle) with brute-force search over outer hexagon rotation angle. This is a fundamentally different geometric construction approach combined with an optimization sweep.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circular arrangement approach introduced in step (i) by replacing the lattice-based center computation with the actual circular placement formula, which is consistent with the stated algorithm in step (i)'s docstring but fixes the implementation to match.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes from a hand-designed lattice arrangement (rows of hexagons) to a circular ring placement of 12 hexagons. Both are geometric construction approaches within the same family, but the placement strategy is fundamentally different in structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks parameters (radius factor and search granularity) within the same circular ring approach introduced in step (i), without removing or reverting the core algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes the radius factor from 1.02 to 1.0 (removing safety margin) and increases angular search granularity from 61 to 361 steps. Both are numeric constant changes, though the finer search grid could also be seen as search_space_change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a completely different placement algorithm (hexagonal lattice instead of circular arrangement) and while it reverts the angular search granularity from 361 back to 61, the overall change is a fundamentally different approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from placing 12 hexagons equally spaced on a circle (geometric_construction via circular arrangement) to a hexagonal lattice packing (lattice_packing). Both are within geometric_construction family but the fundamental placement strategy changes from circular to lattice-based. However, since both are geometric_construction family, this is borderline algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice packing with a completely different approach (linear placement), which is an algorithm switch rather than a revert to the previous circular arrangement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hexagonal lattice packing with optimized outer hexagon rotation search to a trivial linear arrangement along the x-axis. This is a fundamental change from geometric_construction to a naive/degenerate placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the naive linear arrangement with a circular packing approach, which is a different algorithm rather than reverting to the previous hexagonal lattice approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a naive linear placement (hexagons along x-axis with large spacing) to a geometric construction approach (placing hexagons on a circle with angular spacing and optimizing outer hexagon rotation). This is a fundamental change from a trivial placement to a structured geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (comment rewording and reducing search resolution from 301 to 61 points) while keeping the same geometric construction approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "Reduces angular search resolution from 301 to 61 points. Also updates comments. The dominant functional change is the parameter (number of search points), though the reduced resolution could be seen as search_space_change. Since it changes a numeric constant controlling granularity rather than the set of candidates conceptually, parameter_tuning is chosen.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular placement algorithm with a staggered hexagonal lattice arrangement, which is a different algorithmic approach rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from equally-spaced circular placement to a staggered hexagonal lattice arrangement, but both are geometric_construction approaches within the same family. The layout strategy changes significantly but remains geometric construction.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the staggered hexagonal lattice arrangement added in step (i) and restores the circular placement approach (placing centers on a circle with radius r = 1/sin(\u03c0/12)), which is essentially the approach that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a lattice-based packing (geometric_construction/lattice_packing) to a circular arrangement of hexagon centers (geometric_construction but fundamentally different approach). The placement strategy changes from a staggered grid to equally-spaced points on a circle.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular arrangement with a different packing strategy (algorithm refinement), not reverting to the previous lattice-based approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from placing 12 hexagons on a circle (equal angular spacing) to a honeycomb-like arrangement with 1 central + 6 ring1 + 5 ring2 hexagons, and changes outer hexagon sizing. Both approaches are geometric_construction family, so this is intra-family refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the honeycomb arrangement from step (i) back to placing 12 hexagons on a circle with equal angular spacing, which was the approach used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a hand-designed geometric construction (central hex + rings) to a circular placement strategy with optimization over outer hexagon rotation angle. This crosses from geometric_construction to a hybrid geometric_construction+optimization approach, representing a fundamentally different placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circular placement approach from step (i) by removing the safety margin and alternating hexagon orientations, rather than reverting to the previous geometric construction approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Removes safety margin (parameter change) and alternates hexagon orientations between 0\u00b0 and 30\u00b0 (heuristic refinement for tighter packing). The orientation alternation is a structural change within the same geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed the alternating orientation pattern (0\u00b0 and 30\u00b0) introduced in step (i) and replaced it with a uniform 30\u00b0 orientation for all hexagons, effectively reverting the key structural change of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes inner hexagon orientations to uniform 30 degrees (from alternating 0/30) and increases angular search resolution from 61 to 181 steps. The orientation change is a structural tweak within the same geometric construction approach, and the search resolution increase refines the search granularity.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the radius formula and reverts inner hex orientation from 30 to 0 degrees and search resolution from 181 back to 61, but also introduces a new radius calculation (\u221a3-based), making this a different algorithmic refinement rather than a pure revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the ring radius formula from distance=2 to distance=\u221a3 (correct edge-to-edge touching distance for unit hexagons), changes inner hexagon orientation from 30\u00b0 to 0\u00b0, and reduces search granularity. The core geometric construction approach remains the same but with corrected/refined geometric parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular placement approach with a completely different hexagonal lattice approach, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces circular placement of 12 hexagons with a hexagonal lattice arrangement and simplified outer hexagon sizing. Both approaches are geometric construction within the same family, but the placement strategy and containment computation are substantially restructured.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches to a circular placement approach with optimization, which is a different algorithm rather than reverting to the previous circular approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "[POSTPROC rule D] reclassified from algorithm_switch: Switches from a hand-designed hexagonal lattice placement (geometric_construction) to placing hexagons on a circle with equal angular spacing and then optimizing the outer hexagon rotation. This is a fundamentally different geometric construction approach, though both are within the geometric_construction family. However, the change from lattice-based placement to circle-based placement with rotation optimization is a significant structural change within the same family, making it algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only modifies the rotation assignment for inner hexagons from evenly spaced 30\u00b0 increments to following each hexagon's angular position, which is a refinement of step (i)'s circle-based approach, not a revert.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes inner hexagon orientation assignment from evenly spaced 30\u00b0 increments to following each hexagon's angular position on the ring, which is a heuristic tweak within the same geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the inner hexagon orientation change from step (i) by replacing `np.rad2deg(angles)` (orientation following angular position) back to `np.zeros(n)` (all 0 degrees), restoring the uniform orientation that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Two changes: (1) inner hexagon orientations changed from angle-following to all-zero, which is a heuristic refinement; (2) outer hexagon rotation search granularity increased from 61 to 301 steps, which refines the search resolution. Both are intra-family refinements within geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches from a circular placement strategy to a hexagonal lattice approach, which is a different algorithm rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a circular arrangement (placing 12 hexagons equally spaced on a circle) to a hexagonal lattice-based packing (axial coordinates, selecting 12 closest positions). This crosses from geometric_construction/circular to lattice_packing family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the lattice-based packing approach from step (i) and restores a circular arrangement (placing 12 hexagons on a circle of radius 10, equally spaced), reverting back to the pre-step(i) circular approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.5,
+      "label_notes": "Replaces a compact hexagonal lattice packing with optimized outer hexagon sizing with a naive circular arrangement using a very large outer hexagon (side=20). This is a significant simplification/degradation of the algorithm. Could be considered algorithm_switch (geometric_construction variants) but both are geometric_construction family, so algorithm_refinement. The change produces a much worse but simpler feasible solution.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the naive large-hexagon approach with a more sophisticated algorithm that optimizes the outer hexagon size, which is a different and improved approach rather than reverting to the previous compact lattice packing.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the geometric construction approach: tighter placement radius, optimized outer hexagon rotation search, and vertex-based containment check. Stays within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular placement strategy with a lattice-based arrangement, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a circular arrangement of 12 hexagons to a lattice-like arrangement. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the lattice-like arrangement introduced in step (i) and restores the circular arrangement (placing hexagons on a circle with equal angular spacing) that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes from a lattice-based arrangement to a circular arrangement of 12 hexagons, and increases angular search resolution from 61 to 301 steps. Both are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i)'s circular arrangement by adding a local optimization loop to refine center positions, rather than reverting to the previous lattice-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds stochastic local search on top of the existing circular placement to improve packing, staying within the stochastic_search / physical_simulation family. Also reduces outer angle search resolution.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire code with a substantially different approach (new helper functions, different algorithm structure), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric construction approach to a stochastic search (simulated annealing / random perturbation) approach for packing hexagons, crossing from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the stochastic search approach with a different geometric placement approach (circle-based arrangement), which is a new algorithm switch rather than a revert to the previous geometric construction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced stochastic search (random perturbation optimization) with a deterministic geometric construction (placing hexagons on a circle with equal angular spacing). This crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (removing safety factor and increasing search granularity) within the same geometric construction approach introduced in step (i), without reverting any of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Removes safety factor (setting it to exact theoretical minimum) and increases angular search granularity from 61 to 361 steps. Both are numeric constant changes, though the safety factor removal also slightly changes semantics.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor comment changes (cleanup) without reverting any code or logic from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "code_cleanup",
+      "confidence": 0.95,
+      "label_notes": "Only comment changes and no semantic modification to the code logic",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes algorithmic changes (rotating inner hexagons by 30 degrees, reducing search resolution, removing a comment) rather than reverting the comment-only changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Changes inner hexagon orientation from 0 to 30 degrees and reduces search resolution from 361 to 61 steps. The orientation change is a structural tweak to the geometric construction, and the resolution change is minor.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different honeycomb-based algorithm rather than reverting to a previous version; this is an algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from placing hexagons on a circle with equal angular spacing (geometric_construction/symmetry_based) to a honeycomb/lattice packing pattern with explicit hardcoded center coordinates (lattice_packing). Also replaces the optimization-based outer hexagon sizing with a fixed analytical computation. This crosses from symmetry_based to lattice_packing within geometric_construction family, but the complete rewrite with fundamentally different placement logic warrants algorithm_switch.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the lattice packing approach from step (i) back to placing hexagons on a circle with equal angular spacing and optimization-based outer hexagon sizing, which is essentially the approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Switches from a hand-designed honeycomb lattice placement (geometric_construction) to a circular arrangement with optimization over outer hexagon rotation angle, which is a fundamentally different approach combining geometric placement with numerical search for the optimal enclosing hexagon.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circular arrangement approach introduced in step (i) by adjusting the radius calculation and placement strategy, rather than reverting to the previous honeycomb lattice approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a hand-designed hexagonal lattice arrangement to a circular (ring) placement of 12 hexagon centers. Both are geometric_construction approaches within the same family, but the layout strategy is fundamentally different (lattice vs single ring).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the circular ring approach introduced in step (i) by adjusting the radius, changing inner hexagon orientations, and increasing search granularity, rather than reverting to the previous lattice approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Multiple changes: removes the +0.02 radius padding, orients inner hexagons radially instead of all at 0 degrees, and increases outer angle search granularity from 61 to 301 steps. These are all refinements within the geometric_construction family to improve packing quality.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) effectively removes the geometric packing logic added/refined in step (i) by placing all hexagons at the origin with no rotation and returning early, and also reverts the 301-step granularity back to 61 in the now-unreachable code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "bug_fix",
+      "confidence": 0.35,
+      "label_notes": "The code now returns trivially (all hexagons at origin, side length 1.0) before reaching the actual packing logic. This appears to be a broken/degenerate solution rather than a deliberate fix. Could also be harness_or_scope_change (returning a placeholder) or algorithm_refinement. The early return makes the rest of the code dead, producing an incorrect/trivial solution. Labeling as bug_fix is uncertain; this might be an inadvertent regression or a placeholder step.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the trivial/broken solution from step (i) with a completely new algorithm using inner and outer rings, which is a different approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a degenerate all-at-origin placement with a two-concentric-ring geometric construction. Both are geometric_construction family, but the previous code was essentially non-functional (all hexagons at origin with side=1). Could be bug_fix since previous code was broken, but the rewrite introduces a substantively different geometric layout rather than just fixing an indexing error.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the outer_side parameter from 5.2 to 5.0, which is a minor parameter tuning, not a revert of the two-concentric-ring approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the numeric constant outer_side from 5.2 to 5.0, with derived values adjusting accordingly. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only updates comments to be consistent with the outer_side=5.0 value set in step (i); it does not revert any code changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "code_cleanup",
+      "confidence": 0.92,
+      "label_notes": "Only comment text changed (corrected arithmetic in comments from 2.1 to 2.0 and rephrased another comment). No semantic code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the concentric-ring placement algorithm with an axial-coordinate lattice approach, which is a different algorithm rather than a revert of the comment cleanup in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Switches from two concentric rings placement to axial lattice-based placement of hexagon centers, both within geometric_construction family. Also reduces outer_side from 5.0 to 4.0 (parameter change), but the structural change to lattice coordinates is dominant.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the two concentric rings approach that step (i) had replaced with the axial lattice-based approach, and reverts outer_side from 4.0 back to 5.0.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from axial-coordinate lattice placement to concentric-ring placement with different radii, both within geometric_construction family. Also changes outer_side from 4.0 to 5.0 which is parameter_tuning, but the structural change to placement strategy dominates.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the concentric-ring placement back to axial-coordinate lattice placement (which was the approach before step (i)), restoring the axial_to_xy conversion and axial_coords list that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from concentric-ring placement to axial-coordinate-based hex grid placement with a smaller outer hexagon (4.5 vs 5.0). Both are geometric_construction family approaches, so this is intra-family refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the axial-coordinate hex grid approach from step (i) back to a concentric-ring placement approach with outer_side=5.0, restoring the pattern that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from axial-coordinate-based placement to concentric-ring placement strategy, both within the geometric_construction family. Also changes outer_side from 4.5 to 5.0 but the structural change dominates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes a minor parameter change (inner_radius from outer_radius/2.0 to a hardcoded 2.0) and updates comments, keeping the same concentric-ring approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "The change modifies inner_radius from outer_radius/2.0 to a hardcoded 2.0. While the formula changes, the actual numeric value remains 2.0 (since outer_radius=4.0), making this effectively a no-op in terms of runtime behavior, but the comment and expression change. Could also be code_cleanup or no_change since the value doesn't change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores inner_radius to outer_radius/2.0, which was the formula before step (i) changed it to a hardcoded 2.0, thus reverting the key code change from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes inner ring radius calculation and rotates inner hexagons from flat-top (0\u00b0) to pointy-top (30\u00b0) orientation \u2014 structural tweaks within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the outer_side parameter from 5.0 to 5.2 and reverts the hexagon angles from 30\u00b0 back to 0\u00b0; while the angle change undoes part of step (i), the outer_side change is new, and the inner_radius calculation change from step (i) is retained, making this a partial revert at most but better characterized as parameter tuning with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes outer_side from 5.0 to 5.2 and inner hexagon angles from 30\u00b0 to 0\u00b0. The angle change could be algorithm_refinement, but both changes are numeric constant adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a fundamentally different algorithm (different outer_side, different placement strategy, different code structure) rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Changes from two concentric rings placement to a hand-designed compact cluster layout with different center positions and a smaller outer side length (5.2\u21924.0). Both are geometric_construction family approaches, but the new layout is a different hand-designed arrangement. Could also be considered parameter_tuning or initialization_change, but the placement geometry itself changed structurally.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts from the hand-designed compact cluster layout back to a two concentric rings (outer ring + inner ring) approach with angles at multiples of 60\u00b0, restoring the ring-based geometry that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the geometric placement of 12 hexagons from an ad-hoc layout to a two-concentric-ring arrangement with adjusted outer side length. Still geometric_construction family, but significantly changes the placement strategy and parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (shrinking outer_radius by 0.05 and changing hexagon angles from 30\u00b0 to 0\u00b0) rather than reverting the concentric-ring structure introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants: shrinks outer_radius by 0.05 and changes hexagon rotation angles from 30\u00b0 to 0\u00b0. The angle change could be seen as algorithm_refinement, but combined with the radius tweak, the dominant change is adjusting placement parameters.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores outer_radius to outer_side - 1.0, removing the -0.05 shrink that was the primary change in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Adjusts the outer_radius and inner_radius numeric constants (removing the 0.05 shrink factor), no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the algorithm with a different hexagonal lattice approach rather than reverting step (i), which was itself a no-change step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from two concentric rings placement to a hexagonal lattice grid arrangement for the 12 hexagons. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice grid approach with a different circular arrangement approach, which is a normal algorithm switch rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changed from a hexagonal lattice arrangement (4+3+3+1+1 rows) to placing 12 hexagons equally spaced on a circle. Both are geometric construction approaches but with fundamentally different placement strategies within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular arrangement with a rectangular grid arrangement, which is a different algorithmic approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the placement strategy from circular arrangement to rectangular grid layout, both within geometric_construction family. Also changes outer_side from 5.0 to 10.0 which is parameter_tuning but the dominant change is the placement geometry.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rectangular grid layout from step (i) back to a circular ring arrangement, which was the approach used before step (i) changed it to a grid.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes placement strategy from rectangular grid to concentric ring arrangement of 12 hexagons, both within geometric_construction family. Also adjusts outer_side from 10.0 to 5.2.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the concentric ring approach introduced in step (i) by adjusting parameters (outer_side from 5.2 to 5.0, adding inner ring, changing orientations) rather than reverting to the previous rectangular grid approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes placement strategy from 12 hexagons on a single ring to 6+6 on two concentric rings, adjusts outer side length, and rotates orientations. This is a structural refinement within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the two-ring approach with a different layout strategy (hardcoded coordinates, different outer_side=4.0, different orientations), which is a new algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes from a two-ring (inner+outer) geometric construction to a single-ring equally-spaced arrangement of 12 hexagons. Both are geometric_construction family approaches, so this is intra-family refinement, though it's a significant structural change within the same family. The outer side length also changed from 5.0 to 4.0 (parameter_tuning aspect), but the dominant change is the placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a new two-ring (inner+outer) arrangement with different parameters and rotations, which is a different algorithmic approach rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes from a single-ring equally-spaced layout to a two-concentric-ring arrangement with different radii and angular offsets. Both are geometric construction approaches (same family), but the placement strategy is substantially refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters and simplifies angle handling but retains the two-concentric-ring structure introduced in step (i), making it a parameter tuning refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes outer_side from 4.8 to 5.0, outer hex orientation from 30\u00b0 to 0\u00b0, inner_radius formula changed, and inner ring angle offset removed. Mix of parameter changes and geometric layout adjustments. The orientation change and inner_radius formula change border on algorithm_refinement, but the dominant changes are numeric constants governing the packing geometry.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the outer hex orientation back to 30\u00b0 and shifts ring angles back to 30\u00b0-offset positions, effectively reverting the orientation and angle changes made in step (i), while also reverting outer_side closer to its previous value.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes outer_side from 5.0 to 5.2, outer hex orientation from 0\u00b0 to 30\u00b0, and rotates placement angles by 30\u00b0. These are numeric constant changes to the geometric construction parameters rather than structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only reverts one parameter (outer_side from 5.2 back to 5.0) but does not revert the other changes from step (i) such as the 30\u00b0 outer hex orientation and rotated placement angles, so it is a partial parameter adjustment rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the outer_side constant from 5.2 to 5.0, a numeric parameter adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a different algorithm (hexagonal lattice with different parameters and structure), which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from concentric-ring placement to axial-coordinate hexagonal lattice placement, both within the geometric_construction family. Also adjusts outer side length from 5.0 to 4.70.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate hexagonal lattice approach from step (i) with a concentric-ring approach, which is a different algorithm rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from axial-coordinate lattice packing to concentric-ring placement strategy, both within geometric_construction family. Also changes outer hex orientation and size.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) made parameter tuning changes; there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Reduces outer_side from 5.0 to 4.5, adjusts inner_radius from outer_radius/2 to 2.0, and changes angle offsets. The outer_side and inner_radius are parameter changes, but the angle offset change (from same angles to interleaved 30\u00b0 offset) is a geometric construction refinement. Mixed between parameter_tuning and algorithm_refinement; picking algorithm_refinement due to structural angle changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues to modify parameters (outer_side from 4.5 to 4.0, inner_radius formula changed, angle offsets adjusted, inner hex orientation changed) rather than reverting to the pre-step(i) state; it builds on step (i)'s approach with further refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes outer_side from 4.5 to 4.0, adjusts inner_radius formula, modifies angle offsets and orientation. While there are structural tweaks (angle changes, orientation change from 0\u00b0 to 30\u00b0), the dominant changes are numeric parameter adjustments to the packing configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the concentric-ring approach with a grid-based placement strategy, which is a different algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "[POSTPROC rule D] reclassified from algorithm_switch: Switches from concentric-ring geometric construction (two rings of hexagons at computed radii) to a rectangular grid-based placement (4x3 grid). This is a fundamentally different geometric construction approach, though both are within the geometric_construction family. Since both are intra-family, this could be algorithm_refinement, but the complete structural rewrite of the placement strategy leans toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": "D"
+    }
+  ]
+}

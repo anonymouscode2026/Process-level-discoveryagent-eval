@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "claude-opus-4-6",
+  "level": "L0f",
+  "run_id": "L0f__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) significantly rewrites the algorithm with a different/simplified approach rather than reverting to a prior state; this is an algorithm refinement, not a revert of the initial generation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same family (physical_simulation/gradient_descent using scipy minimize). Simplifies the objective function, changes constraint handling, and restructures the initialization, but stays within the same optimization-based approach using Nelder-Mead. Could be considered algorithm_switch if the previous code used a fundamentally different family, but both use scipy.optimize.minimize.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a significant refinement/rewrite of the optimization approach but does not revert step (i); it builds on the same scipy.optimize.minimize framework while adding new helper functions (point_in_convex_polygon, polygon separation), restructuring initialization, and improving feasibility checks \u2014 this is a continued evolution, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Significant rewrite of the optimization approach within the same family (numerical optimization/gradient-descent-like using Nelder-Mead). Changes constraint handling, objective function structure, containment checks, and verification logic, but stays within the physical_simulation/stochastic_search optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes significant changes to the algorithm but does not revert step (i); it modifies the approach further (e.g., adding outer hex rotation consideration, changing variable names, restructuring logic) rather than restoring previous code or undoing step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the packing approach by restructuring the containment check (trying both 0-deg and 30-deg outer hex orientations) and simplifying the hexagon geometry functions, while staying within the same optimization-based approach family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a significantly different and more elaborate optimization strategy (multiple initial configurations, penalty-based optimization with scaling schedule, verification function), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a geometric construction approach to a Nelder-Mead optimization with penalty-based containment and overlap constraints, representing a move from geometric_construction family to physical_simulation/gradient_descent family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Nelder-Mead optimization approach with a different geometric/analytical approach, which is a new algorithm switch rather than reverting to the previous geometric construction from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Replaced scipy.optimize-based numerical optimization (gradient_descent/Nelder-Mead) with a direct geometric construction approach that analytically places hexagons and computes the outer radius from vertex containment constraints. This crosses from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverted the geometric construction approach back to scipy.optimize/Nelder-Mead numerical optimization, restoring the optimization-based methodology that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a hand-designed geometric construction (fixed honeycomb layout) to a Nelder-Mead optimization-based approach with overlap/containment penalty functions, which is a fundamentally different algorithm family (geometric_construction \u2192 physical_simulation/gradient_descent style optimization).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the optimization-based approach introduced in step (i) rather than reverting it; it keeps the same Nelder-Mead optimization framework with penalty functions but modifies the implementation details like initial configurations, objective function, and parameter handling.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same family (gradient-free optimization using scipy minimize/Nelder-Mead). Changes overlap checking, containment checking, objective function structure, and initialization strategy, but remains within the stochastic_search/physical_simulation optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and extends the code from step (i) with modified geometry checks, validation logic, and a fallback mechanism, rather than reverting to a previous version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Significant restructuring of the optimization approach within the same physical_simulation/gradient_descent family: rewrites overlap computation, objective function, optimization loop, and adds validation/fallback. The core approach (scipy.optimize with penalty-based objective) remains the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different implementation (different helper functions, different optimization structure, different containment computation), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a custom optimization approach with scipy.optimize.minimize-based approach, adding SAT-like separating axis distance checks and a fundamentally restructured solver. The overall approach shifts significantly in structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different optimization strategy (still using scipy.optimize.minimize but with a completely restructured objective function and initialization), which constitutes an algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric construction approach (computing vertices, separating axis distances) to a Nelder-Mead optimization approach with multiple initial configurations. Switches from geometric_construction family to physical_simulation/gradient-based optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the Nelder-Mead optimization approach introduced in step (i) rather than reverting it; it keeps the same optimization framework while modifying details like adding outer angle optimization and changing initial configurations.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Significant rewrite of the packing optimization approach within the same family (physical/geometric optimization using scipy minimize). Changes constraint checking (half-planes), objective function structure, and initialization patterns, but remains within the same optimization-based approach family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a further refinement of the same optimization approach, modifying helper functions, adding multiple initial configurations, and fixing the outer angle to 0, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same family (Nelder-Mead optimization with multiple restarts, different initial configurations, revised overlap/containment penalty functions). Still gradient-free numerical optimization, so intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Nelder-Mead optimization approach with a completely different analytical/geometric placement approach, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Replaces scipy optimization-based approach (gradient descent / numerical optimization) with a hand-designed geometric construction (honeycomb pattern placement). This crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the geometric honeycomb construction from step (i) and restores a scipy.optimize-based approach, reverting back to the optimization family that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a hand-designed geometric construction to a scipy.optimize.minimize-based numerical optimization approach with separating axis overlap checks, representing a move from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize numerical optimization approach with a different geometric/analytical packing strategy, which is a new algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced optimization-based approach (scipy.optimize with separating axis tests) with a direct geometric construction using honeycomb hex grid pattern. This crosses from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb geometric construction with a different approach using optimization (scipy.optimize) and separating axis tests, which is a new algorithm switch rather than reverting to the previous optimization approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Switches from a hand-designed geometric construction (axial hex grid coordinates) to a numerical optimization approach using scipy.minimize with Nelder-Mead, which is a fundamentally different algorithm family (geometric_construction \u2192 physical_simulation/optimization).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy optimization approach with a different geometric/analytical construction approach, which is an algorithm switch rather than a revert to the previous geometric construction from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces scipy optimization-based approach (gradient descent / numerical optimization) with a geometric construction approach using a known hexagonal lattice packing pattern with hardcoded positions, which is a different algorithm family (geometric_construction vs physical_simulation/exact_solver).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with yet another different approach (optimization-based with R_opt), which is a normal algorithm switch rather than a revert to the previous scipy optimization code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Replaces a hand-designed geometric construction (fixed lattice positions) with a numerical optimization approach (scipy.optimize.minimize with gradient-based or iterative solver), switching from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the optimization approach from step (i) with a substantially different optimization formulation (different parameterization, different objective, different initialization strategy with multiple random restarts), rather than reverting to the pre-step(i) geometric construction approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric construction approach to a scipy.optimize-based numerical optimization with multiple random restarts, penalty-based objective, and feasibility checking via separating axis theorem. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the scipy.optimize approach introduced in step (i) rather than reverting it; it still uses scipy.optimize.minimize with a similar numerical optimization strategy, just restructured and improved.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing optimization approach within the same family (scipy minimize-based optimization with geometric constraints), restructuring the objective, constraints, and initialization but staying within gradient-based/physical simulation optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a further refinement of the optimization approach, rewriting the algorithm with different helper functions, multi-start optimization, and different constraint handling, but not reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same family (physical_simulation/gradient_descent using scipy minimize with Nelder-Mead). Changes containment checking, separation distance computation, objective function formulation, and multi-start strategy, but remains within the stochastic_search/gradient_descent optimization family using scipy.optimize.minimize.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a further refinement of the optimization approach, modifying the objective function, parameterization, and initial configuration, but not reverting to a previous version of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the overlap checking and initialization logic within the same optimization-based approach (scipy minimize with penalty). Changes include new point-in-hex checks, different initial arrangement (concentric rings), and restructured objective/penalty function, but remains within the same physical_simulation/gradient_descent family using Nelder-Mead optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a restructured but similar optimization-based approach (different parameterization, multiple optimization runs, different overlap/containment checks), which is a refinement/algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same family (gradient_descent/Nelder-Mead optimization). Adds multiple initial configurations (3-3-3-3 grid, rotated outer hex) and restructures the objective function and constraint handling, but stays within the same optimization-based approach. Could also be considered initialization_change due to multi-start, but the structural changes to the objective and constraint handling dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different algorithm (geometric arrangement with optimization refinement), not reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from scratch with a new approach combining geometric construction (hex grid placement with multiple candidate configurations) and scipy.optimize refinement. This represents a fundamental restructuring of the solution strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different optimization-based strategy rather than reverting to a previous state; this is an algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a hand-designed geometric construction (fixed hex grid positions) to scipy.optimize-based numerical optimization with overlap/containment constraints - moving from geometric_construction family to physical_simulation/gradient_descent family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize numerical optimization approach with a different geometric/grid-based construction approach, which is an algorithm switch rather than a revert to the original code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced scipy.optimize-based numerical optimization (gradient_descent/exact_solver family) with a hand-designed geometric construction (honeycomb grid arrangement with local refinement). This is a cross-family switch from physical_simulation/exact_solver to geometric_construction/hand_designed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb grid geometric construction with a different approach (scipy.optimize-based numerical optimization with detailed overlap/containment constraints), which is an algorithm switch to a new method, not a revert to the previous scipy-based approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.92,
+      "label_notes": "Switches from a hand-designed geometric construction (fixed honeycomb grid arrangement with analytical containment) to scipy.optimize-based numerical optimization (physical_simulation/stochastic_search family), fundamentally different approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy optimization approach with a different hand-designed geometric construction (rows of hexagons with analytical placement), which is a new algorithm switch rather than reverting to the previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Replaces scipy optimization-based approach (gradient descent / numerical optimization) with a hand-designed geometric construction (hardcoded honeycomb/hex grid arrangement). This crosses from physical_simulation/stochastic_search family to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction with a scipy optimization-based approach, which is a different algorithm switch rather than a revert to the previous scipy approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a purely geometric/analytical construction to a scipy.optimize-based numerical optimization approach with multiple initial configurations and iterative refinement, crossing from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize-based approach with a different algorithm (appears to be a direct geometric/analytical construction), which is an algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from scipy.optimize-based approach with multiple configurations and separating axis theorem to a simpler geometric construction approach. The previous code used optimization (gradient_descent/physical_simulation family) while the new code appears to use a direct geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction from step (i) with a much more elaborate optimization-based approach including scipy.optimize, which is a refinement/different algorithm rather than a revert to the previous scipy-based code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the packing arrangement logic with different placement strategies (rings, optimization), but stays within geometric_construction family. The diff is heavily truncated making full classification difficult, but the visible changes show restructured placement with different ring configurations and containment checking.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy optimization approach with a completely different honeycomb grid-based arrangement strategy, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Replaces scipy optimization-based approach (gradient descent / numerical optimization) with a hand-designed geometric construction (hardcoded honeycomb grid arrangement). This crosses from physical_simulation/exact_solver family to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hand-designed geometric honeycomb grid construction from step (i) and restores a scipy optimization-based approach (using minimize with Nelder-Mead), reverting back to the numerical optimization family that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a hand-designed geometric construction (ring-based arrangement) to a Nelder-Mead optimization approach with multiple initial layouts and random restarts. This crosses from geometric_construction family to physical_simulation/stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Nelder-Mead optimization approach with a different but still optimization-based approach using half-plane containment checks and structured initial layouts; this is a further algorithm refinement, not a revert to the previous geometric construction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing solver. The previous code used a direct optimization approach with scipy minimize on parameters. The new code introduces a fundamentally different approach with geometric construction (ring-based hexagonal arrangements), multiple candidate configurations, and then local optimization - combining geometric_construction with stochastic_search/refinement. This crosses algorithm families from pure gradient_descent/optimization to geometric_construction with optimization refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (top 5\u21926, max_iter 300\u2192500) and adds perturbation optimization logic, which refines step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.52,
+      "label_notes": "Changes max_iter from 300 to 500, tries top 6 instead of 5, and adds perturbation optimization trials. The dominant changes are numeric parameter adjustments (max_iter, n_trials, top-k count), but the addition of perturb_and_optimize call is a structural addition that could be algorithm_refinement. Close call between parameter_tuning and algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numeric parameters (penalty_scale values, tolerances, max_iter, n_trials, top-k count) and modifies some config definitions, but does not remove or undo the core changes from step (i); it builds upon them.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: penalty_scale list expanded, tolerances tightened, max_iter increased, n_trials increased, outer angle search grid refined. Also adds a new config (Config 13) and removes comments. The dominant changes are parameter tuning, but adding Config 13 is search_space_change and comment removal is code_cleanup. By volume the parameter changes dominate, but the new config is meaningful. Borderline between parameter_tuning and search_space_change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it cannot have reverted step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) is an algorithm switch that rewrites the code with a different approach, not reverting any specific changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a complex multi-strategy approach (geometric construction + perturbation optimization) with a differential_evolution-based approach. This crosses from geometric_construction/physical_simulation family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a completely different algorithm (geometric construction with half-planes and iterative optimization), which is a new approach rather than reverting to the previous multi-strategy approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the packing solver. Previous code used scipy differential_evolution/minimize with a simple ring configuration. New code implements detailed geometric primitives (half-plane representations, separating axis theorem for overlap detection), multiple initialization strategies with grid-based and ring-based configurations, and a multi-start optimization approach. This represents a fundamental restructuring crossing from a simple optimization-based approach to a geometric construction + stochastic search hybrid.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a scipy import and a hex_to_half_planes function to the code from step (i), which is a refinement/addition rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Adds half-plane representation helper and scipy.optimize import, suggesting preparation for a refined optimization approach within the same physical_simulation/gradient_descent family. Could also be representation_change but the half-plane helper is supplementary, not replacing the core representation yet.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a new function (perturb_and_optimize) without removing or reverting any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a perturbation-based local search function within the stochastic search family to improve solutions",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes the perturb_and_optimize function that was added in step (i), but step (i) also added many other functions and substantial code that remain intact, so this is a partial cleanup rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "code_cleanup",
+      "confidence": 0.9,
+      "label_notes": "Removes unused perturb_and_optimize function (dead code removal) with no semantic change to the algorithm",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite/switch, not a revert of the dead code removal in step (i); it replaces the entire approach with a different one rather than restoring the removed function.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing solver. The previous code used a geometric construction approach with specific configurations and local optimization. The new code appears to use a more direct numerical optimization approach with scipy.optimize.minimize over all hexagon positions/angles simultaneously, representing a significant structural change in the solving approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize-based approach with a different algorithm using geometric construction and local refinement, which is a new approach rather than reverting to the previous code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from scipy differential_evolution-based approach to a geometric construction approach with hand-designed configurations (ring/grid layouts) and local optimization. Crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a missing function definition (hex_to_half_planes) and imports scipy.optimize.minimize, which refines the geometric construction approach from step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Adds half-plane representation helper and imports scipy.optimize, suggesting preparation for a gradient-based optimization approach. Could also be representation_change (half-plane representation) but the function is additive and the core algorithm structure hasn't changed yet.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (removing one penalty_scale value and loosening tolerances), not reverting the code added in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Removes one penalty_scale value from the schedule and relaxes convergence tolerances (xatol, fatol), both purely numeric constant changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the penalty_scale value (50000) that step (i) removed and tightens the tolerances back to values closer to what step (i) had relaxed, effectively undoing both changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Adds a new penalty_scale value (50000) to the iteration list and tightens convergence tolerances (xatol, fatol). These are purely numeric constant changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite (scheduled rewrite at step 50), replacing the entire approach with a different one using differential_evolution and new helper functions, not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver. Previous code used scipy.optimize.minimize with manual configurations; new code introduces differential_evolution (evolutionary algorithm) alongside minimize, fundamentally restructuring the approach from physical_simulation/gradient_descent family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a completely different algorithm (grid search with perturbation), which is a new approach rather than reverting to the previous code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing solver: replaces differential_evolution/scipy.optimize approach with a new geometric construction + local optimization approach using half-plane containment checks and manual candidate configurations. The overall structure and approach changed substantially.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back a scipy import and a hex_to_half_planes function that was apparently missing from step (i)'s code (it was called but not defined), which is a refinement/fix rather than a revert of the overall approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Adds scipy.optimize.minimize import and a half-plane representation helper function for hexagons, suggesting preparation for a refined optimization approach within the same physical/geometric family. Could also be representation_change (half-plane representation) but the helper is additive and the core algorithm structure appears unchanged.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so there is no revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) is an algorithm switch that rewrites the code with a different approach, not reverting any changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a geometric construction + local optimization approach with differential_evolution (stochastic search) combined with Nelder-Mead refinement. This crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a different algorithm (geometric construction with Nelder-Mead refinement), which is a new approach rather than reverting to the pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing solver with refined geometric constraint handling, multiple initialization strategies, and improved optimization pipeline, but stays within the same physical_simulation/stochastic_search family using scipy.optimize minimize with gradient-based and multi-start approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, and step (i+1) makes minor parameter tuning adjustments, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Removes one penalty_scale value from the iteration list and relaxes convergence tolerances (xatol, fatol), both purely numeric constant changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverses the tolerance and penalty_scale changes from step (i) but also adds substantial new code (new configurations, algorithm changes), making it a refinement/extension rather than a pure revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: adds new initial configurations (444_opt, 444_rot30, 3-3-3-3), adds perturb_and_optimize function, tunes penalty scales, convergence tolerances, and iteration counts. The dominant change is adding new starting configurations and a perturbation-based local search refinement. Could also be initialization_change or parameter_tuning, but the structural additions (new configs, new function) push toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different approach (new objective function, different parameterization, different optimization strategy), not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver with fundamentally restructured approach including multiple initial configurations (v2-v8), different optimization pipeline, and new geometric construction methods. The massive rewrite suggests a shift in overall algorithm structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different approach (half-planes, different helper functions, different optimization strategy), not a revert of step (i)'s code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver with fundamentally different approach: new geometric helper functions, different optimization structure, different initial configurations and refinement strategy. The code is substantially restructured from scratch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a new function `perturb_and_optimize` to the existing code from step (i), without removing or reverting any of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a perturb-and-optimize helper function that applies random perturbations and re-optimizes, which is a refinement within the stochastic search / physical simulation family (random restart with perturbation).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes the perturb_and_optimize helper function added in step (i), but this is a code cleanup removing an unused function rather than reverting the entire set of changes from step (i), which included many other additions and modifications that remain intact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "code_cleanup",
+      "confidence": 0.9,
+      "label_notes": "Removes unused perturb_and_optimize function; no semantic change to the active algorithm",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) is an algorithm switch that rewrites the code with a different approach, not reverting any specific changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a geometric construction approach with scipy differential_evolution-based stochastic optimization. The previous code used geometric placement with half-plane containment checks and manual configuration, while the new code uses differential_evolution (a stochastic metaheuristic) to minimize the outer hexagon radius. This crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy differential_evolution approach with a completely different geometric/analytical approach, which is a new algorithm switch rather than reverting to the previous code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing solver. Removed scipy dependency (differential_evolution/minimize), replaced with a custom geometric construction approach with manual candidate configurations and local optimization. This is a fundamental change from stochastic_search (differential_evolution) to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back scipy.optimize.minimize and a hex_to_half_planes function but does not remove the code added in step (i); it refines/extends the geometric construction approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Adds half-plane representation helper function and imports scipy.optimize, suggesting preparation for a refinement of the optimization approach (e.g., using scipy minimize). Could also be seen as data_structure_change or representation_change, but the half-plane representation is a utility addition within the existing geometric approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so there is no revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead it's an algorithm rewrite that modifies the existing code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. The previous code used a geometric construction approach with manual grid-based placement and optimization. The new code introduces LP-based overlap checking (linprog for separating hyperplane), scipy.optimize.minimize-based optimization, and a fundamentally restructured approach. This constitutes a major architectural redesign crossing algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different algorithm (removing scipy.optimize imports and LP-based overlap checking, introducing a completely new geometric approach), which constitutes a normal algorithm switch rather than a revert to pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the hexagon packing solver. Previous code used scipy.optimize.minimize with LP-based overlap checking (exact_solver/gradient_descent hybrid). New code appears to use a fundamentally different geometric construction approach with predefined configurations and analytical containment checking, replacing the optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back a missing function (hex_to_half_planes) and imports scipy.optimize.minimize, which are refinements/fixes to the code from step (i), not a revert of it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Adds scipy.optimize import and a half-plane representation helper function for hexagons, which is preparatory for refining the optimization approach. Could also be seen as representation_change (half-plane representation) but the dominant intent appears to be refining the existing algorithm's geometric computations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so there is no revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead, step (i+1) is an algorithm switch rewriting the existing code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a geometric construction + local optimization approach with differential_evolution (stochastic search) combined with penalty-based objective optimization. Switches from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a completely different algorithm using half-planes and geometric containment checks, which is a new approach rather than reverting to the previous geometric_construction + local optimization method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the hexagon packing solver. Previous code used differential_evolution (evolutionary/stochastic search). New code uses a geometric construction approach with multiple hand-designed configurations (ring-based layouts, grid layouts) followed by local optimization via scipy.minimize. This crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes an unused function (optimize_config) while keeping the rest of the code from step (i) intact, which is a minor cleanup rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "code_cleanup",
+      "confidence": 0.92,
+      "label_notes": "Removes unused optimize_config function (dead code removal) while keeping optimize_config_v2",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the optimize_config function that was removed in step (i), which is a direct revert of the dead code removal.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "Adds an optimize_config function that appears to be a simpler/alternative version of the existing optimize_config_v2. Could be algorithm_refinement but it seems like adding a utility function variant rather than changing the main algorithm flow. Borderline with algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead, step (i+1) is an algorithm switch rewriting the code that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a custom geometric construction + local optimization approach with differential_evolution (stochastic search) combined with scipy minimize. This crosses from geometric_construction/physical_simulation family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a completely different geometric/analytical approach rather than reverting to the previous code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from scipy optimize-based approach to a geometric construction with multiple candidate configurations, half-plane containment checks, and perturbation optimization. This represents a fundamental change in approach from numerical optimization (gradient_descent/differential_evolution) to geometric_construction with enumerated candidate layouts.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a scipy import and a hex_to_half_planes function to the existing code from step (i), which is a refinement/addition rather than a revert of the geometric construction approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Adds scipy.optimize import and a half-plane representation helper function for hexagons, suggesting preparation for a refined optimization approach within the same physical/geometric family. Could also be representation_change (half-plane representation) but the helper is additive and the overall algorithm family hasn't changed yet.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a new function `perturb_and_optimize` without removing or reverting any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a perturb-and-reoptimize function within the existing stochastic/local search framework, refining the optimization strategy without switching algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (differential_evolution-based), which is an algorithm switch rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a geometric construction + local optimization approach with differential_evolution (stochastic metaheuristic) based global optimization. This crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a different geometric/analytical approach using half-plane containment and local optimization, which is a new algorithm switch rather than reverting to the previous geometric construction approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver. Previous code used differential_evolution (evolutionary/stochastic search); new code uses a systematic geometric construction approach with multiple candidate configurations (rings, grid layouts, specific geometric patterns) followed by local perturbation optimization. This represents a shift from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (removing one penalty_scale value and halving max_iter), not reverting the algorithm rewrite from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Removes one penalty_scale value from the iteration list and halves maxiter; both are numeric constant changes with no structural algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the penalty_scale value (50000) that step (i) removed and restores maxiter to its original value (undoing the halving), effectively reverting both changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Adds a new penalty_scale value (50000) to the iteration list and increases maxiter from max_iter//2 to max_iter. Both are numeric constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) is a major algorithm rewrite replacing the previous approach with a different one using differential_evolution; this is an algorithm switch, not a revert of a no-op.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite replacing a geometric construction + local optimization approach with differential_evolution (stochastic search) combined with penalty-based optimization. This crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a completely different geometric construction + local optimization approach, which is a new algorithm switch rather than a revert to a prior version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from differential_evolution-based approach to a geometric construction approach with multiple hand-designed configurations (rings, grid patterns) followed by local optimization. This crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a new function (perturb_and_optimize) without removing or reverting any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a perturb-and-optimize function that performs random perturbations and re-optimization, which is a refinement within the stochastic_search/physical_simulation family (adding random restarts around a solution).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the perturb_and_optimize function but replaces it with a different optimization approach (scipy optimization on top configs with angle search), which is an algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Removes perturb_and_optimize function and replaces the perturbation-based optimization loop with a different refinement strategy: scipy optimization on top configs with angle sweep. Both are within the stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire algorithm with a fundamentally different approach (algorithm_switch), not restoring the previous code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. The previous code used detailed geometric half-plane containment checks and vertex-based separation computations. The new code restructures the approach with a different optimization formulation using penalty-based objective with scipy.optimize.minimize (Nelder-Mead/Powell), representing a substantially different algorithmic structure. Hard to tell exact family change but the rewrite is extensive enough to qualify as algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize-based approach with a completely different half-plane based geometric approach, which is a new algorithm switch rather than a revert to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from scipy.optimize-based approach to a custom geometric construction with manual candidate generation, overlap checking via half-planes, and grid-based search. This represents a shift from a continuous optimization (gradient_descent/physical_simulation family) to a geometric_construction/hand_designed approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a single import statement and does not remove or restore any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "Adding an import for scipy.optimize.minimize without any other code changes. This is preparatory \u2014 the import is added but not yet used in the visible diff. Could also be considered no_change since it's just an import addition, but it's a non-trivial addition of a dependency likely for upcoming algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; step (i+1) is an algorithm_switch that replaces the existing code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite replacing the previous approach (which used geometric construction with iterative refinement and scipy minimize) with a substantially different optimization formulation. The new code uses a different parameterization and optimization strategy, though both broadly fall under physical_simulation/gradient_descent family via scipy.optimize.minimize. The complete rewrite with fundamentally restructured objective function and constraint handling suggests algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a completely different algorithm (new helper functions, different optimization strategy), which is an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from scipy differential_evolution to a custom geometric construction approach with manual placement patterns (ring-based, grid-based, sunflower) and local optimization via scipy.minimize. This crosses from exact_solver/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a single import statement and does not remove or restore any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "Adding an import for scipy.optimize.minimize without any other code changes. This is preparatory but the actual usage isn't shown in the diff. Could be considered code_cleanup (adding an import) or a precursor to algorithm_switch. Since only the import line changed, treating as cleanup.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so there is no revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; step (i+1) is an algorithm_switch that replaces the existing code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite replacing the previous approach with a different optimization structure. The code was substantially rewritten with different initialization configurations and optimization pipeline, though both use gradient-free optimization (Nelder-Mead/Powell). The massive structural change and complete rewrite suggests algorithm_switch, though both approaches are in the physical_simulation/stochastic_search family. The rewrite changes the overall approach significantly enough to qualify.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different algorithm (half-plane based geometry with different optimization structure), which constitutes an algorithm_switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver. Previous code used differential_evolution (evolutionary/stochastic search). New code uses a detailed geometric construction approach with hand-crafted hexagonal grid configurations, geometric containment checks, half-plane representations, and local optimization via Nelder-Mead. This crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made to the code, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, and step (i+1) makes minor parameter tuning changes, so there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Removes one penalty_scale value from the iteration list and relaxes convergence tolerances (xatol, fatol), both purely numeric constant changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the 50000 penalty_scale value that step (i) removed and tightens the tolerances back to values closer to what step (i) had relaxed, effectively undoing both changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Adds a new penalty_scale value (50000) to the iteration list and tightens convergence tolerances (xatol, fatol). These are purely numeric constant changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite (algorithm_switch) that replaces the entire approach with a different one, not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing the previous approach with differential_evolution and a fundamentally restructured optimization strategy. The code is rewritten from scratch with different algorithm structure, switching from a manual geometric construction + local optimization approach to scipy's differential_evolution (evolutionary algorithm), crossing from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a completely different algorithm (appears to be a custom geometric/analytical approach), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver. Previous code used scipy.optimize (differential_evolution/minimize). New code uses a geometric construction approach with multiple hand-designed configurations (ring patterns, grid layouts) combined with perturbation-based local optimization, representing a shift from exact_solver/physical_simulation family to geometric_construction/stochastic_search hybrid.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds an import statement and does not remove or restore any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "code_cleanup",
+      "confidence": 0.45,
+      "label_notes": "Adding an import for scipy.optimize.minimize without any other code changes. This is preparatory \u2014 the import is added but not yet used. Could be no_change since it's trivially adding an import, but it does introduce a new dependency. Leaning code_cleanup as it's a minor structural addition with no semantic change to the algorithm yet.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it neither reverts nor modifies step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) is an algorithm switch that rewrites the code with a different approach, not reverting any specific changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver: introduces differential_evolution (evolutionary algorithm), replaces the previous approach which was primarily gradient-descent/scipy.optimize.minimize based. This crosses from physical_simulation/gradient_descent family to stochastic_search/evolutionary_algorithm family. The overall structure, initialization strategies, and optimization flow are fundamentally different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a completely different algorithm rather than reverting to the previous gradient-descent approach; this is a new algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver. Previous code used scipy.optimize (differential_evolution, minimize). New code uses a custom geometric construction approach with manual placement strategies (ring-based, grid-based, sunflower patterns) combined with local perturbation refinement, replacing the scipy-based optimization. This crosses from exact_solver/physical_simulation family to geometric_construction/stochastic_search.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a single import line for scipy.optimize.minimize, which is a minor addition/cleanup rather than reverting the geometric construction approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "code_cleanup",
+      "confidence": 0.45,
+      "label_notes": "Adding an import for scipy.optimize.minimize without any other code changes. This is preparatory \u2014 the import is added but not yet used. Could also be considered no_change since it doesn't affect semantics yet, but adding an import is a minor structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so there is no revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; step (i+1) is an algorithm switch rewrite that replaces the existing code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. The previous code used detailed geometric half-plane checks and custom separation functions (geometric_construction family), while the new code uses a Nelder-Mead optimization approach with penalty-based objective function (physical_simulation/gradient_descent family). This is a cross-family change from geometric_construction to gradient_descent/optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the Nelder-Mead optimization approach with a different algorithm using half-plane containment checks and a different optimization strategy; this is a new algorithm switch, not a revert to the previous geometric construction code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the packing solver. The previous code used differential_evolution (evolutionary algorithm / stochastic search), while the new code uses a geometric construction approach with multiple hand-designed candidate configurations (ring layouts, grid layouts, known optimal patterns) followed by local optimization via scipy.minimize. This crosses from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so there is no revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) is an algorithm switch rewrite, not a revert of any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing the previous approach with differential_evolution and a fundamentally restructured optimization strategy. The code is rewritten from scratch with different algorithmic components including SAT-based overlap checking and differential evolution optimizer, crossing from a gradient-based/manual optimization family to a stochastic search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s differential_evolution approach with a completely different algorithm (new overlap checking, new optimization strategy), which is an algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing solver. Previous code used scipy.optimize (differential_evolution, minimize) with SAT-style half-plane overlap checks. New code implements a custom geometric construction approach with multiple candidate configurations (ring-based, grid-based, symmetric patterns), perturbation-based local search, and manual optimization loops. This crosses from exact_solver/physical_simulation family to geometric_construction/stochastic_search.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back a missing function (hex_to_half_planes) and imports scipy.optimize.minimize, but does not remove or revert the code added in step (i); it refines/extends it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Adds scipy.optimize import and a half-plane representation helper function for hexagons, suggesting preparation for a refined optimization approach within the same physical/geometric family. Could also be representation_change (half-plane representation) but the dominant change is adding infrastructure for algorithm refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a new function (perturb_and_optimize) on top of step (i)'s code without removing or reverting any of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a perturb-and-optimize function that applies random perturbations and re-optimizes, which is a refinement within the stochastic_search/physical_simulation family (random restart with perturbation).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes the perturb_and_optimize function added in step (i), but this appears to be a cleanup of unused code rather than a full revert, as the rest of the substantial changes from step (i) remain intact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "code_cleanup",
+      "confidence": 0.88,
+      "label_notes": "Removes the perturb_and_optimize function which appears to be dead code (unused elsewhere in the active code path)",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite that replaces the entire approach with a different one, not a revert of the specific cleanup done in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing a sophisticated optimization approach (with scipy minimize, multiple random restarts, and refinement) with a much simpler hand-designed geometric construction. The previous code used stochastic search with local optimization; the new code uses a direct lattice/geometric placement. This crosses from stochastic_search/physical_simulation family to geometric_construction/hand_designed family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach from step (i) with a different algorithm involving half-plane containment checks and systematic search over angles/configurations, which is a new approach rather than a revert to the previous stochastic optimization code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. Previous code used scipy.optimize (differential_evolution, minimize). New code uses a geometric construction approach with predefined configurations, perturbation optimization, and explicit half-plane containment checks. This represents a shift from a generic optimization-based approach to a geometric construction / hand-designed special case approach, crossing algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a single import line and does not remove or restore any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "code_cleanup",
+      "confidence": 0.45,
+      "label_notes": "Adding an import for scipy.optimize.minimize without any other code changes. This is preparatory \u2014 the import is added but not yet used. Could be no_change since it's just an import, but it does add a dependency that suggests upcoming algorithm changes. Closest fit is code_cleanup as a preparatory refactor.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a new refine_config function on top of step (i)'s changes without removing the scipy import or any other code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.88,
+      "label_notes": "Adds a local refinement function using random perturbations to improve the packing solution, staying within the stochastic_search family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the refine_config function added in step (i), but this appears to be a cleanup of unused code rather than a full revert, as the rest of the algorithm changes from step (i) remain intact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "code_cleanup",
+      "confidence": 0.85,
+      "label_notes": "Removes the refine_config function which appears to be dead code (unused), no semantic change to the algorithm's behavior",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite (algorithm_switch), not a revert of the cleanup in step (i); it replaces the entire approach with a different one rather than restoring the removed refine_config function.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a hand-crafted geometric construction approach with differential_evolution (stochastic search), switching from geometric_construction family to stochastic_search family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the differential_evolution approach with a completely different geometric/analytical approach using half-planes and structured optimization, which is a new algorithm rather than a revert to the previous geometric construction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from differential_evolution-based approach to a geometric construction approach with multiple hand-designed configurations and local optimization. Switches from stochastic_search family (differential_evolution) to geometric_construction family (hand-designed layouts with refinement).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes an unused optimize_config function while keeping the rest of the geometric construction approach intact, which is a minor cleanup rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "code_cleanup",
+      "confidence": 0.92,
+      "label_notes": "Removes unused optimize_config function (dead code removal) while keeping optimize_config_v2",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the optimize_config function that was removed in step (i), which is a direct revert of the dead code removal.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "Adds an optimize_config function that appears to be a simpler/alternative version of the existing optimize_config_v2. Could be algorithm_refinement but it seems like adding a utility function variant rather than changing the main algorithm flow. Borderline with algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead, step (i+1) is an algorithm switch rewriting the existing code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite replacing the previous optimization approach with differential_evolution and a fundamentally restructured search strategy. The code is rewritten from scratch with different initialization patterns and optimization methods, crossing from a gradient-based/local-search approach to incorporating stochastic global optimization (differential_evolution).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with yet another different algorithm (removing differential_evolution, adding a completely new custom optimization strategy), which is an algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the packing solver. Previous code used scipy differential_evolution/minimize with SAT-style half-plane overlap checks. New code uses a fundamentally different approach with geometric construction (ring-based initial layouts, multiple named configurations like 'ring_config', 'tight_config', 'grid_config'), perturbation-based local search, and manual containment checking. This crosses from exact_solver/physical_simulation family to geometric_construction/stochastic_search.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a missing function (hex_to_half_planes) and an import (scipy.optimize.minimize) to the code from step (i), which is a refinement/fix rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Adds half-plane representation helper function for hexagons and imports scipy.optimize.minimize, suggesting preparation for a gradient-based refinement approach within the physical_simulation family. Could also be seen as representation_change (half-plane representation) but the function is additive and not yet integrated.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made to the code, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so there is no revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead it introduces a new algorithm switch as part of a scheduled rewrite.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing a scipy minimize-based optimization approach with a hardcoded geometric construction (honeycomb arrangement). Crosses from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hardcoded geometric honeycomb construction from step (i) and replaces it with an optimization-based approach using scipy.optimize.minimize, effectively reverting back to the optimization family that step (i) had moved away from.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver: replaces the previous differential_evolution + grid-based layout approach with a multi-strategy optimization using half-plane containment checks, GJK-based overlap detection, multiple geometric initialization patterns (ring, grid, sunflower, etc.), and scipy minimize with penalty-based objective. This crosses from a simple evolutionary/grid approach to a sophisticated multi-start local optimization with geometric construction initializations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (removing one penalty_scale value and loosening tolerances), which is parameter tuning, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Removes one penalty_scale value from the iteration list and relaxes convergence tolerances (xatol, fatol), both purely numeric constant changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the penalty_scale value (50000) that step (i) removed and tightens the tolerances back to values closer to what step (i) had relaxed, effectively undoing both changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Adds a new penalty_scale value (50000) to the iteration list and tightens convergence tolerances (xatol, fatol). These are purely numeric constant changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead, step (i+1) is a major algorithm rewrite replacing the existing approach with a different one.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a geometric construction + local optimization approach with differential_evolution (stochastic search) combined with scipy minimize. Crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

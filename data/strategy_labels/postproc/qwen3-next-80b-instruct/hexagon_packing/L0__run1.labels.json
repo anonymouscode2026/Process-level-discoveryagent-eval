@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "qwen3-next-80b-instruct",
+  "level": "L0",
+  "run_id": "L0__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies angle values and outer_hex_side_length but does not remove or restore code from step (i); it refines the initial generation with small parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusts rotation angles of inner hexagons and slightly reduces outer hexagon side length to attempt tighter packing. This is a heuristic refinement within the same geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rotation angles introduced in step (i) back to 0 degrees (from \u00b12.5) and restores the outer_hex_side_length closer to its original value, effectively undoing the rotation-based refinement of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes rotation angles of inner hexagons to 0 and adjusts outer_hex_side_length constant. The rotation angle changes and side length adjustment are numeric constant changes to the packing configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds a comment and changes an existing comment; it does not remove or restore any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "code_cleanup",
+      "confidence": 0.85,
+      "label_notes": "Only a comment change; no actual code or parameter values were modified. The outer_hex_side_length remains 3.9419122.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the inner hexagon coordinates with a completely different arrangement (hexagonal lattice pattern) rather than reverting to a previous state; this is an algorithm refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a simple grid arrangement with a more carefully designed hexagonal lattice packing configuration (both are geometric_construction family). The new code uses known optimal coordinates and a hardcoded outer hexagon side length rather than computing it.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s hexagonal lattice coordinates with a different grid arrangement and a different outer_hex_side_length (3.935 vs 3.9419123), representing a different algorithmic approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces one hand-designed hexagon packing arrangement with a different hand-designed arrangement (different coordinates and outer side length). Both are within the geometric_construction family. The coordinates and outer_hex_side_length are changed to attempt a better packing density.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the coordinates and introduces rotated hexagons with a slightly different outer_hex_side_length, representing a continued refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusts hexagon positions and rotations within the same geometric construction approach, plus a minor parameter change to outer_hex_side_length. The coordinate tweaks and rotation angles are structural refinements to the packing layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach by restructuring how rotations are applied (setting them separately rather than inline) and adds rotations to two additional hexagons (indices 2 and 8), which is a further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adjusts rotation angles of specific hexagons and tweaks outer hexagon size to improve packing density. This is a heuristic refinement within the same geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed all the rotation angle assignments that were the primary additions in step (i), and reverted the outer_hex_side_length to a different value, effectively undoing the rotational refinements introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Removes rotation angles and adjusts outer_hex_side_length constant. The rotation removal could be algorithm_refinement, but the dominant change is tuning the numeric side length parameter.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the inner hexagon positions with a completely different set of coordinates using a different arrangement strategy (hexagonal lattice layers), which is a new approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Repositions the 12 hexagons with different coordinates (new lattice-based layout) while keeping the same overall hand-designed geometric construction approach. The outer side length is essentially unchanged (3.9419122 \u2192 3.9419123). The inner hexagon positions are substantially different but still a geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a completely different set of coordinates (a ring-based layout vs the layered lattice layout), which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed the positions of the 12 inner hexagons to a different arrangement (ring-based layout with specific coordinates) while keeping the same overall geometric construction approach and outer hexagon size. The core algorithm family (geometric_construction / hand-designed placement) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor parameter adjustments (rounding/tweaking coordinates slightly) to the same layout from step (i), which is parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Minor coordinate value adjustments and outer_hex_side_length tweak (3.9419123 \u2192 3.9419122). The changes are small numeric constant modifications rather than structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes angle values from 0 to \u00b17 degrees and reverts outer_hex_side_length back to 3.9419123, but introduces new angle parameters rather than simply restoring the previous state; this is a different approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes rotation angles of inner hexagons (0 to \u00b17 degrees) and slightly adjusts outer_hex_side_length. The rotation angle changes could be seen as algorithm_refinement, but since these are numeric constant tweaks to a hand-designed geometric configuration, parameter_tuning is most fitting.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes rotation angles to different values (mostly 0 and 5 degrees) rather than reverting to the original pre-step(i) values; this is a new parameter tuning attempt, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes numeric constants for hexagon positions (coordinates and rotation angles) and outer hex side length. The rotation angles changed from 7/-7 to 0/5, positions slightly adjusted, and outer_hex_side_length reduced from 3.9419123 to 3.940. These are all numeric constant tweaks to a fixed geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the approach with a fundamentally different algorithm that computes positions and outer_hex_side_length dynamically rather than using hardcoded constants, which is an algorithm refinement/rewrite, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Refines the geometric construction approach by switching from a manually specified grid to a structured ring-based hexagonal packing (center + first ring of 6 + second ring of 5), with dynamic computation of the bounding hexagon. Still within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the ring-based hexagonal packing with a different manually specified grid arrangement and a different bounding computation method, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Rewrites the hexagon placement with hardcoded coordinates and changes the outer hexagon containment calculation method. Both old and new are hand-designed geometric constructions, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the outer hex side length computation with a hardcoded value, which is a parameter tuning change, not a revert of step (i)'s overall approach; the hardcoded coordinates from step (i) are retained.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Replaces dynamic computation of outer hex side length with a hardcoded constant value. This is effectively setting a numeric parameter rather than changing the algorithm structure, though it also removes computation code.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the inner hexagon coordinates with a completely different set of values and adds substantial new code, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "bug_fix",
+      "confidence": 0.55,
+      "label_notes": "The previous solution had invalid/non-verified hexagon positions that resulted in score 0.0 (overlapping or not contained). The new code attempts to fix the positions to produce a valid packing. However, the diff appears malformed - it contains prose/comments mixed with code fragments rather than clean Python, suggesting the replacement may itself be broken. The primary intent is fixing the correctness defect (invalid positions).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the broken/malformed code from step (i) with a completely new, properly structured Python implementation rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces previous (invalid/non-functional) hexagon positions with a simple manually-specified grid arrangement. The approach remains geometric construction but with different coordinate placements. The previous code was largely prose/comments rather than working code, so this is partly a bug_fix, but the dominant change is specifying new hexagon positions within the same geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the simple grid arrangement with a different, more detailed optimized configuration using different coordinates and reasoning, which constitutes an algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a simple grid arrangement with a more carefully designed geometric construction (center + first ring + second ring) for packing 12 hexagons, staying within the geometric_construction family. Also hardcodes a known optimal R value.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the carefully designed geometric construction (center + first ring + second ring) from step (i) and replaces it with a 'simple grid arrangement', which is essentially reverting back to the simpler approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed from a manually computed center+ring arrangement to a different grid-based arrangement with rotated hexagons (30-degree rotation angles), while keeping the same overall geometric_construction approach and outer hexagon size.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the angle from 30 to 0 degrees and slightly adjusts the outer_hex_side_length, which is parameter tuning rather than reverting the grid-based arrangement introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes inner hexagon rotation angles from 30 to 0 and slightly adjusts outer_hex_side_length by 1e-8. The rotation change could be seen as algorithm_refinement, but the dominant changes are numeric constants (angles and side length).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by modifying angles for two hexagons and adding a computation for the outer hex side length, rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Rotates two inner hexagons and computes the minimal enclosing hexagon side length dynamically instead of hardcoding it. The rotation of hexagons is a geometric construction refinement, and the dynamic computation replaces a hardcoded value.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rotation angles back to 0 and removes the dynamic minimal enclosing hexagon computation added in step (i), restoring a hardcoded outer_hex_side_length value.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes inner hexagon rotation angles to 0, rotates outer hexagon by 30 degrees, and hardcodes the outer side length instead of computing it dynamically. This is a refinement of the geometric construction approach with a different configuration of the packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a completely different arrangement (different coordinates, different outer_hex_side_length, different outer rotation), which is a new algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures the hand-designed geometric placement of 12 hexagons with a different arrangement (center + 2 rings) and different outer hexagon parameters. Both old and new are geometric_construction family, so this is intra-family refinement. Could also be considered initialization_change since it's changing the fixed coordinates, but the structural reorganization of the packing layout is more substantive.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s arrangement with a completely different grid-based layout and different coordinates, which is a different approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hexagon placement coordinates from a ring-based arrangement to a different grid-like arrangement with rotations, still within geometric_construction family. Also adjusts outer hexagon size slightly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies some coordinate values and removes the rotation loop, but this is parameter tuning on top of step (i)'s grid arrangement rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Adjusts coordinate positions of hexagon centers and outer hexagon side length. The changes are primarily numeric constant tweaks to positions and the outer radius, without structural algorithm changes. Could also be considered algorithm_refinement since the geometry of the packing layout is being manually adjusted.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes the left-side hexagon positions more symmetric (mirroring the right-side values) and adjusts the outer_hex_side_length, which is a refinement/correction rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "initialization_change",
+      "confidence": 0.75,
+      "label_notes": "Adjusts initial hexagon positions to be more symmetric and tweaks outer hexagon side length parameter. The positions are starting configuration for the packing optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies some angle values and the outer_hex_side_length parameter but does not revert the position changes made in step (i); it builds upon them with further parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes rotation angles for some hexagons (0\u219260 degrees) and adjusts outer_hex_side_length from 3.9419122 to 3.93. The rotation changes could be seen as algorithm_refinement (adjusting placement), but the dominant change is tuning numeric constants in a hand-designed packing configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a new algorithm that computes outer_hex_side_length dynamically from vertex distances and uses a different hexagon arrangement, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement from a manually specified grid to a ring-based geometric construction with computed outer radius. Both are geometric_construction family approaches, so this is intra-family refinement rather than a switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the ring-based geometric construction with a different manually specified grid arrangement using rotated hexagons and a hardcoded outer side length, which is a different approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a programmatic ring-based geometric construction with hand-tuned hardcoded positions and rotations for the 12 hexagons, still within the geometric_construction family. The positions include rotation angles to reduce bounding envelope.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the hardcoded positions and rotations from step (i) rather than reverting them; it adjusts specific coordinate values and rotation angles while maintaining the same overall approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusting positions and rotation angles of inner hexagons to better fit within the outer hexagon - this is a heuristic refinement of the geometric construction approach, tweaking placement parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a completely different arrangement (inner ring + partial outer ring layout) rather than reverting to a previous state; this is a new approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "initialization_change",
+      "confidence": 0.62,
+      "label_notes": "Changes the initial positions of the 12 inner hexagons (from a custom layout to a more regular hexagonal grid pattern) and adjusts the outer hexagon side length. This is effectively changing the starting configuration for the packing problem. Could also be algorithm_refinement since it changes the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hex grid positions from step (i) with a completely different arrangement (a more circular/ring pattern) and adds dynamic outer hex computation, which is a different approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the inner hexagon positions (coordinates) to a different arrangement and computes the outer hexagon size dynamically from vertex distances. The overall approach remains geometric construction but with a refined packing layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s coordinate arrangement with a different optimized configuration and a hardcoded outer hex side length, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a simple grid arrangement with a hand-designed near-optimal configuration for 12 hexagons, including hardcoded optimal outer side length. Both are geometric_construction family approaches. The hardcoded optimal value is borderline harness_or_scope_change but the primary change is the packing arrangement itself.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hand-designed near-optimal 12-hexagon configuration from step (i) and restores a simple grid arrangement, reverting the core algorithmic improvement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hand-designed hexagon positions to a different arrangement pattern (ring-based to a different symmetric layout) while keeping the same overall approach of specifying fixed coordinates. Also slightly adjusts outer_hex_side_length.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the coordinate values to a different set of positions and adjusts outer_hex_side_length, which is parameter tuning on the same approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes the hardcoded coordinates of inner hexagons and the outer hexagon side length. These are numeric constant changes to a hand-designed geometric construction, adjusting positions and the enclosing radius.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the coordinates to different values rather than reverting to any previous state; it is a further parameter tuning iteration, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusting hardcoded coordinate positions and outer hexagon side length \u2014 these are numeric constants defining the packing configuration. Could also be seen as algorithm_refinement since the packing geometry changes, but the code structure is identical and only numeric values differ.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adds comments and changes a comment string; it does not revert any code or numeric values from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "code_cleanup",
+      "confidence": 0.9,
+      "label_notes": "Only comments were added/changed; no semantic change to the code. The outer_hex_side_length value remains identical (3.9419122), and only comment text was modified.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the inner hexagon positions with a completely new arrangement and adds new computation logic, which is an algorithm refinement rather than a revert of step (i)'s comment-only changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement from a hardcoded coordinate list to a geometric construction using concentric rings (central + first ring of 6 + second ring of 5), while keeping the same overall approach of geometric construction with a hardcoded outer side length. The placement logic changed substantially but remains within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the concentric ring approach with a different hardcoded coordinate layout (appears to use a different arrangement strategy), which is an algorithm refinement/switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a lattice-based geometric construction (center + rings) with a different set of hardcoded coordinates for the 12 hexagons, still within the geometric_construction family. The outer hexagon side length is also adjusted. This is a refinement of the packing arrangement rather than a switch to a fundamentally different algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts the coordinate values and angles from step (i) but maintains the same overall structure and approach, constituting parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric coordinate values and outer_hex_side_length constant. The rotation angles are set to 0 (from 0.5) and positions are slightly adjusted, along with the outer hexagon size. These are all numeric constant changes to the packing configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the coordinate values with a completely different set of positions (a different arrangement), which is a new parameter tuning attempt rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes the hardcoded coordinates of inner hexagons and the outer hexagon side length. This is essentially tuning the numeric placement parameters of a geometric construction approach rather than changing the algorithm structure. Could also be considered algorithm_refinement since the arrangement pattern changed from a grid-like to a more circular layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the coordinates with a completely different set of values rather than restoring any previous state; this is a new parameter configuration, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "initialization_change",
+      "confidence": 0.82,
+      "label_notes": "Changes the initial positions and orientations of the 12 hexagons in the packing arrangement. This modifies the starting configuration (coordinates and rotation angles) rather than the algorithm itself.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a different arrangement using hexagonal lattice coordinates, which is a different approach to solving the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement from a seemingly arbitrary grid arrangement to a more systematic ring-based layout (center + first ring + second ring), while keeping the same outer hexagon side length. This is a refinement of the geometric construction approach rather than a switch to a different algorithm family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the ring-based layout from step (i) and reverts to a 'simple grid arrangement' approach, removing most of the code and structure added in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces the previous hand-designed hexagonal lattice arrangement (center + ring1 + ring2) with a different set of hardcoded coordinates for the 12 inner hexagons. Both are hand-designed special-case geometric constructions, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small numerical adjustments to the coordinates introduced in step (i), which is parameter tuning rather than reverting the approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusting numeric coordinate values and outer hexagon side length to improve packing ratio. These are positional constants in a hand-designed geometric construction, making this parameter tuning of the configuration rather than an algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restored the coordinate values (1.8957, 2.6848, etc.) that step (i) had reduced to (1.8457, 2.6348, etc.), reverting the parameter changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Reverts coordinate offsets to previous values and changes outer_hex_side_length constant. These are numeric constant changes to a hand-designed geometric construction, but could also be seen as algorithm_refinement since the geometry is being adjusted. Choosing parameter_tuning since only numeric values changed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies angles for two hexagons and changes the outer_hex_side_length to a different value (3.93), which is a further parameter adjustment rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes rotation angles of two hexagons (0\u219230, 0\u2192-30) and adjusts outer_hex_side_length constant. The rotation changes are minor numeric tweaks to a hand-designed layout, and the side length is a scalar constant change. Could also be algorithm_refinement since rotations change the geometric configuration, but the changes are small numeric adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a completely different algorithm (a much larger, more complex packing computation), rather than reverting to a prior state.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Switches from a simple grid arrangement to a hand-designed special-case geometric construction attempting to match known optimal packing for 12 hexagons. Crosses from a generic approach to a hand_designed_special_case family. The code is largely incomplete/broken with extensive inline comments showing failed attempts, but the intent is a fundamentally different approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the broken hand-designed approach with a different refined implementation rather than reverting to the previous generic grid approach; it's a forward refinement, not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.52,
+      "label_notes": "Major rewrite of the hexagon packing solution, removing extensive commented-out code and simplifying the configuration. The diff is heavily truncated but appears to restructure the approach to computing the packing arrangement while staying within the geometric_construction family. Could also be algorithm_switch if the approach fundamentally changed, but the truncation makes it hard to tell. The previous code had extensive trial-and-error comments; the new code appears cleaner but within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts the numerical parameters (coordinates and outer_hex_side_length) from step (i) but retains the same code structure and approach, which is parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length for the packing configuration. All changes are to numeric constants defining positions and size.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric coordinate values and outer hexagon side length, continuing parameter tuning rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinates of hexagon positions and outer hex side length to improve packing density. All changes are to numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric coordinates and introduces small rotations, which is a continuation of parameter tuning rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes numeric coordinates of hexagon positions and outer_hex_side_length, plus adds small rotation angles to two hexagons. Primarily adjusting numeric constants in a hand-designed geometric construction. Could also be algorithm_refinement since rotations are added, but the dominant change is tweaking coordinate values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a completely different coordinate set and algorithm rather than reverting to a prior state; it's a new approach, not an undo of step (i).",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a simple grid arrangement with a more carefully designed geometric construction for 12 hexagons, including detailed coordinate placement and comments about known optimal configurations. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the carefully designed geometric construction from step (i) and replaces it with a 'Simple grid arrangement' approach, restoring a simpler layout that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the hexagon center coordinates to a different arrangement (ring-based layout with different coordinate values) while keeping the same overall approach of hand-designed geometric construction. The coordinates changed substantially but the method family remains geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding rotation angles and adjusting the outer hex side length, rather than reverting the coordinate changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes rotation angles for inner hexagons and reduces outer hexagon side length. These are numeric constant changes to a hand-designed special case configuration. Could also be algorithm_refinement since rotation angles are being set for specific hexagons, but the changes are purely numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the coordinate positions and removes the rotation angle assignments with a completely different geometric arrangement, which is a new approach rather than a revert to a prior state.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes hexagon positions and rotations within the same geometric construction approach, attempting a tighter packing arrangement with different coordinate placements and adjusted outer side length.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon coordinates with a different set of values rather than reverting to a previous state; this is a continued refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "initialization_change",
+      "confidence": 0.72,
+      "label_notes": "Changes the initial positions of the 12 hexagons (starting configuration) and slightly adjusts the outer hexagon side length. The coordinates are modified but the overall approach (geometric construction) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the initial coordinates from step (i) with a completely different set of coordinates and adds extensive optimization logic, which is a different approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "The code replaces a simple grid arrangement with a more optimized hand-designed packing configuration based on known best solutions. Both are geometric_construction approaches (hand-designed coordinates), so this is intra-family refinement rather than an algorithm switch.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the optimized hand-designed packing configuration from step (i) and restores a simple grid arrangement, reverting the algorithm refinement that was made.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces one hand-designed hexagon packing configuration with a different set of hardcoded coordinates and a slightly different outer hex side length. Both are within the hand_designed_special_case / geometric_construction family. The new coordinates appear to be a different geometric arrangement attempt.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the rotation angles and outer_hex_side_length from step (i) but retains the same coordinate positions, representing a refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adjusting rotation angles of inner hexagons and slightly tweaking outer hexagon size to achieve tighter packing. This is a heuristic refinement within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a completely different arrangement of hexagon positions and removes the rotation angles, which constitutes a different algorithm/approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the hexagon positions and removes rotation angles, trying a different arrangement within the same geometric construction approach. Also adjusts outer_hex_side_length.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a completely different arrangement and changes outer_hex_side_length, which is a continued algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hand-designed hexagon positions and outer side length, representing a different geometric arrangement within the same geometric_construction family. Could also be considered initialization_change since it's changing starting positions, but the positions themselves constitute the core solution approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a completely different arrangement (central + rings configuration with different coordinates and outer_hex_side_length), which is a different approach to the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hexagon placement strategy from a simple grid arrangement to a center+rings geometric construction with optimized positions, but remains within the geometric_construction family. Also adjusts the outer hexagon side length.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the center+rings geometric construction from step (i) and restores a simple grid arrangement, reverting the algorithmic approach back to the simpler layout that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces one hand-designed hexagon packing configuration with a different hand-designed arrangement using different coordinate positions and a slightly different outer hexagon size. Both are within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the coordinate values and angles from step (i) but maintains the same overall structure and approach, representing parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric coordinates, rotation angles (0\u219230), and outer hex side length. All changes are to numeric constants defining the packing configuration, though the rotation angle change could be seen as a search_space or algorithm_refinement change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rotation angles from 30 back to 0 degrees for all inner hexagons, undoing the key change made in step (i) while keeping the same coordinates and outer_hex_side_length.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes rotation angles of inner hexagons from 30 degrees to 0 degrees. While angles could be considered algorithmic, these are numeric constants in a fixed geometric configuration, making this parameter tuning. The outer_hex_side_length remains unchanged.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the coordinate values and outer_hex_side_length rather than reverting to the previous 30-degree angles or prior coordinate values; it continues parameter tuning in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer_hex_side_length constant to improve packing; no structural algorithm change, just tuning positional parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the parameter-tuned configuration with a fundamentally different algorithmic approach using ring-based hexagonal lattice construction and numerical optimization, rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a simple grid arrangement with a more structured hexagonal packing layout (center + first ring + second ring), still within geometric_construction family. Also adjusts hardcoded coordinates and outer hex side length. Could be considered initialization_change but the structural change to the placement logic is dominant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s hexagonal packing layout with a different arrangement approach (hardcoded coordinates with a smaller outer_hex_side_length), which is a different algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a symmetric hexagonal lattice placement with an asymmetric configuration using rotated hexagons and adjusted positions/outer side length to achieve tighter packing. This is a refinement of the geometric construction approach with tweaked coordinates and rotations.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed all the rotations (angles set back to 0) and reverted the asymmetric positions back to a more symmetric configuration, effectively undoing the key changes introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes the positions of inner hexagons (coordinate values) and removes rotations (all set to 0). This is primarily adjusting numeric constants for hexagon placement coordinates, though removing rotations could be seen as algorithm_refinement. The outer_hex_side_length remains unchanged at 3.935.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the coordinate values and outer_hex_side_length rather than reverting to a previous state; it continues parameter tuning in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusting coordinate positions and outer hexagon side length values \u2014 all numeric constant changes with no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts parameters (angles and outer_hex_side_length) rather than reverting step (i)'s changes; it builds on step (i) with additional modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes rotation angles for some hexagons and reduces outer_hex_side_length. The rotation angle changes and side length reduction are numeric constant tweaks to a hand-designed geometric construction, but the rotation changes also affect the search space. Borderline between parameter_tuning and algorithm_refinement, but since only numeric values are changed, parameter_tuning wins.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the arrangement with a completely different algorithm/approach (concentric layers with different coordinates and computed outer_hex_side_length), rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Replaces a hand-tuned/optimized arrangement (likely from simulated annealing or numerical optimization) with a geometric construction approach using concentric hexagonal rings. Previous code had specific non-round coordinates suggesting numerical optimization; new code uses analytical geometric placement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric concentric ring approach with a different simple grid arrangement approach rather than reverting to the previous hand-tuned/optimized arrangement from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces the previous hand-designed hexagon placement with a different set of hardcoded positions and outer radius. Both are hand-designed special-case approaches for 12 hexagons, so this is intra-family refinement. The positions and outer_hex_side_length are changed but the overall approach (geometric construction with fixed coordinates) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the coordinates and angles from step (i) with slightly different values and adds rotation angles, which is parameter tuning rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusts numeric coordinates and rotation angles of inner hexagons and outer hexagon side length. These are positional/geometric parameters rather than structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the angle parameters to different values (mostly 0 and 30) rather than reverting to pre-step(i) values; this is a continued parameter tuning adjustment, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes the rotation angles of the inner hexagons in the initial configuration from incremental values (6,12,18,...) to mostly 0 with two at 30 degrees. This modifies numeric constants in the initial layout specification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further modifies the rotation angles and outer_hex_side_length rather than reverting to the pre-step(i) values; it builds upon step (i)'s changes with different parameter adjustments.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Adjusts rotation angles of inner hexagons and outer hexagon side length to improve packing. Combines parameter tuning (side length) with geometric construction refinement (rotation angles). Since rotation angles are structural geometric choices, algorithm_refinement is more appropriate than pure parameter_tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous configuration with a different arrangement of 12 hexagons using a new geometric pattern (1 center, 6 first ring, 5 second ring) and a different outer_hex_side_length, which is a new approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the hand-designed hexagon placement pattern and outer side length. Both old and new are hand-designed geometric constructions with specific coordinate layouts. The new version uses a different arrangement (1 center + 6 ring + 5 outer) with different coordinates and a slightly different outer_hex_side_length. This is an intra-family refinement of the geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed hexagon positions with a different grid arrangement while keeping the same outer_hex_side_length; this is a different approach/refinement, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hand-designed hexagon positions (geometric construction) to a different arrangement with some rotated hexagons for tighter packing, while keeping the same overall approach of manually specifying positions and the same outer hex side length.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the rotation angles of several hexagons to different values (e.g., changing 60\u00b0 to 0\u00b0 or 30\u00b0) and slightly adjusts the outer hex side length, which is a parameter tuning refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes rotation angles of individual hexagons and slightly adjusts outer_hex_side_length. The rotation angle changes are numeric constant tweaks to a hand-designed configuration, and the side length is also a numeric constant change. Could be algorithm_refinement since the rotation pattern is being restructured, but the changes are purely to numeric values in a fixed layout.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rotation angle changes made in step (i) by setting all hexagon angles back to 0 (removing the 30-degree rotations that step (i) had introduced/maintained), and also reverts the outer_hex_side_length back closer to a previous value.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes rotation angles of several hexagons from 30 to 0 degrees and adjusts outer_hex_side_length from 3.94 to 3.9419122. While the rotation changes could be seen as algorithm_refinement, these are all numeric constant changes to a hand-designed configuration.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the rotation angles back to 30/-30 degrees that step (i) had changed to 0, effectively reverting the rotation changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes rotation angles for inner hexagons (0\u2192\u00b130 degrees) and tightens outer_hex_side_length from 3.9419122 to 3.935. The rotation angle changes could be seen as algorithm_refinement, but the dominant change is numeric constants (angles and side length). Borderline between parameter_tuning and algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the outer_hex_side_length back to 3.9419123 from 3.935, reverts rotation angles back to 0 from \u00b130 degrees, and completely replaces the inner hexagon positions with a different grid-based layout, effectively undoing the parameter tuning changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a hand-tuned configuration of 12 hexagon positions with a different hand-designed hexagonal lattice arrangement. Both are geometric_construction approaches (same family), but the positions and outer hexagon size are changed. Could also be considered initialization_change since it's changing the fixed solution coordinates, but the structural reorganization of the packing pattern (center + ring + outer ring vs previous arrangement) leans toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s hexagonal lattice arrangement with a different set of hand-tuned positions and a slightly smaller outer hexagon side length, which is a further algorithm refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Changes the hand-designed hexagon positions and outer hexagon side length. The overall approach remains geometric construction with manually specified coordinates, but the specific positions and packing configuration are modified. The reduced outer_hex_side_length (3.92 vs 3.9419123) without verified feasibility could be a bug, but the intent appears to be refinement of the geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s hexagon positions with a completely different set of coordinates and adds rotation angles, which is a further refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes hexagon positions and rotation angles to achieve tighter packing within the same geometric construction approach. Positions are more precisely specified and rotation angles are added for inner hexagons.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes positions to different values and removes rotation angles, but this is a parameter tuning refinement rather than a revert \u2014 it doesn't restore previous code, and the agent doesn't mention reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric coordinates of hexagon positions and outer hexagon side length. Also removes angle adjustments, but the primary effect is tuning the packing configuration parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the coordinates to different values and adds a computation for outer_hex_side_length, which is a refinement of the approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes inner hexagon positions (parameter tuning aspect) and adds dynamic computation of minimal outer hexagon side length instead of hardcoded value. The dominant change is computing the outer radius from vertex projections rather than using a fixed constant, which is a refinement of the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a completely different algorithm using numerical optimization (scipy.optimize), different hexagon positions, and a hardcoded outer_hex_side_length value, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "The code replaces a simple grid arrangement with a hand-tuned configuration targeting a known SOTA value (3.9419123). This is still within the geometric_construction family but with refined coordinates and a hardcoded optimal outer side length. Could also be considered initialization_change since it's changing the placed coordinates, but the dominant change is the overall approach to constructing the packing solution.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hand-tuned optimal configuration from step (i) and restores a simple grid arrangement with a different outer_hex_side_length (3.90 instead of 3.9419123), effectively reverting the refined approach back to a simpler baseline.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Replaces one hand-designed hexagon arrangement with a different hand-designed arrangement (different coordinates and outer radius). Both are within the geometric_construction family. The new coordinates and smaller outer_hex_side_length (3.90 vs 3.9419123) suggest an attempt at a tighter packing, but the rotation value of 10/-10 for two hexagons looks potentially buggy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts the coordinate values and removes the rotation angles (10/-10 to 0/0), and changes outer_hex_side_length from 3.90 to 3.940, which is parameter tuning on the same arrangement rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusts numeric coordinates of hexagon positions and outer hexagon side length. These are positional constants defining the packing configuration, not structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (coordinates, angles, and outer_hex_side_length) rather than reverting to a previous state; it builds on step (i)'s approach with different values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Adjusts numeric coordinates of hexagon positions and outer_hex_side_length. The changes are small numerical tweaks to positions and the outer hexagon size, fitting parameter_tuning. Some rotation angles are also introduced (2.5/-2.5 degrees), which could be algorithm_refinement, but the dominant change is numeric constant adjustment.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric parameters (coordinates, angles, outer_hex_side_length) rather than reverting to pre-step(i) values; the changes are continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusts numeric coordinates and angles of hexagon positions and reduces outer hexagon side length. These are small numeric tweaks to the hand-designed packing configuration rather than structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-tuned configuration with a completely different layout and approach (different hexagon positions, dynamic outer_hex_side_length calculation), which is a new approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "The code rewrites the hexagon packing configuration with multiple attempted coordinate arrangements and a different approach to computing the outer hexagon size. It remains within the geometric_construction family but tries various coordinate layouts. The extensive rewrite with multiple trial configurations suggests exploration/refinement rather than a family switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a significantly different, simplified configuration rather than reverting to a prior state; it's a new algorithm refinement, not an undo of the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.52,
+      "label_notes": "The code was massively simplified, removing all hexagon placement logic and hardcoding an outer_hex_side_length without computing actual inner hexagon positions. This appears to be a broken rewrite that removes the geometric construction details. Could also be bug_fix (broken code) or harness_or_scope_change, but the dominant change is restructuring the solution approach within geometric_construction family. The inner_hex_data variable is referenced but never defined in the new code, suggesting a possible bug.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (changing angles and outer_hex_side_length) to the code from step (i), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes rotation angles of hexagons (from 10/-10 to 30 for all) and adjusts outer_hex_side_length. These are numeric constant changes to the geometric configuration, though the uniform rotation could also be seen as algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the rotation angle change (inner_hex_data[:, 2] = 30.0) that was the primary change in step (i), restoring the default 0-degree rotations from the initial array, which effectively reverts the key modification of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Removes rotation parameter (set to 30 degrees) reverting to default 0, and slightly adjusts outer_hex_side_length. The rotation removal could be seen as algorithm_refinement, but the dominant change is numeric constant tuning of the side length and rotation angle.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds rotation parameters and slightly adjusts the side length, which is a forward modification rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes rotation angles for inner hexagons and slightly adjusts outer hex side length. The rotation angles (2.5/-2.5 degrees) are new numeric parameters being set, and the outer hex side length is a minor numeric tweak. Could also be algorithm_refinement since adding rotations is somewhat structural, but the changes are primarily numeric constant assignments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the positions and rotation approach with a completely different configuration layout, which is an algorithm refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "Repositions inner hexagons with a new geometric arrangement while keeping the same outer hexagon side length. The approach remains geometric_construction family but with different coordinate placements. Could also be considered initialization_change since it's changing starting positions, but the positions ARE the solution in this packing problem.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s geometric arrangement with a different 'simple grid arrangement' of inner hexagons while keeping the same outer_hex_side_length; this is a different approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Changes the positions of the 12 inner hexagons to a different grid arrangement while keeping the same outer hexagon size. The overall approach remains geometric_construction (hand-designed placement). The positions changed but the outer_hex_side_length stayed the same, suggesting a refinement of the placement strategy rather than a fundamentally different algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid positions with a completely different set of coordinates and adds dynamic computation of outer_hex_side_length, which is a further refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the placement coordinates of the 12 inner hexagons and adds a proper computation of the minimal enclosing hexagon side length based on vertex projections, rather than using a hardcoded value. This is a refinement of the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the angle from 0 to 30 degrees and replaces the dynamic vertex-based computation with a hardcoded value, which is a different algorithmic approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Changed inner hexagon rotation angles from 0 to 30 degrees and replaced computed outer hexagon size with a hardcoded value. The rotation change is a structural modification to the packing arrangement (algorithm_refinement), while the hardcoded value could be seen as parameter_tuning. The dominant change is the rotation of all hexagons.",
+      "was_reverted": false,
+      "revert_reason": "Only one of the 12 hexagons had its angle reverted from 30 to 0, and the outer_hex_side_length was slightly adjusted; this is a minor parameter tweak, not a revert of the overall rotation change made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes the rotation angle of one hexagon from 30 to 0 and slightly adjusts the outer hexagon side length constant. Both are numeric constant changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire configuration with a new optimized approach including different hexagon positions and a new outer_hex_side_length value (3.9419123 vs 3.94), which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagon placement from a hardcoded list to a geometric construction with central hex + first ring (6) + second ring (5), still within geometric_construction family. The outer side length changed slightly from 3.94 to 3.9419123.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different hardcoded coordinate list approach; while it removes most of step (i)'s code, it introduces a new arrangement rather than restoring previous code, making this an algorithm switch rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces computed hexagonal lattice positions with hardcoded optimized coordinates including non-zero rotation angles, while staying within the geometric_construction family. The positions and rotations appear to be a different manual arrangement attempting better packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters (setting rotation angles to 0 and adjusting positions/outer_hex_side_length) rather than reverting to a previous state; it builds on step (i)'s structure with different tuning choices.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "Changes numeric values: sets all rotation angles to 0, adjusts one hex position slightly inward, and reduces outer_hex_side_length. These are primarily numeric constant changes to the initial configuration, but also touch initialization angles. Could be initialization_change since it modifies starting positions/angles, but the dominant change is tuning numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (changing rotation angle, position, and outer_hex_side_length) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants: one hexagon's rotation angle (0\u21925), one hexagon's y-position (-1.75\u2192-1.8615), and outer hex side length (3.92\u21923.9419). These are coordinate/parameter tweaks within the same hand-designed special case approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes rotation angles to 30 degrees for most hexagons and reverts one hexagon's angle from 5 back to 0, but this is a different parameter configuration rather than a revert of step (i)'s changes; it's exploring a new approach with 30-degree rotations.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes rotation angles of inner hexagons (0\u219230 degrees for most, 5\u21920 for one) and slightly adjusts outer_hex_side_length. The rotation angles and side length are numeric constants in a hand-designed geometric construction. Could also be algorithm_refinement since the rotation pattern changed structurally, but the changes are purely to numeric values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the configuration with a completely different geometric arrangement (different coordinates, different ring structure, all 0-degree rotations), which is a new approach rather than reverting to a previous state.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a simple grid arrangement with a more carefully designed concentric-ring hexagonal packing configuration. Both are geometric_construction approaches. The code also hardcodes the known SOTA outer hexagon side length (3.9419123) rather than computing it, which is somewhat of a harness concern, but the dominant change is the geometric layout refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the concentric-ring hexagonal packing layout from step (i) and restores a simple grid arrangement approach, reverting the core geometric construction back to a simpler configuration.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces the previous hand-designed hexagon placement coordinates with a different set of manually specified positions and rotation angles, still within the geometric_construction family. The coordinates and rotations are changed to attempt a tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the specific per-hexagon rotation angles with a uniform 3-degree rotation and adjusts the outer side length, which is a different parameter tuning approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes rotation angles from specific per-hexagon values (30/-30 degrees) to a uniform 3 degrees, and adjusts outer_hex_side_length. While rotation changes could be algorithm_refinement, the dominant change is tweaking numeric constants (rotation angle values and side length) to try to improve the packing score.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially restores some per-hexagon rotation values (30/-30 for specific hexagons) and removes the for-loop that set uniform 3-degree rotations, but it does not fully restore the original state from before step (i); it uses different rotation patterns and a different outer_hex_side_length, making this a different approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes rotation angles for specific hexagons (from uniform 3-degree to selective 30/-30 degrees) and adjusts outer hexagon side length. The rotation changes could be algorithm_refinement, but the dominant change is tuning numeric constants (angles and side length) in a hand-designed special case layout.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rotation angle changes made in step (i) back to 0 degrees (from 30/-30), restoring the uniform angle approach that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes rotation angles from 30/-30 to 0 for two hexagons and adjusts outer_hex_side_length from 3.937 to 3.9419122. The rotation changes could be algorithm_refinement but the dominant change is numeric constant tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the simple array with a programmatic construction approach using loops and geometric calculations, which is a different algorithm rather than a revert of step (i)'s parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Restructures the hexagon placement from hardcoded coordinates to a geometric construction using hexagonal lattice (central + first ring of 6 + second ring of 5), but remains within the geometric_construction family. The outer hexagon side length is essentially unchanged (3.9419122 \u2192 3.9419123). The approach is still geometric construction with refined placement logic.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice construction with a different hardcoded coordinate approach, which is a different algorithm rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a multi-ring hexagonal lattice construction with a different hand-designed arrangement of 12 hexagons using specific hardcoded coordinates and rotations. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the coordinate values and angles from step (i) but retains the same 12-hexagon arrangement structure; this is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinates and outer hexagon side length to optimize packing. All changes are to numeric constants (positions and size), no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (coordinates, angles, and outer hex side length) rather than reverting to a previous state; it introduces new values including non-zero angles, which is a continuation of parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric coordinates and side length values. The positions are adjusted (could be algorithm_refinement) but the changes are purely to numeric constants with no structural code change. The introduction of rotation angles (3, -3 degrees) in the third column is a slight structural change, making this borderline with algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rotation angles (3, -3 degrees) introduced in step (i) back to 0 for all inner hexagons, restoring the pre-step(i) angle values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes rotation angles of inner hexagons from various values (3, -3) to 0, and slightly adjusts outer_hex_side_length. The rotation angle changes could be seen as search_space_change or algorithm_refinement, but since these are numeric constants defining the configuration, parameter_tuning is closest. The boundary with initialization_change is also close since this modifies the starting configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the configuration with a completely different arrangement of hexagons (different coordinates, different structure with central+ring layout), which is a new approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction by changing hexagon placement coordinates from a simple grid to a structured ring-based arrangement (1 center + 6 first ring + 5 second ring), while keeping the same geometric_construction family approach and similar outer side length.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the structured ring-based arrangement from step (i) and reverts to a simple grid arrangement, restoring the approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the inner hexagon placement coordinates and introduces rotation angles for individual hexagons while keeping the same geometric construction approach. The configuration is restructured with different positions and per-hexagon rotation angles, but remains a hand-designed geometric construction.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the per-hexagon rotation angles introduced in step (i) back to 0 for all hexagons, effectively undoing the key change of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes rotation angles of inner hexagons from \u00b115 degrees to 0 degrees and slightly adjusts outer_hex_side_length. The rotation angle changes are numeric constant changes in the initial configuration, and the side length is a minor numeric tweak.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with an entirely different arrangement (concentric rings pattern vs the previous layout), which is a new approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "initialization_change",
+      "confidence": 0.75,
+      "label_notes": "Changes the initial positions and rotations of the 12 inner hexagons (starting configuration) and adjusts the outer hexagon side length target. This is primarily modifying the starting solution for the packing problem.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s initialization with a completely different set of positions and outer_hex_side_length, representing a new approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "initialization_change",
+      "confidence": 0.72,
+      "label_notes": "Changes the initial positions of the 12 hexagons from a ring-based layout to a different arrangement, and adjusts the outer hexagon side length. This modifies the starting configuration for the packing problem.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the arrangement with a different, more detailed approach including axial coordinate conversion and vertex distance computation, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the geometric construction approach by changing from a simple grid arrangement to a more structured hexagonal ring-based packing layout (center + first ring + partial second ring), while remaining within the geometric_construction family. Also computes outer hex size from vertex distances rather than hardcoding.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s hexagonal ring approach with a different arrangement and tighter outer hex size, which is a further refinement rather than a revert of the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces computed hexagonal grid positions with hardcoded optimized coordinates and a slightly improved outer_hex_side_length. The approach remains geometric construction with manually specified positions, but the positions and bounding radius are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the hardcoded coordinates and outer_hex_side_length to different values, which is parameter tuning/refinement rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Adjusts the numeric coordinates of hexagon positions and the outer hexagon side length. These are scalar constant changes to a hand-designed geometric construction, though the boundary with algorithm_refinement is close since the positions define the solution.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes a comment on the outer_hex_side_length line without modifying any code or values, so it does not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "code_cleanup",
+      "confidence": 0.95,
+      "label_notes": "Only the comment text changed; no semantic or numeric change to the code.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the coordinate values to a different arrangement, which is a new approach/refinement rather than reverting the previous step's comment-only cleanup.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "initialization_change",
+      "confidence": 0.72,
+      "label_notes": "Changes the initial positions of the 12 inner hexagons and the outer hexagon side length. This modifies the starting configuration/solution for the packing problem.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s configuration with a different optimized configuration and adds computation logic for outer_hex_side_length, which is a different approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a simple grid arrangement with optimized hexagon center positions from literature, and computes the outer hexagon side length from vertex distances. Still a geometric construction approach but with refined placement coordinates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s optimized center positions with a different set of coordinates and a different approach (perturbation-based), which is a different algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a complex optimized configuration with a simpler grid arrangement plus small perturbations. Both are hand-designed geometric constructions (same family), but the new approach is significantly different in structure. Could be algorithm_switch if considered a different approach, but both are geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the same grid arrangement by applying a scaling factor and removing perturbations, but retains the core grid structure from step (i) rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Removes ad-hoc perturbations and applies a uniform 0.9998 scaling factor to inner hexagon positions, plus adjusts outer_hex_side_length. These are numeric constant changes to the hand-designed geometric construction.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed the 0.9998 scaling factors that step (i) had introduced, restoring the original unscaled coordinate values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Removes the 0.9998 scaling factor from coordinates (effectively changing them from slightly scaled-down values to their base values). This is a minor numeric constant change on the position parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes a minor change to outer_hex_side_length (3.9419123 -> 3.9419122) and removes some comments; it does not revert the coordinate changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only changes the outer_hex_side_length constant from 3.9419123 to 3.9419122 and removes comments; no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the inner hexagon coordinates with a completely different arrangement and changes the outer_hex_side_length back to 3.9419123, but this is a different algorithmic approach (new coordinate layout) rather than a simple revert of step (i)'s minor parameter change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Restructures the hexagon positions within a hand-designed geometric construction approach, changing the specific placement coordinates while keeping the same overall strategy of manually specifying hexagon positions in a symmetric pattern.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions with a completely different set of coordinates (a ring-like arrangement vs the lattice-based arrangement in step i), which is a different approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the hexagon positions to a different arrangement pattern (ring-based layout vs previous lattice-based layout) while keeping the same hand-designed special-case approach. The coordinates are substantially different but the overall approach remains a hand-designed geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small numerical adjustments to the coordinates introduced in step (i), which is parameter tuning rather than reverting the approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length slightly; no structural algorithm change, just tweaking placement constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts coordinate values and introduces rotation angles (30, -30 degrees), which is a continued parameter tuning refinement rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric coordinates and rotation angles of inner hexagons and slightly adjusts outer_hex_side_length. These are positional/angular parameter tweaks within the same geometric construction approach, though the rotation angles changing from 0 to \u00b130 degrees could be seen as algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes rotation angles to different values (mostly 0 and 330) rather than restoring the original pre-step(i) values, and adjusts outer_hex_side_length to a new value; this is a continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes rotation angles of inner hexagons (from \u00b130 to 0/330) and adjusts outer_hex_side_length. The angle changes could be seen as algorithm_refinement (modifying the geometric construction), but the dominant effect is tuning numeric parameters (angles and side length) to achieve a tighter packing. Borderline between parameter_tuning and algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the configuration with a completely different set of hexagon positions and a new approach to computing outer_hex_side_length, rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a simple grid arrangement with a different geometric construction for the 12-hexagon packing. Both are geometric_construction family approaches (hand-designed coordinate placements), so this is intra-family refinement rather than algorithm_switch. The positions and outer side length are changed to target a known optimal configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s geometric construction with a different grid-based arrangement and adds rotations, which is a different approach rather than reverting to the pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the hexagon positions to a different arrangement (new hardcoded coordinates with rotation angles) while keeping the same overall approach of specifying a fixed geometric configuration. The outer side length remains the same hardcoded value.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the rotation loop added in step (i) and tweaks the outer_hex_side_length, but the core coordinate changes from step (i) are preserved; this is a partial modification/refinement, not a revert of step (i)'s main contribution.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Removes rotation angles (set to 0 by removing the loop) and makes a tiny change to outer_hex_side_length. The rotation removal could be algorithm_refinement, but the dominant visible change is the numeric constant tweak. Borderline between parameter_tuning and algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back rotation (5 degrees uniformly) and adjusts the outer_hex_side_length to a different value, which is a new approach rather than reverting to the pre-step(i) state where individual rotation angles existed in a loop.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes rotation angles and outer hex side length \u2014 numeric constant tweaks. Could also be search_space_change (rotation changes the candidate set) or algorithm_refinement, but the changes are purely to numeric values in a hand-designed configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the uniform 5-degree rotation with a different rotation strategy (30/-30 degrees for different subsets), which is a different approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes rotation angles of inner hexagons and outer hexagon side length. The rotation angle changes (5\u00b0 \u2192 \u00b130\u00b0) could be seen as algorithm_refinement, but these are numeric constants in a hand-designed geometric construction. The side length change is clearly parameter tuning. Mixed between parameter_tuning and algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagon positions and rotations with a completely different arrangement (different coordinates, all 0\u00b0 rotations, different layout pattern), which is a new approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the hand-designed geometric construction by changing the specific coordinates of the 12 hexagon centers and adding extensive comments about the reasoning. Still within the geometric_construction family but with different coordinate placements.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s coordinate layout with a completely different arrangement (using rotated hexagons and different positions), which is a new algorithmic approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "The diff is heavily truncated, but it appears to simplify the hexagon placement strategy and adjust the outer hexagon side length. The approach remains a hand-designed geometric construction but with different coordinate placements and a slightly different R value. Could also be parameter_tuning given the R change, but the structural simplification of the placement logic tips toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small numerical adjustments to the coordinates from step (i), which is parameter tuning rather than reverting the approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Minor numerical adjustments to coordinate values (e.g., 0.790\u21920.7905, 0.932\u21920.9282, 1.897\u21921.8895, 1.863\u21921.8564) with no structural change. These are fine-tuning of the geometric placement parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments including adding rotation angles (30/-30 degrees) and slightly different coordinate values, which is a continuation of tuning rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric coordinates, rotation angles, and outer hex side length. The coordinate/angle tweaks are small numeric adjustments rather than structural algorithm changes, and the outer_hex_side_length is explicitly tuned. Borderline with algorithm_refinement due to rotation angle changes (0\u219230, 0\u2192-30), but these are still numeric parameter adjustments to the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the numeric parameters to different values rather than reverting to pre-step(i) values; the rotation angles changed from 30/-30 to 0 (not back to original 0 from before step i), and coordinates are adjusted differently, representing continued parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric coordinates and outer hex side length. The positions are adjusted (numeric constants) and rotation angles changed from 30/-30 to 0. This is borderline between parameter_tuning and initialization_change since it modifies the initial configuration of hexagon positions/orientations, but the changes are purely to numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the configuration with a completely different approach using hexagonal lattice geometry and different coordinates, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the hand-designed geometric construction by changing hexagon positions to a more structured hexagonal lattice arrangement (center + first ring + second ring) and adjusting the outer hexagon side length. Both old and new are geometric_construction approaches within the same family.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

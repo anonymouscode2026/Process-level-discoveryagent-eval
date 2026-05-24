@@ -1,0 +1,161 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "claude-opus-4-6",
+  "level": "L0",
+  "run_id": "L0__run1",
+  "n_steps": 14,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and extends the initial code by adding more arrangements, optimizing hex_vertices, and removing unused functions, but does not revert the initial generation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds more initial arrangements (arrangements 9-12), centers arrangements, expands outer angle search to include 15 degrees, and removes unused evaluate_packing function. These are refinements to the existing multi-start geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a new outer angle optimization loop on top of step (i)'s code, which is an incremental addition rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "search_space_change",
+      "confidence": 0.78,
+      "label_notes": "Adds a grid search over outer angle offsets, expanding the set of candidate outer angles evaluated during optimization.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the grid search over outer angle offsets that was added in step (i), which constitutes removing most of the code added in that step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "search_space_change",
+      "confidence": 0.72,
+      "label_notes": "Removes a loop that searched over outer angle variations, reducing the set of candidates explored for the outer angle optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different algorithm (direct Nelder-Mead optimization over all parameters simultaneously), not a revert to a prior version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver. The previous code used a custom geometric construction with manual optimization, while the new code uses scipy.optimize.minimize with Nelder-Mead and a penalty-based objective over multiple initial configurations. This represents a shift from geometric_construction to a stochastic_search/physical_simulation approach with numerical optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the scipy.optimize Nelder-Mead approach with a completely different algorithm, which is a normal algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. The previous code used a simpler optimization approach; the new code introduces a substantially different geometric construction with multiple candidate configurations (ring-based layouts, grid-based layouts), overlap checking via separating axis theorem, and multi-stage Nelder-Mead refinement. This crosses from a simpler physical_simulation/gradient approach to a geometric_construction + stochastic_search hybrid.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes the final tight optimization block from step (i)'s code, which is a refinement/simplification, not a revert of the overall algorithm introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes a final tight Nelder-Mead optimization pass from the pipeline, simplifying the algorithm but staying within the same optimization family. Could also be seen as code_cleanup if the removed code was ineffective, but since it changes which optimization steps run, algorithm_refinement is more appropriate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire algorithm with a different approach (algorithm_switch), not reverting step (i) which was a no-change step with an empty diff.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing a scipy.optimize-based approach with a geometric construction using known hexagonal packing patterns (ring-based placement with perturbation refinement). Crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with yet another different algorithm (optimization-based with compute_min_outer_side), which is a new algorithm switch rather than reverting to the previous scipy.optimize approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver. Previous code used a scipy.optimize.minimize approach with vertex/edge separation checks. New code uses a fundamentally different geometric construction approach with ring-based initialization, Minkowski-sum containment, and a different optimization structure. The overall architecture changed substantially enough to constitute an algorithm switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm from step (i) by adding more optimization restarts, additional methods (Powell), and tighter tolerances, rather than reverting the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Adds multiple optimization restarts with different methods (Powell, refined Nelder-Mead) and outer angle optimization trials - all within the same local optimization / gradient descent family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and modifies the algorithm further rather than reverting; it changes optimization logic and adds iterative refinement loops but does not restore previous code or remove most of step (i)'s additions.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds new initial arrangement (4-4-4 tight with offset rows), adds final global refinement loop with multiple Powell/Nelder-Mead passes, and vectorizes normal projection computation. Dominant change is refinement of the search/optimization procedure within the same stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies and refines the algorithm (e.g., reverting vectorized normal projection back to loop-based, adding compute_sep_distance, removing the final refinement loop), but these are incremental changes and replacements rather than a wholesale revert of step (i)'s code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds a SAT-like separation distance function, modifies arrangement initialization (3-4-3-2 pattern), removes final global refinement loop, and changes normal projection computation. These are structural refinements within the same optimization family (physical_simulation/stochastic_search).",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

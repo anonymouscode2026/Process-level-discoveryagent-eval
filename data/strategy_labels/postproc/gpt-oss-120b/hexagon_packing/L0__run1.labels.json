@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "gpt-oss-120b",
+  "level": "L0",
+  "run_id": "L0__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the outer_hex_side_length parameter from 3.8 to 100.0, which is a parameter tuning modification, not a revert of the initial generation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only changes the outer_hex_side_length constant from 3.8 to 100.0, no structural change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes outer_hex_side_length from 100.0 to 6.0, which is a different value from both step (i)'s 100.0 and the original 3.8, so it is a further parameter tuning adjustment rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes the outer hexagon side length from 100.0 to 6.0, a numeric constant adjustment to reduce the bounding hexagon size",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded outer_hex_side_length=6.0 with a computed value based on inner hexagon positions, which is a refinement/different approach rather than reverting to the previous value of 100.0.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.85,
+      "label_notes": "Changes the outer hexagon side length from a hardcoded constant to a computed minimal value based on the actual inner hexagon positions, refining how the packing solution determines the enclosing hexagon size.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the layout with a completely different grid-based approach (3 rows \u00d7 4 columns with spacing 2.2) and reverts the outer_hex_side_length back to a hardcoded value (10.0), but this is a scheduled rewrite with a different algorithm, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces the initial hand-designed hexagon placement with a different hand-designed rectangular lattice layout and a much larger outer hexagon (10.0 vs computed). Both are geometric_construction family. The change prioritizes correctness (non-overlapping) over optimality, but stays within the same approach family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the parameters (scale, spacing, outer hex side length) of the same rectangular lattice approach introduced in step (i), rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes spacing scale factor (2.2 \u2192 2.2*0.80=1.76) and outer hexagon side length (10.0 \u2192 3.7). These are numeric constant changes to tighten the packing, though a new 'scale' variable is introduced, the core algorithm structure remains unchanged.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout from step (i) with a completely different hexagonal-lattice diamond-shaped arrangement, which is a new algorithmic approach rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a uniform grid layout (4x3) to a hexagonal-lattice row-based layout with varying row widths (1-3-5-3 pattern), staying within the geometric_construction family. Also adjusts outer_hex_side_length parameter.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the hexagonal-lattice row-based layout (1-3-5-3 pattern) introduced in step (i) back to a uniform rectangular grid layout (4x3), which is essentially the same approach as the original code before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the hexagonal lattice packing layout from a diamond-shaped arrangement (1-3-5-3 rows) to a rectangular grid (3 rows of 4), both within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid approach with a hexagonal lattice approach using hex_norm selection, which is a different algorithm rather than reverting to the previous diamond-shaped arrangement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Switches from a simple grid layout with hardcoded spacing to a hexagonal lattice generation with hex-norm sorting and proper containment calculation. Both are geometric construction approaches, so this is intra-family refinement rather than an algorithm switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) rewrites the code with a different but related approach to the same hexagonal packing problem, refining the algorithm rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Same geometric_construction family but restructured lattice generation, changed outer hex sizing from computed to fixed 4.5, modified point selection and containment logic. The core approach remains hexagonal lattice packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice approach with a completely different rectangular lattice approach using spacing of 2.2 and outer side length 6.0, which is a new algorithm rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces triangular lattice point generation with a simpler rectangular lattice layout. Both are geometric_construction approaches but with different lattice strategies and parameters. The outer hex side length also changed from 4.5 to 6.0.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice with a manually enumerated triangular lattice arrangement, which is a different approach rather than reverting to the previous triangular lattice code from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changed from a 3x4 grid layout to a manually enumerated triangular lattice arrangement of 12 hexagons with a smaller outer hexagon (6.0\u21925.5). Still geometric construction family, but refined placement strategy and reduced outer size.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts to a 3x4 grid layout with spacing 2.2 and outer_hex_side_length=10.0, restoring the approach that step (i) had replaced with the triangular lattice arrangement and smaller outer hexagon (5.5).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice arrangement from a manually enumerated triangular lattice to a 3x4 grid layout with different spacing, and adjusts outer hexagon size. Both are geometric_construction family approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3x4 grid layout with a different hexagonal lattice arrangement and smaller outer hexagon, which is a new approach rather than reverting to the previous triangular lattice from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a grid-based layout (3x4 grid with uniform spacing) to a manually specified hexagonal lattice packing with tighter coordinates and smaller outer hexagon. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the manually specified coordinates with an axial-coordinate-based hexagonal lattice approach and a smaller outer hexagon (side 3.0 vs 4.5), which is a different algorithmic refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Switches from a manually placed rectangular/hexagonal lattice with side 4.5 to an axial-coordinate-based hexagonal lattice with side 3.0. Both are geometric construction approaches but with different placement strategies and tighter outer hexagon.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate hexagonal lattice with a rectangular lattice approach using spacing 2.2 and outer side length 10, which is a different algorithm rather than reverting to the previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Remains within geometric_construction family but changes the lattice generation approach (axial coordinate enumeration with explicit loop vs hardcoded list) and dynamically computes outer hexagon size instead of hardcoding it. The core approach is still hexagonal lattice packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial coordinate loop approach with a different lattice generation method using explicit row-based placement, which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the hexagonal lattice layout and spacing for the 12 unit hexagons, using a manually specified set of 12 center coordinates with spacing=2.0 instead of generating from axial coordinates. Also adjusts outer hexagon side length from computed value to fixed 5.0. This is an intra-family refinement of the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the manually specified 12-center hexagonal lattice with a different rectangular grid approach (4x3 grid using loops), which is a different algorithm for placing the hexagons, not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hexagonal lattice layout from a hex-grid arrangement to a rectangular 3x4 grid arrangement, and adjusts spacing/outer size. Both are geometric_construction family approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular 3x4 grid with a hexagonal axial-coordinate lattice, which is a different algorithmic approach to the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a simple rectangular grid layout to an axial-coordinate hexagonal lattice for placing inner hexagons, and adjusts outer hexagon size. Both approaches are geometric_construction family, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the same hexagonal axial-coordinate approach with different parameters (outer_side=3.0 instead of 4.5, explicit unit_side, different coordinate selection), representing continued algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Same hex-grid lattice approach (geometric_construction family) with refined outer side length (4.5\u21923.0) and slightly restructured coordinate selection, but fundamentally the same algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hex-grid lattice approach with a rectangular lattice approach, which is a different algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces axial hex-grid placement with a rectangular lattice placement and adjusts outer hexagon size. Both approaches are geometric construction within the same family, but the layout strategy and spacing are substantially changed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice approach with a hexagonal ring-based placement, which is a different algorithm refinement rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes from a rectangular lattice packing to a hexagonal lattice packing (center + first ring of 6 + second ring of 5). Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice (center + rings) with a rectangular grid (3 rows \u00d7 4 columns), which is a different packing approach rather than reverting to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Switches from concentric ring placement (1+6+5) to a grid-based row/column layout (3 rows \u00d7 4 columns) for packing 12 hexagons. Both are geometric_construction family approaches, so this is intra-family refinement rather than an algorithm switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts spacing parameters and outer hexagon side length within the same grid-based layout approach introduced in step (i), which is parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes spacing parameters (dx, dy) and outer hexagon side length; also adjusts grid coordinate multipliers, but the core algorithm (lattice-based grid packing) remains the same family and structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) rewrites the code with a different arrangement approach (algorithm refinement), not reverting to a prior version; it replaces the rectangular lattice with a new layout rather than undoing step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changed from a 3x4 rectangular grid layout to a 3-column arrangement (4-4-4) with different spacing. Both are geometric construction approaches but with a different placement strategy and tighter outer hexagon.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different hexagonal lattice arrangement with new coordinates and dynamic outer side length computation, which is a new approach rather than reverting to a previous one.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Switches from a simple rectangular lattice placement to a hexagonal (axial) lattice placement for the 12 inner hexagons, and computes the outer hexagon size dynamically. Both approaches are geometric_construction family, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice approach from step (i) with a different rectangular grid approach (3 rows \u00d7 4 columns), which is a different algorithm refinement rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice layout from manually-selected axial-coordinate hexagonal lattice points to a regular 3x4 grid arrangement with different spacing, and hardcodes a new outer hex side length. Still geometric construction family, but structural change in how positions are computed.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the rectangular grid layout from step (i) back to an axial-coordinate hexagonal lattice approach, restoring the same type of layout that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a rectangular grid layout to an axial hex-grid coordinate system for placing inner hexagons, but remains within the geometric_construction family. Also adjusts outer_hex_side_length parameter.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the axial hex-grid coordinate system introduced in step (i) and restores a rectangular grid layout (using dx/dy spacing with xs/ys loops), effectively reverting the core algorithmic change of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from axial hex-lattice coordinates to a simple 3x4 rectangular grid layout for placing 12 hexagons, and dynamically computes the outer hexagon size. Both approaches are geometric construction within the same family, but the grid arrangement and sizing logic are structurally different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a hexagonal lattice approach using explicit coordinates and a fixed outer side length of 4, which is a different algorithm rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a rectangular lattice placement to a hexagonal lattice placement for packing 12 hexagons. Both are geometric_construction approaches (same family), but the lattice geometry and outer hexagon size are changed to achieve a tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice with a rectangular lattice approach, which is a different algorithm rather than a revert to a previous state, and the agent's reasoning does not mention reverting or undoing.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice arrangement from a hexagonal lattice to a rectangular grid layout (3 rows x 4 columns) with different spacing, but remains within the geometric_construction family. Also adjusts outer hexagon size from 4.0 to 5.0.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the spacing parameters and outer hexagon sizing rather than reverting to the previous hexagonal lattice approach; it continues with the same rectangular grid layout but with tighter spacing values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adjusts lattice spacing parameters and dynamically computes outer hexagon size based on inner hexagon positions, refining the geometric construction approach rather than switching families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the spacing parameters (dx/dy) to 2.2 and adds a safety margin to outer_hex_side_length, which is a parameter tuning refinement rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes lattice spacing constants (dx from 1.5 to 2.2, dy from sqrt(3)/2 to 2.2) and adds a tiny safety margin epsilon. The core algorithm (lattice-based packing with 3 rows) remains the same. Could also be algorithm_refinement since the spacing semantics changed, but the dominant change is numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes dx/dy from 2.2 to 2.0 and replaces the dynamic outer_hex_side_length calculation with a fixed value; this is a further parameter adjustment, not a revert to the pre-step(i) values (which were dx=1.5, dy=sqrt(3)/2).",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes spacing parameters dx/dy from 2.2 to 2.0 and hardcodes outer_hex_side_length to 5.5 instead of computing it. Primarily numeric constant changes to tighten packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the simple rectangular lattice approach with a completely different algorithm using hexagonal norms and candidate generation, which is a new approach rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Switches from a simple rectangular grid placement (hand_designed_special_case) to a hexagonal lattice construction with norm-based selection and minimal enclosing hexagon computation (geometric_construction family). The approach fundamentally changes from a fixed 3x4 rectangular grid to generating candidates on a hexagonal lattice and selecting the 12 closest to center.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hexagonal lattice construction with norm-based selection from step (i) and restores a simple rectangular grid placement approach, effectively reverting the algorithm switch made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a lattice-candidate-selection approach with a manually designed rectangular lattice layout for 12 hexagons. Both are geometric construction approaches within the same family, but the placement strategy and outer hexagon sizing are significantly restructured.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hex-close-packed 4-3-3-2 row layout from step (i) with a simpler 4\u00d73 rectangular grid layout and a different outer hexagon size, which is a further algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout from a hexagonal close-packed arrangement (4-3-3-2 row structure) to a uniform 4x3 grid with different spacing, and adjusts the outer hexagon size. This is an intra-family change within geometric_construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts parameter values (dx, dy, outer_hex_side_length) within the same 4x3 grid layout introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: spacing dx/dy from 2.2 to 2.0 and outer_hex_side_length from 3.9419123 to 4.7",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further modifies parameters (dy changed to sqrt(3), outer_hex_side_length to 4.5) rather than reverting to the previous values of 2.2 and 3.9419123.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes dy from 2.0 to sqrt(3) and outer_hex_side_length from 4.7 to 4.5. The dy change could be seen as algorithm_refinement (correcting lattice geometry), but the changes are primarily numeric constant adjustments to tighten the packing layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice approach with a completely different layout strategy using explicit hexagon positions, which is an algorithm change rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hexagon placement layout from a 3x4 rectangular grid to a more irregular arrangement (4+3+3+2 rows), adjusting positions and outer hexagon size. Both are geometric construction approaches within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the irregular 4+3+3+2 layout with a completely different rectangular 4x3 grid approach using spacing of 2.2 units and a different outer hexagon size, which is a new algorithm refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout from a hex-lattice arrangement (rows at sqrt(3) spacing) to a simpler rectangular 3x4 grid layout with different spacing and a different outer hexagon size. Both are geometric construction approaches within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular 3x4 grid layout with a hexagonal lattice layout using explicit coordinates, which is a different algorithmic approach rather than a revert to the previous hex-lattice arrangement from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Switches from a rectangular grid layout (3x4) to a hexagonal lattice arrangement for packing 12 hexagons. Both are geometric_construction family approaches, but the packing geometry/layout is fundamentally changed. Also adjusts outer_hex_side_length parameter.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the hexagonal lattice arrangement from step (i) back to a rectangular grid layout (3 rows \u00d7 4 columns), restoring the grid-based approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the hexagon placement layout from a hand-designed hexagonal lattice arrangement to a regular 3x4 rectangular grid pattern, both within the geometric_construction family. The outer hexagon size remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a hexagonal ring-based layout, which is a different algorithmic approach to the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes from a grid-based layout (3 rows x 4 columns) to a ring-based hexagonal packing layout (center + first ring of 6 + partial second ring of 5), both within the geometric_construction family. Also adjusts outer hexagon size.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts from the ring-based hexagonal packing layout back to a rectangular grid (3-by-4 lattice) approach, restoring the grid-based strategy that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a ring-based hexagonal packing layout (center + first ring + partial second ring) with a rectangular 3x4 lattice arrangement. Both are geometric_construction family approaches, so this is intra-family refinement. Also adjusts outer hexagon size from 5.0 to 4.0.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3x4 rectangular lattice with a different row-based layout using spacing of 2.2 and outer side length 10, which is a different approach rather than reverting to the previous ring-based hexagonal packing.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the packing layout from a 3x4 rectangular lattice to a non-uniform row-based hexagonal lattice arrangement (different row widths: 5, 4, 3 hexagons). Both are geometric_construction family approaches, but the lattice structure and outer hex size changed significantly (4.0 \u2192 5.0), making this worse. The layout strategy changed within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the non-uniform row-based hexagonal lattice from step (i) with a uniform 3x4 rectangular grid layout using dx=dy=2.2 spacing, which is a different approach rather than reverting to the original 3x4 lattice from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the lattice layout from a 5-4-3 row arrangement to a 4-4-4 grid with different spacing parameters, staying within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4x3 rectangular grid layout with a different triangular lattice approach and tighter outer hexagon, which is a new algorithm refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a grid-based layout to an explicit triangular lattice packing with tighter coordinates and a smaller outer hexagon. Both are geometric construction approaches, so this is intra-family refinement. Also involves parameter changes (side length 5\u21924) but the dominant change is the new coordinate layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the explicit triangular lattice coordinates with a grid-based layout using different spacing parameters, which is a different algorithmic approach rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout from a hand-designed triangular lattice arrangement to a grid-based 3x4 layout with different spacing, and adjusts the outer hexagon side length. Both approaches are geometric_construction family, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-based layout with a completely different randomized greedy packing algorithm, which is a new approach rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.9,
+      "label_notes": "Switches from a hand-designed lattice placement (geometric_construction) to a stochastic random placement with iterative outer-side search (stochastic_search family)",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the stochastic random placement approach from step (i) and replaces it with a simple geometric/lattice-based placement, effectively reverting to a hand-designed construction similar to what existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces stochastic search (random placement with retry/growth) with a deterministic hand-designed lattice packing on a rectangular grid. Switches from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts spacing and outer hexagon parameters within the same geometric lattice approach introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants (dx, dy spacing and outer_hex_side_length) without any structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a hexagonal grid layout using pre-computed coordinates, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a generic 3x4 grid layout to a hand-designed hexagonal lattice arrangement with specific coordinates for 12 hexagons, plus tighter outer hexagon. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed hexagonal lattice with a different grid-based approach (3 rows \u00d7 4 columns with dx=2.0, dy=2.0), which is a new algorithm refinement rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Changes the hexagonal packing layout from a hand-designed lattice to a regular 3x4 grid arrangement with different spacing parameters. Both are geometric construction approaches but the grid layout and outer hex size changed significantly. The outer_hex_side_length increased from 4.30 to 5.0, suggesting this may actually be a worse solution, possibly a regression/exploration step.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3x4 rectangular grid approach with a different layout using rows at specific y-offsets and different x-positions, with a smaller outer hex (4.5 vs 5.0), which is a new algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a simple rectangular lattice to a hexagonal lattice arrangement for packing, and reduces outer hexagon side from 5.0 to 4.5. Both are within the geometric_construction family, representing a refinement of the packing strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice approach from step (i) with a rectangular lattice approach, which is a different algorithm for the same problem, not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Changes the lattice layout for placing 12 hexagons (different spacing/grid arrangement) while remaining within the geometric_construction family. The outer hexagon size stays at 4.5 but the inner placement grid changes from a hex lattice to a rectangular lattice.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts the spacing parameters (dx, dy, outer_hex_side_length) within the same rectangular lattice approach introduced in step (i), which is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants (dx, dy, outer_hex_side_length) without any structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a staggered hexagonal grid layout with different dx/dy values and offset rows, which is a different algorithmic approach rather than a revert of step (i)'s parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes lattice spacing parameters (dx, dy) and introduces staggered row offsets for the hexagonal packing grid layout. This is a structural change to the geometric construction approach (staggered vs uniform grid) combined with parameter changes, making it an intra-family refinement of the geometric_construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the staggered row offset logic introduced in step (i) (xs_center vs xs_offset conditional) and reverts to a uniform grid where all rows use the same xs array, undoing the core structural change of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes lattice spacing parameters (dx from 1.8 to 2.0, dy from 1.5 to sqrt(3)), removes staggered offset logic, and tightens outer_hex_side_length from 5.0 to 4.0. The dominant change is numeric constants, but the removal of the staggered row offset pattern is a minor structural change. Could be algorithm_refinement but the core algorithm (lattice packing) remains the same with adjusted parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice approach with a manually specified hexagonal arrangement using different coordinates, which is a different algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a rectangular grid layout to a hexagonal lattice arrangement for packing 12 hexagons, both within the geometric_construction family. Also adjusts outer hexagon side length from 4.0 to 5.0.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts from the hexagonal lattice arrangement back to a rectangular grid layout (3 rows \u00d7 4 columns), restoring the approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the geometric layout from a hexagonal lattice arrangement to a rectangular grid (3 rows \u00d7 4 columns) while remaining within the geometric_construction family. The outer hexagon size stays at 5.0.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the parameters of the rectangular grid layout introduced in step (i) by changing dy to sqrt(3) and outer_hex_side_length to 4.0, rather than reverting to the previous hexagonal lattice arrangement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes dy from 2.0 to sqrt(3) and outer_hex_side_length from 5.0 to 4.0. The dy change adjusts vertical spacing to the correct geometric value (could be seen as bug_fix or algorithm_refinement), but the overall intent is tightening numeric parameters for a better packing. Borderline with bug_fix since dy=2.0 was arguably incorrect geometry.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a different hexagonal lattice arrangement of explicit coordinates, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.8,
+      "label_notes": "Changes the lattice positions of the 12 hexagons from a regular 3x4 grid to a more compact hexagonal arrangement, and adjusts the outer hexagon side length. This is a refinement of the geometric construction approach within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice positions with a different ring-based arrangement of 12 hexagons, which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the hand-designed hexagon center positions within the same geometric construction approach. The new layout uses an outer ring pattern instead of the previous lattice arrangement, but remains within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction with a completely different strategy (gaming the scorer with a tiny outer hexagon and all inner hexagons at origin), which is a different approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "harness_or_scope_change",
+      "confidence": 0.72,
+      "label_notes": "The agent is attempting to exploit the scorer by placing all hexagons at the origin with a tiny outer side length, assuming the evaluator doesn't verify geometric validity. This is a scope/harness exploitation rather than a genuine algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) completely removes the exploit approach of placing all hexagons at origin with a tiny outer side length, and restores a legitimate geometric packing with proper spacing and a reasonable outer hexagon side length, effectively undoing the harness exploitation from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a trivially invalid packing (all hexagons at origin with tiny outer side) with a valid grid-based layout. Both are geometric_construction family approaches, but the previous was essentially a degenerate/invalid attempt. The change restructures the placement logic to produce a legitimate non-overlapping packing on a rectangular lattice.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) tunes the spacing and outer hexagon size parameters while keeping the same grid-based layout approach introduced in step (i), which is parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes spacing and outer hexagon side length constants. While the grid coordinates are recomputed, the fundamental approach (3x4 grid layout) remains the same, making this primarily a tuning of geometric parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the spacing and grid parameters to different values (dx=2.0, dy=2.0, outer_hex_side_length=5.0) rather than reverting to any previous state; it's a further parameter adjustment, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice spacing and column positions within the geometric construction approach, and adjusts outer hexagon size. This is an intra-family refinement of the geometric_construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid-based layout with an explicit coordinate-based layout using a different arrangement (3 rows of varying sizes plus 2 extra hexagons), which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes from a grid-based lattice layout (4x3) to a manually specified compact packing with different coordinates and a tighter outer hexagon. Both are geometric construction approaches, so this is intra-family refinement. Also involves parameter_tuning (outer_hex_side_length 5\u21924), but the coordinate changes are structural.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different layout approach with row-based construction, a non-origin outer center, and different outer_hex_side_length (4.75 vs 4.0), which is a new algorithm rather than a revert to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the geometric layout of 12 hexagons from a different arrangement (4+3+3+1+1) to a 3-row honeycomb pattern (4+4+4), with adjusted outer hexagon center and size. Both are geometric_construction family approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb layout with a rectangular lattice approach and different outer hexagon parameters, which is a different algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the packing layout from a honeycomb-offset arrangement to a simple rectangular lattice with different spacing, and reduces outer hexagon side length from 4.75 to 4.4. Both approaches are geometric construction within the same family, but the grid layout and parameters are substantially different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the outer_hex_side_length parameter from 4.4 to 5.0 and removes some comments; it retains the rectangular lattice layout introduced in step (i), so this is a parameter adjustment, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes the outer hexagon side length from 4.4 to 5.0, a numeric constant adjustment. The comment says 'reduced to a tighter value' but actually increases it, possibly reverting a previous aggressive shrink.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a hexagonal lattice arrangement and dynamically computes the outer side length, which is a different algorithmic approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a uniform grid layout to a structured hexagonal lattice with varying row widths (2,3,4,3 pattern), and computes outer hexagon size dynamically. Still geometric_construction family but with refined placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-4-3 row pattern with a 3-4-5 row pattern and changes spacing/outer size calculation, which is a different algorithmic approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the row layout from a 2-3-4-3 pattern to a 3-4-5 pattern and adjusts spacing parameters within the same geometric_construction family. Also hardcodes outer_hex_side_length instead of computing it.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the loop-based 3-4-5 pattern with pre-computed coordinates and adds containment verification, which is a different algorithmic refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a 3-4-5 rectangular lattice arrangement with a honeycomb lattice arrangement for packing 12 hexagons. Both are geometric_construction family approaches, but the specific lattice coordinates and layout pattern differ.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb lattice with a different row-based lattice arrangement, which is a different algorithmic approach rather than reverting to the previous rectangular lattice from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the geometric construction of the hexagonal lattice layout (rows-based approach vs explicit coordinates) while staying within the geometric_construction family. The lattice pattern and outer hexagon size are changed but the fundamental approach remains geometric placement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the row-based lattice layout with a different 3x4 grid approach, which is a further algorithm refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice layout from a variable-width row arrangement (2-3-4-3) to a uniform 3x4 grid, and adjusts the outer hexagon side length. This is a structural change within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts spacing parameters (dx, dy, outer_hex_side_length) within the same 3x4 grid layout introduced in step (i); it does not revert to the previous 2-3-4-3 row arrangement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes numeric constants for spacing (dx, dy) and outer hexagon side length without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the outer_hex_side_length from 4.2 to 5.0, which is a further parameter adjustment, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 4.2 to 5.0, a numeric parameter adjustment with no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the simple grid approach with a significantly different algorithm using hexagonal geometry calculations, validation checks, and a fallback mechanism \u2014 this is an algorithm refinement/rewrite, not a revert of the parameter change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the packing layout from a rectangular grid to a more structured arrangement with specific rows and tip hexagons, plus adds validation/fallback. Still a geometric construction approach within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the structured row-based packing with a rectangular lattice approach using different spacing and outer hexagon size, which is a different algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the packing layout with a different lattice arrangement (rectangular vs previous hexagonal) and simplified validation, but stays within the geometric_construction family. Could also be considered algorithm_switch if the previous was a different family, but both are geometric construction approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the lattice arrangement with different row/column parameters rather than reverting to a previous approach; it modifies the layout but continues the same geometric construction strategy.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the hexagonal lattice arrangement from a 3-4-3-2 row configuration to a 4-4-4 row configuration while staying within the geometric_construction family. The outer side length remains the same (4.5), but the inner hexagon placement pattern is restructured.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the lattice parameters and simplifies the loop structure rather than reverting to a previous approach; it maintains the 4-4-4 row configuration from step (i) but with different spacing and a smaller outer hexagon.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the lattice spacing and layout parameters for the hexagonal packing arrangement, modifying how hexagons are positioned within the same geometric_construction family. Also adjusts outer_hex_side_length, which is parameter_tuning-adjacent, but the structural change to the grid layout dominates.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the lattice spacing parameters (dx, dy) back to values closer to the pre-step(i) approach (dx=2.0, dy=2.0 vs step(i)'s dx=1.5, dy=1.732), effectively undoing the tighter hexagonal packing introduced in step (i), and also reverts outer_hex_side_length from 4.0 back to 5.0.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes lattice spacing (dx, dy) and outer hexagon side length constants without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid approach with a completely different two-ring polar layout strategy, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Switches from a rectangular grid layout to a two-ring (inner + outer) hexagonal arrangement for packing 12 hexagons. Both approaches are geometric construction within the same family, but the ring-based layout is a structural refinement with tighter outer hexagon (5.0 \u2192 4.2).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts from the two-ring hexagonal arrangement back to a rectangular lattice layout with outer_hex_side_length=5.0, restoring the approach that step (i) had replaced (which also used a rectangular grid with side 5.0).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes from a two-ring placement strategy (inner+outer ring at different radii) to a single-circle arrangement of 12 hexagons. Both are geometric_construction family approaches, but the placement geometry and outer hexagon sizing changed significantly. The outer_hex_side_length went from 4.2 to 5.0, suggesting this may actually be a worse solution, possibly a reset/rewrite attempt within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the single-circle arrangement with a 3x4 rectangular grid layout, which is a different algorithmic approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from circular arrangement to grid-based lattice layout for hexagon packing, both within geometric_construction family. Also adjusts outer hexagon size.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a hexagonal lattice layout, which is a different algorithmic approach to the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Switches from a rectangular grid layout (3 rows \u00d7 4 columns) to a hexagonal lattice arrangement of 12 hexagon centers, both within the geometric_construction family. Also adjusts outer hexagon side length accordingly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice arrangement from step (i) with a different row-based layout (5-4-3 rows), which is a new algorithmic approach rather than reverting to the previous rectangular grid layout.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the arrangement of 12 hexagons from a hand-picked set of lattice positions to a row-based layout (5-4-3 rows), still within the geometric_construction family. Also adjusts outer hex side length.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the row-based layout with a different triangular lattice approach and adjusts the outer hex side length, which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a rectangular lattice layout (5-4-3 row arrangement) to a triangular lattice with spacing 2, and tightens the outer hexagon from 5.5 to 5.0. Both approaches are geometric_construction family, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches from a triangular lattice to a rectangular lattice (3 rows \u00d7 4 columns) with different spacing, which is a different geometric approach rather than reverting to the previous 5-4-3 row arrangement from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice layout from triangular to rectangular grid (3 rows x 4 columns) with different spacing, and adjusts outer hexagon size. Both are geometric_construction family approaches, so this is intra-family refinement rather than a switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the lattice spacing parameters and outer hexagon size rather than reverting to a previous state; it continues the same rectangular grid approach with adjusted values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adjusts lattice spacing parameters (dx, dy) to use correct honeycomb lattice geometry and tightens outer hexagon side length. This is a refinement of the geometric construction approach with corrected spacing values, but also has aspects of parameter_tuning and bug_fix (incorrect spacing). Labeled algorithm_refinement as the geometric construction logic is being corrected/refined.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the honeycomb lattice spacing (dx=1.5, dy=sqrt(3)) back to the uniform dx=2.2, dy=2.2 values and increases outer_hex_side_length from 3.4 to 5.5, undoing the geometric refinements made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes spacing parameters dx, dy and outer_hex_side_length without altering the algorithmic structure (still a 3x4 grid layout). The lattice spacing and outer size are numeric constants being tuned.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the spacing parameters to different values (dx=sqrt(3), dy=1.5, outer=4.62) rather than reverting to any previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes spacing parameters (dx, dy) and outer_hex_side_length to tighter values. While dx/dy changes reflect a more geometrically motivated calculation (sqrt(3), 1.5), the overall structure remains the same lattice-based geometric construction with just different numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice approach with a completely different concentric ring arrangement (1+6+5), which is a new algorithm rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a rectangular lattice packing to a ring-based hexagonal packing arrangement (central + 6 inner ring + 5 outer ring), both within the geometric_construction family. Also tightens the outer hexagon side length from 4.62 to 4.0.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the ring-based hexagonal packing from step (i) back to a rectangular lattice approach with large spacing (2.2) and a much larger outer hexagon, restoring the general approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "[POSTPROC rule D] reclassified from algorithm_switch: Switches from a geometric_construction approach (concentric rings of hexagons) to a rectangular grid/lattice packing approach, which is a fundamentally different placement strategy within the geometric_construction family. However, since both are geometric_construction, this could be algorithm_refinement. The change is so drastic (complete rewrite with different layout logic) that it borders on algorithm_switch, but per the family rules it's intra-family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the rectangular grid approach introduced in step (i) by adjusting spacing parameters and row definitions, rather than reverting to a previous approach.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the lattice spacing and row layout within the same geometric_construction family to achieve a denser packing, and manually sets the outer hexagon side length.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice layout with a different rectangular grid approach using different spacing parameters, which is a further algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice layout from an offset hex pattern (rows with different x-offsets) to a uniform rectangular grid with slightly different spacing. The overall approach remains geometric_construction/lattice_packing, but the grid geometry and outer hexagon size are adjusted. Also involves parameter_tuning (outer_hex_side_length, spacing values), but the structural change to the grid layout is dominant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts spacing parameters (dx, dy from 2.01 to 2.2, outer_hex_side_length from 4.63 to 5.0) while keeping the same rectangular grid layout introduced in step (i); this is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants (dx, dy spacing and outer_hex_side_length) with no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice approach with a completely different ring-based placement algorithm, which is a new approach rather than a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changed from a rectangular lattice layout (3x4 grid with spacing 2.2, outer side 5.0) to a hand-designed hexagonal-grid pattern with specific coordinates and a smaller outer hexagon (side 4.0). Both are geometric_construction family approaches, but the placement strategy and outer size are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed hexagonal-grid pattern with a different rectangular lattice approach (rows of hexagons with spacing), which is a different algorithm rather than a revert to the previous rectangular lattice from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the placement strategy within geometric_construction family: switches from a radial/hex-grid center arrangement to a rectangular lattice with staggered rows, but remains a geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the lattice parameters and simplifies the loop structure but continues the same rectangular/staggered lattice approach introduced in step (i), rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the hexagonal lattice spacing and row layout within the same geometric_construction family. Adjusts dx, dy, and grid positions for a different packing arrangement while keeping the same overall approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid approach with an axial-coordinate hexagonal lattice approach, which is a different algorithm for the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Switches from a grid-based row/column layout to an axial-coordinate hexagonal lattice for placing 12 hexagons, but remains within the geometric_construction family. The outer hexagon size stays at 4.0.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate approach with a different honeycomb row-based layout, which is a normal algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the hexagonal lattice layout from axial-coordinate-based placement to a row-based honeycomb layout with different coordinates and a smaller outer hexagon side length. Both are geometric_construction approaches, so this is intra-family refinement. Also includes parameter_tuning (outer_hex_side_length 4.0\u21923.2), but the structural layout change dominates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the row-based honeycomb layout with a different geometric construction approach using explicitly listed coordinates and a larger outer hexagon (4.5 vs 3.2), which is a different algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the hexagon placement layout (different center positions and outer side length) within the same geometric_construction family. Could also be considered initialization_change but the core placement strategy is restructured.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the placement strategy with a different approach (axial coordinates with spacing 1.5/sqrt3 and a different outer side length), which is a new algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from manually placed centers to axial-coordinate hex-lattice placement with different spacing/outer size. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate hex-lattice approach with a rectangular grid (3 rows \u00d7 4 columns) approach, which is a different algorithm refinement rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from axial-coordinate hex-lattice packing to a simple 3x4 rectangular grid layout. Both are geometric_construction family approaches, but the geometric arrangement strategy changed significantly. The outer hex side length also changed from ~3.46 to 5.0, which is a worse solution, suggesting this may be exploratory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid approach with a hexagonal lattice approach, which is a different algorithm rather than reverting to the previous state; while it resembles the approach before step (i), it uses different parameters (radius=2, side_length=3.0 vs the original ~3.46) and is a new refinement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a rectangular grid layout to a hexagonal lattice (axial coordinates) for placing inner hexagons. Both are geometric_construction approaches, so this is intra-family refinement. Also adjusts outer hexagon side length from 5.0 to 3.0 as part of the tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice (axial coordinates) approach with a manually defined row-based layout, which is a different refinement of the same geometric construction, not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from axial-coordinate lattice generation to a manually specified row-based layout for 12 hexagons, with adjusted outer hexagon size. Both are geometric construction approaches but the layout strategy and parameters differ.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the row-based layout from step (i) with a different geometric construction approach (using axial coordinates and a computed outer hexagon size), which is a normal algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the hexagonal lattice layout with different center positions and spacing, and recalculates the outer hexagon side length formula. Same geometric_construction family but with refined placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice approach with a completely different rectangular lattice approach using spacing of 2.2 and outer side length 10, which is a different algorithm rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a hand-designed hexagonal lattice packing (3-4-4-1 row arrangement) with a simpler 4x3 rectangular grid layout. Both are geometric_construction family approaches, but the new layout is less optimized (larger outer hexagon). Could also be seen as a regression/bug, but the code is structurally valid.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the outer_hex_side_length parameter from 4.2 to 5.0, which is a minor parameter adjustment, not a revert of the rectangular grid layout introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 4.2 to 5.0, a numeric parameter adjustment.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes dx/dy from 2.2 to 2.0 and updates a comment, but does not revert step (i)'s change of outer_hex_side_length from 4.2 to 5.0; it keeps 5.0 and makes additional parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes dx and dy spacing from 2.2 to 2.0; outer_hex_side_length comment updated but value unchanged. Primary change is numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds on step (i) by further refining dy from 2.0 to sqrt(3), keeping dx at 2.0 as set in step (i); it does not restore previous values or undo step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule C] reclassified from algorithm_refinement: Changes vertical spacing dy from 2.0 to sqrt(3) for tighter packing within the same geometric construction approach. Also adds explanatory comments but the semantic change is the dy parameter.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid approach with a completely different circular placement approach (12 hexagons on a circle of radius 4), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": "C"
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes placement strategy from rectangular grid (3 rows x 4 columns) to circular arrangement (12 hexagons equally spaced on a circle of radius 4), both within geometric_construction family. Same outer hexagon side length (5.0) retained.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the circular arrangement with a hexagonal lattice (ring-based) approach, which is a different algorithm rather than a revert to the previous rectangular grid approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Switches from circular placement (12 hexagons on a circle) to hexagonal lattice placement (1 center + 6 ring1 + 5 ring2), both within geometric_construction family. Also tightens outer hexagon from side 5 to 4.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice (center + ring1 + ring2) with a rectangular grid approach (3 rows \u00d7 4 columns), which is a different algorithm for placing hexagons, not a revert to the previous circular placement approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a hand-crafted hexagonal lattice (center + ring1 + partial ring2) to a regular rectangular grid layout (3 rows \u00d7 4 columns) for placing the 12 hexagons. Both are geometric construction approaches within the same family, but the placement strategy/pattern is substantially different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a different triangular lattice approach using rotated hexagons and manually specified coordinates, which is a new algorithm refinement rather than a revert to any prior approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a grid-based layout (3 rows x 4 columns) to a manually constructed triangular lattice packing with rotated hexagons and different coordinates. Both are geometric_construction family approaches, but the specific packing arrangement and rotation strategy are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the triangular lattice packing with a different lattice arrangement (different coordinates, different rotation angle, different outer side length), which is a further algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice placement coordinates and rotation angle for the 12 hexagons, and adjusts the outer hexagon side length. Both old and new approaches are geometric_construction (hand-designed lattice packing). The new layout uses different basis vectors and a larger outer hexagon (5.0 vs 4.8), suggesting a refinement of the packing strategy rather than a fundamentally different algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice layout with a different symmetric arrangement (rows of 2+3+3+3+1 pattern with outer side 4.0), which is a new algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Refines the geometric construction approach by changing the lattice layout from a rectangular/irregular lattice with side length 5 to a more compact honeycomb lattice arrangement with side length 4, staying within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the honeycomb lattice approach with a rectangular lattice approach using different spacing (2.2 units) and a different outer side length (4.5 instead of 4.0), which is a different algorithm refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the packing layout from a honeycomb lattice (4-3-3-1-1 row arrangement) to a rectangular grid (3 rows of 4), with different spacing and a larger outer hexagon (4.5 vs 4.0). Both are geometric construction approaches but with different placement strategies and parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts the spacing parameters (dx, dy, outer_hex_side_length) while keeping the same rectangular grid layout introduced in step (i), which is parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: dx, dy spacing values and outer_hex_side_length. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the parameters (dx, dy, xs, ys, outer_hex_side_length) to different values rather than reverting to any previous state; this is a continued refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.6,
+      "label_notes": "Changes spacing parameters (dx, dy) and outer hexagon side length. The dx/dy changes use geometric formulas (sqrt(3)) rather than arbitrary constants, making this borderline algorithm_refinement, but the core algorithm (grid-based lattice packing) is unchanged and the changes are to numeric constants governing the layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the spacing parameters (changing dy from sqrt(3) to 2.0, adjusting xs/ys formulas, and tightening outer_hex_side_length from 4.5 to 3.35) rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes spacing parameters (dy from sqrt(3) to 2.0, xs formula, outer_hex_side_length from 4.5 to 3.35). While the grid formula changes slightly, the core approach (3-row x 4-column lattice packing) remains the same. The dominant change is numeric constants controlling the layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice approach with a different hexagonal pattern layout and different coordinates, which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes the hexagon placement layout from a regular 3x4 rectangular grid to a different irregular arrangement with different spacing and a different outer hexagon side length (3.35\u21923.5). Both are geometric construction approaches but with different placement strategies. The agent seems confused about scoring (claims smaller outer hex is better but increases it from 3.35 to 3.5).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the previous approach with a completely different algorithm using axial coordinates and a different outer hexagon configuration (side length 4.0 with 30\u00b0 rotation), which is a new approach rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Changes from a hand-placed rectangular lattice arrangement to an axial-coordinate hexagonal lattice ring for placing the 12 inner hexagons, and adjusts the outer hexagon parameters. Both approaches are geometric construction within the same family, but the placement strategy is substantially different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the hexagonal lattice approach from step (i) by switching from a ring-only selection (axial distance == 2) to a filled cluster selection (axial distance <= 2) with explicitly listed coordinates, which is a further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the set of 12 hexagons from a ring at axial distance 2 to a mixed set including the origin and cells at distances 0-2, and adjusts outer hexagon size from 4.0 to 5.0 and rotation from 30\u00b0 to 0\u00b0. This is a structural change within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate hexagonal lattice approach with a rectangular grid approach using dx/dy spacing, which is a different algorithm rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from axial-coordinate hexagonal lattice placement to a simple rectangular grid layout for the 12 hexagons. Both are geometric_construction approaches (same family), but the placement strategy is changed structurally.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a different hexagonal lattice packing approach, which is a new algorithm refinement rather than reverting to the previous axial-coordinate approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the grid layout from a uniform 4x3 grid to a hexagonal lattice with varying column heights, and adjusts spacing/outer size. Still geometric construction family, but significantly restructured placement logic and parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hexagonal lattice approach with a completely different strategy (placeholder circular placement with aggressive outer size), which is a new approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "harness_or_scope_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule A] reclassified from algorithm_refinement: The agent replaces a valid geometric lattice packing with placeholder/invalid inner hex positions and a smaller outer hex side length, apparently trying to game the scoring metric. This is a deliberate attempt to exploit the evaluator rather than a genuine algorithm change. Could be harness_or_scope_change (gaming the evaluator) but the primary change is to the solution construction approach itself. Low confidence because it straddles multiple categories.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the placeholder/gaming approach from step (i) and restores a legitimate geometric lattice packing with proper spacing calculations, effectively undoing the deliberate evaluator-gaming strategy.",
+      "postproc_rule_applied": "A"
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces a placeholder/fake packing with a proper lattice-based geometric construction. Both are within the geometric_construction family. The previous code used arbitrary placeholder positions with an aggressively small outer hexagon; the new code uses a rectangular lattice with proper scaling to ensure non-overlap.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the parameters (dx/dy from 2.2 to 2.001, removes the scaling step, adjusts outer_hex_side_length) rather than reverting the lattice-based approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes spacing parameters (dx/dy from 2.2 to 2.001) and outer_hex_side_length (5.5 to 4.2), removes the scaling step that was previously normalizing the layout. The scaling removal could be seen as algorithm_refinement, but the dominant change is adjusting numeric constants to tighten the packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the parameters (dx from 2.001 to 2.0, dy from 2.001 to sqrt(3), outer_hex_side_length from 4.2 to 4.0) rather than reverting to the previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes spacing parameters (dx, dy) and outer hexagon side length to tighter values. dy changes from 2.001 to sqrt(3) which is a lattice-correct value, but the overall change is adjusting numeric constants in a geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts dx from 2.0 back to 2.2, dy from sqrt(3) back to 2.2, and outer_hex_side_length from 4.0 back to 5.0, restoring values that were changed in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes numeric constants for spacing (dx, dy) and outer hexagon side length without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice approach with a hexagonal lattice approach, which is a different algorithm for solving the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a rectangular grid layout (3x4) to a hexagonal lattice layout (5+4+3 rows) for placing the 12 inner hexagons. Both are geometric_construction approaches, so this is intra-family refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the hexagonal lattice layout (5+4+3 rows) back to a rectangular grid layout (3 rows \u00d7 4 columns), restoring the approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice layout from a 5-4-3 hexagonal arrangement to a 4-4-4 rectangular grid, adjusts spacing and outer hexagon size. Both are geometric_construction family approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts dy from sqrt(3)\u22481.732 to 2.2 and outer_hex_side_length from 4.0 to 5.0, which are parameter tuning changes, not a revert of the 4-4-4 grid layout introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes numeric constants dy (1.73 to 2.2) and outer_hex_side_length (4.0 to 5.0) without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid layout with a different hexagonal cluster arrangement (rows of 2,3,4,3), which is a new algorithmic approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the lattice arrangement from a 4x3 grid to a 2-3-4-3 hexagonal cluster pattern, and adjusts the outer hexagon side length. This is a structural change within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-4-3 hexagonal cluster with a different column-based lattice approach that keeps the 12 closest points, which is a new algorithm refinement rather than a revert to any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes the hexagonal lattice construction approach within the geometric_construction family: switches from fixed row-based layout to column-based lattice with distance-based selection of closest 12 hexagons, and computes outer side length dynamically instead of hardcoding it.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the column-based lattice with a different approach (center + first ring cluster plus additional hexagons), which is a new algorithm rather than a revert to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Replaces a rectangular lattice + closest-12 selection with a hand-designed geometric construction (center + first ring of 7 + 5 on second ring). Both are geometric_construction family approaches, so this is intra-family refinement with a tighter outer hexagon (side 4 vs dynamic).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hand-designed geometric construction (center + first ring of 7 + 5 on second ring) from step (i) and restores a rectangular lattice approach, which is essentially reverting to the type of approach that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a center+ring hexagonal cluster layout to a rectangular grid (4x3) layout for placing 12 hexagons. Both are geometric_construction family approaches, so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts spacing parameters and outer hexagon size within the same rectangular grid layout introduced in step (i), which is parameter tuning rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes spacing parameters (dx, dy) and outer hexagon side length, along with column x-coordinates which are derived from dx. The core algorithm structure (grid-based lattice packing) remains the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the algorithm from a rectangular grid (3 rows \u00d7 4 columns) to a staggered hexagonal layout (2-3-4-3 rows), which is a different approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the lattice layout from a uniform 4x3 grid to a staggered 2-3-4-3 row pattern for hexagon packing, which is a structural refinement within the geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the staggered 2-3-4-3 row pattern introduced in step (i) back to a uniform 3x4 grid layout, restoring the regular grid approach that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice layout from a 2-3-4-3 row pattern to a 4-4-4 grid pattern with different spacing (dy changed from sqrt(3) to 2.0). This is a structural change within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular grid approach with a honeycomb axial-coordinate approach, which is a different algorithm for solving the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Switches from a rectangular grid layout to a honeycomb/axial-coordinate-based hexagonal grid layout for placing the 12 hexagons. Both are geometric_construction family approaches, so this is intra-family refinement. Also reduces outer hexagon side length from 5.0 to 4.0.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the honeycomb/axial-coordinate grid approach from step (i) back to a rectangular lattice layout, restoring the type of approach that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Switches from axial-coordinate hex grid generation to an explicit rectangular lattice layout for placing 12 hexagons, but remains within the geometric_construction family. The layout strategy and spacing are refined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the rectangular lattice layout with a different explicit hexagonal lattice layout, which is a further algorithm refinement rather than a revert to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the hexagon placement layout from a 3-row grid arrangement to an explicit hexagonal lattice with a central hexagon and surrounding rings. Both are geometric construction approaches but with different placement strategies within the same family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the hexagonal lattice placement from step (i) back to a rectangular grid layout (3 rows \u00d7 4 columns), restoring an approach similar to what existed before step (i)'s explicit hexagonal ring layout.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes from a hand-designed 12-hexagon placement to a grid-based lattice layout (3 rows \u00d7 4 columns) with adjusted spacing and outer hexagon size. Both are geometric_construction approaches, so this is intra-family refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the grid layout with a different manually constructed layout using different row configurations and spacing, which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the lattice layout (row structure and spacing) for packing 12 hexagons, modifying coordinates and outer hex size. Still geometric construction family, but different arrangement of rows and spacing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3-row lattice layout with a completely different approach (horizontal line placement with dynamic outer hex sizing), which is a new algorithm rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Switches from a 3-row hex lattice arrangement to a simple linear arrangement of hexagons. Both are geometric_construction family approaches (hand-designed placements), so this is intra-family. The change simplifies the packing layout significantly, likely producing a worse (larger) outer hexagon but aiming for guaranteed feasibility.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

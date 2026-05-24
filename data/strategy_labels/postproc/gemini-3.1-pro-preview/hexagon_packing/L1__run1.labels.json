@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "gemini-3.1-pro-preview",
+  "level": "L1",
+  "run_id": "L1__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the initial approach with a completely different algorithm (honeycomb lattice-based placement instead of generic optimization), which is an algorithm switch, not a revert of the initial generation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Complete rewrite from a general nonlinear optimization approach (with overlap constraints, multi-stage optimization, random restarts) to a geometric construction approach using honeycomb lattice placement with exact center generation. This crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes numerical parameters (margins, tolerances, iterations) within the same algorithm introduced in step (i), without removing or reverting any code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes numeric constants: smoothing parameter k_smooth (100\u2192400), margin (2e-3\u21922e-4), ftol (1e-5\u21921e-7), maxiter (300\u21921000), feasibility tolerance (1e-3\u21921e-4), and safety buffer (1e-4\u21922e-5). All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction, further adjusting constants (k_smooth, margins, tolerances, iterations) rather than reverting to step (i)'s previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes are all numeric constant adjustments: k_smooth 400\u21922000, margins 2e-4\u21921e-5, number of init angles 6\u21929, ftol 1e-7\u21921e-9, maxiter 1000\u21922000, feasibility tolerance 1e-4\u21921e-5, safety buffer 2e-5\u21921.2e-5. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds on step (i) by adding a two-stage optimization (refinement pass), adjusting margins further (1e-5\u21922e-6), and reducing the safety buffer (1.2e-5\u21925e-6), rather than reverting any changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Two-phase optimization with increasing smoothness parameter (K_SMOOTH_VAL from 2000 to 50000), tighter tolerances, and adjusted margins. This is a structural refinement within the same SLSQP-based gradient descent family, not just parameter tuning since it adds a second optimization phase.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) extends step (i) by adding more row configurations, more initial rotations, a third optimization phase with K_SMOOTH_VAL=200000, and a tighter safety buffer, rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds more initial row configurations to search, increases rotation samples from 9 to 12, adds a third optimization pass (res3) with higher K_SMOOTH_VAL for refinement, and reduces safety buffer. Multiple changes but dominant theme is refining the existing optimization approach within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds on step (i) by adding a fourth optimization pass (res4), tightening tolerances, and adjusting safety buffers, rather than reverting any changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are tightening tolerance margins (2e-6\u21921e-7, safety buffer 1e-6\u21922e-7) and adding an extra optimization pass with K_SMOOTH_VAL=2000000. The extra minimize call could be seen as algorithm_refinement, but the dominant changes are numeric constant adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different tolerance values and removes the extra K_SMOOTH_VAL=2000000 optimization pass, but replaces it with a different approach (scaling factor), which is a forward modification rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Mixed change: adjusts numeric tolerances (margins, ftol, maxiter, K_SMOOTH_VAL), removes one optimization stage, adds post-optimization scaling/safety buffer. The dominant changes are numeric constant adjustments, but removing the res4 stage and adding constraint checking logic is borderline algorithm_refinement. Picking parameter_tuning as the primary intent seems to be tolerance/margin adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments and adds an additional optimization stage (res4) rather than reverting step (i)'s changes; it builds upon step (i) with refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional SLSQP optimization pass (res4) with tighter tolerances, increases init_alpha search points from 12 to 16, and adjusts safety margins. Mix of parameter_tuning and algorithm_refinement, but the added optimization stage is structural.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding yet another optimization pass (res5) with even tighter K_SMOOTH_VAL and updating references from res4 to res5, which is a continuation of the refinement approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds an additional optimization pass (res5) with higher K_SMOOTH_VAL for tighter constraint enforcement, and tunes safety margins. The extra minimize call is a refinement of the existing multi-stage SLSQP optimization pipeline, not a new algorithm family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding yet another optimization pass (res6) with even higher K_SMOOTH_VAL, tightening safety margins, and using res6's results instead of res5's \u2014 this is a continuation/refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes margin/tolerance constants (1.5e-6\u21921.0e-6, 6e-7\u21924e-7, 2.5e-6\u21921.5e-6) and adds an additional optimization pass (res6) with a very large K_SMOOTH_VAL. The additional minimize call could be algorithm_refinement, but the dominant changes are numeric constant adjustments for tighter tolerances.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the parameter tuning approach from step (i) by further tightening margins and adding another optimization pass (res7), rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are tightening margin/epsilon constants and adding an extra optimization pass with the same method (SLSQP). The extra minimize call is a refinement but the dominant changes are numeric constants (margins, tolerances, scale factors, number of initial angles).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning adjustments (changing margins, scale factors, and number of initial angles) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: margin values, scale factors, and number of initial rotations. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding an additional optimization stage (res8) with a much higher K_SMOOTH_VAL and replacing the scaling/safety buffer logic with exact containment re-evaluation, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds an additional SLSQP optimization pass (res8) with higher K_SMOOTH_VAL, relaxes constraint tolerances, and adds exact post-optimization scaling/containment recalculation. These are refinements within the same optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds more row configurations, increases the number of initial rotations, and adds additional optimization passes (res9, res10) on top of step (i)'s changes, which is a continuation/refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds more initial row configurations to search, increases rotation samples from 16 to 18, and adds two additional optimization stages (res9, res10) with progressively larger K_SMOOTH_VAL for tighter constraint enforcement. All within the same optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same approach by adding more rotation samples (18\u219224), adding another optimization stage (res11), and tweaking safety margins, which is a continuation/refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional optimization pass (res11) with a very high K_SMOOTH_VAL, increases init_alpha grid density from 18 to 24, and reduces safety margins. The additional minimization step and denser search are refinements within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds on step (i) by adding yet another optimization pass (res12) with an even higher K_SMOOTH_VAL, increasing init_alpha grid from 24 to 30, and updating references from res11 to res12 \u2014 this is a further refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds an additional optimization pass (res12) with a very high K_SMOOTH_VAL and also increases the number of initial rotation angles from 24 to 30. The extra minimization step is a refinement of the existing SLSQP-based optimization pipeline, and the init_alpha change is a minor search space expansion. Combined, algorithm_refinement is the best fit.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the res12 optimization pass added in step (i) but also adds multiple early-exit pruning checks and changes the number of init angles from 30 to 36, representing a different algorithmic refinement rather than a simple revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds early termination pruning (continue if R exceeds best_R + threshold) at multiple stages, removes one optimization stage (res12), and increases init_alpha grid density. These are structural refinements within the same optimization family (gradient-based multi-start with progressive smoothing).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes many row configurations and adjusts thresholds/parameters, but this is a search space reduction and parameter tuning rather than reverting step (i)'s changes; it does not restore previously removed code or undo the core algorithmic refinements from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Removes many row_count configurations (reducing candidate initializations), adjusts filtering thresholds, and changes number of initial rotations. Mixed between search_space_change (fewer configurations explored) and parameter_tuning (threshold changes). Also includes precision_handling (safety margin changes). Dominant change is reducing the set of configurations searched.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further modifies the configuration list by removing some reversed configs and adding new ones, and adjusts safety margins differently \u2014 this is a continued refinement, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: modified the set of candidate configurations (removed reverses, added new ones), increased rotation sweep granularity (12\u219224), removed early pruning/termination checks, added an extra optimization stage (res12), tightened safety margins. The dominant change is modifying which configurations are searched and removing pruning predicates that filtered candidates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back the reverse configurations that step (i) removed, but also keeps all other changes from step (i) and makes additional modifications; this is an incremental refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Adds reversed configurations to ALL_CONFIGS (expanding the set of candidate configurations searched) and tightens feasibility tolerance thresholds. The dominant change is expanding the configuration search space with reversed variants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) trims the config list (ALL_CONFIGS[:12]) rather than removing the reversed configs added in step (i), and makes independent parameter tuning changes; it does not restore the previous code or undo the search space expansion in the manner of a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: reduces config count, increases angular search resolution (24\u219240), increases K_SMOOTH_VAL, decreases eps, and reduces safety margins. Also trims ALL_CONFIGS[:12] which is a minor search_space_change, but dominant changes are parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further expanding the search space (12\u219215 configs, 40\u219260 angular steps) and adding early pruning checks, rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "search_space_change",
+      "confidence": 0.75,
+      "label_notes": "Expands the number of configs (12\u219215) and angular resolution (40\u219260), while adding early termination predicates that prune unpromising candidates. This modifies which candidates get evaluated.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the config count from 15 back to the original 10 and angular resolution from 60 back to 40, undoing the search space expansion made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: number of configs (15\u219210), angular search points (60\u219240), and threshold tolerances for pruning (0.1\u21920.05, 0.02\u21920.01, 0.002\u21920.001). No structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes some parameters back toward step (i-1) values (e.g., 0.05\u21920.1, 0.01\u21920.02, 0.001\u21920.002) but also makes different changes (configs 10\u21926, angular points 40\u2192150, adds an extra optimization stage res13), so it's a different approach rather than a simple revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds an extra optimization stage (res13) with higher K_SMOOTH_VAL, adjusts pruning thresholds, changes config/angular search parameters. These are refinements within the same optimization framework (gradient-based local search with SLSQP).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the optimization by adding another stage (res14), adjusting thresholds, and reducing safety margins, which builds upon step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional optimization pass (res14) with very high K_SMOOTH_VAL, adjusts pruning thresholds and safety margins. Multiple changes: parameter tuning (thresholds, linspace count, safety margins) combined with structural addition of a new optimization stage. The dominant change is the new res14 minimization step, which is a structural refinement within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only hoists repeated computations (like np.triu_indices and constant arrays) to module-level variables for performance optimization, without removing or reverting any logic from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "memory_optimization",
+      "confidence": 0.45,
+      "label_notes": "Precomputes and caches index arrays and constant arrays as module-level globals to avoid recomputation. Also reduces search space (fewer configs, fewer angles). Mixed between data_structure_change (caching), search_space_change (fewer configs/angles), and memory_optimization. The dominant change is hoisting repeated computations to module level, which is closest to memory/compute optimization, but search_space_change (reducing configs from ~12 to 6 and angles from 120 to 90) is also significant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the module-level cached arrays (_IDX_I, _IDX_J, _V_X, _V_Y, _A_OFFSET) and replaces them with inline computations, but this is only a partial reversal of one aspect of step (i); the overall structure, configurations, and approach from step (i) remain intact, and the agent's reasoning does not mention reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Moves module-level precomputed arrays to local scope, expands config list with reversed variants then trims back, resets K_SMOOTH_VAL per iteration. Mix of code_cleanup and search_space_change but dominant intent is refining the search procedure within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the config list and angular search differently from step (i), but does not restore previous code or undo step (i)'s changes; it builds on step (i) with further refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "search_space_change",
+      "confidence": 0.72,
+      "label_notes": "Reduces config set (ALL_CONFIGS[:6]) and increases angular resolution from 90 to 120 steps, changing which candidates are explored. Also moves global variable assignment and resets K_SMOOTH_VAL.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts optimization parameters (ftol, maxiter, thresholds) within the code from step (i), without removing or restoring any significant code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes ftol tolerances, maxiter limits, and pruning thresholds \u2014 all numeric constants with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (tightening tolerances, adjusting thresholds, narrowing config list) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Primarily changes numeric constants: ftol values, maxiter, threshold cutoffs, safety margins. Also restricts ALL_CONFIGS to a single config which is a search_space_change, but the dominant changes are parameter tuning across multiple optimizer settings.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies some parameters from step (i) (e.g., ALL_CONFIGS[:6] instead of [[3,4,5]], 80 instead of 120 angles) and adds a new optimization stage (res15), but it does not restore previous code or remove most of step (i)'s additions; it builds upon step (i) with further refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional optimization pass (res15) with very high K_SMOOTH_VAL, expands config search from 1 to 6 configs, reduces angular search granularity, and tightens safety margins. Multiple changes but dominant intent is refining the optimization pipeline within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes small parameter adjustments (angular search granularity, safety margins) within the same framework established by step (i), without removing or undoing any of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes numeric constants: number of initial rotations (80\u2192100) and threshold tolerances for pruning (0.1\u21920.05, 0.01\u21920.005, 0.0005\u21920.0002). No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes different parameter changes (e.g., reducing rotations from 100 to 60, changing safety margins) rather than reverting step (i)'s changes back to original values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes numeric constants: hardcodes specific config list, reduces angular search from 100 to 60, and adjusts safety margins from 1e-14 to 1e-11. The config list change could be search_space_change but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some parameter changes from step (i) (safety margins back to 1e-14) but also introduces new optimizations like precomputing indices and arrays as module-level constants, and changes ftol/maxiter differently, making this a mixed refinement rather than a pure revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes ftol from 1e-7 to 1e-4, maxiter from 1000 to 500, safety margins from 1e-11 to 1e-14. Also precomputes constants (code_cleanup-like), but dominant changes are numeric parameter adjustments.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the precomputed constants (IDX_I, IDX_J, V_X_BASE, V_Y_BASE, A_OFFSETS) back to inline computation, restores ftol from 1e-4 back to 1e-7 and maxiter from 500 back to 1000, undoing the dominant parameter tuning and code cleanup changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: moves global arrays to local scope (code_cleanup), adds a preliminary coarse optimization pass with early pruning, reduces config set, adds an extra refinement stage with very high K_SMOOTH_VAL. The dominant change is restructuring the multi-stage optimization pipeline (adding coarse pre-filter and extra refinement stage), which is algorithm_refinement within the same gradient_descent/SLSQP family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the algorithm by reducing configs, decreasing angular resolution, removing an extra refinement stage, and adjusting safety margins \u2014 these are incremental changes, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes some configurations from the search, reduces angular sweep resolution, removes an optimization stage (the initial coarse SLSQP pass and a final ultra-high-K pass), and adjusts safety margins. This is a mix of search_space_change (fewer configs, fewer angles) and algorithm_refinement (removing optimization stages), but the dominant structural change is simplifying the multi-stage optimization pipeline within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning changes (adjusting config list slicing, reducing angular sweep from 120 to 100, and changing safety margins) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants: reduces config set size (ALL_CONFIGS[:6] vs explicit 4 configs), reduces angular search resolution (120\u2192100), and tightens safety margins (1e-9\u21921e-11). The dominant change is adjusting numeric parameters rather than structural algorithm changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the config count from 6 back to 10 (closer to original), angular resolution from 100 back to 120 (original value), and changes safety margins back toward smaller values, effectively undoing the parameter changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: config count 6\u219210, angular search points 100\u2192120, and safety margin values. All are scalar parameter adjustments with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes some parameters back toward earlier values (e.g., angular search points from 120 to 50) but also makes other distinct changes (configs 10\u219212, added an extra optimization stage res16, different thresholds), representing a different tuning approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds an additional optimization stage (res16) with very high K_SMOOTH_VAL, adjusts pruning thresholds and search parameters. Multiple changes: parameter tuning (thresholds, angular search points) combined with adding a new optimization pass. The dominant change is adding the extra refinement stage.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (fewer configs, more angular points, tighter thresholds, removed one optimization stage) which represent continued refinement rather than reverting step (i)'s additions.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: reduces config count (12\u21926), increases angular search resolution (50\u2192150), tightens pruning thresholds, reduces safety margins, and removes one optimization stage (res16). The dominant changes are parameter adjustments, though removing res16 is a minor structural simplification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (config count 6\u21928, angular resolution 150\u2192120, safety margins changed) rather than reverting step (i)'s changes; it continues tuning in the same direction without restoring previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: overlap margin (1e-6\u21921e-5), number of configs (6\u21928), angular search resolution (150\u2192120), pruning threshold (0.06\u21920.05), and safety margins (1e-15\u21921e-11). All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some parameter changes from step (i) (e.g., overlap margin back to 1e-6, safety margins to 1e-14) but also introduces new different values (angular resolution 180, pruning thresholds 0.03/0.002/0.0001), making this a continued parameter tuning iteration rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: overlap margin (1e-5\u21921e-6), number of initial rotations (120\u2192180), pruning thresholds (0.05\u21920.03, 0.005\u21920.002, 0.0002\u21920.0001), and safety margins (1e-11\u21921e-14). No structural code changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts most of the parameter changes made in step (i): rotations 180\u2192100 (back toward original 120), pruning thresholds 0.03\u21920.05, 0.002\u21920.005, 0.0001\u21920.0002 all restored to their pre-step(i) values, and configs reduced from 8 to 6.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: number of configs (8\u21926), angular search resolution (180\u2192100), and pruning thresholds (0.03\u21920.05, 0.002\u21920.005, 0.0001\u21920.0002) to reduce computation time.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the truncated config list with an explicit list of 5 configs and reduces angular resolution further (100\u219224), which is a different approach to the same problem rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "search_space_change",
+      "confidence": 0.82,
+      "label_notes": "Changes the set of configurations explored (hardcoded list of 5 specific configs instead of top 6 from generated list) and reduces angular search from 100 to 24 steps, modifying which candidates are evaluated.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the algorithm by changing angular steps from 24 to 16, adjusting optimization tolerances, and restructuring the candidate selection process, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Collects candidates from initial optimization, sorts by objective, then refines top 3. Also reduces initial optimization iterations/tolerance and number of rotation angles. This is a structural change to the search strategy within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements (tightening margins, increasing rotation angles, removing some configs and optimization stages) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: tighter margins (1e-7 vs 1e-6), more initial rotations (30 vs 16), removed a config, added early pruning of bad candidates, restructured the progressive K_SMOOTH refinement stages, and changed ftol/maxiter parameters. The dominant change is restructuring the optimization pipeline (pruning, stage changes), which is algorithm_refinement. Parameter tuning is secondary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes margins back from 1e-7 to 1e-6 (reverting one aspect of step i), but also makes many other independent changes (adding config [3,5,4], changing init rotations to 26, adding extra optimization stages, changing safety margins to 1e-9), so it is not a wholesale revert but a mix of partial reversions and new modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes are predominantly numeric constant tweaks: margin values (1e-7\u21921e-6), eps values in optimizer options, safety margins (1e-14\u21921e-9), number of init rotations (30\u219226). Also adds one extra optimization pass and modifies config list slightly, which leans toward algorithm_refinement, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adding new configs, changing linspace count from 26 to 36, adjusting thresholds and safety margins, without reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primary changes are numeric: more rotation angles (26\u219236), tighter pruning thresholds, smaller safety margins. Two new configs added (search_space_change candidate), but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes two configurations added in step (i) and adjusts parameters further, but this is a continued refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.78,
+      "label_notes": "Changes numeric constants: number of initial rotations (36\u219254), pruning thresholds (0.002\u21920.001, 0.0001\u21920.00005), safety margins (3e-15\u21921e-14). Also removes two row configurations from the search, which is a minor search_space_change, but the dominant changes are parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some parameter changes from step (i) (e.g., 0.001\u21920.002, 0.00005\u21920.0001, 54\u219245) but also introduces new changes (new row config, additional pruning check), making it a mix of partial revert and new modifications rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (thresholds, number of initial rotations) and adds a pruning threshold. The row_counts change could be search_space_change, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding new optimization stages, adjusting parameters further, and modifying configurations rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adds a new optimization stage (res17), modifies configurations ([3,5,4] replacing [2,4,4,2]), adds random perturbation to initial centers, removes early pruning check, and tunes safety margins. The dominant change is adding an extra optimization pass and modifying the search configurations, which is intra-family refinement of the existing optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back the [2,4,4,2] config that step (i) removed and removes the random perturbation that step (i) added, but it also keeps step (i)'s [3,5,4] config and other changes; this is partial restoration combined with further tuning, not a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "search_space_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Mixed change: adds a new configuration [2,4,4,2] (search_space_change), adjusts numeric constants (eps, safety margins, linspace count). The dominant changes are parameter tweaks, but the new config addition is a search_space_change. By priority rule, search_space_change (7) wins over parameter_tuning (10).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a new configuration [1,3,4,3,1], adjusting parameters further, and reducing safety margins, rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Adds a new row configuration [1,3,4,3,1] to the set of candidate layouts explored, increases angular search resolution from 36 to 45, and tweaks numerical parameters. The dominant change is expanding the candidate set with a new layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes numerical parameters (margins, thresholds, safety margins) and removes an extra optimization stage (res17), but does not remove the new row configuration [1,3,4,3,1] or revert the angular search resolution changes introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes margin/tolerance constants (1e-6\u21921e-9, safety margins, threshold values) and removes one redundant optimization pass. Dominant change is numeric constant tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some constants from step (i) (e.g., 1e-9 back to 1e-6) but also introduces new changes (additional optimization pass res17, different loop counts, different safety margins), making it a continued tuning effort rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Primary changes are adjusting numeric tolerances (margins from 1e-9 to 1e-6, safety margins, threshold values) and adding one more optimization pass (res17). The additional optimization step could be algorithm_refinement, but the dominant changes are parameter adjustments across multiple tolerances.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting margins and search granularity to different values, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: constraint margins from 1e-6 to 1e-13, safety margins from 2e-14 to 5e-15, and search grid from 36 to 72 points. These are all scalar constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some constants from step (i) (e.g., 1e-13 back to 1e-6, eps back to 2e-14) but also makes new changes (adding K_SMOOTH_VAL reset, changing safety margins to 3e-15 instead of original 2e-14 or step i's 5e-15), so it's a mix of partial revert and new tuning rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: constraint margins from 1e-13 to 1e-6, eps from 1e-14 to 2e-14, safety margins from 5e-15 to 3e-15, and K_SMOOTH_VAL initialization. All are scalar constant tweaks with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) fixes a scoping bug and removes an extra optimization stage (res17) while changing some constants differently than step (i), but it does not restore step (i)'s removed code or undo step (i)'s changes; it builds upon step (i) with further modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "bug_fix",
+      "confidence": 0.62,
+      "label_notes": "Fixes a scoping issue with 'global K_SMOOTH_VAL' declaration (moved to function top), removes an extra optimization stage (res17) that may have been causing issues, and adjusts safety margins. The global declaration fix and removal of problematic stage are primarily bug fixes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (changing linspace count, safety margin formulas, and re-setting K_SMOOTH_VAL inside the loop) without reverting the bug fixes or structural changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes number of initial rotations from 60 to 36, adds K_SMOOTH_VAL constant, and adjusts safety margin constants from additive to multiplicative with different magnitudes. All are numeric constant changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements (adds new row configurations, changes rotation count from 36 to 48, adjusts safety margins differently) rather than reverting step (i)'s changes; it builds upon step (i) with additional modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Adds new row configurations to the search space and adjusts numerical margins. The addition of new row_counts patterns expands candidate configurations (could be search_space_change), but combined with parameter changes to init_alpha granularity and safety margin adjustments, the dominant intent is refining the existing geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes two row configurations added in step (i) but also adds a new optimization stage (res17) with much higher K_SMOOTH_VAL and adjusts safety margins, representing continued refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an extra optimization pass (res17) with very high K_SMOOTH_VAL, removes some initial configurations, and tightens safety margins. The dominant change is adding another SLSQP refinement step with extreme smoothing parameter, which is an intra-family refinement of the existing optimization pipeline. The safety margin changes are parameter_tuning but secondary to the structural addition.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the res17 optimization pass with K_SMOOTH_VAL=200000000000000000.0 that was added in step (i), reverts references from res17 back to res16, and moves the global declaration, effectively undoing the main addition of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Removes an extra optimization stage (res17) and adjusts safety margins. The removal of a refinement step is a structural change within the same optimization family, and the safety margin changes are minor parameter tweaks. Combined, this is best classified as algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (increasing linspace points, reducing safety margins, moving global declaration) without reverting the structural changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: number of initial rotations from 48 to 72, safety margins from 1e-11 to 3e-15. Also moves 'global K_SMOOTH_VAL' declaration, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding new row configurations, adjusting filter thresholds, and changing the validation logic, rather than reverting the parameter changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adds new initialization patterns, adjusts pruning thresholds, and changes the feasibility checking logic to use a scaling-based approach instead of strict overlap/containment checks. Multiple changes but all within the same optimization framework (search_space_change for new patterns + parameter_tuning for thresholds + algorithm_refinement for feasibility check). Dominant change is the feasibility/acceptance logic refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (increasing linspace points from 72 to 120, changing safety margins from 3e-15 to 1e-14) without reverting any of the structural changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes number of initial rotation angles from 72 to 120 and adjusts safety margin epsilon from 3e-15 to 1e-14. These are numeric constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes parameters to different values (120\u219290, different thresholds, different safety margins) rather than reverting to the original values from before step (i); this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: number of initial rotations (120\u219290), pruning thresholds (0.05\u21920.08, 0.005\u21920.008, 0.0005\u21920.001), and safety margins (1e-14\u21922e-12). All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts nearly all parameter changes from step (i): 90\u2192120 back to original 120, 0.08\u21920.05 back to original 0.05, 0.008\u21920.005 back to original 0.005, 0.001\u21920.0005 back to original 0.0005, and 2e-12\u21921e-14 back to original 1e-14.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (number of init rotations 90\u2192120, pruning thresholds tightened, eps values reduced, safety margins reduced) and adds one more optimization pass (res17), which is a minor refinement. The dominant changes are parameter adjustments, but adding res17 is a slight algorithm_refinement. Priority goes to parameter_tuning as the majority of changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the res17 optimization pass added in step (i), but also adds new row configurations and changes other parameters, making it a continued refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "The changes are a mix: removing an extra optimization pass (res17), adding new initial configurations to the search, and tweaking numeric constants (eps, safety margins). The dominant changes are numeric constant adjustments (eps from 2e-14 to 5e-14, safety margins from 1e-14 to 5e-15), but the removal of the res17 optimization stage is also significant. Since the search space configurations added are secondary and the main structural change is removing a refinement pass plus tuning constants, parameter_tuning is the closest fit, though search_space_change (new configurations) and algorithm_refinement (removing optimization stage) also partially apply.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning changes (removing some configurations, adjusting safety margins and overlap margins) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Removes safety margins (1e-6) from constraints, reduces number of initial rotations (120\u219272), reduces floating-point safety margins (5e-15\u21923e-15), and removes some candidate row configurations. Primarily numeric constant changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back safety margins (1e-9 in constraints, 1e-13 in scale/R) rather than restoring the exact values removed in step (i) (which were 1e-6 and 5e-15), so this is a different approach to precision handling, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "precision_handling",
+      "confidence": 0.82,
+      "label_notes": "Adds small epsilon offsets (1e-9, 1e-13) to constraint margins and safety margins for floating-point precision, and removes conditional scaling logic to always apply the scale factor.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies epsilon values and reintroduces conditional scaling logic, but also adds significant new code (additional optimization stages with K_SMOOTH_VAL=10000000000000.0, res13/res16 stages), making it a refinement/parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes constraint margins (1e-9 to 1e-6), eps values in optimizer options, safety margins (1e-13 to 5e-14), and adds additional optimization stages with different K_SMOOTH_VAL values. The dominant changes are numeric constant adjustments, though adding extra optimization stages could be algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by further adjusting margins and eps values in the same direction (making them smaller/tighter), not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes are purely numeric: tightening margin constants (1e-6\u21921e-8, 5e-14\u21925e-15), increasing search grid density (72\u219296), and adjusting optimizer eps values. All scalar constant changes with no structural modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts some margin constants back to 1e-6 from 1e-8, but also makes other non-reverting changes like removing row configurations, increasing grid density to 144, and adding a new optimization stage (res17), so it is not a simple revert but a different algorithmic refinement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an extra optimization pass (res17), adjusts constraint margins, removes some initial configurations, and increases rotation search density. Multiple changes but dominant intent is refining the optimization pipeline within the same family (gradient_descent/SLSQP).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental parameter adjustments (adding configurations, tweaking thresholds and margins) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.65,
+      "label_notes": "Changes numeric thresholds (continuation cutoffs, safety margins, number of rotation samples) and adds new initial configurations. The threshold changes and safety margin tweaks are parameter tuning, but adding new row_counts configurations is search_space_change. Parameter tuning is the dominant change by volume.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numeric thresholds (rotation samples, cutoffs, safety margins) to different values rather than reverting step (i)'s changes; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: number of initial rotations (120\u219290), pruning thresholds (0.02\u21920.05, 0.002\u21920.005, 0.0002\u21920.0005), smoothing constant, and safety margin epsilons. No structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes a few numeric constants (K_SMOOTH_VAL, eps, safety margin) to different values than step (i), which is continued parameter tuning, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Changes only numeric constants: K_SMOOTH_VAL, eps, and safety margin scalar. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by changing different numeric constants (linspace count, threshold values, eps, safety margins) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: number of initial rotations (90\u2192120), pruning thresholds (0.05\u21920.03, 0.005\u21920.002, 0.0005\u21920.0002), optimizer eps (2e-14\u21921e-14), and safety margins (5e-15\u21925e-14). All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the pruning thresholds (0.03\u21920.05, 0.002\u21920.005, 0.0002\u21920.0005) back to their pre-step(i) values, reverting most of step (i)'s parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric thresholds for filtering (0.03\u21920.05, 0.002\u21920.005, 0.0002\u21920.0005) and adjusts safety margin constants (additive to multiplicative with different epsilon values). All changes are to numeric constants with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (tightening thresholds, removing an optimization stage, changing safety margins) rather than reverting step (i)'s changes; it continues tuning in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric thresholds (0.05\u21920.04, 0.005\u21920.004, 0.0005\u21920.0004) and safety margins (2e-15\u21921e-13), removes one optimization stage (res17). The threshold changes are parameter tuning, but removing an optimization stage is a minor structural change. Parameter tuning is dominant.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the threshold changes from step (i) back to their original values (0.04\u21920.05, 0.004\u21920.005, 0.0004\u21920.0005, 1e-13\u21923e-15), restores the removed optimization stage (res17), and restores removed row_count configurations, effectively undoing step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an extra optimization stage (res17), removes some initial configurations, adjusts pruning thresholds and safety margins. Multiple changes but dominant intent is refining the existing optimization pipeline within the same family (gradient_descent/SLSQP-based).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new row configurations, adjusts K_SMOOTH_VAL slightly, and renames a variable, but does not remove or undo the core changes from step (i); it builds upon them with incremental modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "search_space_change",
+      "confidence": 0.6,
+      "label_notes": "Adds 3 new row_counts configurations to explore (expanding candidate initial layouts), adjusts rotation search granularity (144\u219290), and tweaks K_SMOOTH_VAL. The dominant change is adding new initial configurations to search over.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements (reducing rotation granularity from 90 to 72 and removing one optimization stage) rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes an extra optimization stage (smooth constraint pass) and adjusts the number of initial rotation angles from 90 to 72. The removal of the extra minimization step is a structural change within the same optimization family, and the angle count change is a minor parameter tweak. Combined, this is best classified as algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the angle count back from 72 to 90 (reverting one parameter from step i), but also adds a new optimization stage (res17 with K_SMOOTH_VAL) and adjusts multiple other thresholds, making it a mix of partial revert and new changes rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (linspace count 72\u219290, threshold values 0.05\u21920.06, 0.005\u21920.01, 0.0005\u21920.001) and adds one more optimization pass with K_SMOOTH_VAL and tighter tolerances. The added optimization step is a refinement but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds new row configurations, changes linspace count to 120, and adjusts thresholds to different values than step (i) set them to, but this is a continued refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Adds new row_counts configurations (expanding candidate initial layouts), increases rotation search granularity from 90 to 120, and tightens pruning thresholds. The dominant change is expanding the set of candidates searched (new configurations + tighter pruning bounds).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes two row_counts configurations and reduces rotation granularity, but these are parameter tuning changes rather than a revert \u2014 it keeps the core structure and other additions from step (i) while adjusting parameters differently.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: overlap margin (1e-6\u21925e-7), safety margins (3e-15\u21921e-15), number of init rotations (120\u219284), threshold comparisons simplified, and removes one optimization stage (res17). Dominant change is tuning numeric parameters, though removing res17 and some row_counts could be seen as search_space_change.",
+      "was_reverted": false,
+      "revert_reason": "While the agent mentions 'reverting to the best known solution' and some parameters move back toward earlier values (overlap margin back to 1e-6, safety margins increased), other changes are different (144 init rotations instead of 120 or 84, removing fewer row_counts than step i added, restoring res17), making this a partial mix of revert and new changes rather than a clear revert of step i.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (margins, tolerances, iteration counts, thresholds) and adds one more optimization pass with same method. Dominant changes are parameter adjustments (margin from 5e-7 to 1e-6, init_alpha grid from 84 to 144, various threshold changes, safety margins). The added res17 optimization step is minor structural addition but the overall intent is tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction as step (i), making further adjustments to thresholds and margins rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: number of initial rotations (144\u2192180), pruning thresholds (0.1\u21920.02, 0.01\u21920.002, 0.001\u21920.0002), and safety margins (5e-14\u21923e-15). All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes some parameters back (e.g., 180\u2192144 rotations) but also introduces new row configurations, changes constraint margins to different values (1e-10 instead of 1e-6), and renames variables (res17\u2192res16), representing a different approach rather than a simple revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: relaxed constraint margins (1e-6\u21921e-10), added new row_count configurations to search, adjusted pruning thresholds, removed one optimization stage (res17). Mix of parameter_tuning and search_space_change, but dominant effect is refining the existing optimization pipeline.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts the margin values back to 1e-6 (which step (i) had changed from 1e-6 to 1e-10), but it also makes other independent changes (eps values, linspace count) that are new, so it's a partial revert mixed with new parameter tuning rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes numeric constants: constraint margins from 1e-10 to 1e-6, number of initial rotations from 144 to 90, and optimizer eps values. All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by changing different constants (e.g., rotations from 90 to 72, eps values further refined, adding res17 optimization stage) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants (eps values, safety margins, number of init_alpha samples) and adds an additional optimization pass with a very large K_SMOOTH_VAL. The dominant changes are parameter adjustments, though adding res17 optimization step is borderline algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (removing some row_count configurations, increasing init_alpha samples, changing safety margins) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "search_space_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Changes numeric constants (safety margins from 2e-14 to 1e-10, linspace count from 72 to 96) and removes two candidate row configurations from the search. The dominant changes are numeric constant adjustments, but removing row configurations is a search_space_change. By priority, search_space_change (7) wins over parameter_tuning (10).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back row configurations that step (i) removed and changes different numeric constants, but it also keeps step (i)'s other changes and introduces new modifications, making it a continuation/refinement rather than a revert.",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "search_space_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Multiple changes: tightening margin constants (1e-6\u21921e-7, safety margins reduced), adjusting pruning thresholds, changing iteration counts, and adding new initial configurations. The dominant changes are numeric constant adjustments, but adding new row_counts configurations is a search_space_change. By priority, search_space_change (7) wins over parameter_tuning (10).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes some margins back to 1e-6 from 1e-7 (partial revert of one aspect), but also makes many other independent changes (iteration counts, pruning thresholds, scale logic); this is continued parameter tuning, not a revert of step (i).",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes numeric constants: margin values (1e-7\u21921e-6), search grid density (90\u2192120), threshold tolerances for pruning (0.1\u21920.05, 0.02\u21920.005, 0.002\u21920.0005), and safety margin (4e-15\u21923e-15). Also adds a minor defensive check (min_dist < sqrt3), but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements by adding new row configurations, removing an optimization stage (res17), and adjusting safety margins, rather than reverting step (i)'s parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Adds two new row configurations to the search space, removes an extra optimization pass (res17), and adjusts safety margins. The dominant change is structural refinement of the optimization pipeline (removing a smoothing step, adding configurations). Could also be search_space_change due to new configurations, but the removal of the optimization step is more significant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes two of the row configurations added in step (i) but also changes other parameters (ftol, safety margins, linspace count), making it a partial rollback combined with parameter tuning rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: reduces search configurations (120\u219284), tightens ftol (1e-7\u21921e-8), reduces safety margins (5e-14\u21925e-15), and removes two candidate row_counts patterns. Primarily numeric constant adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverses some parameter changes from step (i) (e.g., ftol back to 1e-7, safety margins increased) but also introduces new different values (144 configs, best_R=3.945, tighter thresholds), making it a further tuning iteration rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: best_R threshold, number of init_alpha samples (84\u2192144), ftol, pruning thresholds, and safety margins. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (resetting best_R to inf, removing some row configurations, adjusting thresholds and safety margins) rather than reverting step (i)'s changes; it continues tuning in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric thresholds (best_R initialization, continuation thresholds, safety margins) without structural algorithm changes. Also removes some search configurations which could be search_space_change, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding new search configurations, increasing the number of initial rotations, and adding an additional optimization stage (res17), rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds additional optimization pass (res17) with higher K_SMOOTH_VAL, expands row_counts configurations, and increases number of initial rotation angles from 144 to 216. All within the same optimization framework (gradient-based/SLSQP).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some row_counts configurations and adjusts parameters, but this is parameter tuning/trimming rather than reverting the changes from step (i); it retains most of step (i)'s additions and does not restore prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Removes two row_count configurations (reducing search space slightly), but the dominant changes are numeric: reducing init_alpha grid from 216 to 150, relaxing threshold from 0.0005 to 0.001, and changing eps from 1e-14 to 2e-14. The row_count removal could be search_space_change but the overall intent is tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some parameter changes from step (i) (eps back to 1e-14, threshold back to 0.0005) but also makes a different change to init_alpha (180 instead of the original 216 or step i's 150), so it's a mix of partial revert and new tuning rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: number of init_alpha samples (150\u2192180), threshold (0.001\u21920.0005), and optimizer eps (2e-14\u21921e-14). No structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes two safety margin constants from 2.5e-15 to 3.0e-15, which is a further parameter tweak, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes numeric safety margin constants from 2.5e-15 to 3.0e-15, no structural change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts the safety margin from 3.0e-15 back to 2.5e-15, but it also adds significant new code (constr_overlap_exact function and an additional optimization step res18), making it a refinement rather than a pure revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional SLSQP optimization step (res18) with a more exact overlap constraint function, and slightly adjusts safety margins. The dominant change is adding a refinement pass within the same optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the constr_overlap_exact function added in step (i) but replaces the res18 optimization logic with a different approach using constr_overlap_smooth, and also tunes parameters \u2014 this is a refinement/modification, not a revert to the pre-step(i) state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants: init_alpha grid from 180 to 240, threshold tolerances (0.05\u21920.06, 0.005\u21920.008, 0.0005\u21920.001), eps values, safety margins. Also removes dead code (constr_overlap_exact) and swaps constraint function in final optimization step, but dominant changes are parameter adjustments.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts most of step (i)'s parameter changes back to their original values: init_alpha grid 240\u219290 (closer to original 180), thresholds 0.06\u21920.05, 0.008\u21920.005, 0.001\u21920.0005, and safety margins reduced back, effectively undoing step (i)'s parameter tuning.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: number of initial rotations (240\u219290), pruning thresholds (0.06\u21920.05, 0.008\u21920.005, 0.001\u21920.0005), and safety margins (1e-14\u21922.5e-15). All are scalar constant changes with no structural algorithm modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes an optimization stage (res18) and changes safety margins back to 1.0e-14, which partially reverts some parameter changes from step (i), but it also makes structural changes (removing the res18 minimize call) that constitute a different algorithmic refinement rather than a pure revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.6,
+      "label_notes": "Removes an extra optimization pass (res18) and adjusts safety margin constants. The removal of the final SLSQP refinement step is a structural change within the same optimization family, while the epsilon changes are parameter tuning. The dominant change is removing the optimization pass.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) re-adds the res18 optimization pass that step (i) had removed, restoring the code structure that step (i) eliminated.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Changes margin tolerances from 1e-6 to 1e-8, increases search grid from 90 to 120 points, and adds an additional optimization pass (res18) with tighter eps. The margin changes are parameter tuning, the grid increase is search_space_change, and the extra minimize call is algorithm_refinement. The dominant changes are numeric constant tweaks (margins, eps, grid size), but adding a whole new optimization stage leans toward algorithm_refinement. Picking algorithm_refinement due to the structural addition of res18.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements and changes some parameters back (e.g., margin from 1e-8 to 1e-6) but also introduces new precomputed constants, removes res18 references in favor of res17, and adjusts safety margins differently \u2014 this is a mix of partial rollback and new changes, not a wholesale revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: precomputing indices/constants (minor optimization), adjusting safety margins from 1e-8 to 1e-6 and 1e-14 to 1e-9, removing an extra optimization pass (res18), and setting best_R initial bound to 4.05. The dominant change is removing the res18 refinement step and adjusting tolerances, which constitutes structural refinement of the optimization pipeline.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning changes (adjusting tolerances, removing precomputed constants that step (i) added, fixing a bug with idx_i/idx_j) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple numeric constant changes: tighter tolerances (1e-6\u21921e-7, ftol 1e-5\u21921e-7), more iterations (500\u21921000, 90\u2192240 init_alpha samples), tighter thresholds for pruning (0.05\u21920.03, etc.), and reduced safety margins (1e-9\u21922e-15). Also a bug_fix for undefined IDX_I/IDX_J moved to local scope. The dominant changes are parameter tuning, but the idx_i/idx_j fix is a bug_fix. Since bug_fix has higher priority, this is borderline.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some parameter changes from step (i) (e.g., margin back to 1e-6, thresholds back to 0.05/0.005/0.0005, safety margins to 1e-13), but it also introduces new changes (precomputing IDX_I/IDX_J, V_X, V_Y, A_OFFSETS as module-level constants for memory/performance optimization), making it a mixed modification rather than a pure revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "memory_optimization",
+      "confidence": 0.4,
+      "label_notes": "Precomputes arrays (triu_indices, vertex coords, angle offsets) outside functions to avoid recomputation. Also adjusts numerical margins and search parameters. Mixed intent - closest to loop/memory optimization via hoisting, but also parameter_tuning for the margin/search changes. Since the dominant structural change is hoisting repeated computations, data_structure_change or memory_optimization apply, but parameter_tuning for the numeric constants is also significant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts some of step (i)'s precomputed arrays (IDX_I/IDX_J, V_X/V_Y, A_OFFSETS) back to inline computation, but it also makes other independent changes (parameter tuning), and the agent's reasoning does not mention reverting; this is a partial rollback of one optimization combined with further refinement, not a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: moves precomputed arrays inline, adds a two-phase optimization (quick filter then full optimize), increases search granularity (90\u2192300 init_alpha steps), tightens pruning threshold, and adjusts safety margins. The dominant change is the two-phase SLSQP optimization strategy and expanded search, which is a refinement of the existing gradient-based optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (reducing configs from 5 to 3, changing 300 to 120 init_alpha steps, adjusting tolerances and thresholds) but does not revert the core two-phase optimization strategy or other structural changes introduced in step (i); it refines parameters within the same approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Reduces number of initial rotations (300\u2192120), removes some configs, adjusts ftol/maxiter values, changes pruning thresholds and safety margins. Also removes a two-stage optimization (coarse then fine) replacing with single stage, which is a minor structural change, but the dominant changes are numeric parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (adding configs back, changing rotations from 120 to 60, adjusting safety margins, moving K_SMOOTH_VAL reset) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "search_space_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Multiple changes: reduced init_alpha samples (120\u219260), increased maxiter (1000\u21923000, 1500\u21924000), tightened ftol, reduced safety margins, added new configs. The dominant changes are numeric constant adjustments (maxiter, ftol, safety margins, K_SMOOTH_VAL placement), but adding new configs [4,4,4] and [3,5,4] is a search_space_change. By priority, search_space_change (7) wins over parameter_tuning (10).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (init_alpha samples 60\u219272, safety margins, thresholds) rather than reverting step (i)'s changes; it builds on step (i) with additional tuning.",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: best_R threshold, number of rotation samples (60\u219272), pruning tolerances, safety margins. Also moves global declaration, but dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refactors code by hoisting repeated computations (like np.triu_indices) to module-level constants and adjusting safety margins, but does not revert the parameter changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "code_cleanup",
+      "confidence": 0.45,
+      "label_notes": "Mixed change: precomputes indices/arrays as module-level constants (minor optimization/cleanup), adjusts search grid from 72 to 90 (parameter_tuning), removes two row_counts configurations (search_space_change), and tweaks safety margins (parameter_tuning). The dominant changes are precomputing constants and reducing safety margins. Since multiple labels apply weakly, picking code_cleanup for the precomputation refactoring, but parameter_tuning and search_space_change also apply.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed the module-level precomputed constants (IDX_I, IDX_J, ANGLES_6, V_X_BASE, V_Y_BASE) that step (i) introduced and restored inline computation of those values, effectively reverting the code_cleanup refactoring from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Adds new row_count configurations ([3,5,4] and [2,4,4,2]) expanding the set of candidate layouts searched, while also moving global constants to local scope (code_cleanup) and setting best_R=3.95 as a threshold (parameter_tuning). The dominant change is expanding the search space with new configurations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numerical parameters (best_R threshold, number of init_alpha samples, and tolerance thresholds) without removing or restoring code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants: initial best_R from 3.95 to inf, number of rotation angles from 90 to 240, and several threshold tolerances for pruning. All are scalar parameter changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning changes (increasing rotation angles from 240 to 300, adjusting thresholds, adding pruning checks and an extra optimization stage) rather than reverting step (i)'s changes; it also removes one row_counts entry but this is a search space refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Mixed change: removes one row_counts configuration (reducing search space), adds early-termination pruning predicates at multiple stages (changing which candidates get fully evaluated), adjusts number of initial rotations, and adds an extra optimization stage. The dominant theme is modifying which candidates are explored/pruned, but parameter_tuning and algorithm_refinement also apply. Picked search_space_change due to the pruning predicates and configuration removal.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements (adjusting thresholds, removing some pruning predicates and an optimization stage, adding a new row_counts configuration) rather than reverting step (i)'s changes; it builds on step (i) with different tweaks.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Multiple changes: adds a new row_counts configuration, adjusts pruning thresholds, modifies optimization pipeline stages (adding/removing smoothing steps), changes ftol and iteration parameters. These are all intra-family refinements to the existing gradient-based optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts a few parameters (best_R initialization, number of rotations, ftol, pruning thresholds) rather than reverting the broader changes made in step (i) such as the new row_counts configuration, optimization pipeline stages, and smoothing modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: initial best_R from 3.945 to inf, number of rotation samples from 240 to 90, ftol from 1e-5 to 1e-7, and several pruning thresholds. Also touches initialization (best_R=inf) but the dominant change is parameter tuning across multiple thresholds.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes best_R from inf back to 3.942 (closer to original 3.945) and increases rotation samples from 90 to 360, but also adds a new preliminary optimization stage and additional refinement steps, making it a different algorithmic approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a preliminary coarse optimization pass (res0) for early pruning, adds a final high-precision refinement pass (res18), tightens pruning thresholds, and increases angular search resolution. All within the same SLSQP-based optimization framework.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the coarse optimization pass (res0) and reduces angular resolution from 360 to 72, but replaces it with a different streamlined approach rather than restoring the pre-step(i) code; this is an algorithm refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes an intermediate optimization stage (res0 coarse pass and res18 final pass), reduces search granularity from 360 to 72 init_alpha steps, and changes best_R initialization. These are structural changes within the same SLSQP-based optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental optimizations like precomputing indices/arrays as module-level constants, adding more configurations, increasing angular search from 72 to 120, and adding time limits, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "memory_optimization",
+      "confidence": 0.4,
+      "label_notes": "Mixed change: precomputes indices/arrays outside function (data_structure_change/memory_optimization), adds time-based scope restriction (harness_or_scope_change), adds configs and changes angular search density (search_space_change). The time-based early termination and scope restriction suggest harness_or_scope_change by priority rule 2.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes targeted modifications such as reducing configs, changing angular search density, and removing time-based restrictions, but does not restore previous code or undo the core approach from step (i); it's a refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Reduces the set of configurations explored (fewer ALL_CONFIGS entries, fewer angular samples from 120 to 72) and moves precomputed global arrays to local scope. The dominant change is reducing the candidate configurations and search granularity, which modifies WHICH SET is searched. Could also be parameter_tuning (reducing 120\u219272) or code_cleanup (moving globals to local).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the angular sample count from 72 to 90, which is a minor parameter adjustment rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "search_space_change",
+      "confidence": 0.72,
+      "label_notes": "Increases the number of initial rotation angles from 72 to 90, expanding the set of starting configurations explored. Could also be parameter_tuning since it's just a numeric constant, but it changes how many candidates are searched.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further increasing the number of rotations from 90 to 300, modifying configurations, and adding an additional optimization stage (res18), rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional optimization pass (res18) with a very large K_SMOOTH_VAL, changes the set of initial configurations, and increases the number of initial rotation angles from 90 to 300. These are refinements within the same optimization framework (gradient_descent/SLSQP).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (reducing iterations, adjusting tolerances, modifying configs, removing one optimization pass) but does not revert the core changes from step (i); it's a refinement of the approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "search_space_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Mixed change: adds new configs to ALL_CONFIGS (search_space_change), reduces init_alpha samples from 300 to 72 (parameter_tuning), loosens tolerances/maxiter (parameter_tuning), removes a final optimization stage (algorithm_refinement). The dominant intent per agent reasoning is preventing timeout by reducing computation, which manifests primarily as parameter tuning and removing an optimization pass. Since search_space_change (priority 7) beats parameter_tuning (priority 10), but the config additions are minor compared to the parameter/tolerance changes, this is borderline. The removal of the res18 optimization stage is an algorithm_refinement. By priority, search_space_change (7) should win over algorithm_refinement (8) and parameter_tuning (10).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) tightens tolerances (1e-5\u21921e-7) and increases maxiter (500\u21921000), which partially reverses step (i)'s loosening, but also removes additional optimization stages (res11, res15) which continues step (i)'s direction of reducing computation; this is a refinement of the approach, not a revert.",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.65,
+      "label_notes": "Changes ftol, maxiter, eps parameters and removes intermediate optimization stages (reducing the number of progressive smoothing steps). The dominant changes are numeric constants (K_SMOOTH_VAL values, tolerances, iteration counts), but removing intermediate optimization stages could also be seen as algorithm_refinement. Parameter tuning wins as the primary intent.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a code cleanup that hoists repeated computations to module-level constants and reuses them, building on top of step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "Precomputes constants (IDX_I, IDX_J, V_X_CONST, V_Y_CONST, A_OFFSETS) outside functions to avoid redundant recomputation. Also changes init_alpha search from 72 to 90 points (parameter_tuning). Dominant change is hoisting constants, which is semantically equivalent refactoring, but the linspace change is a minor parameter tweak. Borderline between code_cleanup and parameter_tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) moved the precomputed constants (V_X, V_Y, A_OFFSETS) to a different location and renamed them, but did not restore the original pre-step(i) code; it's a reorganization/cleanup, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "Mostly variable renaming (V_X_CONST\u2192V_X, hardcoded 72\u2192-1), moving declarations, and minor parameter changes (best_R init, linspace count). The reshape(-1,1) changes are semantic-preserving generalizations. The linspace 90\u2192120 is a minor search_space_change but the dominant changes are cleanup/refactoring.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (linspace 120\u219260, tolerance adjustments) and moves some constants back to local scope, but does not restore the pre-step(i) code; it builds on step (i)'s cleanup with further modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric thresholds (ftol, maxiter cutoffs, best_R init, linspace count) and moves precomputed arrays inline. Dominant changes are parameter adjustments, though some code restructuring is present.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further tuning parameters (linspace count from 60 to 180, ftol from 1e-5 to 1e-7) and adding an additional optimization stage (res18), rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Multiple changes: increasing init_alpha grid from 60 to 180 (search_space_change), tightening ftol from 1e-5 to 1e-7 (parameter_tuning), adding an early pruning check (search_space_change), and adding an extra optimization stage with extreme K_SMOOTH_VAL (algorithm_refinement). The dominant changes are parameter tuning and adding an extra refinement stage, but since the extra optimization stage is a structural addition within the same family, algorithm_refinement could also apply. Picking algorithm_refinement due to the structural addition of a new optimization pass.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (tightening margins, changing eps values, removing early pruning) but does not revert the major changes from step (i) such as the expanded init_alpha grid, tightened ftol, or the extra optimization stage.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: constraint margins (1e-6 \u2192 1e-11), safety margins (2.5e-15 \u2192 1.0e-15), optimizer eps (2e-15 \u2192 5e-15), and removes a threshold check. Primarily adjusting numeric tolerances/margins.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the numeric constants changed in step (i) back to their previous values: constraint margins from 1e-11 back to 1e-6, eps from 5e-15 back to 2.5e-15, and safety margins from 1e-15 back to 1e-12.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: constraint margins from 1e-11 to 1e-6, eps from 5e-15 to 2.5e-15, safety margins from 1e-15 to 1e-12. All are scalar constant adjustments with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some constants (eps back to 5e-15, safety margins to different values like 1.5e-15) but also changes other parameters differently (linspace from 180 to 144), making this a continued parameter tuning iteration rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes numeric constants: number of initial rotations (180\u2192144), optimizer eps (2.5e-15\u21925e-15), and safety margins (1e-12\u21921.5e-15). All are scalar parameter adjustments with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding an additional optimization stage (res19), increasing the number of initial rotations from 144 to 240, tightening filter thresholds, and keeping all of step (i)'s parameter changes intact.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional optimization stage (res19) with tighter parameters, increases number of initial rotations from 144 to 240, and tightens pruning thresholds. These are refinements within the same optimization framework (gradient-based/SLSQP). The parameter changes alone would be parameter_tuning, but adding a new optimization stage is structural, making algorithm_refinement the better fit.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes two row configurations from the search space and adjusts numerical parameters, which is parameter tuning rather than reverting the structural changes (new optimization stage res19, increased rotations) added in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric thresholds (pruning tolerances, smoothing constant, safety margins) and removes two search configurations. The dominant changes are to scalar constants, though removing configurations from the search list could be seen as search_space_change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back two search configurations that were removed in step (i) and further tunes thresholds, but it does not restore the original values from before step (i); it continues refining in the same direction with new parameter values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "search_space_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Mixed change: adds two new row configurations to search (search_space_change), tightens threshold parameters, and adjusts eps values. Also removes a refinement stage (res19). The dominant changes are numeric constant tweaks (eps, thresholds), but the addition of new row configurations is a search_space_change. By priority rule, search_space_change (7) wins over parameter_tuning (10).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning adjustments (eps values, thresholds, iteration counts) but does not restore code removed in step (i) or remove code added in step (i); it builds on step (i)'s changes.",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: initial best_R threshold, number of rotation samples (240\u219272), pruning tolerances, and optimizer eps values. All are scalar parameter adjustments with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes some parameters (best_R back to inf, rotation samples to 120, safety margins to 1e-11) which partially undoes step (i)'s changes but also introduces new values; it's not a wholesale revert but rather further parameter tuning in a different direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants: best_R threshold to inf, number of rotation samples from 72 to 120, and safety margins from 5e-15 to 1e-11. The init_alpha linspace change is a search density parameter, and the safety margins are numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some parameter changes from step (i) (e.g., 120\u219272 back to original, safety margins changed to different values than either step) but also adds new optimization stages and makes other novel changes, making this a refinement rather than a pure revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants: number of init rotations (120\u219272), threshold tolerances for pruning, safety margins, and adds two more optimization stages with higher K_SMOOTH_VAL. The dominant changes are parameter adjustments, though adding optimization stages is borderline algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (changing init rotations from 72 to 90, adjusting thresholds and safety margins, removing some optimization stages) rather than reverting step (i)'s changes back to their original values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes numeric constants (number of init_alpha samples 72\u219290, pruning thresholds, safety margins) and removes two optimization stages (res19, res20). The removal of stages is a structural change but the dominant changes are parameter adjustments. Could also be algorithm_refinement due to removing optimization stages.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding more optimization stages, adjusting parameters further, and removing one row_counts configuration, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: removes one row configuration from search, increases rotation samples (90\u2192120), adds intermediate optimization stages with different K_SMOOTH_VAL, and adjusts eps/safety margins. The dominant change is restructuring the optimization pipeline stages, which is an intra-family refinement of the gradient_descent/optimization approach. Could also be parameter_tuning or search_space_change but the structural addition of new optimization stages tips it toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental parameter tuning changes (adding a row configuration, increasing rotation samples, tightening thresholds, adjusting safety margins) on top of step (i)'s code, rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: tighter thresholds, more init rotations, smaller eps values, added a new optimization stage (res19), new row_counts config. The dominant changes are numeric parameter adjustments (eps, thresholds, best_R init, safety margins), but adding a new optimization stage and new row_counts could be algorithm_refinement or search_space_change. Parameter tuning is the most pervasive change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (best_R to inf, more init rotations, different thresholds, removed res19 stage, changed safety margins) rather than reverting step (i)'s changes; it builds on step (i) with modifications rather than restoring prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.65,
+      "label_notes": "Multiple changes: initialization of best_R changed to inf (initialization_change), number of init_alpha samples increased from 144 to 240 (search_space_change), tolerance thresholds adjusted, a refinement stage removed, and safety margins tweaked. The dominant theme is numeric constant tuning across thresholds and margins, but removing an optimization stage is algorithm_refinement. Mixed intent, parameter_tuning chosen as most changes are numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction as step (i), adjusting numeric constants like init_alpha samples (240\u2192288), ftol values, and safety margins, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Changes only numeric constants: number of initial rotations (240\u2192288), ftol values, and safety margin epsilons. No structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding an additional optimization pass (res19) and tightening epsilon margins, rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional SLSQP minimization step (res19) after res18 with tighter tolerance and reduces constraint margins from 1e-6 to 1e-9. This is a refinement of the existing optimization pipeline (adding another pass) combined with parameter changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the key changes from step (i): it restores constraint margins from 1e-9 back to 1e-6, removes the res19 minimization step (reverting back to using res18), and reduces the search grid from 288 back to 192.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes constraint margins from 1e-9 to 1e-6, reduces number of initial rotations from 288 to 192, adjusts eps values, and removes one optimization stage (res19). Primarily numeric constant changes and reducing iteration count to avoid timeouts.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes parameters (reducing rotations from 192 to 72, adjusting eps values, and changing safety margins) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: reduces init_alpha grid from 192 to 72, adjusts eps values in optimizer options, and changes safety margins from additive to multiplicative with slightly different magnitudes. All are scalar constant changes with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) extends step (i) by adding more optimization stages and increasing the grid size, rather than reverting the changes made in step (i); the safety margin changes from multiplicative back to additive are a partial revert of one aspect but the overall code is clearly building upon step (i) rather than undoing it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds an additional SLSQP optimization pass (res19) with a very large K_SMOOTH_VAL, increases initial rotation search granularity (72\u2192288), removes safety multipliers in favor of tiny additive margins. Multiple changes but dominant intent is refining the optimization pipeline within the same family.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

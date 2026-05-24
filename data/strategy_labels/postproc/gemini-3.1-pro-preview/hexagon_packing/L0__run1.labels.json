@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "gemini-3.1-pro-preview",
+  "level": "L0",
+  "run_id": "L0__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (reducing iterations, changing optimizer, adjusting thresholds) but does not remove or restore code from step (i); it refines the existing approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple small changes: reduced iteration counts (15\u21925), noise scales (0.3\u21920.2, 1.5\u21921.0), maxiter (500\u2192400), tolerance thresholds, and switched optimizer from BFGS to L-BFGS-B. The dominant changes are numeric constant adjustments, though the optimizer method change and relaxed feasibility check (d>=sqrt(3)-1e-2 \u2192 min_d>0.5) lean toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a new initialization pattern (g26), adjusting penalty weights, and modifying feasibility checks \u2014 these are refinements, not reversions of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adds a new grid initialization (g26), adjusts perturbation noise, changes penalty weight, switches optimizer from L-BFGS-B to BFGS, modifies post-processing thresholds. These are all intra-family refinements within the physical_simulation/gradient_descent approach. Some parameter_tuning is present but structural changes dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a new grid initialization (g43), increasing the number of random perturbations, changing noise levels, and restructuring the optimization with a two-phase approach using closures, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Adds a new grid initialization (4x3), increases perturbation noise, adds a multi-stage optimization with increasing penalty/smoothness parameters, and restructures the objective function with closure-based parameterization. These are refinements within the same gradient_descent/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (different parameterization, different objective function structure, different optimization strategy), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a geometric construction / grid-based approach with manual placement to scipy.optimize.minimize-based gradient descent optimization with soft penalty objective function. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds more initial guesses and tweaks parameters within the same optimization framework introduced in step (i), rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "initialization_change",
+      "confidence": 0.72,
+      "label_notes": "Adds many new initial guesses (circular 4-8, 6-fold symmetric, 3-fold symmetric, 2-fold symmetric) and adjusts time budgets/parameters. The dominant change is expanding the set of starting configurations for the optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies some of the initial guesses added in step (i) and adjusts parameters, but it retains the overall structure and many of the guesses; it replaces some specific guess patterns with different ones (e.g., 3x4 grid instead of circular 4-8) which is a refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Mix of changes: modified initial guesses (radii, grid layout, rotated versions), adjusted search parameters (maxiter, top_results count, time limits, penalty weights). Dominant change is restructuring the initial guess generation and search strategy within the same optimization framework. Could also be parameter_tuning or initialization_change, but the structural changes to guess generation and search pipeline make algorithm_refinement the best fit.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the approach from step (i) by expanding grid guess generation with a loop, adjusting time limits and parameters, but does not revert the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: expanded initial guesses with more offsets and rotations, adjusted grid parameters, modified random initialization modes, tuned time budgets and iteration counts. Mix of parameter_tuning and initialization_change, but the dominant change is restructuring the multi-start search strategy with new guess generation patterns.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the initialization and parameters introduced in step (i) rather than reverting them; it restructures the grid guess generation differently and adjusts parameters, but does not restore previous code or undo step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes initialization patterns (different grid offsets, rotated guesses, 4+8 structure), adjusts random guess parameters, and tweaks optimization settings. Mix of initialization_change and parameter_tuning, but the dominant change is restructuring the set of initial guesses and adding new geometric configurations, which constitutes refinement of the overall search strategy within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major rewrite of the entire code block (scheduled rewrite at step 10), replacing step (i)'s approach with a substantially different implementation rather than reverting to a prior version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the optimization approach within the same physical_simulation/stochastic_search family. The diff is heavily truncated but shows restructuring of the objective function, scaling logic, and output computation while maintaining the same general optimization-based packing approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the optimization approach with a substantially different implementation (new objective function, different variable parameterization with rotation angles, different scaling logic), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver: previous code used fixed geometric layouts with two orientation variants and scipy minimize for scaling; new code uses a general nonlinear optimization with soft penalty for overlaps, free rotation angles per hexagon, multi-start random initialization, and iterative refinement - switching from geometric_construction to a physical_simulation/gradient_descent approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by adjusting initial guess generation, adding new guess strategies, and tuning optimization parameters, but does not revert the algorithm introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "Mix of initialization changes (new 4-8 circular structure, modified grid rotations), parameter tuning (time limits, maxiter, random guess count), and search space changes (random angle initialization). The dominant change is adding new initial guess structures and modifying the search strategy, which spans initialization_change and parameter_tuning, but the overall intent is refining the existing optimization approach within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the grid rotation guesses and other parameters but does not restore previous code or undo step (i); it further refines the approach with different initial guess structures and parameter adjustments.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Changes initial guess structures (adding 1-5-6 pattern, modifying radii), adjusts rotation angle distributions, tunes optimization parameters (penalty weights, maxiter, number of random guesses, top_results count), and adds rotated variants of best guess. Mix of initialization_change and parameter_tuning but dominant intent is refining the search strategy within the same geometric_construction/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some elements added in step (i) like the 1-5-6 guess and rotated variants of best guess, but also adds new rotated initial guesses and changes parameters differently, representing a continued refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Adds rotated initial guesses, changes random orientation distribution (wider range), increases number of random guesses from 150 to 300, and adjusts parameters. The dominant change is modifying which candidate configurations are explored (more guesses, different orientation sampling). Also includes parameter_tuning (penalty weights, maxiter, time limits) but the search space expansion is the primary structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite (scheduled rewrite), replacing the approach with a different one rather than reverting to a prior version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the solver; the diff is heavily truncated but shows a complete restructuring of the optimization approach. The previous code used a penalty-based objective with scipy.optimize.minimize, while the new code appears to use a fundamentally different approach (possibly geometric construction or different optimization formulation). The scale of rewrite and structural changes suggest a cross-family algorithm switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different formulation (penalty-based objective with individual hex angles, multi-start optimization, scaling), which is a further algorithm refinement/switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the objective function and packing logic within the same optimization-based approach (gradient descent / scipy.optimize). The changes refine how overlaps are computed, how the outer hexagon radius is determined, and add a scaling-based approach for non-overlap enforcement, but remain within the physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only modifies the initialization guesses and some timing/iteration parameters, but retains the core objective function and packing logic introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "initialization_change",
+      "confidence": 0.55,
+      "label_notes": "The change modifies both the initial guess generation (grid rotations, ring structures, random perturbation strategies) and optimization parameters (maxiter, ftol, time limits). The dominant change is restructuring how initial guesses are constructed, but parameter_tuning also applies. By priority, initialization_change (9) wins over parameter_tuning (10).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the initialization and optimization parameters further but does not restore previous code or remove most of step (i)'s additions; it builds upon step (i) with a different grid/ring structure and adjusted parameters.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes initialization structures (different circular/grid patterns, jitter strategies), adds perturbation of structured guesses, increases top_results from 5 to 8, and tunes optimization parameters. Mix of initialization_change, parameter_tuning, and search_space_change, but dominant change is restructuring the initial guess generation and refinement pipeline within the same gradient-descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some initialization strategies added in step (i) and reverts top_results from 8 back to 5 and adjusts parameters, but it also keeps many changes from step (i) and introduces its own modifications, making this a further refinement rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures initialization strategies (systematic grid rotations, ring-based guesses, modified random orientations) and tunes optimization parameters. Combines initialization_change, parameter_tuning, and search_space_change aspects, but the dominant change is refining how the stochastic search generates and processes initial guesses within the same overall approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different approach (algorithm_switch), not a revert of step (i)'s changes; it replaces the code with a new implementation rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. The previous code used a scaling-based geometric construction approach; the new code appears to use a different optimization framework with SAT-based separation metrics and iterative search. The rewrite is substantial enough to constitute an algorithm switch, though both could be considered within stochastic_search/physical_simulation families. The truncated diff makes full classification harder.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and extends the approach from step (i) with a different objective function structure and more initialization strategies, rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the objective function and optimization loop within the same physical_simulation/gradient_descent family. The core approach (L-BFGS-B optimization with penalty-based objective) remains the same, but the overlap computation, containment constraints, and optimization strategy are substantially restructured. Could be algorithm_switch but stays within gradient-based optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental optimizations (precomputing constants, adjusting time limits) on top of step (i)'s code rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Mix of precomputing constants (loop_optimization/data_structure), adding new initial guess configurations (initialization_change), tuning time budgets and counts (parameter_tuning). The dominant changes are structural refinements to the multi-start optimization: new guess pattern (1-5-6 structure), adjusted time budgets, and precomputed arrays. Multiple labels apply but algorithm_refinement captures the overall intent of refining the existing stochastic search approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the precomputed constants added in step (i) and moves them back inline, but also makes several other forward changes (time budgets, top_results count, maxiter/ftol); this is a partial rollback of one optimization combined with new refinements, not a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Mix of changes: added new initial guess patterns (circular 4-8 structure), adjusted time budgets and top_results count, moved precomputed constants inline. The dominant change is adding new initialization patterns and tuning the multi-stage optimization pipeline. Could be initialization_change (new guess patterns) or parameter_tuning (time limits), but the combination of structural changes to the search strategy tips toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some initialization patterns added in step (i) (rotated grid guesses, circular patterns) but also adds new different patterns and changes other parameters, representing a continued refinement rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Replaces rotated grid guesses and circular structure loops with row-based dense packing guesses (different candidate configurations), reduces random guesses from 250 to 150, changes grid range, and adjusts top_results count. The dominant change is modifying which initial configurations are explored.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (rotation-based optimization with different structure), rather than reverting to a previous version of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite from a continuous optimization (gradient descent/penalty-based minimize) approach to a geometric construction approach using lattice-based candidate generation, subset selection, and optimal rotation/translation fitting. This crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the geometric lattice-based construction approach from step (i) back to a continuous optimization (gradient descent/penalty-based minimize) approach, restoring the objective function and scipy.optimize.minimize-based solver that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization objective function and solution extraction logic within the same physical_simulation/gradient_descent family. Adds soft penalty-based objective, scaling computation, and restructured overlap/containment calculations, but stays within the same optimization-based approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (removes some initial guesses, adjusts iteration counts, time limits, and penalty weights) without reverting the core algorithm changes introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: removes two initial guesses, reduces random guess count (300\u2192150), adjusts radius (3.2\u21923.0), changes orientation probability thresholds, adjusts time limits, penalty weights, and optimizer tolerances. Dominant changes are numeric constant adjustments, but removing initial guesses could be search_space_change. Parameter tuning wins by volume of changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes algorithmic refinements (changing the objective to use width-based R computation, adding center optimization, adjusting parameters) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: fixes objective function to use width-based R calculation, adds centering optimization in post-processing, adds more diverse initial guesses (random subsets of grid), and tunes parameters. The dominant change is the objective reformulation and centering optimization, which are refinements within the same stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the objective function by switching from width-based (W_k) to direct R_req calculation and removes the centering optimization, but these are algorithmic refinements rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: fixes R computation formula (proj+h0_out scaling), expands grid search range, adds more initial guess offsets, adjusts optimization parameters (maxiter, time limits, jitter). The R computation change could be a bug_fix but combined with search space expansion and parameter tuning, the dominant theme is refining the existing optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (using linprog and combinations instead of scipy.optimize.minimize), which is an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from scipy.optimize.minimize (gradient descent / physical simulation family) to a linear programming approach using scipy.optimize.linprog (exact_solver family), crossing algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) switches back to scipy.optimize.minimize with a completely different soft-penalty optimization approach, which is a new algorithm switch rather than a revert to the pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a geometric construction approach (19-hex grid selection with LP/combinatorial) to a continuous optimization approach (scipy.optimize.minimize with penalty-based objective), crossing from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters and initial guesses within the same scipy.optimize approach introduced in step (i), rather than reverting to the previous geometric construction approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.52,
+      "label_notes": "Mixed change: modifies initial guess structures (initialization_change), increases random guesses from 150 to 800 (search_space_change), and tunes many numeric parameters (time limits, maxiter, ftol, penalty weights). The initialization changes for guess4/guess5 are structural but the dominant pattern is parameter tuning across multiple stages combined with initialization changes. Close call between initialization_change and parameter_tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies parameters and adds new rotated grid guesses while removing guess4/guess5, but this is a continuation of tuning and structural changes rather than reverting step (i)'s approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "initialization_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Mixed change: adds rotated grid initial guesses (initialization_change), removes some structured guesses, adjusts random guess parameters (radius, angle range), and tunes time budgets/iteration counts. The dominant changes are numeric parameter adjustments (time limits, maxiter, top_results count, random radius, angle range), but the addition of rotated grid guesses is initialization_change. By priority, initialization_change (9) wins over parameter_tuning (10).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the rotated grid guesses added in step (i) but replaces them with different initialization strategies (collapsed iris, other patterns), which constitutes a different approach rather than a revert to a prior state.",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "initialization_change",
+      "confidence": 0.72,
+      "label_notes": "Adds new initial guesses (collapsed iris, opposite spiral, additional structures), adds jitter to existing guesses, and modifies random guess generation. Also includes minor parameter tuning (time limits, maxiter), but dominant change is initialization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (different optimization structure, different variable representation, different search strategy), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a penalty-based gradient descent optimization approach to a lattice-based geometric construction with shape enumeration, evaluation, and SLSQP refinement. This crosses from physical_simulation/gradient_descent family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice-based geometric construction with a different approach (appears to be a new algorithm using scaling and projection-based containment), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a random shape generation + scipy optimization approach to an analytical/geometric construction with vectorized separation axis computations. Moves from stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (grid range, iteration counts, penalty weights, number of top results) to the code introduced in step (i), rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.52,
+      "label_notes": "Mix of parameter changes (maxiter, ftol, penalty weights, time limits, number of random guesses, top_results count) and initialization changes (simplified grid cutouts, different initial guess structures). The initialization changes are significant but the dominant pattern is tuning numeric constants across the optimization pipeline.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies initial guess structures and tunes parameters differently but does not restore previous code or undo step (i)'s changes; it builds on step (i) with further parameter tuning and different initialization patterns.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "search_space_change",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule G] reclassified from parameter_tuning: Mixed change: initialization guesses restructured (initialization_change), orientation distribution changed (search_space_change), and multiple numeric parameters tuned (time limits, penalty weights, maxiter, ftol). The initialization restructuring and parameter tuning are both significant. By priority, search_space_change (7) > initialization_change (9) > parameter_tuning (10). The orientation distribution changes modify which candidate orientations are explored, which is search_space_change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies some initial guesses and tunes parameters further, but does not restore code removed in step (i) or remove most of the code added in step (i); it builds upon step (i) with refinements.",
+      "postproc_rule_applied": "G"
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: new initialization guess (circular 4-8 structure replacing grid layouts), parameter tuning of penalty weights/tolerances/iterations, and adjustments to number of random guesses and top candidates. The initialization change and parameter tuning are secondary to the overall refinement of the search strategy within the same optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm switch with a fundamentally different approach (grid-based R computation, different optimization structure), not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from continuous optimization (gradient descent/minimize) approach to a cluster-based geometric construction approach (generate_compact_clusters). This crosses from physical_simulation/stochastic_search family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (beta values, iteration counts, noise scales, alpha resolution) within the same algorithm introduced in step (i), without reverting any of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes beta from 20 to 40, maxiter from 250 to 500, ftol from 1e-5 to 1e-6, grid resolution from 15 to 30, iteration limit from 40 to 60, time limit from 20 to 22, and adds an additional noise scale (0.1). Mostly numeric constant changes, though adding a third noise scale is borderline search_space_change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further tuning parameters (increasing clusters to 20000, iteration limit to 100, time limit to 26, adding a two-stage beta optimization) rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Primary changes are numeric: beta parameterized and used in a two-stage refinement (40\u2192100), maxiter 500\u21921000, ftol 1e-6\u21921e-7, clusters 10000\u219220000, top candidates 60\u2192100, time limit 22\u219226. The two-stage beta optimization could be seen as algorithm_refinement, but the dominant changes are parameter values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by further tuning parameters (num_clusters 8000\u219240000, beta\u2192150, top candidates 100\u2192200) and refining the cluster generation algorithm with weighted neighbor selection, rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: biased neighbor selection with Boltzmann weighting in cluster generation, vectorized scoring with einsum, increased cluster count and top-k, adjusted optimization parameters. Dominant change is refining the stochastic search heuristic within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes small parameter adjustments and adds an extra optimization stage, without removing or reverting any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes ftol threshold, iteration limits, time budget, noise scales, and adds an extra optimization pass with beta=1000. The dominant changes are numeric constants (ftol, maxiter count, time limit, noise_scale list), but adding an extra optimization stage with beta=1000 could be seen as algorithm_refinement. Since most changes are parameter adjustments and the extra stage is a continuation of the same SLSQP optimization pipeline, parameter_tuning is primary but algorithm_refinement is a close alternative.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite of the solution with a substantially different approach (different cluster generation, different optimization structure), not a revert of step (i)'s parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Complete rewrite of the optimization approach but stays within the same family (physical_simulation/stochastic_search with SLSQP multi-start). Changes initialization clusters, optimization pipeline structure, and post-processing, but the core approach remains gradient-based optimization with multiple starting configurations. Could be algorithm_switch if the families truly differ, but both versions use SLSQP-based optimization with multi-start.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different implementation (different optimization formulation, different constraint handling, different variable structure), which constitutes an algorithm refinement or switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization approach within the same family (SLSQP-based gradient descent with multi-start). Adds progressive beta scheduling, post-processing scaling, and restructured initial cluster generation. Still fundamentally gradient-based optimization with SLSQP, so intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (num_clusters, beta ranges, optimization schedule) within the same approach introduced in step (i), without removing or reverting any of the core code changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes numeric constants (num_clusters, beta range, ftol thresholds, noise_scale list, beta schedule values, alphas_test count, loop limits) and restructures the optimization cascade slightly. The dominant changes are parameter values, but the restructuring of the optimization pipeline (removing the two-phase promising/deep approach and merging into one loop with more beta stages) leans toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by refining the smooth_max implementation, adding early pruning logic, and expanding the noise_scale list, rather than reverting any changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Vectorizes constraint computation (loop elimination), adds early termination pruning for poor candidates, and expands noise scale search. The vectorization is code_cleanup/loop_optimization, but the early-termination pruning and expanded noise scales modify how the search proceeds, making algorithm_refinement the dominant label.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (num_clusters, beta range, noise scales, adds an extra optimization stage) without removing or reverting any code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Changes num_clusters 40000\u219250000, beta range 0-2.5\u21920-3.5, noise_scale list expanded, ftol thresholds adjusted, and adds an extra optimization stage with beta=15000. Most changes are numeric constants, but the added optimization stage (beta=15000) is a minor structural addition. Borderline with algorithm_refinement due to the extra optimization pass, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite/switch replacing the previous approach with a different one, not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.75,
+      "label_notes": "Complete rewrite of the solver. The previous code used a cluster-generation approach with SLSQP optimization and grid-based R computation; the new code appears to use a fundamentally restructured approach. The diff is heavily truncated but shows a complete rewrite forced by the agent, replacing the geometric_construction/stochastic approach with a different optimization structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different algorithm (cluster generation with grid-based R computation), which is a normal algorithm switch rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver: replaces a previous optimization approach with a new cluster-generation-based stochastic search (generating compact polyomino-like clusters on hex grid, then optimizing with SLSQP at multiple beta levels). This is a fundamentally different algorithmic structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (tolerances, time limits, scale factors, and adds an extra optimization stage) within the same algorithmic framework introduced in step (i), without reverting any of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes ftol thresholds, time limits, epsilon values, and adds one more optimization stage at higher beta. Dominant changes are numeric constants (ftol, time limits, epsilon). The added beta=200000 stage is a minor refinement but the overall diff is dominated by parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes parameters (num_clusters, time limits, beta values, bounds) and adds another optimization stage, building on step (i) rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Primarily changes numeric constants: num_clusters 50000\u219280000, time limits, beta range, bounds, maxiter, noise_scale list extended, threshold tightened. Also adds one extra optimization stage (beta=1000000), which is a minor structural addition but the dominant changes are parameter adjustments.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts most parameter changes from step (i): num_clusters back to 50000, beta range back to 3.5, time limit reduced, removes the extra beta=1000000 optimization stage that was added, and restores looser thresholds.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes multiple numeric parameters: num_clusters, time limits, beta range, bounds, maxiter, ftol thresholds, noise_scale list, and tolerance. Also removes one optimization stage (beta=1000000), which is a minor structural change, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different algorithm (algorithm_switch), not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. Previous code used stochastic cluster generation with multi-stage SLSQP optimization (stochastic_search + gradient refinement). New code appears to be a substantially different approach. The rewrite is forced and replaces the entire algorithm structure, crossing from stochastic search with random cluster generation to a different optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different algorithm (compact cluster generation with grid-based R computation), which is a normal algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Complete rewrite from a simpler geometric/optimization approach to a stochastic cluster generation + multi-stage SLSQP optimization pipeline. The new code generates random compact hexagonal clusters, evaluates them, and refines with progressive penalty optimization - a fundamentally different algorithmic structure combining stochastic_search (random cluster generation) with gradient-based optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tweaks parameters (timeout, beta range, maxiter, ftol thresholds, pruning thresholds) and adds an extra optimization stage, without removing or reverting the code structure introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple numeric constant changes (time limits, beta ranges, noise scales, ftol thresholds, grid resolution, pruning thresholds) alongside minor algorithmic additions (extra optimization stage at beta=1000000, angle perturbation). The dominant changes are parameter adjustments, but the added optimization stage and angle perturbation lean toward algorithm_refinement. Choosing parameter_tuning as the majority of changes are numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts parameters further (num_clusters, time limits, beta ranges, noise scales, adds another optimization stage) without removing or undoing changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: num_clusters 50000\u2192100000, time limit 10\u219213, beta range 4\u21925, ftol thresholds, noise_scale list values, and adds one more optimization stage with beta=4000000. Primarily parameter adjustments with a minor refinement adding an extra optimization pass.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts most of the parameter changes from step (i): num_clusters back to 50000, time limit reduced from 13 to 8 (below original 10), beta range back to 4.0, and removes the extra optimization stage with beta=4000000 replacing it with beta=5000000 at the existing stage.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes multiple numeric constants: num_clusters, time limits, beta ranges, maxiter, noise scales, threshold tolerances, and beta values in optimization stages. All are scalar parameter adjustments with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite/switch (scheduled rewrite at step 60), replacing the entire approach with a different lattice-based method rather than reverting to a prior version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from stochastic cluster generation with progressive penalty optimization to a lattice-based geometric construction with direct SLSQP optimization. Crosses from stochastic_search family to geometric_construction/exact_solver approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice-based geometric construction with a different optimization approach (grid-based with scaled coordinates), which is a normal algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a direct optimization approach to a cluster-based geometric construction with multi-start search and progressive penalty refinement. The previous code used a single optimization with explicit constraint functions, while the new code generates compact clusters (geometric_construction family) and then optimizes them through a staged penalty approach. This crosses from a simpler gradient-based optimization to a hybrid geometric_construction + stochastic_search approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm from step (i) by adding known dense configurations, adjusting noise scales, and removing one optimization stage, but does not revert the overall approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adds known dense configurations (triangle/parallelogram seeds), adjusts parameter values (ftol, noise_scale, time limits, grid resolution), and removes a final high-beta optimization stage. The dominant change is adding new initialization patterns and tuning the optimization pipeline within the same stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts time limits and adds noise_scale values, which is parameter tuning on top of step (i)'s changes, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes time budget thresholds and adds noise scale values, all numeric constant adjustments with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues to modify parameters and expand the search space (more clusters, more angle samples, additional rectangle configurations) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "search_space_change",
+      "confidence": 0.82,
+      "label_notes": "Expands the set of candidate configurations by adding more cluster generation sources (rect_15 drops, hex_19 random drops), increasing num_clusters from 50k to 80k, and doubling angular resolution from 180 to 360. Also minor parameter tweaks (time limit, constraint offset).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a completely different algorithm rather than reverting to a previous version; it's an algorithm switch/rewrite, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a complex optimization approach (generating compact clusters + SLSQP optimization with progressive beta scheduling) to what appears to be a fundamentally different and much simpler approach. The diff shows massive code removal replacing an elaborate stochastic/gradient-based optimization with a drastically different structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the simple hardcoded lattice approach with a complex optimization approach (generate_compact_clusters + scipy.optimize), which is a different algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.92,
+      "label_notes": "Replaces a hardcoded geometric construction (fixed centers, R=4.0) with a scipy.optimize-based numerical optimization approach using SLSQP with multiple initial configurations generated from lattice-based cluster enumeration. This is a switch from hand_designed_special_case/geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters and removes one optimization stage, keeping the same scipy.optimize SLSQP approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: iteration counts (8000\u21924000), time limits (18\u219212, 56.5\u219256, 57.5\u219257), beta range (0.0-4.0\u21920.5-5.0), ftol thresholds, noise scales, and tolerance thresholds. Also removes one optimization stage (beta=4000000), which is a minor structural change but the dominant intent is parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (time limits, noise scales, tolerances) and adds back an optimization stage (beta=5000000), which partially reverses one change from step (i) but overall represents continued tuning rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes time limits (56\u219257.5, 57\u219258), noise scale list (minor additions), epsilon values (1e-9\u21925e-13, 1e-9\u21922e-11), and adds one more optimization stage with beta=5000000. The added optimization stage could be algorithm_refinement, but the dominant changes are numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning changes (adjusting time limits, beta ranges, epsilon values, and adding another optimization stage) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Multiple numeric constant changes: time limits, beta range, ftol thresholds, maxiter, noise scales, scale epsilon, and outer hex padding. Also adds one more optimization stage (beta=20M), which leans algorithm_refinement, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different algorithm (different optimization formulation, different constraint structure, different variable parameterization), not a revert of step (i)'s parameter changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a grid-based enumeration approach with compact cluster generation to an SLSQP-based constrained optimization approach with explicit separation and containment constraints. This switches from a geometric_construction/stochastic_search family to an exact_solver (nonlinear programming) family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the SLSQP optimization approach with a different algorithm involving compact cluster generation and grid-based R computation, which is a new algorithmic approach rather than a revert to the previous grid-based enumeration method from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from SLSQP-based constrained optimization to a grid-based enumeration approach generating compact hexagonal lattice clusters and evaluating them. Switches from physical_simulation/exact_solver family to geometric_construction/lattice_packing family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (loop counts, angle resolution, clipping, beta values, adding an intermediate optimization step) to the code from step (i), without removing or reverting the grid-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Multiple numeric constant changes: iteration counts (12000\u21924000), time limits (12\u219210, 56\u219257.5, 57\u219257.5), grid resolution (360\u2192720), candidate count (500\u21921000), noise scales list modified, beta value (4000000\u21925000000). Also adds a clip and an intermediate optimization step which lean toward algorithm_refinement, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements and parameter changes (e.g., 4000\u21928000, adding a new cluster shape, removing the clip and intermediate optimization step added in step (i), reverting beta from 5000000 back to 4000000), but these are a mix of partial reverts and new changes rather than a wholesale revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adds a new candidate subset (2x6 parallelogram), increases random sampling iterations, adjusts optimization parameters (maxiter, ftol, beta), modifies noise scales, removes a clipping constraint and an intermediate optimization step. These are all intra-family refinements to the existing search/optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the 2x6 parallelogram subset that was added in step (i) and removes an optimization step, but also makes independent parameter changes; this is a continued refinement rather than a wholesale revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: num_clusters 80000\u2192120000, random iterations 8000\u21924000, maxiter 2000\u21921000, top candidates 500\u2192800, time limit 58\u219257, threshold adjustments 0.3\u21920.5 and 0.1\u21920.15, and removes a final optimization stage. Primarily parameter tuning with minor search space pruning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite/switch, not a revert of step (i); it replaces the entire approach with a fundamentally different one rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric grid-based enumeration approach to a continuous optimization with L-BFGS-B and penalty weight continuation (simulated annealing-style). Switches from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the L-BFGS-B continuous optimization approach with a completely different grid-based cluster enumeration approach, which is a new algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver. Previous code used a different optimization structure with individual hex rotations (best_X[24:36] for angles). New code uses a fundamentally different approach: systematic enumeration of compact lattice-based clusters (geometric_construction family) combined with SLSQP optimization, replacing what appears to have been a more generic physical_simulation/stochastic approach. The overall structure, representation, and search strategy are all different.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (timeout, maxiter, beta, epsilon values) to the code from step (i), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: time limits (12\u219210, 56\u219256.5, 57\u219257.5), maxiter (2000\u21921000), noise_scale list values, threshold (0.00001\u21920.00002), beta (5000000\u21924000000), epsilon values (1e-11\u21921e-9). All are scalar constant adjustments with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (some reverting individual values like 10\u219212, but also adding new code and changing other parameters differently), which is continued tuning rather than a wholesale revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Mixed change: adds a new candidate subset (4x3 parallelogram), adjusts time limits, maxiter, ftol thresholds, noise scales, and iteration counts. The new subset is a search_space_change, but the majority of changes are parameter tuning. Close call between search_space_change and parameter_tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the 4x3 parallelogram subset added in step (i) but also adds new optimization stages and adjusts parameters differently, making it a partial refinement rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Multiple changes: removes a subset, adjusts time limit, changes optimizer parameters (maxiter, ftol, beta stages), adds an extra optimization stage, increases candidate count, and vectorizes scoring. Dominant intent is refining the optimization pipeline within the same stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (using linprog, different lattice generation, different optimization structure), which constitutes an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite switching from a stochastic search approach (generating compact clusters, scipy minimize) to a lattice-based geometric construction with LP feasibility checking and minimize_scalar optimization. This crosses from stochastic_search/physical_simulation family to geometric_construction/exact_solver family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice-based LP approach with yet another different algorithm (appears to use a different optimization strategy with scaled coordinates), which is a normal algorithm switch rather than a revert to a prior approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver: replaces LP-based approach (linprog) with a nonlinear optimization approach using SLSQP with penalty-based containment and separation constraints, multi-start initialization from lattice subsets, and iterative refinement. This crosses from exact_solver (LP) to physical_simulation/gradient-based optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (iteration counts, beta values, thresholds, tolerances) within the same SLSQP-based approach introduced in step (i), without removing or reverting the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes are predominantly numeric constant adjustments: maxiter, beta values, thresholds, noise scales, time limits, and iteration counts. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts numeric parameters and adds a small alpha search loop; it does not remove or undo the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple numeric parameter changes (num_clusters 80000\u2192150000, time limits, maxiter 1000\u21921500, thresholds tightened, beta values changed, noise scales adjusted) combined with a small algorithmic tweak (angle fine-tuning loop). Dominant change is parameter tuning, but the angle search loop addition leans toward algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts most of step (i)'s parameter changes back to previous values (num_clusters 150000\u219280000, time limit 16\u219212, maxiter 1500\u21921000, thresholds reverted) and removes the angle fine-tuning loop that was added in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple numeric constant changes (num_clusters 150000\u219280000, time limit 16\u219212, constraint offset 1.10\u21920.50, maxiter 1500\u21922000, noise_scale list trimmed, epsilon 1e-12\u21921e-9) plus removal of a local angle search loop. The removal of the fine-grained angle search loop is a minor structural simplification, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite/switch, not a revert of step (i)'s parameter tuning changes; it replaces the entire approach with a fundamentally different algorithm rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. The previous code used enumeration of compact clusters with SLSQP optimization (exact_solver/physical_simulation hybrid), while the new code appears to use a fundamentally different geometric construction approach. The rewrite is substantial enough to constitute an algorithm switch, though the truncated diff makes full analysis difficult.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different algorithm (compact cluster generation with optimization) rather than reverting to the previous code before step (i); this is a new algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a previous approach to a new one based on grid-based cluster enumeration with SLSQP optimization. The structure is fundamentally different - generating compact hexagonal lattice clusters and optimizing configurations via penalty-based SLSQP, replacing what appears to have been a different optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a polish_configuration function and makes minor refinements to the existing code from step (i), which is an algorithm refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adds a polish_configuration step using constrained optimization (SLSQP with explicit constraints) as a refinement stage, tightens filtering thresholds, and adjusts scaling precision. All within the same optimization family (gradient-based/physical simulation refinement).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies and extends step (i)'s approach by adding new cluster generation (para_16), increasing random samples, replacing the polish_configuration call with optimize_configuration_slsqp, and adjusting constants, but this is iterative refinement rather than reverting the previous step's changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: expanded search subsets (4x4 parallelogram grid), increased random sampling iterations (4000\u21928000), finer angle grid (360\u2192720), more optimization candidates (500\u21921000), removed polish_configuration in favor of higher-beta SLSQP, adjusted time limits and numerical constants. All within the same stochastic/geometric search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially rolls back some parameter changes from step (i) (e.g., 8000\u21924000 random iterations, 1000\u2192800 candidates, beta 5000000\u21924000000) and removes the 4x4 parallelogram grid, but it does not restore the original code or undo the majority of step (i)'s changes; it is a parameter tuning adjustment, not a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: reduces random samples (8000\u21924000), adjusts time limits (15\u219212, 57\u219256.5/57.5), modifies ftol thresholds, reduces iteration counts (1000\u2192800), and changes beta (5M\u21924M). Also removes a code block generating 4x4 parallelogram subsets, which is a minor search_space_change, but the dominant changes are parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different algorithm (new functions, new optimization approach, individual hex rotations), not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a stochastic search approach (with random cluster generation and iterative optimization) with a systematic lattice-based geometric construction approach. The previous code used random cluster generation with extensive search, while the new code uses deterministic hexagonal lattice packing with BFS-based subset enumeration and SLSQP optimization. This crosses from stochastic_search to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues with the same lattice-based geometric construction approach but refines it with different cluster generation, optimization, and scoring methods rather than reverting to the previous stochastic search approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the optimization pipeline within the same physical_simulation/gradient_descent family - adds multi-stage SLSQP optimization with progressive beta scheduling, new cluster generation, and post-processing scaling. Could be algorithm_switch but stays within gradient-based optimization with penalty methods.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (loop counts, beta values, tolerances) to the code introduced in step (i), without removing or reverting any of the structural changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes multiple numeric constants: iteration counts (12000\u21928000, 2000\u21921000), time limits (15\u219212, 55\u219256, 56.5\u219257), beta values (5000000\u21924000000), noise scales, epsilon values (1e-12\u21921e-9, 1e-11\u21921e-9), and ftol thresholds. All are scalar parameter adjustments with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts some parameter changes from step (i) (e.g., 8000\u219212000 back to original, time limit changes) but also adds entirely new code (rhomb_16 cluster generation) and makes other novel changes, so it is not a simple revert but a mix of partial reversions and new modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Adds a new rhombus-based 4x4 grid subset generation (expanding candidate initial configurations), adjusts iteration counts and noise scales for search, and removes one optimization stage. The dominant change is expanding the set of candidate configurations searched.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the rhombus-based grid subset generation added in step (i), but also makes other independent changes (parameter tuning, adding an optimization stage), so it partially reverts one aspect while continuing to evolve the approach; however, the removal of the rhombus code is a significant revert of step (i)'s main contribution.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple numeric constant changes: iteration counts, time limits, ftol thresholds, noise scales, angle grid resolution, and adding one more optimization stage with higher beta. Dominant change is tuning parameters, though adding the beta=4000000 stage is a minor algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite with a fundamentally different approach (vertex-based geometry, different helper functions, different optimization strategy), not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Complete rewrite from a grid-based geometric construction with penalty optimization to a SAT-based overlap constraint formulation with SLSQP constrained optimization. The approach fundamentally changes from geometric_construction/lattice_packing family to a constrained optimization approach using separating axis theorem.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the SAT-based SLSQP approach with a completely different grid-based optimization approach, which is a new algorithm switch rather than reverting to the previous code from step (i-1).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from SAT-based overlap constraint approach to a fixed-orientation hexagon packing with grid-based containment checking and progressive penalty optimization. Changes from geometric_construction/exact_solver style to a gradient_descent/physical_simulation approach with penalty methods and multi-start optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies and extends the code from step (i) by changing search space configurations (adding rhombus shapes, removing rectangle_12, adding rectangle_15 drops) and tweaking parameters, but does not revert the overall approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "search_space_change",
+      "confidence": 0.55,
+      "label_notes": "Multiple changes: adds rhom_16 subset generation (expanding candidate set), increases angle grid resolution (720 vs 360), adds noise scale 0.7, adjusts time limits and precision parameters. The dominant change is expanding the search space with new candidate configurations (rhom_16 subsets and finer angle grid), though parameter tuning is also present.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the rhom_16 subset generation added in step (i), but also makes several parameter tuning changes; while removing rhom_16 is a partial revert, the other changes (time limit increase, beta adjustment, precision tweaks) represent continued refinement rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Multiple numeric constant changes: time limits, beta values, noise scales, epsilon values, maxiter, and constraint offsets. Also removes a search subset (rhom_16) which is a minor search_space_change, but the dominant changes are parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning changes (loop counts, time limits, beta corrections, epsilon values, removing optimization stages) but does not restore code removed in step (i) or undo step (i)'s changes; it continues refining in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Multiple changes: iteration counts reduced (8000\u21924000, maxiter 2000\u21921000), time limits adjusted (15\u219212), noise scale changed, thresholds tweaked, and some log-correction terms added to objective/constraint. The log-correction terms (subtracting log(36)/beta, log(2)/beta, log(3)/beta) could be seen as algorithm_refinement (fixing smooth-max approximation bias), but the majority of changes are numeric constant tuning. Borderline between parameter_tuning and algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite/switch, not a revert of step (i); it replaces the entire approach with a fundamentally different optimization formulation including individual hexagon rotations (theta_opt) and a different variable structure.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric grid-based enumeration approach (lattice packing with grid search over configurations) to a direct SLSQP numerical optimization approach with explicit non-overlap constraints and containment constraints. This crosses from geometric_construction family to a gradient_descent/optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the SLSQP optimization approach with a completely different cluster-enumeration and grid-based approach, which is a new algorithm switch rather than a revert to the previous geometric grid-based method from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a generic SLSQP-based optimization approach to a cluster-enumeration + grid-based geometric construction approach. The previous code used continuous optimization with constraints (physical_simulation/exact_solver family), while the new code enumerates compact hexagonal grid clusters and evaluates them geometrically (geometric_construction family).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes small parameter adjustments (timeout threshold, tolerance values, scale factors) to the code introduced in step (i), without removing or reverting any of the core logic.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple numeric constant changes: time limits, maxiter, noise scales, beta values, thresholds, and epsilon. The log-correction in constraint_func is a precision/algorithm tweak but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further algorithmic refinements (adding a new variable to the optimization, changing thresholds, removing one optimization stage) rather than reverting the parameter changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Reformulates the SLSQP optimization to use an explicit R variable in the objective (instead of smooth-max approximation), adjusts constraint structure, modifies noise scales, removes a refinement stage, and tightens thresholds. All changes are within the same optimization family (gradient-based/SLSQP).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements to the approach from step (i), such as changing random sampling to exhaustive combinations, batching the evaluation loop, and adjusting time limits, but does not revert the core changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: exhaustive enumeration replaces random sampling for subsets, SLSQP optimization reformulated to compute R from objective rather than as a variable, batched evaluation of subsets. All within the same optimization framework (geometric construction + SLSQP refinement). The dominant change is structural refinement of the search and optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (new search strategy, different optimization structure), which constitutes an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver. Previous code used scipy.optimize.minimize (gradient-based physical_simulation/optimization) with grid-based cluster generation. New code uses a fundamentally different approach with systematic grid placement, angular sweeps, and greedy/combinatorial search without scipy optimization. This crosses from physical_simulation/gradient_descent family to a geometric_construction/enumeration approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely new approach with scipy.optimize, compact cluster generation, and different algorithmic structure rather than restoring any previous code that step (i) had replaced.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver. The new code uses a fundamentally different approach: generating compact grid-based clusters (geometric_construction/lattice_packing family) combined with SLSQP optimization, replacing what appears to have been a different algorithm structure. The code is entirely restructured with new initialization strategies and optimization pipeline.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements to the algorithm introduced in step (i), such as adjusting timeout thresholds, modifying smooth approximation formulas, and removing some optimization stages, but does not revert the overall approach back to a previous implementation.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: replaces abs-based projection with concat of positive/negative projections (smoothed max approximation refinement), adjusts log-sum-exp normalization constants, modifies noise scales, removes a high-beta optimization stage, adjusts ftol schedule, and increases angle grid resolution. All within the same optimization family (gradient-based/SLSQP). Also includes a minor parameter_tuning aspect (time limit 14\u219212, grid 360\u2192720) but structural changes dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) partially reverts the projection approach (back to abs-based from concat) and the log normalization constant (back to 36 from 72), but also makes independent changes (increasing iterations, adding a high-beta stage, adjusting epsilon); this is a mix of partial revert and new refinements, not a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: increased iteration counts, adjusted log-sum-exp correction terms (log(72)->log(36), log(6)->log(3)), added higher-beta refinement stages, relaxed thresholds for progressive optimization. These are intra-family refinements to the gradient-based optimization approach. Some parameter_tuning aspects but structural additions (new beta stages) push toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor parameter adjustments (reducing iterations from 6000 to 4000, removing one beta stage, tweaking tolerances) which partially undo some of step (i)'s changes but also introduce new values; this is incremental tuning rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants: iteration counts (6000\u21924000, maxiter 1500\u21922000), ftol thresholds, angle grid resolution (720\u2192360), time limits, pruning thresholds, epsilon values. Also removes one optimization stage (beta=20000000), which is a minor search_space_change, but the dominant changes are parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite replacing the entire approach with a different one, not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.88,
+      "label_notes": "Switches from a nonlinear optimization approach (scipy.optimize.minimize with SLSQP, gradient-based) to a linear programming formulation (linprog), crossing from physical_simulation/stochastic_search family to exact_solver (linear_programming) family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the linprog-based linear programming approach from step (i) and restores a scipy.optimize.minimize-based nonlinear optimization approach, reverting back to the family of methods used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.85,
+      "label_notes": "Complete rewrite from linear programming (linprog) approach to a combinatorial grid-based enumeration with SLSQP optimization. Crosses from exact_solver (LP) to a hybrid geometric_construction + physical_simulation approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters and makes minor optimizations to the code from step (i), such as increasing num_clusters, adjusting time limits, precomputing inner_normals_T, and removing one optimization stage, without reverting the overall approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "Multiple changes: num_clusters 80000\u2192150000, time limits adjusted, noise_scale list tweaked, removal of a rotation perturbation and a high-beta optimization stage, precomputation of inner_normals_T and manual N_T computation. Mix of parameter_tuning, algorithm_refinement, and minor optimization. The dominant changes are numeric parameter adjustments, but removal of the rotation perturbation and the beta=5000000 stage are structural. Borderline algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts num_clusters from 150000 back to 80000 and re-adds the rotation perturbation that step (i) removed, but it also adds new code (para_16 generation, different random sampling) and makes other novel changes, so it is not a simple revert but a mix of partial revert and new approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Adds exhaustive enumeration of 4x4 parallelogram subsets (dropping 4 from 16) and exhaustive combinations for hex_19 (instead of random sampling), expanding the candidate set. Also modifies noise perturbation strategy with rotation and adjusts parameters. Multiple changes but dominant intent is expanding/changing which candidate configurations are searched.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the para_16 enumeration added in step (i) and modifies hex_19 sampling, but also adds new optimization stages and changes parameters, representing a refinement/evolution rather than a full revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple numeric parameter changes: num_clusters 80000\u2192120000, time limits, noise scales, ftol values, iteration counts, thresholds. Also removes one enumeration block (para_16) and replaces exhaustive hex_19 combinations with random sampling, which is a search_space_change. But the dominant pattern is tuning numeric constants across the optimization pipeline.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite with a fundamentally different approach (new initial centers function, different optimization structure), not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing a stochastic cluster-generation + multi-stage SLSQP optimization approach with a deterministic geometric construction (fixed initial centers from triangular grid) + smooth support-function-based optimization. The overall structure and approach changed fundamentally from stochastic_search to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s geometric construction + smooth support function approach with a different algorithm (grid-based R computation with scaling), which is a new algorithm switch rather than a revert to any prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the optimization approach: previous code used smooth support functions with SLSQP constraints, new code uses a grid-based hexagonal distance metric with multi-start optimization and progressive beta refinement. The overall structure and approach are fundamentally different, though both fall under physical_simulation/gradient_descent family. Given the complete rewrite nature, this leans algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes incremental refinements to the code from step (i), such as adjusting timeout thresholds, noise scales, beta values, and fixing a bug in the combination generation, rather than reverting the approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adjusts log-sum-exp smooth-max corrections (subtracting log terms for normalization), reduces optimization iterations/precision, changes time budget, modifies noise scales, and simplifies beta schedule. These are all intra-family refinements to the gradient-based optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements (adding a new cluster configuration, changing iteration strategy, adjusting thresholds, removing one optimization stage) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Multiple changes: adds new subset configuration (2x6 parallelogram), switches from exhaustive to random sampling for hex_19 subsets, relaxes pruning thresholds in optimization cascade, adjusts beta range, tightens ftol, removes one refinement stage. All within the same stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refactors the parallelogram generation into a loop and tightens pruning thresholds further with an additional refinement stage, which is a continuation/refinement of step (i)'s approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Multiple changes: tightened thresholds for progressive optimization stages, adjusted beta range, reduced iteration counts, added an extra optimization stage with higher beta. While adding an extra stage could be algorithm_refinement, the dominant changes are numeric threshold/parameter adjustments throughout the pipeline.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major rewrite of the entire approach (scheduled rewrite at step 120), replacing the code with a fundamentally different algorithm rather than reverting to a previous version.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the same optimization approach (gradient/penalty-based packing with SLSQP). The code restructures the search strategy, initialization, and optimization pipeline but stays within the physical_simulation/gradient_descent family. Hard to distinguish from algorithm_switch due to extensive rewrite, but the core approach (minimize penalty-based objective with scipy.optimize) appears preserved.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a substantially different algorithm (cluster generation, grid-based R computation, different optimization structure), which constitutes an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a generic optimization approach to a geometric construction + enumeration approach (generating compact hexagonal lattice clusters, then optimizing). Switches from what appears to be a direct numerical optimization to a lattice-based geometric construction with enumeration of candidate configurations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm from step (i) by simplifying some cluster generation logic and streamlining the optimization pipeline, but it does not revert the overall lattice-based geometric approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: reduced search space (removed rhomb_16 and 2x6 parallelogram subsets, reduced hex_19 iterations), adjusted optimization pipeline (changed beta schedule, reduced refinement stages), tightened thresholds and time limits. Dominant intent is refining the existing optimization approach within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds back some search space (rect_16 subsets, exhaustive hex_19 combinations) and adds more refinement stages, which partially reverses some of step (i)'s reductions, but it also introduces new elements and extends the approach rather than simply reverting to the prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple changes: exhaustive enumeration replaces random sampling for candidate subsets, beta schedule refined with additional stages, ftol/maxiter parameters adjusted, time limit increased. Dominant change is refining the search/optimization pipeline within the same stochastic_search + gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the approach by replacing some exhaustive enumeration with random sampling and adding more optimization stages, but this is a further refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Multiple refinements: replaces exhaustive combinatorial enumeration with random sampling for hex subsets, adds more noise scales for multi-start optimization, adds deeper optimization stages (beta=5M, 25M), adjusts ftol schedule, and reduces top-candidates count. All within the same stochastic_search/physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different algorithm (using linprog and a different cluster generation strategy), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite replacing a scipy.optimize.minimize-based gradient descent approach with a combinatorial cluster enumeration + LP-based (linprog) optimization approach. This crosses from physical_simulation/gradient_descent family to a hybrid exact_solver/geometric_construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) completely removes the cluster enumeration + LP-based (linprog) approach from step (i) and replaces it with a scipy.optimize.minimize-based gradient descent approach, effectively restoring the general style of approach that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver: previous code used linprog/minimize_scalar with cluster generation; new code uses SLSQP-based continuous optimization with compact cluster enumeration, penalty-based constraint handling, and multi-stage refinement. The overall approach shifts from a linear-programming-based method to a gradient-based nonlinear optimization approach with extensive search over lattice configurations.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only tunes parameters (timeout, maxiter, ftol thresholds, filtering thresholds) and adds an extra refinement stage, without removing or reverting the code from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes numeric constants: time limit (9\u219212), maxiter (1000\u21922000), ftol thresholds, noise_scale list, pruning thresholds, and adds an extra optimization stage with higher beta. Mostly parameter tuning but the added optimization stage and tighter pruning thresholds border on algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding new search space (rhom_16 configurations), increasing random samples from 4000 to 8000, increasing alpha resolution from 360 to 720, and making minor parameter tweaks, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "search_space_change",
+      "confidence": 0.62,
+      "label_notes": "Adds a new rhombus-based 4x4 grid subset generation (expanding candidate configurations), increases random sampling from 4000 to 8000, doubles angle grid resolution from 360 to 720, and adjusts time limits and parameters. The dominant change is expanding the set of candidate configurations searched.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the rhombus-based 4x4 grid subset generation and reduces random sampling back to 4000, partially undoing step (i)'s changes, but it also makes other independent parameter adjustments (scale epsilon, threshold changes) and does not restore the full prior state, so this is better characterized as parameter tuning rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Multiple numeric constant changes: reduced random samples (8000\u21924000), time limits (15\u219212, 58\u219258.2), maxiter (1000\u21922000), ftol thresholds, tolerance values (1e-9\u21921e-11), angle grid resolution (720\u2192360), and threshold (0.00001\u21920.00002). Also removes a rhombus-16 search subset, which is a minor search_space_change, but the dominant pattern is parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire algorithm with a fundamentally different approach (optimizing centers of unit hexagons with rotation), not reverting to a previous version of the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing a grid-based enumeration approach (generating compact clusters on hex lattice, evaluating containment) with an SLSQP-based continuous optimization approach using constraint-based formulation. This crosses from geometric_construction/lattice_packing family to a gradient_descent/optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the SLSQP optimization approach with a different hybrid approach combining compact cluster generation and optimization, which is a new algorithm switch rather than reverting to the previous grid-based enumeration from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver: previous code used a continuous optimization approach; new code uses combinatorial cluster generation (lattice-based enumeration of hexagonal grid configurations with BFS/combinatorial dropping) followed by optimization. This represents a fundamental change from physical_simulation/gradient_descent family to geometric_construction/lattice_packing family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes minor parameter tuning changes (variable renaming, iteration count adjustment, adding an optimization stage, tweaking scale logic) to the code introduced in step (i), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.52,
+      "label_notes": "Multiple changes: variable renaming (para_16), reduced random iterations (12000\u21928000), increased maxiter (1000\u21922000), expanded noise_scale list, added extra optimization stage (beta=5000000), simplified bounding computation, and tweaked scale logic. The dominant changes are parameter adjustments (noise scales, iteration counts, beta values) but there's also algorithm_refinement (extra optimization stage) and a minor bug_fix-like scale correction. Picking parameter_tuning as the most pervasive change, though algorithm_refinement is a close second.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the para_16 block added/modified in step (i) and changes some parameters, but it also introduces new algorithmic changes (biased sampling with p_drop, different scale computation) rather than restoring a previous state, so this is a refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: biased sampling for hex subset generation, adjusted pruning thresholds, removed unused smooth_max function, parameter tuning of ftol/maxiter. Dominant change is refinement of the search heuristics (biased sampling, threshold adjustments).",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the biased sampling introduced in step (i) (removing d2/p_drop and restoring uniform random.choice), restores the smooth_max function that step (i) removed, and reduces the iteration count from 8000 back to 4000.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple numeric constant changes: iteration counts, noise scales, threshold tolerances, beta values, and epsilon values. Also removes weighted sampling probability (minor algorithm_refinement), but dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite/switch, not a revert of step (i)'s parameter tuning changes; it replaces the entire approach with a fundamentally different algorithm.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver. Previous code used grid-based cluster generation with combinatorial enumeration and a custom R_grid function. New code uses a fundamentally different approach with scipy.optimize minimize (SLSQP), direct optimization of hexagon positions and angles with constraint-based formulation. This represents a shift from geometric_construction/enumeration to a direct numerical optimization approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the grid-based cluster generation approach with get_R_grid and generate_compact_clusters that step (i) had replaced with the direct SLSQP optimization approach, effectively reverting to the pre-step(i) methodology.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite of the solver: previous code used a different optimization approach, new code uses grid-based cluster generation with iterative SLSQP optimization pipeline. The overall structure and approach changed fundamentally.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes parameter tuning changes (adjusting beta values and removing some optimization stages) but retains the overall grid-based cluster generation and SLSQP optimization pipeline introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants throughout: maxiter, ftol thresholds, beta values, noise scales, number of clusters, angle resolution, and pruning thresholds. Also removes one search stage (rect_16 loop) which is a minor search_space_change, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements and additions (restoring rhombus_16 loop, adding more optimization stages, adjusting scale formula) rather than reverting step (i)'s changes; it builds upon step (i) with additional modifications.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adds rhombus-based subset generation, adjusts beta schedule with more refinement stages, changes ftol/maxiter parameters, and modifies scaling logic. The dominant change is adding more optimization stages and refining the multi-stage beta schedule, which is intra-family refinement of the existing gradient-based optimization approach. Parameter tuning is also present but structural changes (new stages, new subset generation) push this to algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the rhombus-based subset generation and one optimization stage added in step (i), but also makes other independent changes (loop count, scale formula, vectorized scoring), representing continued refinement rather than a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: reduced iteration counts, removed a rhombus subset generation block, removed an extra optimization stage (beta=20000000), vectorized subset scoring with chunking, adjusted scaling formula, and changed time limit. The dominant effect is refining the existing algorithm's structure and stages.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite of the code with a fundamentally different approach, not a revert to a prior state; it replaces the entire algorithm rather than restoring what was removed or undoing step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the same optimization approach (gradient-based minimize with penalty for hexagon packing). The code is significantly simplified but stays within the same physical_simulation/gradient_descent family. The truncated diff makes full classification difficult, but the overall structure remains scipy.optimize.minimize-based packing optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the gradient-based penalty optimization with a fundamentally different combinatorial cluster-generation approach, which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a simpler optimization approach to an exhaustive grid-based cluster generation (geometric_construction/lattice_packing) combined with multi-stage SLSQP optimization. The new code generates compact hexagonal lattice clusters, evaluates many configurations, and applies progressive penalty-based refinement \u2014 a fundamentally different algorithmic structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm from step (i) by adjusting parameters, adding new cluster generation patterns, and simplifying some optimization steps, but does not revert the fundamental approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adds a new 4x4 rectangular grid subset generation strategy, adjusts random sampling count, removes a high-beta optimization stage, removes local alpha search refinement, and tweaks parameters. The dominant change is structural refinement of the search/optimization pipeline within the same stochastic search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the algorithm by modifying the rectangular grid sampling approach and adding optimization stages, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: modified subset generation strategy (random sampling instead of exhaustive combinations for rect_16, added deterministic hex_19 corner-based drops), adjusted optimization parameters (beta thresholds, ftol, noise_scales, pruning thresholds), added an extra optimization stage (beta=4000000). All within the same physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes some code added in step (i) (rect_16 random sampling, hex_19 corner-based drops, beta=4000000 stage) but also keeps other changes and adjusts parameters differently, making it a partial rollback combined with further tuning rather than a full revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Changes numeric constants: iteration counts (1500\u2192removed, 4000\u21926000), maxiter (1000\u21922000), ftol thresholds, noise scales, tolerance thresholds, and alpha resolution (360\u2192720). Also removes some initialization subsets and a final optimization stage, which leans toward search_space_change/algorithm_refinement, but the dominant changes are parameter adjustments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different algorithm approach, not a revert of step (i)'s parameter tuning changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.75,
+      "label_notes": "Complete rewrite of the solver. The previous code used combinatorial cluster generation with scipy.optimize (gradient-based optimization). The new code appears to be a fundamentally restructured approach. The massive rewrite (272\u2192180 lines with entirely different logic) constitutes an architecture redesign crossing algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different algorithm (compact cluster generation with scipy.optimize) rather than reverting to the pre-step(i) code; this is a new algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a previous approach to a new one based on generating compact grid clusters and optimizing with SLSQP (scipy.optimize.minimize). The structure is fundamentally different - uses enumeration of hexagonal lattice configurations with progressive penalty-based optimization, replacing the previous approach entirely.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes minor parameter adjustments (loop counts, thresholds, noise scales) to the algorithm introduced in step (i), without removing or reverting any of the core logic.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: iteration counts (15000\u21924000), time limits (8\u219215), noise scales, ftol thresholds, maxiter (1000\u21921500), and acceptance threshold (0.00001\u21920.00002). Also includes a correction to the constraint function adding log(3)/beta term which could be a bug_fix or precision_handling, but the dominant changes are parameter tuning.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further refinements and parameter changes on top of step (i), adding new code (hex_13 configurations) and adjusting thresholds, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: adds new hex_13 candidate subset, adjusts time budget, relaxes pruning thresholds, reduces angle grid resolution, removes one optimization stage. These are all intra-family refinements to the search/optimization pipeline (parameter thresholds + search space tweaks). Dominant intent is refining the existing approach rather than switching algorithms.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the hex_13 candidate subset added in step (i) but also makes independent parameter tuning changes; this is a partial rollback combined with new refinements, not a full revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Multiple changes: removes a search subset (hex_13), adjusts noise scales, tightens thresholds, changes beta values, adds an extra optimization stage. The dominant changes are numeric threshold/parameter adjustments throughout the optimization pipeline, but removing hex_13 subset is a search_space_change. By volume, parameter tuning dominates.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major rewrite of the entire algorithm (scheduled rewrite at step 150), replacing the approach with a substantially different implementation rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the optimization approach within the same physical_simulation/gradient_descent family. The code restructures the optimization pipeline (different beta schedules, different constraint handling) but stays within the same general approach of using scipy.optimize.minimize with penalty-based methods for hexagon packing. Could also be algorithm_switch but the overall framework remains gradient-based optimization.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

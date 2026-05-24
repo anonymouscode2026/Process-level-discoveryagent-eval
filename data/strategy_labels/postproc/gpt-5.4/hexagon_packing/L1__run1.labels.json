@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "gpt-5.4",
+  "level": "L1",
+  "run_id": "L1__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the initial generation with a different algorithm/approach for the same problem, which constitutes an algorithm switch rather than a revert of the initial code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces an ad-hoc row-based grid construction with a hexagonal-lattice (axial coordinate) geometric construction approach, fundamentally changing how centers are computed and how the outer hexagon size is determined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the hexagonal lattice approach introduced in step (i) by adjusting the lattice spacing, vertex computation, and outer hexagon sizing formula, rather than reverting to the previous row-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rebuilds the lattice-based packing with corrected lattice basis vectors and center coordinates, but stays within the geometric_construction family. The previous code also used a hexagonal lattice approach but had overlapping hexagons (a correctness issue). Could be bug_fix since the prior code produced invalid output, but the rewrite restructures the geometric construction significantly rather than just patching a defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s lattice construction with a different lattice basis and orientation (flat-top vs pointy-top), which is a normal algorithm refinement/switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the lattice construction and vertex/normal geometry for hexagon packing within the same geometric_construction family. Changes lattice basis vectors, axial coordinate selection, hexagon orientation (pointy-top to flat-top), and normal angle computation. Could be considered bug_fix since the previous code was producing invalid overlapping arrangements, but the agent frames it as a fresh construction approach rather than fixing a specific defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different lattice construction and geometry computation rather than restoring any prior code; the agent explicitly says 'a fresh construction is better than minor edits', indicating a forward algorithm refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Replaces one lattice-based geometric construction with a different grid arrangement (4-4-4 rectangular grid vs axial hex lattice), but both are within the geometric_construction family. Also fixes what appears to be an overlap issue (bug_fix candidate), but the agent describes it as a fresh construction approach rather than a targeted fix.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 4-4-4 rectangular grid with a different hexagonal arrangement (1-2-3-2-3-2-1 pattern with sqrt(3) spacing), which is a new algorithm refinement rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the hexagon arrangement from a 4-4-4 flat-top grid to a 2-3-2-3-2 pointy-top lattice cluster, and adds proper containment calculation. Both are geometric_construction approaches (same family), so this is intra-family refinement rather than algorithm_switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 2-3-2-3-2 pointy-top lattice with a different flat-top grid arrangement using spacing 2, which is a different geometric approach to solve the same problem, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "Rewrites the geometric construction with a different lattice layout (flat-top vs pointy-top) and different spacing to fix overlap issues. Could be bug_fix since the previous layout had overlapping hexagons, but the change is more of a redesign of the geometric construction approach within the same family rather than fixing a simple defect.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice layout with a different arrangement (new center coordinates and spacing), which is a different approach to solving the same problem rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "The agent states the previous construction was invalid (causing intersections/overlapping hexagons producing no valid score). The rewrite fixes the center spacing to ensure non-overlapping hexagons, which is primarily a correctness fix rather than an optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach from step (i) by adjusting the honeycomb layout coordinates and reducing the outer hexagon side length from 5.0 to 4.0, rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the geometric construction of hexagon centers using a different lattice layout (3-4-5 rhombic cluster) and adjusts the outer hexagon side length. Both old and new approaches are geometric_construction family, so this is intra-family refinement. Could also be considered initialization_change but the core algorithm logic changed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the 3-4-5 rhombic cluster approach with a completely different flat-top lattice layout (3,3,3,3 rows) and different spacing/side-length, which is a new algorithm approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the geometric construction with a different lattice arrangement (flat-top vs pointy-top, different row structure) and conservative outer hexagon size. Both are geometric_construction family, so intra-family refinement. Could also be considered initialization_change but the core algorithm structure changed.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the center coordinates and outer hexagon size to a different arrangement (2-3-4-3 row pattern instead of 3-3-3-3), which is a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Rearranges the hexagon center positions into a different packing layout (2-3-4-3 pattern instead of 3-4-3-3) and tightens the outer hexagon side length. This is a structural change within the geometric_construction family - modifying the hand-designed packing arrangement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding a vertical shift to the centers and reducing the outer hexagon side length, rather than reverting any changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Shifts the packing vertically and reduces outer hexagon side length. This is a geometric refinement of the existing hand-designed packing layout, not a parameter-only change since it introduces a new y_shift transformation. Could also be seen as parameter_tuning (changing 7.0 to 6.5) but the addition of the y_shift logic is a structural refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the packing layout with a completely different 3-4-4-1 arrangement and removes the y_shift logic, but this is a new algorithmic approach to the same problem rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Changes the packing layout from a shifted 2-3-4-3 arrangement to a 3-4-4-1 arrangement with adjusted center positions and reduced outer hexagon side length. This is a geometric construction refinement within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the layout to a 2-3-4-3 arrangement with a y-shift, which is a different geometric refinement rather than reverting to the previous configuration from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the geometric layout of hexagon centers (from a 3-4-4-1 arrangement to a 2-3-4-3 arrangement with vertical recentering) and adjusts the outer hexagon side length. This is a structural change within the geometric_construction family - modifying the packing arrangement and containment parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (y_shift from 0.5 to 0.35, outer_hex_side_length from 6.5 to 6.55) while keeping the same 2-3-4-3 arrangement introduced in step (i); this is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes only two numeric constants: y_shift from 0.5 to 0.35 and outer_hex_side_length from 6.5 to 6.55, with no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the parameters to new values (y_shift=0.46, outer_hex_side_length=6.46) that are different from both step (i)'s values and the values before step (i), representing a continued forward parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: y_shift multiplier (0.35 \u2192 0.46) and outer_hex_side_length (6.55 \u2192 6.46). No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (tightening values further from 0.46\u21920.455 and 6.46\u21926.44), which is an incremental refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes two numeric constants: y_shift multiplier from 0.46 to 0.455 and outer_hex_side_length from 6.46 to 6.44. No structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (further adjusting y_shift from 0.455 to 0.448 and outer_hex_side_length from 6.44 to 6.425), which is a continuation of the optimization approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only two numeric constants (y_shift multiplier 0.455\u21920.448 and outer_hex_side_length 6.44\u21926.425) with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (adjusting y_shift and outer_hex_side_length to new values 0.456 and 6.415), not reverting to previous values; this is a continuation of incremental optimization.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: y_shift multiplier from 0.448 to 0.456 and outer_hex_side_length from 6.425 to 6.415. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (adjusting y_shift from 0.456 to 0.462 and outer_hex_side_length from 6.415 to 6.405), which is a further incremental change rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: y_shift multiplier 0.456\u21920.462 and outer_hex_side_length 6.415\u21926.405",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (adjusting y_shift from 0.462 to 0.474 and outer_hex_side_length from 6.405 to 6.392), which is a further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: y_shift multiplier from 0.462 to 0.474 and outer_hex_side_length from 6.405 to 6.392",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (adjusting y_shift and outer_hex_side_length to new values), not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only numeric constants changed: y_shift multiplier 0.474\u21920.482 and outer_hex_side_length 6.392\u21926.388",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (further adjusting y_shift from 0.482 to 0.488 and outer_hex_side_length from 6.388 to 6.384), which is a continuation of optimization, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only two numeric constants changed: y_shift multiplier 0.482\u21920.488 and outer_hex_side_length 6.388\u21926.384",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction, changing y_shift from 0.488 to 0.492 and outer_hex_side_length from 6.384 to 6.379, which is a further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: y_shift factor from 0.488 to 0.492 and outer_hex_side_length from 6.384 to 6.379. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (adjusting y_shift and outer_hex_side_length to new values) rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only numeric constants: y_shift multiplier from 0.492 to 0.505 and outer_hex_side_length from 6.379 to 6.366. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by changing y_shift from 0.505 to 0.512 and outer_hex_side_length from 6.366 to 6.352, which is a further refinement in the same direction, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: y_shift multiplier from 0.505 to 0.512 and outer_hex_side_length from 6.366 to 6.352",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the parameters (center coordinates, y_shift multiplier, and outer_hex_side_length) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Small numeric adjustments to center coordinates, y_shift factor, and outer_hex_side_length without structural changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values, representing further refinement rather than reverting the previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Only numeric constants (center coordinates, y_shift multiplier, outer_hex_side_length) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting numeric constants to different values, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes only numeric constants (center coordinates, y_shift multiplier, outer_hex_side_length) without any structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction by further adjusting numeric constants (centers, y_shift, outer_hex_side_length) rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates, y_shift factor, outer_hex_side_length) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening numeric constants rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and the outer hexagon side length to tighten the packing. The structure remains the same; only scalar constants change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening coordinate values and the outer hexagon side length, rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and outer hex side length without structural changes to the algorithm",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting coordinate values and outer hex side length differently, not reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length to fix containment while preserving the same geometric arrangement",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting y_shift and outer_hex_side_length to different values, not reverting to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes two numeric constants: y_shift multiplier (0.70\u21920.66) and outer_hex_side_length (5.92\u21926.04). No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "While y_shift reverted to 0.70, the center coordinates and outer_hex_side_length changed to new values (not restoring step i's values), indicating a different parameter tuning attempt rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and outer hexagon side length to tighten packing; no structural algorithm change, just tuning constants in the geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values, not reverting to any previous state; it adjusts coordinates slightly and changes y_shift, which is a further refinement rather than an undo.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates, y_shift multiplier) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction (parameter tuning) rather than reverting step (i)'s changes; no code is restored to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and shift parameters for hexagon centers without changing the algorithmic structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes numeric parameters in the same direction as step (i), making small adjustments to coordinates and the outer hex side length rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusting numeric coordinate values and outer hex side length to find feasible packing; no structural algorithm change, just tweaking constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small adjustments to coordinates and constants, representing incremental refinement rather than reverting the previous step's changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates, y_shift factor, outer_hex_side_length) are changed with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further incremental parameter adjustments (different center coordinates, y_shift, and outer_hex_side_length) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Small numeric adjustments to center coordinates, y_shift, and outer_hex_side_length without structural changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to parameters (different values for x-coordinates, y_shift, and outer_hex_side_length) rather than reverting to pre-step(i) values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Small numeric adjustments to coordinate offsets (4.06\u21924.08), y_shift multiplier (0.69\u21920.68), and outer_hex_side_length (5.90\u21925.92) with no structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (different values than step i) rather than reverting to pre-step-i values; this is continued tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and scaling factors for hexagon centers and outer hexagon size, no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small adjustments to coordinates and scaling factors, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Only numeric constants (center coordinates, y_shift, outer_hex_side_length) are adjusted; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small numeric adjustments to the same parameters, continuing the parameter tuning approach rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length slightly; no structural algorithm change, just tweaking positional constants and the bounding parameter.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (tightening coordinates and outer hex side length further), not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Only numeric coordinate constants and scaling factors are adjusted; no structural or algorithmic change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further incremental adjustments to the same numeric constants, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and outer hex side length to tighten packing; no structural algorithm change, only scalar constants modified.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to the same coordinate values, continuing the tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Small numeric adjustments to center coordinates of hexagons, tuning positions rather than changing the algorithm or structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small numeric adjustments to center coordinates and y_shift, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Small numeric adjustments to center coordinates and y_shift multiplier within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes a small numeric adjustment to two x-coordinates in the bottom row (2.38\u21922.34), which is a continuation of parameter tuning, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Minor numeric coordinate adjustments (2.38 \u2192 2.34) in a hand-designed geometric layout, tuning positions rather than changing the algorithm structure.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values (e.g., 2.34\u21922.40, 3.72\u21923.74, y_shift 0.66\u21920.58), which is a forward refinement rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Small numeric adjustments to hexagon center coordinates, y_shift, and outer_hex_side_length without structural changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to parameters in the same direction of optimization, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates, y_shift factor) are adjusted; no structural change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters in the same direction (tightening coordinates and reducing outer hex size), which is a continuation of parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates, y_shift multiplier, outer_hex_side_length) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small adjustments to numeric constants, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Only numeric constants (center coordinates, y_shift multiplier, outer_hex_side_length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to parameters, continuing the parameter tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric adjustments to center coordinates, y_shift multiplier, and outer_hex_side_length \u2014 all scalar constant changes with no structural modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same center coordinates, continuing the parameter tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusting numeric coordinate constants for hexagon center positions without changing the overall geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small adjustments to coordinate values, not reverting to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Small numeric adjustments to center coordinates, y_shift multiplier, and outer_hex_side_length without any structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small numeric adjustments to coordinates, y_shift, and outer_hex_side_length, rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length slightly; no structural algorithm change, just tweaking constants for tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small adjustments to coordinates and outer side length, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Small numeric adjustments to hexagon center coordinates, y_shift multiplier, and outer_hex_side_length constants without structural changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same parameters, continuing the parameter tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric adjustments to center coordinates, y_shift factor, and outer_hex_side_length without any structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values rather than reverting to pre-step(i) values; the changes are further adjustments in the same direction, not a restoration of previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric constants for hexagon center positions, y-shift, and outer hex side length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small adjustments to numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: hex center coordinates shifted slightly, y_shift factor adjusted, and outer_hex_side_length reduced from 5.48 to 5.46. No structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values rather than reverting to a previous state; it adjusts coordinates and outer_hex_side_length in a new direction without undoing step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Adjusts numeric constants for hexagon center positions, y_shift, and outer_hex_side_length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction, adjusting numeric constants further rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes only numeric coordinate values and constants (center positions, y_shift factor, outer_hex_side_length) without any structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting coordinate values and the outer hex side length further in the same direction (tightening), rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length without changing the algorithmic structure or layout strategy",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric coordinate values and outer hexagon side length, continuing the parameter tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusting numeric coordinates of hexagon centers and outer hex side length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to coordinates and outer hex side length, continuing the same tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Small numeric adjustments to center coordinates and outer hex side length without structural changes to the packing algorithm",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same parameters (center coordinates, y_shift, outer_hex_side_length) rather than reverting step (i)'s changes back to their previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Adjusts numeric coordinate constants and outer hexagon side length slightly; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to the same code structure, continuing the tuning approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Small numeric adjustments to coordinate positions and scale factor within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to coordinates and scale factor, continuing the parameter tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: hexagon center coordinates, y_shift factor, and outer_hex_side_length. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to center coordinates, y_shift, and outer_hex_side_length, continuing the same tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Small numeric adjustments to center coordinates, y_shift, and outer_hex_side_length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same parameters (centers, y_shift) in the same direction of tightening, rather than reverting to pre-step(i) values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and constants (center positions, y_shift, outer_hex_side_length) without structural algorithm changes. Could also be considered algorithm_refinement since it's tweaking the geometric layout, but the changes are purely to numeric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters (y_shift from 0.56 to 0.53, outer_hex_side_length from 5.48 to 5.47) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: y_shift from 0.56 to 0.53 and outer_hex_side_length from 5.48 to 5.47",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes multiple center coordinates and other parameters to new values rather than reverting to pre-step(i) values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Small numeric adjustments to center coordinates, y_shift multiplier, and outer_hex_side_length without any structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter tuning adjustments in the same direction (tightening coordinates and reducing outer hex size), not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and outer hex side length to tighten packing; no structural algorithm change, just tweaking constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting coordinate values and outer hex side length in the same direction, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Only numeric constants (center coordinates, y_shift multiplier, outer_hex_side_length) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to center coordinates and outer_hex_side_length, continuing the tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Small numeric adjustments to center coordinates and outer hexagon side length, no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same parameters (center coordinates, y_shift, outer_hex_side_length) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Adjusts numeric constants for hexagon positions, y_shift, and outer_hex_side_length without structural changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments in the same direction (tuning numeric constants) rather than reverting to previous values; the changes are incremental refinements, not a restoration of prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction of tuning without reverting step (i)'s changes; it modifies different specific values and continues the parameter optimization approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Adjusts numeric constants for hexagon center positions, y_shift, and outer_hex_side_length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values, not reverting to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusting numeric coordinate values and outer hex side length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting coordinate values and outer hex side length further, not reverting to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Only numeric constants (center coordinates, y_shift factor, outer_hex_side_length) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction (tightening coordinates and reducing outer_hex_side_length) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and outer hexagon side length to tighten the packing. These are scalar constant changes to the geometric layout without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction with further small adjustments to coordinates and outer hex side length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length slightly; no structural algorithm change, just tweaking constants in the geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values rather than reverting to pre-step(i) values; it's a forward iteration, not an undo.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length to fix feasibility issues; no structural algorithm change, just tweaking constants in the geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with slightly different numeric values, not reverting step (i) but further refining the same approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric constants for hexagon center positions, y_shift, and outer_hex_side_length without changing the algorithmic structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction of tuning, changing different values rather than restoring step (i-1)'s values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric constants (center coordinates, y_shift factor, outer_hex_side_length) without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction (tightening), not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Small numeric adjustments to coordinate positions and outer hexagon side length, no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same coordinate positions, continuing the parameter tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "The change only adjusts numeric coordinate values of the hexagon centers without changing the algorithmic structure or layout strategy. This is a manual tuning of positional parameters within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to the same layout, continuing the tuning approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and outer hexagon side length slightly; no structural algorithm change, just tweaking constants in the geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting coordinate values and outer hexagon side length further, not reverting to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length without changing the algorithmic structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to coordinates and y_shift, continuing the tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Only numeric coordinate constants and margin values are adjusted; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric coordinate constants in the same direction as step (i), making small incremental parameter changes rather than reverting any previous changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates, y_shift multiplier, outer_hex_side_length) are adjusted with no structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to parameters (center coordinates and y_shift multiplier) rather than reverting step (i)'s changes; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates and y_shift multiplier) are adjusted slightly; no structural change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values rather than reverting to any previous state; it adjusts coordinates and multiplier in the same direction of incremental refinement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Adjusts numeric constants (hex positions, y_shift, outer_hex_side_length) without structural changes to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction (tightening coordinates and reducing outer_hex_side_length), which is a continuation of parameter tuning rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Adjusting numeric coordinate values and scaling constants for the hexagon packing layout without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to coordinate values and scaling constants, continuing the same tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Small numeric adjustments to coordinate positions and y_shift multiplier in a hand-designed geometric layout, no structural change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further numeric adjustments to coordinates and parameters in the same direction of tuning, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length slightly to improve feasibility margins, without structural algorithm changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by making small adjustments to different numeric values (3.62\u21923.64, 0.54\u21920.53, 5.60\u21925.50), not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: x-coordinates of two hexagons (3.62\u21923.64), y_shift multiplier (0.54\u21920.53), and outer_hex_side_length (5.60\u21925.50). No structural change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the x-coordinates (3.64\u21923.62), y_shift multiplier (0.53\u21920.54), bottom row x-values (2.28\u21922.26), and increases outer_hex_side_length (5.50\u21925.58), effectively reverting most of step (i)'s parameter changes back toward their prior values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric adjustments to coordinate values and outer hexagon side length to recover feasibility while preserving layout structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to coordinates and parameters in the same direction of tuning, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric constants for hexagon positions, y_shift, and outer_hex_side_length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction of tuning, not reverting step (i)'s changes but building on them with different values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length slightly; no structural algorithm change, just tweaking positional constants and container size.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction (tightening coordinates and outer side length), which is a continuation of parameter tuning rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinates of hexagon centers and outer side length slightly; no structural algorithm change, just tweaking placement constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values rather than reverting to a previous state; it adjusts coordinates and outer side length in a new direction without undoing step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinates of hexagon centers, y_shift, and outer_hex_side_length without changing the algorithmic structure or layout strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric parameters in the same direction (tightening coordinates and outer hex side length) rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length without changing the algorithmic structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric coordinate values and the outer hexagon side length, continuing the parameter tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "Changes are purely numeric coordinate adjustments and constants (center positions, y_shift factor, outer_hex_side_length) without structural algorithm changes. Could also be considered algorithm_refinement since it's adjusting the geometric construction, but the changes are all scalar constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes the coordinates to a different set of values (standard lattice spacing like 1.5, 3.0, 4.5) and increases outer_hex_side_length from 5.48 to 6.0, which is a different parameter tuning approach rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Changes numeric coordinates of hex centers and outer_hex_side_length. While the center positions change, this is adjusting the numeric layout parameters of the same geometric construction approach rather than changing the algorithm structure. Could also be algorithm_refinement since the lattice spacing pattern changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the numeric parameters (center positions and outer_hex_side_length) with different values rather than reverting to a previous state; it continues the same approach with new adjustments.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Adjusts hexagon center positions and outer hexagon size within the same geometric construction approach, tweaking coordinates for tighter packing.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (tweaking coordinates and outer hex size) in the same direction as step (i), not reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: x-coordinates of outer hexagons (2.42\u21922.40, 3.52\u21923.50), y_shift multiplier (0.53\u21920.50), and outer_hex_side_length (5.50\u21925.44). No structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) changes numeric parameters to different values than both step (i) and the step before it, representing continued parameter tuning rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length without changing the algorithmic structure; all changes are to scalar constants defining the packing geometry.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the outer_hex_side_length from 5.64 to 5.60, which is a further parameter tuning adjustment, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the outer_hex_side_length constant from 5.64 to 5.60, a numeric parameter adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (changing bottom row x-coordinates and y_shift) rather than reverting step (i)'s change; the outer_hex_side_length remains at 5.60.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Small numeric adjustments to coordinate offsets (-2.30\u2192-2.34, 2.30\u21922.34) and y_shift multiplier (0.44\u21920.56) within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the coordinate layout with a different set of values (standard lattice spacing of 1.5/3.0/4.5 instead of the tuned values from step i) and removes the y_shift recentering, which is a new approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "initialization_change",
+      "confidence": 0.72,
+      "label_notes": "Changes the initial center positions of the 12 hexagons (a 2-3-4-3 lattice arrangement) and the outer hexagon side length. This modifies the starting configuration for the packing, not the algorithm itself.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the y-coordinates of the centers using a different parameterization and adds a recentering shift, which is a refinement of step (i)'s layout rather than a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Adjusts the vertical positioning of hexagon centers (shifting from 1.5*dy spacing to 1*dy with recentering) within the same geometric construction approach to improve packing",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the x-coordinates and outer_hex_side_length to tighten the packing horizontally, which is a further refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.72,
+      "label_notes": "The change adjusts numeric coordinate values for hexagon centers and the outer hexagon side length. While these are coordinate constants rather than traditional algorithm parameters, the structure/algorithm remains identical - only numeric values are tweaked. Could also be considered algorithm_refinement since the packing layout geometry is being modified.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with different numeric adjustments to coordinates and outer hex side length, rather than reverting to any previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length slightly; no structural algorithm change, just tweaking positional constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values rather than reverting to any previous state; it adjusts coordinates and outer hex side length in a new direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: center coordinates, y_shift multiplier, and outer_hex_side_length. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values, not reverting to any previous state; it's a forward progression of the same approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting numeric coordinate values and outer hex side length without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments to the coordinate values and outer hex side length, not reverting to a previous state but continuing to tune the same approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length slightly; no structural algorithm change, just tweaking constants in the geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters in the same direction (tightening coordinates and outer hex side length) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length without changing the algorithmic structure or layout pattern",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction (parameter tuning) rather than reverting to any previous state; the coordinate values are different from both step (i) and any prior step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusting numeric constants (center coordinates, y_shift multiplier, outer_hex_side_length) without structural algorithm changes. Could also be considered algorithm_refinement since the geometric layout is being tweaked, but the changes are purely to numeric values.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting numeric constants further in the same direction, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Only numeric coordinate constants and a shift factor are adjusted; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric coordinate constants and the outer hex side length, continuing the parameter tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values for hexagon centers and outer hex side length. These are scalar constant changes to the hand-designed geometric layout, not a structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values for the same geometric layout, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric center coordinates and outer hex side length; no structural algorithm change, just tweaking geometric constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric parameters in the same direction (parameter tuning) rather than reverting to previous values; the coordinates are different from both step (i) and any prior step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes are purely numeric coordinate adjustments and scalar constant tweaks (center positions, y_shift multiplier) within the same geometric construction approach, no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric coordinate adjustments (e.g., 2.44\u21922.48, 3.56\u21923.60, 0.52\u21920.53) in the same direction of parameter tuning, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Only numeric constants (center coordinates and y_shift multiplier) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to the same coordinates, continuing the tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length slightly; no structural algorithm change, just tweaking placement constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only adjusts the y_shift parameter from 0.53 to 0.47 and updates comments, which is a continued parameter tuning refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Changes only numeric constants: y_shift multiplier from 0.53 to 0.47 and outer_hex_side_length remains 5.56. Comments updated but no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters (different x-coordinates and outer_hex_side_length) rather than reverting step (i)'s changes; it continues parameter tuning in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Only numeric constants changed: coordinate positions and outer hex side length adjusted slightly",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction with further small adjustments to coordinates and outer hex side length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes only numeric constants (center coordinates, y_shift factor, outer_hex_side_length) without any structural algorithm change. The layout pattern remains the same hand-designed geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small numeric adjustments to the same layout, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Only numeric constants (center coordinates, y_shift, comments) are changed; no structural algorithm change. The layout pattern and outer side length remain the same.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with slightly different numeric values, not reverting step (i)'s changes but further refining them.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusting numeric coordinate values and outer hex side length slightly; no structural algorithm change, just tweaking constants in the geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric coordinate values and y_shift parameter, continuing the parameter tuning approach rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Only numeric coordinate values and a shift parameter are adjusted; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric coordinate values rather than reverting to pre-step(i) values; it continues the parameter tuning approach with different numbers.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and comments for hexagon center positions; no structural algorithm change, just tweaking positional constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts the numeric coordinate values introduced in step (i) rather than reverting them; it continues the parameter tuning approach with different values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length to fix feasibility issues. Could also be considered algorithm_refinement or bug_fix, but the changes are purely to numeric constants in the geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further incremental parameter adjustments to the same layout, not reverting step (i)'s changes but continuing to tune numeric constants in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length slightly; no structural algorithm change, just tweaking constants in the geometric layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the same numeric parameters in the same direction (tightening coordinates and reducing outer hex side length), which is a continuation of parameter tuning rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates, y_shift multiplier, outer_hex_side_length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters in the same direction, making small adjustments to center coordinates, y_shift multiplier, and outer_hex_side_length rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes are purely numeric coordinate adjustments and scalar constants (center positions, y_shift multiplier, outer_hex_side_length) without any structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small numeric adjustments to coordinates and outer_hex_side_length, continuing the parameter tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length slightly; no structural algorithm change, just tweaking positional constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tweaks the numeric coordinate values and y_shift parameter rather than reverting step (i)'s changes; it continues the same parameter tuning approach with different values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts numeric coordinate values and shift parameters for hexagon centers without changing the algorithmic structure",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments in the same direction (slightly different numeric values), not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Only numeric constants (center coordinates and y_shift multiplier) are adjusted; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small incremental parameter adjustments (slightly different x-coordinates, y_shift multiplier, and outer_hex_side_length) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: x-coordinates, y-shift multiplier, and outer_hex_side_length. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction (slightly different x-coordinates) rather than reverting to previous values; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusting coordinate values of hexagon centers (numeric constants) to fine-tune packing layout without changing the algorithmic approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small further adjustments to numeric constants (e.g., 2.52\u21922.50, 3.62\u21923.60, 0.50\u21920.46) continuing the same parameter tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: center coordinates slightly adjusted (2.52\u21922.50, 3.62\u21923.60) and y_shift 0.50\u21920.46. No structural algorithm change.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restored the coordinate values (2.52, 3.62, 2.28) and y_shift factor (0.48) that step (i) had changed from, effectively undoing step (i)'s parameter adjustments back toward earlier values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Small numeric adjustments to center coordinates, y_shift, and comments. No structural algorithm change, just tweaking coordinate constants.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with further small numeric adjustments to the same coordinates and constants, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length constants without structural algorithm changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values, not reverting step (i)'s changes but making further adjustments in the same direction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Only numeric coordinate constants and scaling factors are adjusted; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further tunes the numeric parameters in the same direction (tightening coordinates and outer hex size), rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (center coordinates, y_shift factor, outer_hex_side_length) are adjusted; no structural change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments to the same approach, tweaking coordinates and constants rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Adjusts numeric coordinate values and outer hex side length slightly; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further adjusts numeric parameters in the same direction (parameter tuning) rather than reverting step (i)'s changes; no code was restored to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Adjusts numeric coordinate values and outer hexagon side length slightly to tighten packing; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further parameter adjustments (y_shift from 0.52 to 0.54, outer_hex_side_length from 5.50 to 5.58) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes two numeric constants: y_shift multiplier (0.52\u21920.54) and outer_hex_side_length (5.50\u21925.58), with no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

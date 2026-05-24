@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "gpt-5.4",
+  "level": "L2b",
+  "run_id": "L2b__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the row coordinates and outer_hex_side_length to fix a bug, but does not revert the initial generation; it retains the same overall structure and approach while adjusting specific values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "The previous code had incorrect center spacings (using 2*dx, 3*dx, 4*dx multiples) that likely produced non-tangent or overlapping hexagons and an oversized outer hexagon. The fix corrects the lattice coordinates to proper tangent spacings and reduces the outer hexagon size accordingly.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces step (i)'s approach with a different lattice construction and larger outer hexagon, which is a new algorithm refinement rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Restructures the geometric construction (same family: geometric_construction) with a different 4-4-4 arrangement and corrected outer hexagon size to achieve feasibility. Could also be considered bug_fix since the previous code was producing invalid results, but the change is more of a deliberate geometric redesign than a simple defect patch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the approach by computing the outer hexagon size more precisely and adjusting the arrangement, rather than reverting to a previous state; it builds upon step (i)'s general 4-4-4 lattice strategy with improvements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Stays within geometric_construction family but restructures the lattice arrangement from a simple 4-4-4 grid to an axial-coordinate-based 2-3-4-3 cluster, centers the cluster, and computes the outer hexagon size more precisely using support functions instead of a hardcoded value.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the axial-coordinate-based 2-3-4-3 cluster from step (i) with a different 3-4-3-2 row layout and a different outer hexagon sizing method, which is a different approach to the same problem rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Rewrites the geometric construction with a different lattice layout (3-4-3-2 vs 2-3-4-3) and revised containment computation, but stays within the geometric_construction family. Could also be considered initialization_change since it's changing the starting configuration, but the structural changes to containment checking push it toward algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the lattice-based approach with a completely different ultra-conservative sparse grid strategy to diagnose feasibility issues, which is a different algorithmic approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces a compact lattice packing with an extremely conservative sparse grid layout and large outer hexagon to diagnose feasibility issues. Both approaches are geometric_construction family (same family), but the change is structural - switching from a tight lattice to a deliberately sparse diagnostic layout. Could also be considered search_space_change or initialization_change, but the dominant change is the construction strategy within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the sparse grid from step (i) by tightening spacings and adding staggering, which is a parameter tuning modification rather than a revert to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "The change reduces spacing constants (spacing_x, spacing_y, outer_hex_side_length) and adds a row_offset for staggering, but the overall grid layout structure (3 rows of 4) remains the same. The staggering addition is a minor structural tweak but the dominant change is numeric parameter reduction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same approach from step (i) by further reducing the spacing and outer hex parameters, rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further tightened values, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed to tighter values; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed to tighter values, no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed to tighter values, with no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed to tighter values, no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues tightening the same parameters further in the same direction, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further tightening the numeric constants, not reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adjusts parameters in the opposite direction (increasing spacing and outer hex side length) based on feedback that step (i)'s values were infeasible, but this is a normal iterative refinement rather than a revert of the code structure.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed; no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with slightly different numeric constants, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed slightly; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small adjustments to the same constants, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed to slightly tighter values; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes outer_hex_side_length from 7.41 to 7.35, continuing the same parameter tuning direction without reverting any changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.41 to 7.35, a numeric parameter adjustment with no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further adjusting spacing_x, spacing_y, row_offset, and outer_hex_side_length to new values rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, outer_hex_side_length) are changed with no structural code modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding new center_nudge logic and further reducing outer_hex_side_length, rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: Reduces outer_hex_side_length from 7.29 to 7.27 and adds small positional nudges (center_nudge=0.012) to inner hexagon placements. The nudges are minor coordinate adjustments rather than structural algorithm changes, and the outer side length change is a numeric constant tweak. Could also be algorithm_refinement due to the new nudge logic, but the dominant intent is fine-tuning numeric parameters.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the center_nudge logic and row_sign variable added in step (i), restoring the simpler coordinate calculation, and reverts outer_hex_side_length from 7.27 back toward the previous value (7.285), with reasoning noting that 7.27 failed.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Removes small nudge adjustments and changes outer_hex_side_length from 7.27 to 7.285; primarily numeric constant tuning with minor simplification of geometry offsets",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a center_nudge adjustment and further tunes outer_hex_side_length from 7.285 to 7.2825, which is a continuation of parameter tuning rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changes numeric constants: outer_hex_side_length from 7.285 to 7.2825, adds center_nudge=0.0025, and adjusts specific point positions by small amounts. These are fine-grained numeric tweaks within the same geometric construction.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by further adjusting row_offset, center_nudge, outer_hex_side_length, and adding new point adjustments, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric constant adjustments to spacing, offset, nudge values, and outer hex side length without structural changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small numeric adjustments in the same direction, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, outer hex side length) are adjusted with no structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by making small adjustments to center_nudge, row nudge values, and outer_hex_side_length, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: center_nudge, x-offset, and outer_hex_side_length values tweaked slightly",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction with small numeric changes, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: center_nudge, x-offset values, and outer_hex_side_length. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction with small numeric changes and adds minor new adjustments, rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric constant adjustments to spacing, offsets, nudges, and outer hex side length within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same parameters in the same direction, continuing the parameter tuning approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, outer hex side length) are changed by small amounts; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with small numeric adjustments, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, outer hex side length) are changed; no structural code modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small numeric adjustments to the same constants, which is a continuation of the same approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants are changed (spacing, offsets, nudges, outer_hex_side_length) with no structural code change, continuing a bracket refinement within the same staggered layout.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: spacing, offsets, nudges, and outer hex side length. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, center_nudge, small adjustment values, outer_hex_side_length) are changed with no structural code modifications.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, outer hex side length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with slightly different numeric values and adds a small code tweak, which is a continuation of the same approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric constant adjustments to spacing, offsets, nudges, and outer hex side length within the same layout family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values and adds new x-shift adjustments, which is a continuation of the same approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer_hex_side_length) are changed; the algorithm structure and layout strategy remain identical.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric constants and adds a small new adjustment, but does not revert or undo step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Multiple small numeric constant adjustments (spacing_x, spacing_y, row_offset, center_nudge, various micro-offsets, outer_hex_side_length) with no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same parameters, continuing the parameter tuning approach rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer hex side length) are changed; no structural code modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction with small numeric adjustments, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing_x, spacing_y, row_offset, center_nudge, various small offsets, outer_hex_side_length) are changed with no structural code modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with small numeric adjustments to the same constants, without reverting any changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer_hex_side_length) are changed with no structural code modification.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small numeric adjustments in the same direction, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants are changed (spacing, offsets, nudges, outer hex side length) with no structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning by adjusting numeric constants to slightly different values rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges) are tweaked; no structural change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small numeric adjustments and adds a new conditional, which is a continuation of the same approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Fine-tuning numeric constants (spacing, offsets, nudges, side length) with no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues fine-tuning numeric constants in the same direction as step (i), making small adjustments and adding a few new nudge terms rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Fine-tuning numeric constants (spacing, offsets, nudges, outer hex side length) within the same 4x3 staggered layout algorithm",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning within the same algorithm, adjusting numeric constants slightly rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (spacing_y, row_offset, center_nudge, various micro-nudge values, outer_hex_data center, outer_hex_side_length) are changed. No structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small adjustments to the same numeric constants, representing a refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "All changes are tiny numeric constant adjustments (spacing_x, spacing_y, row_offset, center_nudge, various nudge values, outer_hex_side_length) with no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small numeric adjustments and adds a few new nudge lines, which is a refinement of step (i)'s approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "All changes are tiny numeric constant adjustments (spacing, offsets, nudges) within the same hand-designed special-case layout, with no structural algorithm change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction, consolidating some conditional blocks and adjusting numeric constants slightly, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Fine-tuning numeric constants (spacing_y, row_offset, center_nudge, pair_split, outer_hex_data offsets) within the same hand-designed geometric construction. The pair_split variable is new but just consolidates existing nudge logic with a slightly different constant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues fine-tuning numeric constants in the same construction approach, making small adjustments rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric constant adjustments to spacing, offsets, nudges, and outer hex side length within the same geometric construction family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning within the same geometric construction family, adjusting numeric constants to different values rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes are exclusively to numeric constants (spacing, offsets, nudges, outer hex side length) within the same 4x3 staggered layout algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values in the same algorithm structure, which is a normal iterative refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "All changes are small numeric constant adjustments (spacing, offsets, nudges, outer hex side length) within the same 4x3 staggered layout algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with small numeric adjustments to the same constants, representing a further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer hex side length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction with small numeric adjustments, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer hex side length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction with small numeric adjustments, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer side length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning in the same direction with small numeric adjustments, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer hex side length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with small numeric adjustments, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants are changed (spacing, offsets, nudges, side length) with no structural code changes",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with slightly different numeric constants, representing a further refinement rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer hex side length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small numeric adjustments, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer hex side length) are changed; no structural code change beyond adding two small conditional nudge terms that follow the existing pattern.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values and removes a couple of small conditional nudge terms, but this is a continuation of the same optimization approach rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants (spacing, offsets, nudges, outer hex side length) are changed; no structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values rather than reverting to a previous state; the comment mentions 'rollback' but the actual changes are new parameter adjustments, not a restoration of prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Multiple small numeric constant adjustments to spacing, offsets, nudges, and outer hex side length within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same parameters in the same approach, which is continued parameter tuning rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Multiple small numeric constant adjustments (spacing, offsets, nudges, outer hex size) with no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with different numeric values and introduces new variables, representing a further refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Multiple small numeric constant adjustments (nudges, offsets, outer_hex center) to fine-tune hexagon positions within the same geometric construction approach",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues parameter tuning with small numeric adjustments in the same direction, simplifying some variables but not restoring previous values or undoing step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Multiple small numeric constant adjustments (spacing_y, center_nudge, outer_pair_extra, mid_pair_extra, y-offsets, outer_hex_side_length) with no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric constant adjustments in the same direction as step (i), continuing parameter tuning rather than reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants are changed (spacing_y, center_nudge, various small offset values, outer_hex_side_length) with no structural code changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the outer_hex_side_length from 7.26068 to 7.26066 and updates comments, which is a continuation of parameter tuning rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26068 to 7.26066 and updates comments; no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a new mid_spread parameter and adjusts outer_hex_side_length and outer_hex_data, which is a continuation of parameter tuning rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Tiny numeric constant adjustments: mid_spread, outer_hex center offset, and outer_hex_side_length. All changes are small scalar tweaks to existing geometric parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) removes the mid_spread parameter added/tuned in step (i) and adjusts other values, but this is a continued refinement rather than a revert \u2014 it simplifies the approach while continuing in the same optimization direction without restoring any prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Removes mid_spread variable and adjusts numeric constants (outer_hex center x from 0.00043 to 0.00042, side_length from 7.26045 to 7.26062). All changes are small numeric constant tweaks.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes comments while keeping all numeric values identical to step (i), which is not a revert but a cosmetic edit.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.65,
+      "label_notes": "The code changes only numeric constants (outer_hex_data center coordinates and outer_hex_side_length) along with comment rewording. The dominant semantic change is the parameter values, though the comment changes add some code_cleanup flavor.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes additional parameter changes (center_nudge value, new elif branch, comment rewording) on top of step (i) rather than reverting it; the core structure and most parameters from step (i) are preserved.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Small numeric constant changes: center_nudge from 0.00968 to 0.00976, added small offset 0.00010 for outer positions, and minor comment updates. These are fine-grained parameter adjustments within a hand-designed geometric construction.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts center_nudge from 0.00976 back to 0.00968 (the value before step i) and removes the outer positions offset (0.00010) that step (i) added.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes numeric constants (center_nudge from 0.00976 to 0.00968, outer_hex_side_length to 7.26062) and removes a small positional adjustment for specific indices. Primarily fine-tuning of placement parameters.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments (spacing_x, center_nudge, and other constants) rather than reverting step (i)'s changes; this is continued parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Tiny numeric constant adjustments to spacing_x, center_nudge, x-offsets, y-offsets \u2014 all scalar parameter tweaks with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric parameter adjustments in the same direction as step (i), continuing parameter tuning rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only small numeric constant adjustments to spacing_x, center_nudge, x-offsets, y-offsets, and outer_hex_side_length with no structural changes.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric adjustments to the same parameters, continuing the parameter tuning approach rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only tiny numeric constant changes to center_nudge, x-offsets, outer_hex center, and outer_hex_side_length values",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small numeric tweaks to parameters (center_nudge, x-offsets, outer_hex center, outer_hex_side_length) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only small numeric constant changes to center_nudge, x-offsets, outer_hex_data, and outer_hex_side_length values",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further small parameter adjustments to outer_hex_data and outer_hex_side_length values rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: outer_hex_data center coordinates and outer_hex_side_length slightly adjusted",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only further adjusts the outer_hex_side_length by 0.00001, continuing the parameter tuning direction rather than reverting any changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Tiny numeric constant change to outer_hex_side_length from 7.26048 to 7.26047",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further decreasing outer_hex_side_length from 7.26047 to 7.26044, which is a continuation not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26047 to 7.26044, a minor numeric tweak with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same direction of parameter tuning by further decreasing outer_hex_side_length from 7.26044 to 7.26041, rather than reverting step (i)'s change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26044 to 7.26041, a minor numeric adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same micro-tuning approach by further decreasing outer_hex_side_length from 7.26041 to 7.26038, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26041 to 7.26038, a tiny numeric adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same direction of parameter tuning by further decreasing outer_hex_side_length from 7.26038 to 7.26034, rather than reverting step (i)'s change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26038 to 7.26034, a minor numeric adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same direction of micro-tuning outer_hex_side_length downward (7.26034 -> 7.26030), which is a continuation of the parameter tuning approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26034 to 7.26030, a pure numeric constant tweak.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotone descent on outer_hex_side_length (7.26030 -> 7.26024), which is a further parameter tuning step, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26030 to 7.26024, a minor numeric adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further decreasing outer_hex_side_length from 7.26024 to 7.26018, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the outer_hex_side_length numeric constant from 7.26024 to 7.26018",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further decreasing outer_hex_side_length from 7.26018 to 7.26012, rather than reverting to the previous value of 7.26024.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26018 to 7.26012, a pure numeric constant adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further decreasing outer_hex_side_length from 7.26012 to 7.26003, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.26012 to 7.26003, a minor numeric adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same 1D descent by further reducing outer_hex_side_length from 7.26003 to 7.25997, which is a continuation of the same approach rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the outer_hex_side_length numeric constant from 7.26003 to 7.25997",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further decreasing outer_hex_side_length from 7.25997 to 7.25994, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.25997 to 7.25994, a minor numeric adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further decreasing outer_hex_side_length from 7.25994 to 7.25990, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.25994 to 7.25990, a minor numeric tweak with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further decreasing outer_hex_side_length from 7.25990 to 7.25986, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only changes the outer_hex_side_length constant from 7.25990 to 7.25986, a minor numeric adjustment with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the parameter tuning approach by further adjusting outer_hex_side_length and outer_hex_data, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_data[0] from 0.00044 to 0.000445 and outer_hex_side_length from 7.25986 to 7.25982",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach by further adjusting outer_hex_data[0] from 0.000445 to 0.000448 and outer_hex_side_length from 7.25982 to 7.25978, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only numeric constants changed: outer_hex_data x-offset from 0.000445 to 0.000448, and outer_hex_side_length from 7.25982 to 7.25978.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same microscopic parameter tuning approach, further adjusting outer_hex_data x-offset from 0.000448 to 0.000450 and outer_hex_side_length from 7.25978 to 7.25974, without reverting any changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25978 to 7.25974 and outer_hex_data x-offset from 0.000448 to 0.000450. No structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with further small adjustments to outer_hex_side_length and x-offset, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.97,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25974 to 7.25970 and x-offset from 0.000450 to 0.000452. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trend by further decreasing outer_hex_side_length and increasing x-offset, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25970 to 7.25966 and x-offset from 0.000452 to 0.000454. No structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trend by further adjusting outer_hex_side_length from 7.25966 to 7.25962 and x-offset from 0.000454 to 0.000456, rather than reverting to previous values.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25966 to 7.25962 and outer_hex_data x-offset from 0.000454 to 0.000456. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotone parameter tuning trend (further decreasing outer_hex_side_length and increasing x-offset) rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_data[0] from 0.000456 to 0.000458 and outer_hex_side_length from 7.25962 to 7.25958. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trend by further adjusting outer_hex_data[0] from 0.000458 to 0.000460 and outer_hex_side_length from 7.25958 to 7.25954, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25958 to 7.25954 and outer_hex_data x from 0.000458 to 0.000460. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory with further small adjustments (x from 0.000460 to 0.000462, side_length from 7.25954 to 7.25950), not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Tiny numeric adjustments to outer_hex_side_length and outer_hex_data values along a continuation branch, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes tiny numeric adjustments continuing the same optimization branch, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length and one coordinate value, continuing a smooth parameter search trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory with small numeric changes to outer_hex_data and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_data[0] from 0.000464 to 0.000466 and outer_hex_side_length from 7.25946 to 7.25942. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trend by further adjusting the numeric constants in the same direction, not reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length and outer_hex_data values slightly adjusted along a continuation branch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with small numeric adjustments to outer_hex_data and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_data x-component from 0.000468 to 0.000470 and outer_hex_side_length from 7.25938 to 7.25934. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach, making further small adjustments to the same constants (outer_hex_data x from 0.000470 to 0.000472, outer_hex_side_length from 7.25934 to 7.25930) rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_data x-value from 0.000470 to 0.000472 and outer_hex_side_length from 7.25934 to 7.25930. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory with further small adjustments to the same constants, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length and outer_hex_data x-coordinate slightly adjusted.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with minor numeric adjustments, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Tiny numeric adjustments to outer_hex_data and outer_hex_side_length constants with no structural change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further tiny numeric adjustments to the same parameters, continuing the same optimization trajectory rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_data[0] from 0.000476 to 0.000478 and outer_hex_side_length from 7.25922 to 7.25918. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory by further adjusting outer_hex_data[0] from 0.000478 to 0.000480 and outer_hex_side_length from 7.25918 to 7.25914, which is a continuation not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25918 to 7.25914 and outer_hex_data x-component from 0.000478 to 0.000480. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning pattern by further adjusting outer_hex_side_length and outer_hex_data x-component in the same direction, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Tiny numeric adjustments to outer_hex_data and outer_hex_side_length constants, no structural change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes further tiny numeric adjustments to the same parameters (outer_hex_data and outer_hex_side_length) in the same direction, continuing the parameter tuning approach rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_data[0] from 0.000482 to 0.000484 and outer_hex_side_length from 7.25910 to 7.25906",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory by further adjusting outer_hex_data[0] from 0.000484 to 0.000486 and outer_hex_side_length from 7.25906 to 7.25902, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_data[0] from 0.000484 to 0.000486 and outer_hex_side_length from 7.25906 to 7.25902. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning pattern by further adjusting outer_hex_data[0] from 0.000486 to 0.000488 and outer_hex_side_length from 7.25902 to 7.25898, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values following an empirical continuation strategy, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with small numeric adjustments to outer_hex_data and outer_hex_side_length, consistent with the ongoing empirical continuation strategy rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric adjustments to outer_hex_data and outer_hex_side_length constants, no structural change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same micro-continuation pattern with small numeric adjustments to outer_hex_data and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_data and outer_hex_side_length constants, continuing a micro-optimization trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same micro-optimization trajectory with further small numeric adjustments to outer_hex_data and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing an incremental optimization trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning trajectory with small numeric adjustments to outer_hex_data and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a monotonic parameter sweep along a feasibility frontier.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotonic parameter sweep with small numeric adjustments to outer_hex_side_length and outer_hex_data, consistent with ongoing parameter tuning rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing an incremental parameter sweep along a feasible frontier.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small numeric adjustments to outer_hex_data and outer_hex_side_length, continuing the incremental parameter sweep rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing an incremental parameter sweep along an empirically observed ridge.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning approach with small numeric adjustments to outer_hex_side_length and outer_hex_data, consistent with the ongoing parameter sweep rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length decreased from 7.25874 to 7.25870 and outer_hex_data[0] changed from 0.000500 to 0.000502. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory by further adjusting outer_hex_side_length and outer_hex_data[0] in the same direction, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25870 to 7.25866 and outer_hex_data x from 0.000502 to 0.000504. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trend by further adjusting outer_hex_side_length from 7.25866 to 7.25862 and x from 0.000504 to 0.000506, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, no structural change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory with small numeric adjustments to outer_hex_side_length and outer_hex_data, consistent with the ongoing frontier-following pattern rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a monotone parameter sweep.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotone parameter sweep with small numeric adjustments to outer_hex_side_length and outer_hex_data, consistent with the ongoing tuning pattern rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Incremental numeric adjustments to outer_hex_side_length and outer_hex_data values along a continuation trajectory, no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning trajectory with small numeric adjustments to outer_hex_side_length and outer_hex_data, consistent with the ongoing frontier-following approach rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Tiny numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a ridge-following optimization trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same ridge-following optimization trajectory with tiny numeric adjustments to outer_hex_side_length and outer_hex_data, consistent with the ongoing parameter tuning pattern rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a systematic parameter sweep along a feasible ridge.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with small numeric adjustments to outer_hex_side_length and outer_hex_data, consistent with the ongoing systematic parameter sweep rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric adjustments to outer_hex_data and outer_hex_side_length constants, continuing an incremental parameter sweep along a feasible ridge.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning trajectory with small numeric adjustments to outer_hex_data and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a gradient-like parameter sweep along a feasibility ridge.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory with small numeric adjustments to outer_hex_side_length and outer_hex_data, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25838 to 7.25834 and outer_hex_data x-value from 0.000518 to 0.000520",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory with further small adjustments to outer_hex_side_length and x-value, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a monotone parameter sweep.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotone parameter sweep with small incremental changes, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Microscopic adjustment of numeric constants (outer_hex_side_length and outer_hex_data values) continuing a frontier-following trajectory with no structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same frontier-following parameter tuning trajectory with another microscopic adjustment, not reverting the previous step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing an incremental optimization trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning trajectory with small numeric adjustments to outer_hex_side_length and outer_hex_data, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_data and outer_hex_side_length constants along a known feasible ridge.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning approach with small numeric adjustments to outer_hex_data and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Microscopic adjustments to numeric constants (outer_hex_side_length and outer_hex_data values) continuing an incremental optimization trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning trajectory with small adjustments to outer_hex_side_length and outer_hex_data, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25814 to 7.25810 and outer_hex_data x from 0.000530 to 0.000532. No structural change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory by further adjusting outer_hex_side_length and x values in the same direction, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25810 to 7.25806 and outer_hex_data x-offset from 0.000532 to 0.000534. This is a continuation of incremental parameter refinement along a feasible ridge.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning pattern, further adjusting outer_hex_side_length from 7.25806 to 7.25802 and x-offset from 0.000534 to 0.000536, which is a continuation rather than a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25806 to 7.25802 and outer_hex_data x-component from 0.000534 to 0.000536. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory by further adjusting the same constants in the same direction, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_data and outer_hex_side_length constants along an established optimization trajectory",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory with small numeric adjustments to outer_hex_data and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing an incremental refinement trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning trajectory with small numeric adjustments, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25794 to 7.25790 and outer_hex_data[0] from 0.00054 to 0.000542. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory with further small adjustments to outer_hex_data[0] and outer_hex_side_length, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_data and outer_hex_side_length constants, continuing a series of incremental parameter refinements.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning pattern, making small adjustments to outer_hex_data and outer_hex_side_length rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a monotone boundary search.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotone boundary search with small numeric adjustments to outer_hex_side_length and outer_hex_data, which is a continuation of the same approach, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Only numeric constants changed: outer_hex_side_length from 7.25782 to 7.25778 and outer_hex_data x-offset from 0.000546 to 0.000548. No structural code change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same parameter tuning trajectory, further adjusting outer_hex_side_length and x-offset in the same direction, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a monotone improvement trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotone parameter tuning trajectory with small numeric adjustments to outer_hex_side_length and outer_hex_data, consistent with the ongoing optimization pattern rather than reverting.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a monotone parameter sweep.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotone parameter sweep with small numeric adjustments, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing an incremental optimization trajectory.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same incremental parameter tuning trajectory with small numeric adjustments to outer_hex_side_length and outer_hex_data, not reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a monotone parameter sweep.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) continues the same monotone parameter sweep pattern, making small incremental adjustments in the same direction rather than reverting step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.95,
+      "label_notes": "Small numeric adjustments to outer_hex_side_length and outer_hex_data values, continuing a monotone parameter sweep.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}

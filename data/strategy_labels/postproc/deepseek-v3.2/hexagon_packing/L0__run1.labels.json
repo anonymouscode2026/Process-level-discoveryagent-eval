@@ -1,0 +1,1521 @@
+{
+  "vocabulary_version": "v2",
+  "annotation_date": null,
+  "labeler_model": "claude-opus-4-6",
+  "labeler_settings": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1000
+  },
+  "pass1_skipped_step_indices": [
+    0
+  ],
+  "task_id": "math/hexagon_packing",
+  "task_name": "hexagon_packing",
+  "model": "deepseek-v3.2",
+  "level": "L0",
+  "run_id": "L0__run1",
+  "n_steps": 150,
+  "labels": [
+    {
+      "step_idx": 0,
+      "step_number": 1,
+      "primary_label": "__INITIAL_GENERATION__",
+      "confidence": 1.0,
+      "label_notes": "Sentinel: initial generation, not an edit",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies comments and adjusts the outer_hex_side_length parameter from 3.9419 to 3.941912, which is a refinement/parameter tuning of the initial generation, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 1,
+      "step_number": 2,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changes the outer hexagon side length from 3.9419 to 3.941912, a minor numeric constant adjustment. The rest is comment cleanup.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded outer_hex_side_length with a binary search approach to compute it dynamically, which is a different algorithmic refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 2,
+      "step_number": 3,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces a hardcoded outer hexagon side length with a binary search to find the minimal containing side length, refining the geometric construction approach within the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the binary search approach from step (i) with a grid search optimization over translations and an analytical R computation, which is a different refinement approach rather than a revert to pre-step(i) code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 3,
+      "step_number": 4,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces a fixed hardcoded translation with a grid search over translations to minimize the outer hexagon radius. This is a refinement within the same geometric construction family - adding local optimization over a parameter rather than switching algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different approach (scipy optimization with overlap checking, SAT-based containment, etc.) rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 4,
+      "step_number": 5,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric construction approach to a stochastic search (simulated annealing / optimization-based) approach with random perturbations, temperature schedule, and iterative refinement. This crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made to the code, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 5,
+      "step_number": 6,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 6,
+      "step_number": 7,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) adds new algorithm refinement code rather than reverting anything.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 7,
+      "step_number": 8,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.88,
+      "label_notes": "Replaces hardcoded outer side length with binary search for minimal enclosing hexagon side length, plus rotation optimization. Still within geometric construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the binary search approach from step (i) with a different computation method (pre-computed minimal side length and simplified containment logic), which is an algorithm refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 8,
+      "step_number": 9,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaced the binary search over outer hexagon side length with a hardcoded pre-computed value (3.9419). The containment logic was gutted and replaced with a constant, which is a simplification/refinement of how the outer hexagon size is determined. Could also be seen as a bug_fix if the previous binary search was producing wrong results, but the change seems more like a shortcut/hardcoded approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a different algorithm (new packing strategy, different helper functions, different optimization logic) rather than reverting to the pre-step(i) code; it's an algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 9,
+      "step_number": 10,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a stochastic optimization approach (with overlap checking, containment verification, and iterative optimization) to a geometric construction approach using a known hexagonal lattice arrangement with hardcoded SOTA target value. Crosses from stochastic_search to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm (back to overlap checking and optimization with fallback), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 10,
+      "step_number": 11,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite replacing a geometric construction approach with a force-directed/repulsion simulation (gradient-based optimization with overlap penalties and containment constraints), crossing from geometric_construction to physical_simulation family. Also adds validation with SAT-based overlap checking and fallback.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made to the code, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 11,
+      "step_number": 12,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 12,
+      "step_number": 13,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 13,
+      "step_number": 14,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead, step (i+1) is an algorithm_switch rewriting the code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 14,
+      "step_number": 15,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaced a stochastic search (simulated annealing with overlap/containment checks) with a hand-designed geometric construction using a known hexagonal packing pattern with small hardcoded adjustments. This crosses from stochastic_search family to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) completely removes the hand-designed geometric construction from step (i) and replaces it with a stochastic search approach (simulated annealing with overlap/containment checks and a fallback), effectively reverting back to the family of approaches used before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 15,
+      "step_number": 16,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a simple geometric construction to a multi-start simulated annealing / gradient-based optimization approach with SAT-style overlap checking, representing a switch from geometric_construction to stochastic_search family",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the fallback arrangement and adjusts parameters within the same stochastic optimization approach, rather than reverting to the previous geometric construction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 16,
+      "step_number": 17,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Removes hardcoded outer_hex_side_length override from optimize_packing, updates fallback arrangement with a more compact geometric pattern and a specific outer_hex_side_length value. This is a refinement of the geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces both the outer hex side length computation and the fallback arrangement with different approaches, which is a continued refinement rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 17,
+      "step_number": 18,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Replaces a heuristic formula for computing outer hexagon side length with a binary search approach, and updates the fallback arrangement. Both changes refine the existing geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the binary search approach introduced in step (i) and replaces it with a simpler heuristic formula plus a hardcoded value, effectively reverting the binary search refinement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 18,
+      "step_number": 19,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Replaces binary search for minimal outer hexagon side length with a direct computation approach, but then hardcodes the final value (3.9419). The hardcoded value and the changed computation method make this a refinement of how the bounding hexagon size is determined, though the hardcoded constant also has parameter_tuning flavor.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different approach to the problem, not a revert of step (i)'s changes; it introduces new algorithms and structures rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 19,
+      "step_number": 20,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing solver. The previous code used a more complex optimization approach with scipy.optimize.minimize and detailed overlap/containment checking. The new code uses a geometric construction approach with a ring-based initial layout and a simpler push-apart adjustment, representing a fundamentally different approach to the problem.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different algorithm with scipy.optimize, SAT-based overlap checking, and a different optimization strategy, rather than reverting to the previous approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 20,
+      "step_number": 21,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver with fundamentally restructured approach including new geometric containment/overlap checking, optimization loop with gradient-based refinement, and different initialization strategy. The overall structure changed significantly enough to constitute an algorithm switch, though it remains within physical_simulation/gradient_descent family - borderline with algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made to the code, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 21,
+      "step_number": 22,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, so step (i+1) is refining the algorithm rather than reverting anything.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 22,
+      "step_number": 23,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the second ring placement with specific known-good coordinates and improves the outer hexagon containment check geometry, but ultimately hardcodes the outer side length to a known optimal value. The core approach (geometric construction with rings) remains the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the second ring placement approach and outer hexagon computation but does not restore previous code or undo step (i); it replaces the hardcoded second ring coordinates with a loop-based approach while keeping the same final hardcoded outer_hex_side_length value.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 23,
+      "step_number": 24,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the placement strategy for second-ring hexagons (different angular positions and distances) and modifies the outer hexagon side length computation method, but remains within geometric_construction family. The final hardcoded value 3.9419 is retained.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (different imports, different helper functions, different placement strategy), which constitutes an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 24,
+      "step_number": 25,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite replacing overlap-checking/containment-based approach with a geometric construction approach using hexagonal grid packing and bounding-box fitting. Crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm using overlap checking and optimization, which is a new approach rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 25,
+      "step_number": 26,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing solver: replaces the previous geometric construction approach with a new approach that includes explicit overlap checking via SAT, containment checking, and a validation/fallback mechanism. The overall structure and methodology changed substantially.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 26,
+      "step_number": 27,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 27,
+      "step_number": 28,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (changing 2.6 to 2.55 and 3.9419 to 3.9415) rather than reverting step (i), which was a no-change step anyway.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 28,
+      "step_number": 29,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.88,
+      "label_notes": "Changes numeric constants (radius 2.6\u21922.55, outer_hex_side_length 3.9419\u21923.9415) with no structural algorithm change",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite replacing the previous approach with a different construction method (hexagon_packing_12), not a revert of the parameter tuning in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 29,
+      "step_number": 30,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from an optimization-based approach (with containment checking, overlap detection, and fallback) to a geometric_construction approach using a fixed lattice packing with hardcoded positions and outer hexagon size.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hardcoded lattice approach with a different optimization-based approach including overlap detection and containment checking, which is a new algorithm switch rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 30,
+      "step_number": 31,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a hand-designed special-case (hardcoded coordinates) with a numerical optimization approach (scipy.minimize with gradient-based optimization and constraint checking via SAT/containment). This crosses from hand_designed_special_case family to physical_simulation/exact_solver family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 31,
+      "step_number": 32,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 32,
+      "step_number": 33,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, so step (i+1) is making new refinements rather than reverting anything.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 33,
+      "step_number": 34,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the computation of outer hex side length from a hardcoded value to vertex-based circumradius calculation, updates fallback arrangement to a more compact lattice, and adjusts the final hardcoded side length from 3.9419 to 3.9410/3.9415. Mix of algorithm refinement and parameter tuning, but the structural changes to the fallback and the circumradius computation dominate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (rotated lattice with optimized orientations), rather than reverting to the pre-step(i) code; this is an algorithm switch, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 34,
+      "step_number": 35,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite replacing a validation-based approach with overlap checking (SAT) and fallback lattice with a direct geometric construction using rotated hexagonal lattice positions. Moves from a complex validation/overlap-checking approach to a simpler geometric construction, crossing from a hybrid validation approach to a pure geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different approach involving overlap checking and validation, which is a new algorithm switch rather than reverting to the previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 35,
+      "step_number": 36,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a hardcoded geometric construction with a scipy.optimize-based numerical optimization approach (gradient descent / minimize), switching from hand_designed_special_case family to physical_simulation/gradient_descent family. Also adds validation with SAT-based overlap checking and containment checks.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the containment calculation and outer hexagon side length computation within the same optimization-based approach introduced in step (i), rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 36,
+      "step_number": 37,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "The code refines the computation of max_distance and outer_hex_side_length with more accurate geometry reasoning, but ultimately hardcodes a known SOTA value. The geometric computation improvement is algorithm_refinement, though the hardcoded value at the end is borderline harness_or_scope_change. The dominant change is refining how the outer hexagon size is determined.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric computation approach with a different but related method for computing max_distance (using s_candidate instead of raw vertex distances), and changes the hardcoded value slightly from 3.9419123 to 3.9419; this is a refinement, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 37,
+      "step_number": 38,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "The code attempts to compute the outer hexagon side length more precisely using a containment formula for points inside a hexagon, but then overrides with a hardcoded value (3.9419). The primary change is refining the containment calculation logic, though the hardcoded override remains. Borderline with parameter_tuning (hardcoded value changed from 3.9419123 to 3.9419) and code_cleanup (rewriting comments/logic that gets overridden).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the containment formula with a different simpler approach (max_distance / cos(pi/6)), but the hardcoded override of 3.9419 remains unchanged; this is an algorithm refinement replacing one approach with another, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 38,
+      "step_number": 39,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Removes a complex vertex-based outer hexagon side length computation and replaces it with a simpler distance-to-side-length conversion, but then hardcodes the result to 3.9419. The dominant change is simplifying the containment check logic, though the hardcoded value makes it partly parameter_tuning. Since the geometric computation method changed, algorithm_refinement is primary.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different algorithm (scheduled rewrite), not a revert of step (i)'s changes; it replaces the entire approach rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 39,
+      "step_number": 40,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the hexagon packing solver. The previous code used geometric containment checks with separating axis theorem, while the new code uses a different approach with binary search on side length and iterative position optimization. The overall structure is fundamentally different, though both are geometric construction approaches. Given the massive rewrite and structural changes, this leans algorithm_switch but could be algorithm_refinement within geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different algorithm with new helper functions and different optimization logic, rather than reverting to the code that existed before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 40,
+      "step_number": 41,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing solver: replaces the previous approach with a new one featuring explicit geometric containment checks (SAT-based overlap, vertex containment), optimization loop, and fallback. The overall structure is fundamentally different, though both are in the geometric/physical simulation space. The scale of rewrite and new geometric primitives suggest a cross-family or near-cross-family change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 41,
+      "step_number": 42,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, so step (i+1) cannot be reverting it; step (i+1) is an algorithm refinement that modifies the code further.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 42,
+      "step_number": 43,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Replaces a rough heuristic for computing outer hex side length with a precise feasibility-checking loop that shrinks the side length to the minimal feasible value. Also removes the fallback configuration. This is a refinement of the existing geometric construction approach.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the fallback configuration that step (i) explicitly removed, and replaces the feasibility-checking loop with a simpler direct computation, effectively undoing the key changes from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 43,
+      "step_number": 44,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Simplifies the outer side length computation method (replacing iterative feasibility check with geometric distance calculation), adds a fallback arrangement, and hardcodes the outer side length. Mix of refinement and robustness improvement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different algorithm/approach, not a revert of step (i)'s changes; it replaces the entire solution with a new one rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 44,
+      "step_number": 45,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from optimization-based approach (with overlap checking, containment validation, and iterative optimization) to a direct geometric construction of the 12-hexagon packing. This crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction with a different approach that includes overlap checking, containment validation, and optimization logic \u2014 this is a new algorithm switch, not a revert to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 45,
+      "step_number": 46,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a geometric_construction approach (hand-designed ring layout) to a stochastic_search approach (scipy.optimize.minimize with random restarts and validation). This crosses algorithm families from geometric_construction to physical_simulation/gradient_descent optimization.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes a small parameter change (hardcoding outer_hex_side_length to 3.9419) rather than reverting the optimization approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 46,
+      "step_number": 47,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Hardcodes the outer_hex_side_length to a specific constant (3.9419) instead of computing it. This is borderline between parameter_tuning and bug_fix/harness_or_scope_change, but the intent appears to be tuning the output value to achieve a better score.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the hardcoded outer_hex_side_length = 3.9419 that was added in step (i) and replaces it with a validation/adjustment loop that recomputes the value, effectively undoing the parameter tuning from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 47,
+      "step_number": 48,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds a validation/adjustment step that checks if all inner hexagon vertices fit within the outer hexagon and increases the outer side length if needed. This is a robustness improvement within the same geometric construction approach, but also has elements of bug_fix (ensuring correctness). Since there's no evidence of prior crashes or wrong outputs, labeling as algorithm_refinement.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removes the entire validation/adjustment block added in step (i) and replaces it with a hardcoded value, effectively reverting the robustness improvement.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 48,
+      "step_number": 49,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "Replaces dynamic validation/adjustment of outer hex side length with a hardcoded value. Could be parameter_tuning (setting a constant) but the removal of the validation logic is a structural change. Could also be bug_fix if the validation was producing incorrect results, but there's no clear indication of that.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different approach (algorithm_switch), not a revert of step (i)'s changes; it replaces the entire solution rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 49,
+      "step_number": 50,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from an optimization-based approach (with overlap/containment checking and numerical optimization) to a purely geometric/analytic construction with concentric layers. Crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm that includes overlap checking, containment verification, and optimization with a fallback, which is a new approach rather than reverting to the previous optimization-based method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 50,
+      "step_number": 51,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a simple analytical/geometric construction approach to an optimization-based approach with scipy.optimize.minimize, SAT-style containment checking, overlap detection via separating axis theorem, and numerical optimization. This crosses from geometric_construction family to a physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 51,
+      "step_number": 52,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 52,
+      "step_number": 53,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 53,
+      "step_number": 54,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead, step (i+1) is an algorithm switch rewriting the code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 54,
+      "step_number": 55,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from an optimization-based approach (with containment/overlap checking and iterative optimization) to a direct geometric construction approach. The previous code had optimize_packing() with validation/fallback, while the new code appears to construct a fixed geometric arrangement directly. This crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different approach that includes validation (containment/overlap checking), which is a new algorithm rather than reverting to the previous optimization-based code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 55,
+      "step_number": 56,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a simple lattice-based construction to a numerical optimization approach (optimize_packing with gradient-based/force-directed placement plus validation). Crosses from geometric_construction to a hybrid physical_simulation/optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) adds a fallback mechanism to the code from step (i) rather than reverting it; the optimization approach remains intact and the fallback is only triggered if the optimized result is invalid.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 56,
+      "step_number": 57,
+      "primary_label": "bug_fix",
+      "confidence": 0.72,
+      "label_notes": "Adds a fallback to handle the case where the optimized configuration is invalid, preventing potential crashes or invalid outputs. The comment explicitly says 'No fallback' was the prior assumption, and this fixes that gap.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 57,
+      "step_number": 58,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 58,
+      "step_number": 59,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) is an algorithm switch that replaces the existing code with a different approach, not reverting any specific change from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 59,
+      "step_number": 60,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from an optimization-based approach (with overlap checking, containment verification, and iterative refinement) to a hand-designed geometric construction with fixed layered placement (1+6+5 arrangement). Switches from stochastic_search/physical_simulation family to geometric_construction/hand_designed family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed geometric construction with a completely different optimization-based approach including overlap checking, containment verification, and iterative refinement \u2014 this is a new algorithm switch, not a revert to any prior approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 60,
+      "step_number": 61,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a simple geometric construction to an optimization-based approach (optimize_packing function with numerical optimization, SAT-like overlap checking, containment validation). This crosses from hand_designed_special_case/geometric_construction to a stochastic/numerical optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the containment calculation logic within the same optimization-based approach introduced in step (i), rather than reverting to the previous geometric construction.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 61,
+      "step_number": 62,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes the method for computing the minimal outer hexagon side length from a simple circumradius-based calculation to a more geometrically correct constraint-based approach using hexagon containment conditions. Also includes some hardcoded fallback values which blur toward parameter_tuning, but the dominant change is the refined geometric computation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the algorithm by improving the containment and overlap checking logic rather than reverting the changes made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 62,
+      "step_number": 63,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the containment checking and outer hexagon side length computation logic, changes how the minimum enclosing hexagon is calculated and validated, and adjusts fallback logic. The core approach (geometric construction with optimization) remains the same family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the algorithm by simplifying containment checking and consolidating validation logic, rather than reverting step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 63,
+      "step_number": 64,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Simplifies containment checking logic and changes fallback condition from overlap-only to general invalidity. Removes complex side-length computation and fine-tuning, replacing with simpler validity check and fallback.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a fundamentally different approach (hardcoded positions with small perturbations vs. optimization-based approach), not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 64,
+      "step_number": 65,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from an optimization-based approach (with overlap checking, containment validation, and iterative refinement) to a hand-designed geometric construction with hardcoded positions and small perturbations. Switches from physical_simulation/stochastic_search family to geometric_construction/hand_designed family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed geometric construction with a different approach that includes overlap checking, containment validation, and optimization logic - this is a new algorithm switch, not a revert to the previous optimization-based approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 65,
+      "step_number": 66,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from a hand-designed geometric construction to an optimization-based approach with gradient descent/force-directed simulation including overlap checking via SAT, containment verification, and numerical optimization. This crosses from geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes a minor comment change in the fallback section, not reverting the optimization-based approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 66,
+      "step_number": 67,
+      "primary_label": "code_cleanup",
+      "confidence": 0.82,
+      "label_notes": "Only changes comments and removes an unused variable assignment (n=12). No semantic change to the algorithm.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the fallback logic and adds new comments/code, but does not revert the cleanup changes made in step (i); it builds upon them with algorithm refinements.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 67,
+      "step_number": 68,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Refines the fallback packing arrangement with better coordinates and adds dynamic outer side length computation, while also adding comments about target values. The primary change is improving the fallback configuration within the same geometric construction approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the fallback configuration with a different set of coordinates and a different outer_hex_side_length (8.0 instead of dynamically computed), which is a different approach rather than reverting to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 68,
+      "step_number": 69,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.7,
+      "label_notes": "Changes the fallback packing arrangement with different hexagon positions and a much larger outer side length (8.0 vs computed). Could also be seen as initialization_change for the fallback case, but the structural change to the fallback configuration is more of a refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (new packing strategy with binary search for outer hexagon size), which is an algorithm_switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 69,
+      "step_number": 70,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver. The previous code used overlap checking (SAT) and containment verification with a fixed layout, while the new code uses a geometric construction approach with binary search for minimal outer hexagon side length and scaling optimization. This represents a fundamental restructuring from a verification-based approach to a construction+optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different optimization-based approach using point-in-hexagon checks and numerical optimization, which is a new algorithm rather than a revert to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 70,
+      "step_number": 71,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver. Previous code used a geometric construction with analytical containment checks; new code introduces overlap checking via separating axis theorem, optimization loop with perturbation-based search, and validation. This represents a substantial architectural change from a direct geometric construction to a stochastic/iterative optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes small parameter adjustments (tuning positions and outer_hex_side_length) to the code from step (i), rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 71,
+      "step_number": 72,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Adjusts specific position coordinates and the outer hex side length constant. While two positions are tweaked, the changes are minor numeric constant adjustments rather than structural algorithm changes.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) removed the position adjustments for indices 7 and 8 that were added in step (i), and reverted the outer_hex_side_length back closer to its pre-step(i) value (3.9419 vs the tuned 3.9417).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 72,
+      "step_number": 73,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.75,
+      "label_notes": "Removes minor position adjustments and changes outer_hex_side_length from 3.9417 to 3.9419. The dominant change is adjusting the numeric constant for the outer side length, though removing the position tweaks could also be seen as algorithm_refinement.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 73,
+      "step_number": 74,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) is an algorithm switch rewrite that replaces the existing code with a different approach, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 74,
+      "step_number": 75,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a simulated annealing / optimization-based approach with overlap checking and containment validation to a geometric construction approach using hexagonal close packing on a triangular grid pattern. This crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm involving optimization with overlap checking and containment validation, which is a new approach rather than reverting to the previous stochastic/SA approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 75,
+      "step_number": 76,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a geometric construction approach to a simulated annealing / optimization-based approach with SAT-style overlap checking, containment verification, and gradient-based refinement. The new code includes force-directed repulsion simulation and iterative optimization, replacing the previous geometric placement strategy.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it did not revert step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 76,
+      "step_number": 77,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 77,
+      "step_number": 78,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 78,
+      "step_number": 79,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; step (i+1) is an algorithm switch rewriting the code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 79,
+      "step_number": 80,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite replacing an optimization-based approach (with containment/overlap checking and optimization loop) with a direct geometric construction of the 12-hexagon packing. Moves from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction with a different approach involving optimization with containment/overlap checking, which is a new algorithm rather than a revert to the previous optimization-based approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 80,
+      "step_number": 81,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Introduces a full optimization-based packing approach (optimize_packing function with numerical optimization) replacing what appears to be a simple hand-designed/geometric construction. Also adds geometric validation (SAT overlap checking, containment checking) and a fallback. The shift from a static geometric layout to numerical optimization represents a cross-family change from hand_designed_special_case/geometric_construction to a physical_simulation/stochastic_search approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes a small parameter change to the outer_hex_side_length calculation, replacing a hardcoded value with a multiplicative epsilon, which is parameter tuning rather than reverting the optimization-based approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 81,
+      "step_number": 82,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Replaces a hardcoded outer_hex_side_length value (3.9419) with a computed value scaled by 1.000001 epsilon. The hardcoded value was likely a manual override/tuning attempt; reverting to computed value with epsilon is partly a bug_fix (removing incorrect hardcoding) and partly parameter tuning. Since the computed value was already there and the hardcoded override is removed, this leans toward bug_fix, but the epsilon multiplier is a parameter adjustment.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restores the hardcoded value 3.9419 that step (i) had replaced with a computed value scaled by epsilon, directly undoing step (i)'s change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 82,
+      "step_number": 83,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.62,
+      "label_notes": "Hardcoding the outer hex side length to a specific constant (3.9419) instead of computing it. This is borderline between parameter_tuning and harness_or_scope_change (hardcoding output), but since it's setting a numeric constant for the result, parameter_tuning fits.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it cannot have reverted step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 83,
+      "step_number": 84,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, so step (i+1) cannot be reverting it; instead, step (i+1) is an algorithm switch rewriting the code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 84,
+      "step_number": 85,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from a stochastic optimization approach (with overlap checking, containment validation, and optimization loop) to a deterministic geometric construction using hexagonal lattice packing with hardcoded positions. This crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the deterministic geometric construction with a different approach involving overlap checking, containment validation, and optimization\u2014this is a new algorithm switch, not a revert to the previous stochastic approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 85,
+      "step_number": 86,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a static/hand-designed packing arrangement with a scipy.optimize-based numerical optimization approach (gradient descent / physical simulation family), adding overlap checking via SAT, containment validation, and optimization loop. This is a cross-family switch from hand_designed_special_case to a numerical optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 86,
+      "step_number": 87,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 87,
+      "step_number": 88,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 88,
+      "step_number": 89,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot revert it; instead it performs an algorithm switch rewrite.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 89,
+      "step_number": 90,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver. The previous code used a simulated annealing / optimization approach with a specific structure, and the new code appears to be a substantially restructured optimization with different geometric construction and force-directed/gradient-based approach. The rewrite is extensive enough to qualify as an algorithm switch, though both are optimization-based approaches.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a refinement of step (i)'s approach, modifying and extending the algorithm rather than reverting it; both steps use optimization-based packing with similar helper functions, and the diff shows incremental changes rather than restoration of prior code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 90,
+      "step_number": 91,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Major rewrite of the packing optimization logic with validation and fallback, but stays within the same physical_simulation/geometric approach family. The code restructures containment checks, overlap detection, and adds validation with fallback, which is a refinement of the existing approach rather than a family switch.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made to the code, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 91,
+      "step_number": 92,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 92,
+      "step_number": 93,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 93,
+      "step_number": 94,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire approach with a fundamentally different algorithm (hardcoded packing solution vs. optimization-based approach), which is an algorithm switch rather than a revert of step (i), especially since step (i) was a no-change step.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 94,
+      "step_number": 95,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from an optimization-based approach (with overlap checking, containment validation, and iterative optimization) to a hand-designed geometric construction with hardcoded positions and a fixed outer hexagon side length.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed geometric construction with a completely different optimization-based approach including overlap checking, containment validation, and iterative optimization - this is an algorithm switch, not a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 95,
+      "step_number": 96,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a hardcoded geometric construction with a scipy.optimize-based numerical optimization approach (gradient descent / minimize), switching from hand_designed_special_case family to physical_simulation/gradient_descent family. Also adds validation with SAT-based overlap checking and containment checks.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 96,
+      "step_number": 97,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "The diff is empty, meaning no changes were made in step (i+1), so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 97,
+      "step_number": 98,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 98,
+      "step_number": 99,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead, step (i+1) is an algorithm_switch rewriting the code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 99,
+      "step_number": 100,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite replacing an optimization-based approach (with validation/fallback) with a direct geometric construction using a spiral lattice arrangement. Crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the spiral lattice approach with a new approach that includes validation and fallback logic, which is a different algorithm rather than a revert to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 100,
+      "step_number": 101,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Adds validation (containment + overlap checks via SAT) and fallback logic to the geometric construction approach. The core algorithm family remains geometric_construction but with significant structural additions for robustness.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 101,
+      "step_number": 102,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no code changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 102,
+      "step_number": 103,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) makes a small parameter change to outer_hex_side_length, which is not a revert of step (i) (which was a no-change step).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 103,
+      "step_number": 104,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Hardcoded outer_hex_side_length changed from 3.9419 to 3.9419123 \u2014 a minor numeric constant tweak to improve the objective value.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite replacing the previous approach with a fundamentally different one, not a revert of the minor parameter tweak in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 104,
+      "step_number": 105,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Complete rewrite from an optimization-based approach (with overlap checking, containment, and iterative refinement) to a hand-designed geometric construction with fixed positions and minor manual adjustments. This crosses from stochastic_search/physical_simulation family to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed geometric construction with a different optimization-based approach including overlap checking and containment validation, which is a new algorithm switch rather than a revert to any prior approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 105,
+      "step_number": 106,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a hand-designed geometric construction with a numerical optimization approach (gradient-based/force-directed optimization with overlap/containment checking via SAT). This crosses from hand_designed_special_case/geometric_construction family to physical_simulation/gradient_descent family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only makes a minor parameter adjustment to outer_hex_side_length (from 3.9419 to 3.9419123), which is parameter tuning, not a revert of the algorithm switch made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 106,
+      "step_number": 107,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Adjusting the hardcoded outer_hex_side_length constant from 3.9419 to 3.9419123, a minor numeric tweak to the final output value.",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) restored the outer_hex_side_length value back to 3.9419, reverting the change made in step (i) which had adjusted it to 3.9419123.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 107,
+      "step_number": 108,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.85,
+      "label_notes": "Changing the hardcoded outer_hex_side_length constant from 3.9419123 to 3.9419 is a numeric constant tweak",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) builds upon step (i) by adding conditional logic around the hardcoded value and refining the fallback computation, rather than reverting the change made in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 108,
+      "step_number": 109,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.78,
+      "label_notes": "Refines the packing arrangement and outer hexagon size computation within the same geometric construction family. Adds conditional logic for computed vs fallback side length and replaces the naive fallback with a tighter known packing configuration.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major algorithm switch/rewrite that replaces the entire approach with a different packing strategy, not a revert to a prior state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 109,
+      "step_number": 110,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the packing approach. Previous code used a hand-designed special case with fixed coordinates and vertex-based containment checking. New code appears to use a fundamentally different construction method (the diff is truncated but shows a complete restructuring of the solution approach for packing 12 hexagons).",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a completely different algorithm with helper functions, SAT-based overlap checking, and a different optimization approach rather than reverting to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 110,
+      "step_number": 111,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite adding geometric validation (SAT overlap checking, containment verification) and optimization-based approach replacing previous simpler geometric construction. The code introduces gradient-based optimization with scipy.minimize and validation fallback, which represents a shift from a pure geometric_construction approach to a physical_simulation/gradient_descent approach with geometric validation.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made to the code, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 111,
+      "step_number": 112,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 112,
+      "step_number": 113,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, and step (i+1) makes algorithm refinements; there is nothing to revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 113,
+      "step_number": 114,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.82,
+      "label_notes": "Refines the geometric construction approach by changing the placement positions of hexagons in the second ring and adding binary search for tighter outer hexagon sizing, all within the geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a fundamentally different algorithm (projection-based minimum bounding hexagon calculation), which is an algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 114,
+      "step_number": 115,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.82,
+      "label_notes": "Replaces a complex iterative approach (binary search with overlap checking, simulated annealing-like placement) with a direct geometric construction that computes the minimum enclosing hexagon analytically from vertex projections onto hexagon normals. This is a switch from stochastic_search/iterative to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm involving overlap checking, optimization, and fallback arrangements, which is a new approach rather than a revert to the previous iterative/stochastic method.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 115,
+      "step_number": 116,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Major rewrite replacing a simple geometric construction with a simulated annealing optimization approach including overlap checking via SAT, containment verification, and iterative refinement. Crosses from geometric_construction family to stochastic_search family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 116,
+      "step_number": 117,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 117,
+      "step_number": 118,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, so step (i+1) cannot be reverting it; instead it makes parameter tuning changes to the existing code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 118,
+      "step_number": 119,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.65,
+      "label_notes": "[POSTPROC rule D] reclassified from parameter_tuning: The code adds extensive comments but the functional change is replacing the hardcoded outer_hex_side_length from 3.9419 to 3.85. The intermediate computation (outer_hex_side_length = max_distance) is immediately overwritten by the hardcoded value. Could also be algorithm_refinement due to the attempted geometric reasoning, but the actual effect is just changing a constant.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete rewrite with a different approach (algorithm_switch), not a revert of step (i)'s parameter change; it replaces the entire implementation rather than restoring a previous version.",
+      "postproc_rule_applied": "D"
+    },
+    {
+      "step_idx": 119,
+      "step_number": 120,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.62,
+      "label_notes": "Complete rewrite of the solver. The previous code had a full optimization loop with containment checks and overlap validation with fallback. The new code appears to use a different geometric construction approach with a hardcoded arrangement (ring-based placement) and simplified containment/overlap checks. The rewrite changes the overall structure significantly, though both are broadly geometric_construction family. However, the rewrite is so extensive and changes the approach fundamentally enough (from an optimization-based approach with fallback to a purely geometric construction) that algorithm_switch is appropriate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a substantially different algorithm with optimization and fallback, rather than reverting to the previous approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 120,
+      "step_number": 121,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver with fundamentally different approach - adds geometric construction with ring-based placement, proper containment/overlap checking, and optimization via scipy.optimize.minimize (gradient-based), replacing the previous incomplete/stub approach. The code structure is entirely new.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the outer hexagon side length computation logic within the same overall approach, simplifying the calculation method rather than reverting to a previous approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 121,
+      "step_number": 122,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.55,
+      "label_notes": "The code simplifies the outer hexagon side length computation (removing complex containment logic, replacing with simpler circumradius-based calculation), but ultimately hardcodes the value to 3.9419. The dominant change is simplifying the containment calculation approach, though the hardcoded value makes this borderline parameter_tuning. Since structural code was changed alongside, algorithm_refinement wins.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) made no changes at all (empty diff), so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 122,
+      "step_number": 123,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 123,
+      "step_number": 124,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; step (i+1) is an algorithm switch rewrite that replaces the existing code with a different approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 124,
+      "step_number": 125,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite from an optimization-based approach (with containment checks, overlap detection, and iterative optimization) to a direct geometric construction approach. Crosses from stochastic_search/physical_simulation family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different approach that includes overlap detection, containment checks, and optimization logic \u2014 this is a new algorithm switch, not a revert to the previous optimization-based approach from before step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 125,
+      "step_number": 126,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite of the solver: previous code used a geometric construction approach (lattice-based placement with scaling), new code implements a force-directed/repulsion simulation with gradient-based optimization (iterative overlap resolution, containment checking via SAT, optimization loop). This crosses from geometric_construction family to physical_simulation family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines and extends the code from step (i) by adding missing inner_hex_data construction, improving the outer side length computation, and adding scaling logic, rather than reverting it.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 126,
+      "step_number": 127,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.75,
+      "label_notes": "Changes how the outer hexagon side length is computed: removes the hardcoded target fallback and instead computes from vertex distances, then scales positions to fit a target. This is a refinement of the geometric construction approach for determining the minimal enclosing hexagon.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) further refines the outer hexagon side length computation by simplifying the approach and hardcoding a value, rather than reverting step (i)'s changes; it builds on step (i) rather than restoring previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 127,
+      "step_number": 128,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.62,
+      "label_notes": "Simplifies outer hexagon side length computation by removing scaling logic and hardcoding target value 3.9419. Also changes the distance-to-side-length conversion formula. The hardcoded value is borderline parameter_tuning but the structural changes to the computation logic make algorithm_refinement more appropriate.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no code changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 128,
+      "step_number": 129,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), so step (i+1) cannot be reverting it; instead it introduces a new algorithm as part of a scheduled rewrite.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 129,
+      "step_number": 130,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from an optimization-based approach (with overlap checking, containment, and iterative refinement) to a hand-designed geometric construction with hardcoded positions for 12 hexagons in rings, switching from stochastic_search/physical_simulation family to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the hand-designed geometric construction with a completely different approach involving validation, overlap checking, and optimization functions - this is a new algorithm switch, not a revert to any previous code.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 130,
+      "step_number": 131,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver approach. The previous code structure is entirely replaced with a new geometric construction approach including explicit hexagon vertex generation, SAT-based overlap checking, containment verification, and a different placement strategy. This represents a fundamental restructuring crossing from one approach family to another.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) refines the algorithm from step (i) by simplifying the outer hexagon side length computation and removing verbose comments/fallback logic, but retains the same overall geometric construction approach introduced in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 131,
+      "step_number": 132,
+      "primary_label": "algorithm_refinement",
+      "confidence": 0.72,
+      "label_notes": "Changes the method for computing the outer hexagon side length from a constraint-based approach (using hexagonal geometry inequalities) to a simpler max-distance/radius approach, while still hardcoding the final value. Also includes code cleanup of comments.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only changes the hardcoded outer_hex_side_length value from 3.9419 to 3.9419123, which is a minor parameter tuning adjustment, not a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 132,
+      "step_number": 133,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.92,
+      "label_notes": "Changes only the hardcoded outer_hex_side_length constant from 3.9419 to 3.9419123",
+      "was_reverted": true,
+      "revert_reason": "Step (i+1) reverts the parameter change from step (i) by changing outer_hex_side_length back from 3.9419123 to the previous value of 3.9419.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 133,
+      "step_number": 134,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.9,
+      "label_notes": "Only changes the hardcoded outer_hex_side_length constant from 3.9419123 to 3.9419",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a major algorithm rewrite that replaces the entire approach with a different one, not a revert of the minor parameter change in step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 134,
+      "step_number": 135,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite replacing overlap-checking/containment-based approach with a geometric construction approach using hexagonal metric distance computation and rotational sweep to find minimal enclosing hexagon. Crosses from physical_simulation/exact_solver family to geometric_construction family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm using point-in-hexagon containment checking and a new arrangement pattern, which is a different approach rather than reverting to the previous overlap-checking approach.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 135,
+      "step_number": 136,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from a hand-designed geometric construction with hardcoded optimal values to a scipy.optimize-based numerical optimization approach with containment/overlap checking, representing a switch from geometric_construction to a gradient_descent/optimization family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 136,
+      "step_number": 137,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 137,
+      "step_number": 138,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step (empty diff), and step (i+1) only modifies a comment, which does not constitute reverting anything.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 138,
+      "step_number": 139,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.82,
+      "label_notes": "Changing the hardcoded outer_hex_side_length value from one constant to another (3.9419), which is a numeric constant adjustment.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) is a complete algorithm rewrite that replaces the entire approach with a different implementation, not a revert of step (i)'s parameter change; it retains the same outer_side value of 3.9419 from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 139,
+      "step_number": 140,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. The previous code used a static/hand-designed configuration approach, while the new code introduces optimization with gradient-based refinement (force-directed/repulsion simulation style) plus geometric construction with concentric rings and iterative improvement. This crosses from hand_designed_special_case to a hybrid geometric_construction/physical_simulation approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) introduces a substantially different approach with new optimization logic, different initial configurations, and different helper functions rather than reverting to a previous state.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 140,
+      "step_number": 141,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the solver. The previous code used pre-computed/hardcoded parameters (hand_designed_special_case family), while the new code implements an optimization loop with validation, containment checking, overlap detection, and a fallback mechanism. This represents a fundamental restructuring from a static solution to a dynamic optimization approach.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has no diff, meaning no changes were made to the code, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 141,
+      "step_number": 142,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so it cannot be a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 142,
+      "step_number": 143,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) has an empty diff, meaning no changes were made, so nothing was reverted.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 143,
+      "step_number": 144,
+      "primary_label": "no_change",
+      "confidence": 1.0,
+      "label_notes": "Empty diff",
+      "was_reverted": false,
+      "revert_reason": "Step (i) was a no-change step with an empty diff, so there is nothing to revert; step (i+1) is an algorithm switch rewrite that changes the approach but does not undo any prior change.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 144,
+      "step_number": 145,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Complete rewrite of the packing solver. The previous code used an optimization-based approach with iterative refinement, while the new code constructs a geometric arrangement with concentric rings and optional perturbation-based local search. This represents a shift from a more complex optimization to a geometric_construction approach, crossing algorithm families.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the geometric construction approach with a different algorithm (using SAT-like polygon containment checks and optimization), which is a normal algorithm switch rather than a revert of step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 145,
+      "step_number": 146,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.72,
+      "label_notes": "Major rewrite of the packing solver: replaces the previous geometric construction approach with a scipy.optimize.minimize-based optimization (physical simulation / gradient descent). The overall structure, initialization, containment checks, and overlap detection are all rewritten. This crosses from geometric_construction family to physical_simulation (gradient_descent) family.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) modifies the outer hexagon side length computation and hardcodes a specific value, but retains the overall scipy.optimize-based approach from step (i) \u2014 this is parameter tuning, not a revert.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 146,
+      "step_number": 147,
+      "primary_label": "parameter_tuning",
+      "confidence": 0.55,
+      "label_notes": "The main functional change is adjusting the hardcoded outer_hex_side_length from 3.9419 to 3.9419123. The rest is comment rewriting and minor code cleanup. The geometric reasoning in comments changed but the computation is overridden by the hardcoded value anyway. Could also be code_cleanup given the comment changes, but the parameter tweak is the semantically meaningful change.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) reverts the outer_hex_side_length from 3.9419123 back to 3.9419, but this is a minor parameter change combined with code cleanup/refactoring of comments and variable names, not a full revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 147,
+      "step_number": 148,
+      "primary_label": "code_cleanup",
+      "confidence": 0.55,
+      "label_notes": "The changes are mostly cosmetic: renaming variables, rewriting comments, simplifying the outer side length computation logic. The hardcoded outer_hex_side_length value changed trivially from 3.9419123 to 3.9419, but the dominant change is comment/variable cleanup. Could also be parameter_tuning for the tiny constant change, but the structural changes are all semantic-preserving refactoring.",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) only removes two comments, which is a minor further cleanup rather than a revert of step (i)'s changes.",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 148,
+      "step_number": 149,
+      "primary_label": "code_cleanup",
+      "confidence": 0.95,
+      "label_notes": "Only removes two comments with no semantic change to the code",
+      "was_reverted": false,
+      "revert_reason": "Step (i+1) replaces the entire algorithm with a different approach (algorithm_switch), rather than reverting the minor comment removal from step (i).",
+      "postproc_rule_applied": null
+    },
+    {
+      "step_idx": 149,
+      "step_number": 150,
+      "primary_label": "algorithm_switch",
+      "confidence": 0.78,
+      "label_notes": "Complete rewrite from an optimization-based approach (with overlap checking, containment validation, and iterative optimization) to a direct geometric construction with hardcoded/precomputed packing positions. This crosses from stochastic_search/physical_simulation family to geometric_construction/hand_designed_special_case family.",
+      "was_reverted": false,
+      "revert_reason": "(last step, no next-step)",
+      "postproc_rule_applied": null
+    }
+  ]
+}
